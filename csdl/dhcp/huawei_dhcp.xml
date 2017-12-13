@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Core.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Core.V1"/>
+  </Reference>
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Capabilities.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Capabilities.V1"/>
+  </Reference>
+  <DataServices>
+    <Schema xmlns="urn:ietf:params:xml:ns:yang:ietf-dhcp" Name="huawei_dhcp" Namespace="huawei_dhcp" Prefix="dhcp">
+      <Annotation String="leo.liubing@huawei.com&quot; &quot;loukunkun@huawei.com" Term="Redfish.Yang.contact"/>
+      <Annotation String="The module for implementing DHCP protocol" Term="OData.Description"/>
+      <Annotation String="2014-12-18" Term="Redfish.Yang.revision"/>
+      <NavigationProperty ContainsTarget="true" Name="huawei_dhcp.relay" Type="huawei_dhcp.relayCollection.huawei_dhcp.relayCollection">
+        <Annotation EnumMember="OData.Permissions/Read/" Term="OData.Permissions"/>
+        <Annotation String="" Term="OData.Description"/>
+        <Annotation String="" Term="OData.LongDescription"/>
+        <Annotation Term="AutoExpandReferences"/>
+      </NavigationProperty>
+      <NavigationProperty ContainsTarget="true" Name="huawei_dhcp.server" Type="huawei_dhcp.serverCollection.huawei_dhcp.serverCollection">
+        <Annotation EnumMember="OData.Permissions/Read/" Term="OData.Permissions"/>
+        <Annotation String="" Term="OData.Description"/>
+        <Annotation String="" Term="OData.LongDescription"/>
+        <Annotation Term="AutoExpandReferences"/>
+      </NavigationProperty>
+      <NavigationProperty ContainsTarget="true" Name="huawei_dhcp.client" Type="huawei_dhcp.clientCollection.huawei_dhcp.clientCollection">
+        <Annotation EnumMember="OData.Permissions/Read/" Term="OData.Permissions"/>
+        <Annotation String="" Term="OData.Description"/>
+        <Annotation String="" Term="OData.LongDescription"/>
+        <Annotation Term="AutoExpandReferences"/>
+      </NavigationProperty>
+    </Schema>
+  </DataServices>
+  <Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf-inet-types.xml">
+    <Include Alias="inet" Namespace="ietf-inet-types.v1_0_0"/>
+  </Reference>
+</edmx:Edmx>

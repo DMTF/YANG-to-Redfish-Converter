@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Core.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Core.V1"/>
+  </Reference>
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Capabilities.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Capabilities.V1"/>
+  </Reference>
+  <DataServices>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="huawei_dhcp.server.globalIpPool.globalIpPool.ipPoolStat">
+      <EntityType BaseType="Resource.v1_0_0.Resource" Name="huawei_dhcp.server.globalIpPool.globalIpPool.ipPoolStat">
+        <Annotation String="" Term="OData.Description"/>
+        <Annotation Bool="false" Term="OData.AdditionalProperties"/>
+      </EntityType>
+    </Schema>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="huawei_dhcp.server.globalIpPool.globalIpPool.ipPoolStat.v1_0_0">
+      <EntityType BaseType="ipPoolStat.ipPoolStat" Name="huawei_dhcp.server.globalIpPool.globalIpPool.ipPoolStat">
+        <Annotation EnumMember="Redfish.Yang.NodeTypes/container" Term="RedfishYang.NodeType"/>
+        <Property Name="usedIpCount" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="Used Ip Count" Term="OData.Description"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="idleIpCount" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="Idle Ip Count" Term="OData.Description"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="conflictIpCount" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="Conflict Ip Count" Term="OData.Description"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="totalIpCount" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="Total Ip Count" Term="OData.Description"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+      </EntityType>
+    </Schema>
+  </DataServices>
+</edmx:Edmx>

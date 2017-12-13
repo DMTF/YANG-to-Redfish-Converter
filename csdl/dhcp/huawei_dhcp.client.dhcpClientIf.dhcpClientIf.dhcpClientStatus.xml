@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Core.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Core.V1"/>
+  </Reference>
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Capabilities.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Capabilities.V1"/>
+  </Reference>
+  <DataServices>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="huawei_dhcp.client.dhcpClientIf.dhcpClientIf.dhcpClientStatus">
+      <EntityType BaseType="Resource.v1_0_0.Resource" Name="huawei_dhcp.client.dhcpClientIf.dhcpClientIf.dhcpClientStatus">
+        <Annotation String="" Term="OData.Description"/>
+        <Annotation Bool="false" Term="OData.AdditionalProperties"/>
+      </EntityType>
+    </Schema>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="huawei_dhcp.client.dhcpClientIf.dhcpClientIf.dhcpClientStatus.v1_0_0">
+      <EntityType BaseType="dhcpClientStatus.dhcpClientStatus" Name="huawei_dhcp.client.dhcpClientIf.dhcpClientIf.dhcpClientStatus">
+        <Annotation EnumMember="Redfish.Yang.NodeTypes/container" Term="RedfishYang.NodeType"/>
+        <Annotation String="Specify the status of DHCP client on the interface" Term="OData.Description"/>
+        <Property Name="status" Type="Edm:Enumeration">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="Specify the status of DHCP client on the interface" Term="OData.Description"/>
+          <Annotation String="enumeration" Term="Redfish.Yang.YangType"/>
+          <EnumType Name="statusEnumeration">
+            <Member Name="Init">
+              <Annotation String="Init" Term="Redfish.Yang.enum"/>
+            </Member>
+            <Member Name="Discoverying">
+              <Annotation String="Discoverying" Term="Redfish.Yang.enum"/>
+            </Member>
+            <Member Name="Offered">
+              <Annotation String="Offered" Term="Redfish.Yang.enum"/>
+            </Member>
+            <Member Name="Requesting">
+              <Annotation String="Requesting" Term="Redfish.Yang.enum"/>
+            </Member>
+            <Member Name="Acked">
+              <Annotation String="Acked" Term="Redfish.Yang.enum"/>
+            </Member>
+          </EnumType>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="clientIpAddr" Type="Yang.inet:ipv4-address">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="Specify the IP address obtained from DHCP server on the interface" Term="OData.Description"/>
+          <Annotation String="inet:ipv4-address" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="dnsServerIpAddr" Type="Collection(Yang.inet:ipv4-address)">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf_list" Term="RedfishYang.NodeType"/>
+          <Annotation String="Specify the DNS server IP address obtained from DHCP server on the interface" Term="OData.Description"/>
+          <Annotation String="inet:ipv4-address" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+      </EntityType>
+    </Schema>
+  </DataServices>
+</edmx:Edmx>

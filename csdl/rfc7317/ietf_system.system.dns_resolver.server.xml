@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Core.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Core.V1"/>
+  </Reference>
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Capabilities.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Capabilities.V1"/>
+  </Reference>
+  <DataServices>
+    <Schema Namespace="ietf_system.system.dns_resolver.serverCollection">
+      <EntityType BaseType="Resource.v1_0_0.ResourceCollection" Name="ietf_system.system.dns_resolver.serverCollection">
+        <Annotation EnumMember="Redfish.Yang.NodeTypes/list" Term="RedfishYang.NodeType"/>
+        <Key>
+          <PropertyRef Name="name"/>
+        </Key>
+        <Annotation EnumMember="Redfish.Yang.Ordered_by/user" Term="Redfish.Yang.ordered_by"/>
+        <Annotation String="List of the DNS servers that the resolver should query. When the resolver is invoked by a calling application, it sends the query to the first name server in this list. If no response has been received within 'timeout' seconds, the resolver continues with the next server in the list. If no response is received from any server, the resolver continues with the first server again. When the resolver has traversed the list 'attempts' times without receiving any response, it gives up and returns an error to the calling application. Implementations MAY limit the number of entries in this list." Term="OData.Description"/>
+        <Property Name="name" Type="Edm:String">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="string" Term="Redfish.Yang.YangType"/>
+          <Annotation String="An arbitrary name for the DNS server." Term="OData.Description"/>
+        </Property>
+        <Annotation String="transport" Term="Redfish.Yang.choice"/>
+        <NavigationProperty ContainsTarget="true" Name="ietf_system.system.dns_resolver.server.udp_and_tcp" Type="ietf_system.system.dns_resolver.server.udp_and_tcpCollection.ietf_system.system.dns_resolver.server.udp_and_tcpCollection">
+          <Annotation EnumMember="OData.Permissions/Read/" Term="OData.Permissions"/>
+          <Annotation String="" Term="OData.Description"/>
+          <Annotation String="" Term="OData.LongDescription"/>
+          <Annotation Term="AutoExpandReferences"/>
+        </NavigationProperty>
+      </EntityType>
+    </Schema>
+  </DataServices>
+  <Reference Namespace="ietf_system.system.dns_resolver.server.xml" Uri="http://redfish.dmtf.org/schemas/v1/">
+    <Include Namespace="ietf_system.system.dns_resolver.server"/>
+  </Reference>
+</edmx:Edmx>

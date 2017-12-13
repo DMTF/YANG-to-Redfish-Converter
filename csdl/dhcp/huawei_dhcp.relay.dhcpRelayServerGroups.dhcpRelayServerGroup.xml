@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Core.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Core.V1"/>
+  </Reference>
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Capabilities.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Capabilities.V1"/>
+  </Reference>
+  <DataServices>
+    <Schema Namespace="huawei_dhcp.relay.dhcpRelayServerGroups.dhcpRelayServerGroupCollection">
+      <EntityType BaseType="Resource.v1_0_0.ResourceCollection" Name="huawei_dhcp.relay.dhcpRelayServerGroups.dhcpRelayServerGroupCollection">
+        <Annotation EnumMember="Redfish.Yang.NodeTypes/list" Term="RedfishYang.NodeType"/>
+        <Key>
+          <PropertyRef Name="serverGroupName"/>
+        </Key>
+        <Annotation String="DHCP relay server group" Term="OData.Description"/>
+        <Property Name="serverGroupName" Type="Edm:String">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="name of server group" Term="OData.Description"/>
+          <Annotation String="string" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/true" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="vpnName" Type="Edm:String">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="VPN name for server group" Term="OData.Description"/>
+          <Annotation String="string" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/true" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="gateway" Type="Yang.inet:ipv4-address">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="gateway for server group" Term="OData.Description"/>
+          <Annotation String="inet:ipv4-address" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/true" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="serverAddress" Type="Collection(Yang.inet:ipv4-address)">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf_list" Term="RedfishYang.NodeType"/>
+          <Annotation String="DHCP relay destination server IP address" Term="OData.Description"/>
+          <Annotation String="inet:ipv4-address" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/true" Term="Redfish.Yang.config"/>
+        </Property>
+        <NavigationProperty ContainsTarget="true" Name="huawei_dhcp.relay.dhcpRelayServerGroups.dhcpRelayServerGroup.dhcpRelaySerGrpStats" Type="huawei_dhcp.relay.dhcpRelayServerGroups.dhcpRelayServerGroup.dhcpRelaySerGrpStatsCollection.huawei_dhcp.relay.dhcpRelayServerGroups.dhcpRelayServerGroup.dhcpRelaySerGrpStatsCollection">
+          <Annotation EnumMember="OData.Permissions/Read/" Term="OData.Permissions"/>
+          <Annotation String="" Term="OData.Description"/>
+          <Annotation String="" Term="OData.LongDescription"/>
+          <Annotation Term="AutoExpandReferences"/>
+        </NavigationProperty>
+      </EntityType>
+    </Schema>
+  </DataServices>
+  <Reference Namespace="huawei_dhcp.relay.dhcpRelayServerGroups.dhcpRelayServerGroup.xml" Uri="http://redfish.dmtf.org/schemas/v1/">
+    <Include Namespace="huawei_dhcp.relay.dhcpRelayServerGroups.dhcpRelayServerGroup"/>
+  </Reference>
+</edmx:Edmx>

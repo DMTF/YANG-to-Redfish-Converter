@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Core.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Core.V1"/>
+  </Reference>
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Capabilities.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Capabilities.V1"/>
+  </Reference>
+  <DataServices>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="huawei_dhcp.client.dhcpClientIf.dhcpClientIf.dhcpClientIfStatistics">
+      <EntityType BaseType="Resource.v1_0_0.Resource" Name="huawei_dhcp.client.dhcpClientIf.dhcpClientIf.dhcpClientIfStatistics">
+        <Annotation String="" Term="OData.Description"/>
+        <Annotation Bool="false" Term="OData.AdditionalProperties"/>
+      </EntityType>
+    </Schema>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="huawei_dhcp.client.dhcpClientIf.dhcpClientIf.dhcpClientIfStatistics.v1_0_0">
+      <EntityType BaseType="dhcpClientIfStatistics.dhcpClientIfStatistics" Name="huawei_dhcp.client.dhcpClientIf.dhcpClientIf.dhcpClientIfStatistics">
+        <Annotation EnumMember="Redfish.Yang.NodeTypes/container" Term="RedfishYang.NodeType"/>
+        <Annotation String="Specify the statistics of DHCP client send or receive packets on the interface" Term="OData.Description"/>
+        <Property Name="discoverCount" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="Discover Count" Term="OData.Description"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="requestCount" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="Request Count" Term="OData.Description"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="declineCount" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="Decline Count" Term="OData.Description"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="releaseCount" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="Release Count" Term="OData.Description"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="informCount" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="Inform Count" Term="OData.Description"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="offerCount" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="Offer Count" Term="OData.Description"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="ackCount" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="Ack Count" Term="OData.Description"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="nakCount" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="Nak Count" Term="OData.Description"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+      </EntityType>
+    </Schema>
+  </DataServices>
+</edmx:Edmx>

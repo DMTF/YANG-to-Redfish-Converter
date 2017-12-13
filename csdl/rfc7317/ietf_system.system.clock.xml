@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Core.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Core.V1"/>
+  </Reference>
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Capabilities.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Capabilities.V1"/>
+  </Reference>
+  <DataServices>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_system.system.clock">
+      <EntityType BaseType="Resource.v1_0_0.Resource" Name="ietf_system.system.clock">
+        <Annotation String="" Term="OData.Description"/>
+        <Annotation Bool="false" Term="OData.AdditionalProperties"/>
+      </EntityType>
+    </Schema>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_system.system.clock.v1_0_0">
+      <EntityType BaseType="clock.clock" Name="ietf_system.system.clock">
+        <Annotation EnumMember="Redfish.Yang.NodeTypes/container" Term="RedfishYang.NodeType"/>
+        <Annotation String="Configuration of the system date and time properties." Term="OData.Description"/>
+        <Annotation String="timezone" Term="Redfish.Yang.choice">
+          <Annotation String="timezone_name" Term="Redfish.Yang.case">
+            <Annotation String="timezone_name" Term="Redfish.Yang.NodeName">
+              <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="Redfish.Yang.NodeType"/>
+            </Annotation>
+          </Annotation>
+        </Annotation>
+        <Property Name="timezone_name" Type="Yang.timezone-name">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="timezone-name" Term="Redfish.Yang.YangType"/>
+          <Annotation String="The TZ database name to use for the system, such as 'Europe/Stockholm'." Term="OData.Description"/>
+          <Annotation String="timezone_name" Term="Redfish.Yang.case"/>
+          <Annotation String="timezone" Term="Redfish.Yang.choice"/>
+        </Property>
+      </EntityType>
+    </Schema>
+  </DataServices>
+</edmx:Edmx>

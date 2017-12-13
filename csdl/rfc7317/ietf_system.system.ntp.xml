@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Core.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Core.V1"/>
+  </Reference>
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Capabilities.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Capabilities.V1"/>
+  </Reference>
+  <DataServices>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_system.system.ntp">
+      <EntityType BaseType="Resource.v1_0_0.Resource" Name="ietf_system.system.ntp">
+        <Annotation String="" Term="OData.Description"/>
+        <Annotation Bool="false" Term="OData.AdditionalProperties"/>
+      </EntityType>
+    </Schema>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_system.system.ntp.v1_0_0">
+      <EntityType BaseType="ntp.ntp" Name="ietf_system.system.ntp">
+        <Annotation EnumMember="Redfish.Yang.NodeTypes/container" Term="RedfishYang.NodeType"/>
+        <Annotation String="ntp" Term="Redfish.Yang.if_feature"/>
+        <Annotation String="Enables the NTP client unless the 'enabled' leaf&#10;         (which defaults to 'true') is set to 'false'" Term="Redfish.Yang.presence"/>
+        <Annotation String="Configuration of the NTP client." Term="OData.Description"/>
+        <Property DefaultValue="true" Name="enabled" Type="Edm:Boolean">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="boolean" Term="Redfish.Yang.YangType"/>
+          <Annotation String="Indicates that the system should attempt to synchronize the system clock with an NTP server from the 'ntp/server' list." Term="OData.Description"/>
+        </Property>
+        <NavigationProperty Name="Members" Type="Collection(ietf_system.system.ntp.server)">
+          <Annotation EnumMember="OData.Permissions/Read/" Term="OData.Permissions"/>
+          <Annotation String="" Term="OData.Description"/>
+          <Annotation String="" Term="OData.LongDescription"/>
+          <Annotation Term="AutoExpandReferences"/>
+        </NavigationProperty>
+      </EntityType>
+    </Schema>
+  </DataServices>
+</edmx:Edmx>

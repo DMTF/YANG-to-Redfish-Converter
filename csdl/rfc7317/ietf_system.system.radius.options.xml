@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Core.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Core.V1"/>
+  </Reference>
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Capabilities.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Capabilities.V1"/>
+  </Reference>
+  <DataServices>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_system.system.radius.options">
+      <EntityType BaseType="Resource.v1_0_0.Resource" Name="ietf_system.system.radius.options">
+        <Annotation String="" Term="OData.Description"/>
+        <Annotation Bool="false" Term="OData.AdditionalProperties"/>
+      </EntityType>
+    </Schema>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_system.system.radius.options.v1_0_0">
+      <EntityType BaseType="options.options" Name="ietf_system.system.radius.options">
+        <Annotation EnumMember="Redfish.Yang.NodeTypes/container" Term="RedfishYang.NodeType"/>
+        <Annotation String="RADIUS client options." Term="OData.Description"/>
+        <Property DefaultValue="5" Name="timeout" Type="Edm:Byte">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint8" Term="Redfish.Yang.YangType"/>
+          <Annotation String="1..max" Term="Redfish.Yang.range"/>
+          <Annotation String="seconds" Term="Redfish.Yang.units"/>
+          <Annotation String="The number of seconds the device will wait for a response from each RADIUS server before trying with a different server." Term="OData.Description"/>
+        </Property>
+        <Property DefaultValue="2" Name="attempts" Type="Edm:Byte">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint8" Term="Redfish.Yang.YangType"/>
+          <Annotation String="1..max" Term="Redfish.Yang.range"/>
+          <Annotation String="The number of times the device will send a query to all of its RADIUS servers before giving up." Term="OData.Description"/>
+        </Property>
+      </EntityType>
+    </Schema>
+  </DataServices>
+</edmx:Edmx>

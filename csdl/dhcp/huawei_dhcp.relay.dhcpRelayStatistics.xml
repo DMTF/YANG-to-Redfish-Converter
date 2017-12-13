@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Core.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Core.V1"/>
+  </Reference>
+  <Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Capabilities.V1.xml">
+    <Include Alias="Odata" Namespace="Org.OData.Capabilities.V1"/>
+  </Reference>
+  <DataServices>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="huawei_dhcp.relay.dhcpRelayStatistics">
+      <EntityType BaseType="Resource.v1_0_0.Resource" Name="huawei_dhcp.relay.dhcpRelayStatistics">
+        <Annotation String="" Term="OData.Description"/>
+        <Annotation Bool="false" Term="OData.AdditionalProperties"/>
+      </EntityType>
+    </Schema>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="huawei_dhcp.relay.dhcpRelayStatistics.v1_0_0">
+      <EntityType BaseType="dhcpRelayStatistics.dhcpRelayStatistics" Name="huawei_dhcp.relay.dhcpRelayStatistics">
+        <Annotation EnumMember="Redfish.Yang.NodeTypes/container" Term="RedfishYang.NodeType"/>
+        <Property Name="badPacketsRecvd" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="packetsRecvdFromClient" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="discoverPacketsRecvd" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="requestPacketsRecvd" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="informPacketsRecvd" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="declinePacketsRecvd" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="releasePacketsRecvd" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="packetsRecvdFromServers" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="offerPacketsRecvd" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="ackPacketsRecvd" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="nakPacketsRecvd" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="packetsSentToServers" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="packetsSentToClients" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="unicastPacketsSentToClients" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="broadcastPacketsSentToClients" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="releasePacketsSentToServers" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+        <Property Name="sendRenewPacket" Type="Redfish.Yang.uint32">
+          <Annotation EnumMember="Redfish.Yang.NodeTypes/leaf" Term="RedfishYang.NodeType"/>
+          <Annotation String="uint32" Term="Redfish.Yang.YangType"/>
+          <Annotation EnumMember="Redfish.Yang.ConfigPermission/false" Term="Redfish.Yang.config"/>
+        </Property>
+      </EntityType>
+    </Schema>
+  </DataServices>
+</edmx:Edmx>
