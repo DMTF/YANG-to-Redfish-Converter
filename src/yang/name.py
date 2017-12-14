@@ -16,12 +16,12 @@ class Unmapped(Grammar):
 
 
 class Name(Grammar):
-    grammar = (WORD("A-Za-z0-9", restchars='a-zA-Z0-9\-',
+    grammar = (WORD("A-Za-z0-9", restchars='a-zA-Z0-9\-.',
                     fullmatch=True, escapes=True))
 
 
 class NameInQuotes(Grammar):
-    grammar = (WORD('"A-Za-z0-9', restchars='a-zA-Z0-9\-",',
+    grammar = (WORD('"A-Za-z0-9', restchars='a-zA-Z0-9\-",.',
                     fullmatch=True, escapes=True))
 
 

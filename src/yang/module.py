@@ -43,16 +43,13 @@ class Contact(Grammar):
 
 
 class RevisionGrammar(Grammar):
-    grammar = (L('revision'),
-               OR(Name, NameInQuotes),
-               OR(
+    grammar = (L('revision'), OR(Name, NameInQuotes), OR(
         (OPENBRACE,
-         Description,
-         ReferenceGrammar,
-         CLOSEBRACE
-         ),
-        L(';'))
-    )
+        REPEAT(
+         Description |
+         ReferenceGrammar, min=0),
+         CLOSEBRACE)
+        ,  L(';')))
 
 
 class Prefix(Grammar):

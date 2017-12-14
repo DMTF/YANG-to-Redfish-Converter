@@ -11,6 +11,7 @@ from yang.enumtypes import EnumerationGrammar, EnumItemTypeA, EnumItemTypeB
 from yang.feature import *
 from yang.reference import *
 from yang.must import *
+from yang.when import *
 
 grammar_whitespace_mode = 'optional'
 
@@ -28,7 +29,7 @@ class LeafGrammar(Grammar):
                OPENBRACE,
                OPTIONAL(IfFeature),
                REPEAT(ReferenceGrammar | Unmapped | Type | Description |
-                      Units | Default | Config | Mandatory, min=0),
+                      Units | Default | Config | Mandatory | When | Must, min=0),
                # Type,
                #REPEAT(Description | Units | Default | Config, min=0),
                CLOSEBRACE)

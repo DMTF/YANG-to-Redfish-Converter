@@ -13,6 +13,7 @@ from xml_content import XMLContent
 # called - i.e Yang statements which could have container/list/
 # leaflist/leaf as one of their sub statements.
 
+# Prefix + name
 
 def createCollectionXML(name, prefix=None):
     collection_name = name + "Collection"
@@ -32,21 +33,21 @@ def createCollectionXML(name, prefix=None):
     collection_schema_node.set("xmlns", "http://docs.oasis-open.org/odata/ns/edm")
     # should this namespace be truncated as well? (errata)
     collection_schema_node.set("Namespace", prefix + collection_name)
-    collection_xml_node = SubElement(collection_schema_node, "EntityType")
+    collection_target = SubElement(collection_schema_node, "EntityType")
 
-    collection_xml_node.set('Name', collection_name.split('.')[-1])
-    collection_xml_node.set('BaseType' ,"Resource.v1_0_0.ResourceCollection")
-    xml_convenience.add_annotation(collection_xml_node, {"Term": "OData.Description", 
+    collection_target.set('Name', collection_name.split('.')[-1])
+    collection_target.set('BaseType' ,"Resource.v1_0_0.ResourceCollection")
+    xml_convenience.add_annotation(collection_target, {"Term": "OData.Description", 
         "String": "A Collection of " + name + " resource instances." 
         })
-    xml_convenience.add_collection_annotation(collection_xml_node, {"Term":
+    xml_convenience.add_collection_annotation(collection_target, {"Term":
         "Capabilities.InsertRestrictions"}, {"Insertable": "false"})
-    xml_convenience.add_collection_annotation(collection_xml_node, {"Term":
+    xml_convenience.add_collection_annotation(collection_target, {"Term":
         "Capabilities.UpdateRestrictions"}, {"Updatable": "false"})
-    xml_convenience.add_collection_annotation(collection_xml_node, {"Term":
+    xml_convenience.add_collection_annotation(collection_target, {"Term":
         "Capabilities.DeleteRestrictions"}, {"Deletable": "false"})
 
-    nav_prop = SubElement(collection_xml_node, 'NavigationProperty')
+    nav_prop = SubElement(collection_target, 'NavigationProperty')
     nav_prop.set('Name', 'Members') 
     listname = name.split('.')[-1]
     # should this be without the namespace at all (errata)
@@ -100,7 +101,7 @@ def create_xml_base(csdlname, prefix=None):
 # Other statements are handed off to respective handlers - handlers.handle_XXXXX
 # defined in this file and in statement_handlers.py.
 
-def build_tree_new(segment, list_of_xml, logger, prefix=None, topleveltypes=None, toplevelimports=None, parent=None, parent_schema=None):
+def build_tree_new(segment, list_of_xml, logger, prefix=None, topleveltypes=None, toplevelimports=None, parent=None, parent_schema=None, parent_entity=None):
     seg_type = str(type(segment))
     if topleveltypes == None:
         topleveltypes = dict()
@@ -185,19 +186,19 @@ def build_tree_new(segment, list_of_xml, logger, prefix=None, topleveltypes=None
 
     if seg_type in ['LeafGrammar']:
         tag, name_tag, obrace, if_tag, content, cbrace = segment.elements
-        xml_node = Element("Property")
+        target = Element("Property")
         member = redfishtypes.get_node_types_mapping(str(type(tag)))
         xml_convenience.add_annotation(
-            xml_node, {'Term': 'RedfishYang.NodeType', 'EnumMember': member})
+            target, {'Term': 'RedfishYang.NodeType', 'EnumMember': member})
         xml_convenience.add_annotation(
-            xml_node, {'Term': 'OData.Permissions', 'EnumMember': 'OData.Permission/Read'})
+            target, {'Term': 'OData.Permissions', 'EnumMember': 'OData.Permission/Read'})
         csdlname = handlers.get_valid_csdl_identifier(name_tag.string.strip('"'))
-        xml_node.set(
+        target.set(
             'Name', csdlname)
         for item in content:
-            build_tree_repeat(item, None, xml_node, parent, list_of_xml, logger, prefix + csdlname + '.', topleveltypes=topleveltypes, toplevelimports=toplevelimports)
+            build_tree_repeat(item, parent_entity, target, parent, list_of_xml, logger, prefix + csdlname + '.', topleveltypes=topleveltypes, toplevelimports=toplevelimports)
 
-        return xml_node
+        return target
 
     if seg_type in ['LeafListGrammar']:
         tag, name_tag, obrace, content, cbrace = segment.elements
@@ -217,11 +218,12 @@ def build_tree_new(segment, list_of_xml, logger, prefix=None, topleveltypes=None
                 "String": "List of the type {}".format(csdlname)}
                 )
         for item in content:
-            build_tree_repeat(item, None, prop_node, parent_schema, list_of_xml, logger, prefix + csdlname + '.', topleveltypes=topleveltypes, toplevelimports=toplevelimports)
+            build_tree_repeat(item, parent_entity, prop_node, parent_schema, list_of_xml, logger, prefix + csdlname + '.', topleveltypes=topleveltypes, toplevelimports=toplevelimports)
         return prop_node
+    return None
 
 
-def build_tree_repeat(repeat_item, target_entity, target, target_parent, list_of_xml, logger, prefix='', topleveltypes=None, toplevelimports=None):
+def build_tree_repeat(repeat_item, target_entity, target, target_parent, list_of_xml, logger, prefix='', topleveltypes=None, toplevelimports=None, additional_tags=None):
     # REPEAT(SubmoduleGrammar |  Namespace | AnyXML | YangVersion | Prefix | Import | Include | Organization | Contact | Description | RevisionGrammar, min=0),
     # REPEAT(Augment | Grouping | Identity | ContainerGrammar | ChoiceGrammar |
     #      RpcGrammar | Feature | TypedefGrammar | Deviation | Notification, min=0),
@@ -229,10 +231,12 @@ def build_tree_repeat(repeat_item, target_entity, target, target_parent, list_of
     # target = tag of current target
     # target_parent = tag of its parent
     repeat_item_type = str(type(repeat_item))
-    if topleveltypes == None:
+    if topleveltypes is None:
         topleveltypes = dict()
-    if toplevelimports == None:
+    if toplevelimports is None:
         toplevelimports = dict()
+    if additional_tags is None:
+        additional_tags = list()
 
     logger.debug('Handling repeat item: ' + repeat_item_type)
     # top grammars
@@ -284,19 +288,18 @@ def build_tree_repeat(repeat_item, target_entity, target, target_parent, list_of
         xml_convenience.add_annotation(navigation_property, {
                 'Term': 'AutoExpandReferences',
                 })
+        return navigation_property
 
     elif repeat_item_type == 'LeafGrammar' or repeat_item_type == 'LeafListGrammar':
-        this_node = build_tree_new(repeat_item, list_of_xml, logger, prefix=prefix, parent=target_parent, parent_schema=target, topleveltypes=topleveltypes, toplevelimports=toplevelimports)
+        this_node = build_tree_new(repeat_item, list_of_xml, logger, prefix=prefix, parent=target_parent, parent_schema=target, parent_entity=target_entity, topleveltypes=topleveltypes, toplevelimports=toplevelimports)
         target_entity.append(this_node)
-
-    elif repeat_item_type == 'ReferenceGrammar':
-        return
-        xml_convenience.add_annotation(xml_node, {'Term': redfishtypes.get_descriptive_properties_mapping('reference'), 'String' :  repeat_item.elements[1].string.strip('"')})
+        return this_node
 
     elif (repeat_item_type == 'ChoiceGrammar'):
+        logger.debug('Ignored tag: {}'.format(repeat_item_type))
         return
         handlers.handle_choice_grammar(
-            repeat_item.elements, tree_node, xml_node, xml_parent, list_of_xml, target_dir, logger)
+            repeat_item.elements, target, target_parent, xml_parent, list_of_xml, '', logger)
 
     # module_info
     elif repeat_item_type == 'SubmoduleGrammar':
@@ -306,19 +309,21 @@ def build_tree_repeat(repeat_item, target_entity, target, target_parent, list_of
         handlers.handle_namespace(repeat_item, target)
 
     elif repeat_item_type == 'AnyXML': # fix
-        return
-        handlers.handle_anyxml(repeat_item.elements, xml_node, anyxml_count)
+        handlers.handle_anyxml(repeat_item, target, anyxml_count)
         anyxml_count = anyxml_count + 1
 
     elif repeat_item_type == 'YangVersion': # fix
-        return
-        handlers.handle_yang_version(repeat_item.elements, xml_node)
+        handlers.handle_yang_version(repeat_item, target)
 
     elif repeat_item_type == 'Include':  # Include not supported
+        logger.debug('Ignored tag: {}'.format(repeat_item_type))
         pass
 
     elif repeat_item_type == 'Prefix':
         handlers.handle_prefix(repeat_item, target)
+
+    elif repeat_item_type == 'ReferenceGrammar':
+        handlers.handle_reference(repeat_item, target)
 
     elif (repeat_item_type == 'Organization' or repeat_item_type == 'Contact' or
           repeat_item_type == 'Description' or repeat_item_type == 'IfFeature' or
@@ -329,7 +334,7 @@ def build_tree_repeat(repeat_item, target_entity, target, target_parent, list_of
         handlers.handle_revision(repeat_item, target)
 
     elif repeat_item_type == 'Type':
-        handlers.handle_type(repeat_item.elements, target, target_parent, imports=toplevelimports, types=topleveltypes)
+        handlers.handle_type(repeat_item.elements, target, target_parent, target_entity, imports=toplevelimports, types=topleveltypes)
 
     elif repeat_item_type == 'TypedefGrammar':
         type_name, type_node = handlers.handle_typedef(repeat_item, target, target_parent)
@@ -341,90 +346,131 @@ def build_tree_repeat(repeat_item, target_entity, target, target_parent, list_of
 
     # module_content
     elif repeat_item_type == 'Augment':
-        logger.info("Augment not supported")
-        return
-        logger.debug("Handling Augment")
-        handlers.handle_augment(repeat_item.elements, tree_node,
-                       xml_node, list_of_xml, target_dir, logger)
+        logger.debug("Handling augment")
+        xml_nodes_to_annotate = []
+        xml_annotations = []
+        augment_name = None
+        augment_xml_node = xml_convenience.add_CSDL_Headers(None)
+        main_node = SubElement(
+            augment_xml_node, 'Main')
+        ref_node = SubElement(
+            augment_xml_node, 'Refs')
+        entity_node = SubElement(
+            augment_xml_node, 'Entitys')
+        xml_content = XMLContent()
+        xml_content.set_xml(augment_xml_node)
+        list_of_xml.append(xml_content)
+        for item in repeat_item.elements:
+            item_type = str(type(item))
+            if item_type == 'AugmentName':
+                augment_name = item.elements[0].string.replace('"','').replace(" ",":").replace('/','_')
+                logger.debug("Handling augment : " + augment_name)
+                print("Handling augment : " + augment_name)
+                main_node.set('target', augment_name)
+                xml_content.set_filename("augment" + augment_name + '.xml')
+            elif item_type == '<REPEAT>':
+                repeat_items_inner = item.elements
+                for repeat_item_inner in repeat_items_inner:
+                    repeat_item_type_inner = str(type(repeat_item_inner))
+                    if repeat_item_type_inner in ['When', 'Description']:
+                        xml_node = Element('Annotation')
+                        xml_node.set(
+                            'Term', redfishtypes.get_descriptive_properties_mapping(repeat_item_type_inner))
+                        xml_node.set('String',
+                            str(repeat_item_inner.elements[1]).strip('"'))
+                        xml_annotations.append(xml_node)
+                    else:
+                        new_list_of_xml = []
+                        this_node = build_tree_repeat(repeat_item_inner, entity_node, main_node, ref_node, new_list_of_xml, logger, prefix, topleveltypes, toplevelimports)
+                        for xml in new_list_of_xml:
+                            xml.filename = "augment" + str(augment_name).replace('/','_') + xml.filename
+                            list_of_xml.append(xml)
+                        if this_node is not None:
+                            xml_nodes_to_annotate.append(this_node)
+        for node in xml_nodes_to_annotate:
+            augment_annotation = Element('Annotation')
+            augment_annotation.set(
+                'Term', redfishtypes.get_descriptive_properties_mapping('augment'))
+            augment_annotation.set('String', augment_name)
+
+            for annotation in xml_annotations:
+                augment_annotation.append(annotation)
+            node.append(augment_annotation)
+        for x in augment_xml_node:
+            print(x)
 
     elif repeat_item_type == 'Grouping':
-        handlers.handle_grouping(repeat_item.elements, tree_node,
-                        xml_node, list_of_xml, target_dir, logger)
+        handlers.handle_grouping(repeat_item, target,
+                        target_parent, list_of_xml, '', logger)
 
     elif repeat_item_type == 'Identity':
-        handlers.handle_identity(repeat_item.elements, target)
+        handlers.handle_identity(repeat_item, target)
 
     elif repeat_item_type == 'Presence':
-        handlers.handle_presence(repeat_item.elements, target)
+        handlers.handle_presence(repeat_item, target)
 
     elif repeat_item_type == 'Config':
-        boolean = handlers.handle_config(repeat_item.elements, target)
+        boolean = handlers.handle_config(repeat_item, target)
         permission = xml_convenience.add_annotation(
                 target, {'Term': 'OData.Permissions', 'EnumMember': 'OData.Permission/Read{}'.format('' if boolean == "true" else 'Write')})
         # use this to make permissions correct
         # pass in permissions tag??
 
     elif repeat_item_type == 'Default':
-        handlers.handle_default(repeat_item.elements, target)
+        handlers.handle_default(repeat_item, target)
 
     elif repeat_item_type == 'Units':
-        handlers.handle_unit(repeat_item.elements, target)
+        handlers.handle_unit(repeat_item, target)
 
     elif repeat_item_type == 'Mandatory':
-        handlers.handle_mandatory(repeat_item.elements, target)
+        handlers.handle_mandatory(repeat_item, target)
 
     elif repeat_item_type == 'Key':
-        handlers.handle_key(repeat_item.elements, target)
+        handlers.handle_key(repeat_item, target)
 
     elif repeat_item_type == 'Unique':
-        return
-        handlers.handle_unique(repeat_item.elements, xml_node)
+        handlers.handle_unique(repeat_item, target)
 
     elif (repeat_item_type == 'RpcGrammar'):
-        return
-        handlers.handle_rpc(repeat_item.elements, xml_node)
+        logger.debug('Ignored tag: {}'.format(repeat_item_type))
+        return None
+        handlers.handle_rpc(repeat_item, target)
 
     elif repeat_item_type == 'Unmapped':
-        return
-        handlers.handle_unmapped(repeat_item.elements, xml_node)
+        handlers.handle_unmapped(repeat_item, target)
 
     elif repeat_item_type == 'OrderedBy':
-        return
-        handlers.handle_orderedby(repeat_item.elements, xml_node)
+        handlers.handle_orderedby(repeat_item, target)
 
     elif repeat_item_type == 'Must':
-        return
-        handlers.handle_must(repeat_item.elements, xml_node)
+        handlers.handle_must(repeat_item, target)
 
     elif repeat_item_type == 'MaxElements':
-        return
-        handlers.handle_max_elements(repeat_item.elements, xml_node)
+        handlers.handle_max_elements(repeat_item, target)
 
     elif repeat_item_type == 'MinElements':
-        return
-        handlers.handle_min_elements(repeat_item.elements, xml_node)
+        handlers.handle_min_elements(repeat_item, target)
 
     elif repeat_item_type == 'Deviation':
-        return
-        handlers.handle_deviation(repeat_item.elements, xml_node)
+        handlers.handle_deviation(repeat_item, target)
 
     elif repeat_item_type == 'SingleLineComment':
         logger.debug('Ignoring single line comment')
 
     elif repeat_item_type == 'Uses':
-        return
         handlers.handle_uses(logger)
 
     elif repeat_item_type == 'Notification':
-        return
+        logger.debug('Ignored tag: {}'.format(repeat_item_type))
+        return None
         (child_node, xml_child_node) = build_tree(
-            tree_node, xml_node, repeat_item.elements, list_of_xml, target_dir, logger)
+            target, target_parent, repeat_item.elements, list_of_xml, target_dir, logger)
         tree_node.add_child(child_node)
 
     elif repeat_item_type == 'Extension':
-        return
-        handlers.handle_extension(repeat_item.elements, xml_node)
+        handlers.handle_extension(repeat_item, target)
         
     else:
         logger.warning(
             "Unhandled Item: {0}".format(repeat_item_type))
+    return None

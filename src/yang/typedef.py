@@ -21,8 +21,9 @@ class TypedefGrammar(Grammar):
     grammar = (TypedefKeyword, 
                Name,
                OPENBRACE,
-               Type,
-               OPTIONAL(Description),
-               OPTIONAL(ReferenceGrammar),
+               REPEAT(
+               Type |
+               Description |
+               ReferenceGrammar ),
                CLOSEBRACE
                )

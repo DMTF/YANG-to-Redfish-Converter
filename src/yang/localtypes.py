@@ -56,8 +56,8 @@ class Range(Grammar):
 
 
 class Status(Grammar):
-    grammar = (L('status'), WORD('"-a-zA-Z0-9+',
-                                 restchars='a-zA-Z0-9:\.|\-\s\t"', fullmatch=True, escapes=True), L(';'))
+    grammar = (L('status'), WORD('"a-zA-Z0-9+\-',
+                                 restchars='a-zA-Z0-9:\.|\-\s\t"-', fullmatch=True, escapes=True), L(';'))
 
 
 class SimpleType(Grammar):
@@ -69,7 +69,7 @@ class SimpleTypeWithMetadata(Grammar):
     grammar = (
         WORD('"a-z', restchars='a-zA-Z0-9:\-"', fullmatch=True, escapes=True),
         OPENBRACE,
-        OR(Base, Bit, Length, Path, Pattern, Range, Min, Max),
+        REPEAT(Base | Bit | Length | Path | Pattern | Range | Min | Max),
         CLOSEBRACE
     )
 

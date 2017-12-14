@@ -12,7 +12,7 @@ grammar_whitespace_mode = 'optional'
 
 
 class WhenName(Grammar):
-    grammar = (WORD('a-zA-Z/"', restchars='a-zA-Z:/0-9\\!=\s\t\'"',
+    grammar = (WORD('a-zA-Z/"', restchars='!()[\x23-\x3A][\x3C-\x7E]\s\t\n"',
                     fullmatch=True, escapes=True))
 
 

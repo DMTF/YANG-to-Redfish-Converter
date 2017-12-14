@@ -8,13 +8,15 @@ grammar_whitespace_mode = 'optional'
 
 class Prefix(Grammar):
     grammar = (L("{"), L("prefix"), WORD(
-        '"a-z', restchars='a-zA-Z\-"', escapes=True, fullmatch=True), L(";"), L("}"))
+        '"a-z', restchars='a-zA-Z\-."', escapes=True, fullmatch=True), L(";"), L("}"))
 
 
 class Import(Grammar):
     grammar = (L("import"), WORD('a-z', restchars='a-zA-Z\-',
-                                 fullmatch=True, escapes=True), OPTIONAL(Prefix))
+                                 fullmatch=True, escapes=True), OR(Prefix | L(";")))
 
 
 class Include(Grammar):
-    grammar = (L("include"), WORD("a-z"))
+    grammar = (L("include"), WORD('0-9a-zA-Z', restchars='0-9a-zA-Z\-',
+                                 fullmatch=True, escapes=True), L(";"))
+
