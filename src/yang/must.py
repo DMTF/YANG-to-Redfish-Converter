@@ -20,14 +20,15 @@ class ErrorAppTag(Grammar):
 
 
 class MustName(Grammar):
-    grammar = (WORD('a-zA-Z\'"', restchars='a-zA-Z0-9\.()\s\t\n=!\'/":,',
+    grammar = (WORD('a-zA-Z\'"', restchars='!()[\x23-\x3A][\x3C-\x7E]\s\t\n"',
                     fullmatch=True, escapes=True))
 
 
 class Must(Grammar):
     grammar = (L('must'), MustName,
-               OPENBRACE,
+               OR(L(';'), (OPENBRACE,
                REPEAT(ErrorMessage | ErrorAppTag |
                       ReferenceGrammar | Description2, min=0),
-               CLOSEBRACE,
-               )
+               CLOSEBRACE)
+            )
+        )

@@ -48,7 +48,9 @@ def execute(filename, output_grammar, target_dir, logger):
     with open(filename) as content_file:
         content = content_file.read()
 # Before we parse yang, let's strip out all the comments!
+    content = re.sub("http://", "http:", content)
     content = re.sub("(\/\/)[^\n\r]*[\n\r]", "", content)
+    content = re.sub("http:", "http://", content)
     # https://stackoverflow.com/questions/462843/improving-fixing-a-regex-for-c-style-block-comments 
     content = re.sub("\/\*((?=)((?=)((?=)[^*]+)|\*(?!\/))*)\*\/", "", content)
     
@@ -83,7 +85,7 @@ def execute(filename, output_grammar, target_dir, logger):
             allresults = re.findall('[a-zA-Z:]+?=".+?"', line)
             tokened_line = re.sub('[a-zA-Z:]+?=".+?"', 'xxToken', line)
             for tag in allresults:
-                tag_name, tag_content = tuple(tag.split('='))
+                tag_name, tag_content = tuple(tag.split('=', 1))
                 if tag_name not in priority_tags:
                     other_tags.append(tag_name)
                 priority_tag_dict[tag_name] = tag

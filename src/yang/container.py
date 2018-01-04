@@ -28,7 +28,7 @@ class Grouping(Grammar):
     grammar = (GroupingKeyword, Name, OPENBRACE,
                OPTIONAL(Description),
                REPEAT(REF('ContainerGrammar') | REF(
-                   'LeafGrammar') | ReferenceGrammar, min=0),
+                   'LeafGrammar') | ReferenceGrammar | REF('ListGrammar'), min=0),
                CLOSEBRACE
                )
 
@@ -94,7 +94,7 @@ class ListKeyword(Grammar):
 class ListGrammar(Grammar):
     grammar = (ListKeyword, Name,
                OPENBRACE,
-               REPEAT(Key | Unique | Description | IfFeature | OrderedBy | REF("Uses") | MinElements | MaxElements | ReferenceGrammar | REF("ContainerGrammar") | REF("ListGrammar") | LeafGrammar | LeafListGrammar | ChoiceGrammar, min=0),
+               REPEAT(Key | Unique | Description | IfFeature | OrderedBy | REF("Uses") | MinElements | MaxElements | ReferenceGrammar | REF("ContainerGrammar") | REF("ListGrammar") | LeafGrammar | LeafListGrammar | ChoiceGrammar | Config, min=0),
                CLOSEBRACE
                )
 
