@@ -55,17 +55,13 @@ class RedfishPlugin(plugin.PyangPlugin):
         formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
         hdlr.setFormatter(formatter)
         logger.addHandler(hdlr)
-        logger.setLevel(logger.DEBUG)
+        logger.setLevel(logging.DEBUG)
 
         list_of_xml = []
-        target_dir = './'
+        target_dir = '.'
 
-
-        
-
-        return
-
-        xml_root = build_tree_new(ctx, list_of_xml, logger)
+        for module in modules:
+            xml_root = build_tree_new(module, list_of_xml, logger)
 
         for xml_item in list_of_xml:
             filename = target_dir + '/' + xml_item.get_filename()
@@ -92,11 +88,11 @@ class RedfishPlugin(plugin.PyangPlugin):
                     if tag_name in priority_tag_dict:
                         tokened_line = tokened_line.replace('xxToken', priority_tag_dict[tag_name], 1)
 
-            pretty_xml_as_string_new += tokened_line + '\n'
+                pretty_xml_as_string_new += tokened_line + '\n'
 
-        try:
-            write_to_file(filename, pretty_xml_as_string_new)
-            logger.info('Success writing file to disk: ' + filename)
-        except BaseException as e:
-            logger.error('Unable to write to file: ' +
-                         filename + "\nError message: " + str(e))
+            try:
+                write_to_file(filename, pretty_xml_as_string_new)
+                logger.info('Success writing file to disk: ' + filename)
+            except BaseException as e:
+                logger.error('Unable to write to file: ' +
+                             filename + "\nError message: " + str(e))

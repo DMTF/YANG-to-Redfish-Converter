@@ -3,8 +3,8 @@
 # License: BSD 3-Clause License. For full text see link: https://github.com/DMTF/YANG-to-Redfish-Converter/LICENSE.md
 
 from xml.etree.ElementTree import Element, SubElement
-import rf.xml_convenience
-import rf.redfishtypes
+import rf.xml_convenience as xml_convenience
+import rf.redfishtypes as redfishtypes
 
 # This file contains a series of handle_XXXXX functions.
 # Each function handles a keyword and any internal grammar such
@@ -144,13 +144,12 @@ def handle_name(name_tag, target):
     return csdl_name
 
 
-def handle_namespace(namespace_tag, xml_node):
+def handle_namespace(ns_tag, xml_node):
     """
     Handle 'namespace'
     """
-    tag, namespace, semicolon = namespace_tag
     # disabled namespace
-    xml_node.set('ns', namespace.string.replace('"',''))
+    xml_node.set('ns', ns_tag.arg)
 
 
 def handle_prefix(prefix_tag, xml_node):
@@ -202,23 +201,17 @@ def handle_revision(revision_tag, xml_node):
 
 
 
-def handle_descriptor(descriptive_tag, schema_xml):
-    if descriptive_tag is None:
-        # (todo) dne
-        return
-    descriptive_type = str(type(descriptive_tag))
-    value = (tr(descriptive_tag.elements[1].string)).strip('"')
-    annotation = xml_convenience.add_annotation(schema_xml,
+def handle_descriptor(descriptor_tag, xml_node):
+    descriptive_type = descriptor_tag.keyword
+    value = descriptor_tag.arg 
+    annotation = xml_convenience.add_annotation(xml_node,
                     {
                         'Term': redfishtypes.get_descriptive_properties_mapping(descriptive_type),
-                        'String': value
+                        'String': value.replace('\n',' ')
                     })
-    if descriptive_type == 'Feature':
-        tag, name, brace, if_tag, desc, ref_tag, cbrace = descriptive_tag
-        # (todo) ref_tag
-        handle_descriptor(desc, annotation)
-        if ref_tag is not None:
-            handle_reference(ref_tag, annotation)
+    if descriptive_type == 'feature':
+        for item in descriptor_tag.substmts:
+            handle_descriptor(item, annotation)
 
 
 # Handle the typedef statement
@@ -228,46 +221,37 @@ def handle_typedef(typedef_tag, schema_xml, module_xml):
     :param items: Grammar items.
     :param xml_parent: Node to which sub elements are to be added.
     """
-    tag, name, brace, repeats, cbrace = typedef_tag
-
+    name, repeats = typedef_tag.arg, typedef_tag.substmts
     type_tag, desc, ref_tag = None, None, None
     for item in repeats:
-        type_repeat = str(type(item))
-        if type_repeat == 'Type':
+        type_repeat = item.keyword
+        if type_repeat == 'type':
             type_tag = item
-        if type_repeat == 'Description':
+        if type_repeat == 'description':
             desc = item
-        if type_repeat == 'ReferenceGrammar':
+        if type_repeat == 'reference':
             ref_tag = item
     if type_tag is None:
         print("This type tag shouldn't be missing")
         return
-    tag, type_grammar = type_tag 
-    if str(type(type_grammar)) == 'EnumerationGrammar':
+    if type_tag.arg == 'enumeration':
         new_node = Element('EnumType')
         new_node.set('Name', get_valid_csdl_identifier(str(name)))
         if desc is not None:
             handle_descriptor(desc, new_node)
         if ref_tag is not None:
             handle_reference(ref_tag, new_node)
-        tag, brace, repeat, closebrace = type_grammar
-        for enum_tag in repeat.elements:
+        for enum_tag in type_tag.substmts:
             member_node = SubElement(new_node, 'Member')
-            if str(type(enum_tag)) == 'EnumItemTypeA':
-                tag, member_name, brace, repeat_member, cbrace = enum_tag
-                for extra in repeat_member.elements:
-                    if str(type(extra)) == "Description":
-                        handle_descriptor(extra, member_node)
-                    elif extra.elements[0].string.lower == 'value':
-                        tag, val, colon = extra 
-                        member_node.set('Value', val) 
-                member_name = member_name.string
-            elif str(type(enum_tag)) == 'EnumItemTypeB':
-                tag, member_name, colon = enum_tag
-                member_name = member_name.string.replace('"', '')
-            else:
-                member_name = 'ERROR'
+            member_name = enum_tag.arg
             member_node.set('Name', member_name)
+
+            for extra in enum_tag.substmts:
+                if extra.keyword == "description":
+                    handle_descriptor(extra, member_node)
+                elif extra.keyword == 'value':
+                    member_node.set('Value', extra.arg) 
+
         schema_xml.append(new_node) 
         return str(name), new_node
 
@@ -278,18 +262,15 @@ def handle_typedef(typedef_tag, schema_xml, module_xml):
             handle_descriptor(desc, new_node)
         if ref_tag is not None:
             handle_reference(ref_tag, new_node)
-        if str(type(type_grammar)) == 'SimpleType':
-            repeat_simple = None
-            simple_name, colon = type_grammar
-        elif str(type(type_grammar)) == 'SimpleTypeWithMetadata':
-            simple_name, brace, repeat_simple, cbrace = type_grammar
-        else:
-            # (todo) report this as a problem
-            return
-        simple_name_string = simple_name.string.replace('"', '')
-        new_node.set('UnderlyingType', redfishtypes.types_mapping.get(simple_name_string, simple_name_string))
+        simple_name, repeat_simple, = type_tag.arg, type_tag.substmts
+
+        simple_name_string = simple_name.replace('"', '')
+
+        new_node.set('UnderlyingType', redfishtypes.get_node_types_mapping(simple_name_string))
+
         if repeat_simple is not None:
-            handle_metadata_grammar(repeat_simple, new_node)
+            for item in repeat_simple:
+                handle_metadata_grammar(item, new_node)
         schema_xml.append(new_node) 
         return str(name), new_node
 
@@ -306,15 +287,16 @@ def handle_metadata_grammar(metadata_grammar_tag, xml_node):
     :param metadata_grammar_elements: Grammar elements
     :param xml_node:
     """
-    items = metadata_grammar_tag.elements
-    # term = 'RedfishYang.' + (str(items[0])).strip('"')
-    term = redfishtypes.get_descriptive_properties_mapping((str(items[0])).strip('"'))
+    metadata_type = metadata_grammar_tag.keyword.strip('"')
+
+    term = redfishtypes.get_descriptive_properties_mapping(metadata_type)
+
     if term == 'type':  # ignore type within type
         pass
     else:
         for x in items:
             print(x)
-        string = (str(items[0])).strip('"')
+        string = (metadata_type)
         xml_convenience.add_annotation(xml_node, {'Term': term, 'String': string})
 
 
@@ -546,9 +528,9 @@ def handle_reference(reference_tag, xml_node):
     """
     Handle 'reference'
     """
-    items = reference_tag.elements
+    name = reference_tag.arg
     xml_convenience.add_annotation(xml_node, {'Term': redfishtypes.get_descriptive_properties_mapping(
-        'reference'), 'String': items[1].string.strip('"').replace('\n','').strip('  ')})
+        'reference'), 'String': name})
 
 
 def handle_unit(unit_tag, xml_node):
