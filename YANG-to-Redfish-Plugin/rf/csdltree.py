@@ -125,7 +125,12 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
             schema_node, {'Term': 'RedfishYang.NodeType', 'EnumMember': member})
         filename = csdlname + '_v1.xml'
 
-        for item in yang_item.i_children:
+        if hasattr(yang_item, 'i_children'):
+            content = yang_item.i_children if len(yang_item.i_children) > 0 else []
+        else:
+            content = yang_item.substmts
+
+        for item in content:
             build_tree_repeat(item, schema_node, entity_node, main_node, list_of_xml, logger, prefix + csdlname + '.', topleveltypes=topleveltypes, toplevelimports=toplevelimports)
 
         if seg_type in ['module']:
@@ -162,7 +167,7 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
         if hasattr(yang_item, 'i_children'):
             content = yang_item.i_children if len(yang_item.i_children) > 0 else []
         else:
-            content = []
+            content = yang_item.substmts
         csdlname = handlers.get_valid_csdl_identifier(name)
         member = redfishtypes.get_node_types_mapping(seg_type)
 
@@ -181,7 +186,7 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
         if hasattr(yang_item, 'i_children'):
             content = yang_item.i_children if len(yang_item.i_children) > 0 else []
         else:
-            content = []
+            content = yang_item.substmts
         csdlname = handlers.get_valid_csdl_identifier(name)
         member = redfishtypes.get_node_types_mapping(seg_type)
 
@@ -228,7 +233,7 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
     if hasattr(yang_item, 'i_children'):
         yang_children = yang_item.i_children if len(yang_item.i_children) > 0 else []
     else:
-        yang_children = []
+        yang_children = yang_item.substmts
 
     logger.info('Handling repeat item: ' + str(yang_keyword))
     print(yang_keyword)

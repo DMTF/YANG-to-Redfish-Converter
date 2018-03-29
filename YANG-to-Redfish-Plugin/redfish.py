@@ -64,6 +64,7 @@ class RedfishPlugin(plugin.PyangPlugin):
 
         for module in modules:
             xml_root = csdltree.build_tree(module, list_of_xml, logger)
+            break
 
         for xml_item in list_of_xml:
             filename = target_dir + '/' + xml_item.get_filename()
