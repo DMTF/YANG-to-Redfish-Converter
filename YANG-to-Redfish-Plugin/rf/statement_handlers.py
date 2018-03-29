@@ -5,11 +5,7 @@
 from xml.etree.ElementTree import Element, SubElement
 import rf.xml_convenience as xml_convenience
 import rf.redfishtypes as redfishtypes
-
-# This file contains a series of handle_XXXXX functions.
-# Each function handles a keyword and any internal grammar such
-# as the case of type metadata.
-
+import rf.csdltree
 
 def get_valid_csdl_identifier(name):
     """
@@ -17,56 +13,209 @@ def get_valid_csdl_identifier(name):
     """
     return name.replace('-', '_').replace(':', '.')
 
+# This file contains a series of handle_XXXXX functions.
+# Each function handles a keyword and any internal grammar such
+# as the case of type metadata.
 
-def handle_case_grammar(case_grammar_elements, tree_node, choice_annotation_node, xml_annotation_parent, list_of_xml, target_dir, logger):
-    for item in case_grammar_elements:
-        item_type = (str(type(item)))
-        if item_type == 'CaseKeyword':
-            continue
-        elif item_type == 'Name':
-            casename = item.elements[0].string.strip('"')
-            case_csdl_name = get_valid_csdl_identifier(casename)
-            case_annotation = xml_convenience.add_annotation(choice_annotation_node, {
-                'Term': redfishtypes.get_descriptive_properties_mapping('Case'),
-                'String': case_csdl_name
-            })
-            logger.debug('Handling case: ' + casename)
-        elif item_type == '<REPEAT>':
-            repeat_items = item.elements
-            for repeat_item in item.elements:
-                repeat_item_type = str(type(repeat_item))
-                if repeat_item_type == 'ContainerGrammar':
-                    (child_node, xml_child_node) = build_tree(
-                        tree_node, xml_annotation_parent, repeat_item.elements, list_of_xml, target_dir, logger)
-                    tree_node.add_child(child_node)
-                elif (repeat_item_type == 'LeafGrammar'):
-                    (child_node, xml_child_node) = build_tree(
-                        tree_node, xml_annotation_parent, repeat_item.elements, list_of_xml, target_dir, logger)
-                    xml_annotation_parent.append(xml_child_node)
-                    tree_node.add_child(child_node)
-                    name = child_node.get_name()
-                    nodename_annotation = xml_convenience.add_annotation(case_annotation,
-                                                         {
-                                                             'Term': 'RedfishYang.NodeName',
-                                                             'String': name
-                                                         }
-                                                         )
-                    nodetype_annotation = xml_convenience.add_annotation(nodename_annotation,
-                                                         {
-                                                             'Term': 'RedfishYang.NodeType',
-                                                             'EnumMember': get_node_types_mapping('LeafKeyword')
-                                                         }
-                                                         )
-                    for xml_child in xml_annotation_parent.findall('Property'):
-                        child_name = xml_child.get('Name')
-                        if child_name == name:
-                            property_case_annotation = xml_convenience.add_annotation(xml_child,
-                                                                      {'Term': redfishtypes.get_descriptive_properties_mapping('case'), 'String': child_name}
-                                                                      )
-                            property_choice_annotation = xml_convenience.add_annotation(xml_child,
-                                                                        {'Term': redfishtypes.get_descriptive_properties_mapping('choice'), 'String' : choice_annotation_node.get('String') }
-                                                                        )
+def handle_generic(yang_keyword, yang_arg, yang_children = [], target = None, target_entity = None, target_parent = None, list_of_xml=None, imports=None, types=None):
+    #
+    annotation = xml_convenience.add_annotation(
+            target, {'Term': redfishtypes.get_descriptive_properties_mapping(yang_keyword),
+                     'String':  yang_arg
+                     }
+            )
+    
+    handle_generic_children(yang_children, annotation, target_entity, target_parent, list_of_xml, imports, types)
 
+    return annotation
+
+def handle_generic_children(yang_children, target, target_entity=None, target_parent=None, list_of_xml=None, imports=None, types=None):
+    for child in yang_children:
+        rf.csdltree.build_tree_repeat(child, target, target_entity=target_entity, target_parent=target_parent, list_of_xml=list_of_xml, topleveltypes=types, toplevelimports=imports) 
+
+def handle_generic_node(yang_keyword, yang_arg, yang_children):
+    annotation = xml_convenience.add_annotation(
+            None, {'Term': redfishtypes.get_descriptive_properties_mapping(yang_keyword),
+                    'EnumMember':  'RedfishYang.Mandatory/' + value
+                     })
+    return annotation
+
+def handle_generic_modifier(yang_keyword, yang_arg, target):
+    convert_to_csdl = {
+            "namespace": "yangns",
+            "prefix": "Alias"
+            }
+
+    yang_keyword = convert_to_csdl.get(yang_keyword, yang_keyword.capitalize)
+
+    target.set(yang_keyword, get_valid_csdl_identifier(yang_arg))
+
+def handle_choice(yang_keyword, yang_arg, yang_children, target, target_entity, target_parent, list_of_xml, imports, types):
+    new_xml = []
+    annotation = handle_generic(yang_keyword, yang_arg, yang_children, target)
+    for case in yang_children:
+        handle_generic_children(case.substmts, target, target_entity=target_entity, target_parent=target_parent, list_of_xml=list_of_xml, imports=imports, types=types)
+    return annotation 
+
+
+
+
+def handle_enum(yang_keyword, yang_arg, yang_children, target):
+    member_node = SubElement(target, 'Member')
+    member_node.set('Name', yang_arg)
+
+    handle_generic_children(yang_children, member_node)
+
+    return member_node
+
+
+# Handle the typedef statement
+def handle_typedef(yang_keyword, yang_arg, yang_children, schema_xml, module_xml):
+    """
+    Handle typedef statement.
+    :param items: Grammar items.
+    :param xml_parent: Node to which sub elements are to be added.
+    """
+    type_tag, desc, ref_tag = None, None, None
+
+    for item in yang_children:
+        type_repeat = item.keyword
+        if type_repeat == 'type':
+            type_tag = item
+        if type_repeat == 'description':
+            desc = item
+        if type_repeat == 'reference':
+            ref_tag = item
+
+    if type_tag is None:
+        print("This type tag shouldn't be missing")
+        return
+
+    if type_tag.arg == 'enumeration':
+        new_node = Element('EnumType')
+        new_node.set('Name', get_valid_csdl_identifier(str(yang_arg)))
+
+        handle_generic_children(type_tag.substmts, new_node)
+        
+        handle_generic_children([x for x in yang_children if x.keyword != 'type'], new_node)
+
+
+    else: 
+        new_node = Element('TypeDefinition')
+        new_node.set('Name', get_valid_csdl_identifier(str(yang_arg)))
+
+        handle_generic_children(type_tag.substmts, new_node)
+        
+        handle_generic_children([x for x in yang_children if x.keyword != 'type'], new_node)
+
+        var_type = type_tag.arg.replace('"', '')
+
+        new_node.set('UnderlyingType', redfishtypes.types_mapping.get(var_type, var_type))
+
+    schema_xml.append(new_node) 
+    return get_valid_csdl_identifier(str(yang_arg)), new_node
+
+
+def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
+    """
+    Handle 'type' statement 
+    :param type_grammar_items: Grammar items within type definition in 
+    YANG model
+    :param xml_node: XML node to which sub elements are to be added.
+    """
+    # What are we?  Simple Type?  Get our info.
+    var_type = get_valid_csdl_identifier(type_tag.arg.replace('"', ''))
+    annotation = SubElement(xml_node, 'Annotation')
+    annotation.set('Term', redfishtypes.get_descriptive_properties_mapping('YangType'))
+
+    # If there's an import, let's consider it ':' = '.'
+    # If it's in the imports, then add the import
+    # If it is a simple name already in types available, then put it in file
+    if var_type != 'enumeration': 
+        if '.' in var_type:
+            # This is an import from another file, add to CSDL imports
+            importname = var_type.split(':')[0]
+            if importname in imports:
+                xml_convenience.add_import(parent_node, imports[importname], importname if importname != imports[importname] else None)
+            xml_node.set('Type', get_valid_csdl_identifier(redfishtypes.types_mapping.get(var_type, var_type)))
+
+        elif var_type in types:
+            # If we haven't defined this type, this must be added to imports
+            ds_node = parent_node.find('./')
+            schema_node = ds_node.findall('./')[1]
+            namespace = schema_node.attrib.get('Namespace')
+            available_types = list()
+
+            for ref in schema_node:
+                if str(ref.tag) not in ['TypeDefinition', 'EnumType']:
+                    continue
+                available_types.append(ref.attrib.get('Name'))
+
+            if get_valid_csdl_identifier(var_type) not in available_types:
+                schema_node.append(types[var_type])
+
+            if namespace is None:
+                print("Namespace shouldn't be none {}".format(parent_entity.attrib))
+                input(get_valid_csdl_identifier(redfishtypes.types_mapping.get(var_type, var_type)))
+
+            elif namespace is not "":
+                namespace = namespace + "."
+            xml_node.set('BaseType', str(namespace) + get_valid_csdl_identifier(redfishtypes.types_mapping.get(var_type, var_type)))
+        
+        else:
+            # If it is neither, it must be primitive
+            primitive_type = var_type
+            csdl_type = redfishtypes.types_mapping.get(
+                primitive_type, 'Yang.' + primitive_type)
+            yang_type = primitive_type
+            xml_node.set('Type', get_valid_csdl_identifier(redfishtypes.types_mapping.get(var_type, var_type)))
+            return
+            if (xml_node is not None) and (xml_node.get_type() == 'LeafListKeyword'):
+                xml_node.set('Type', 'Collection(' + csdl_type + ')')
+            else:  # Tree_node is None : RPC Leaf; Or type is Leaf
+                xml_node.set('Type', csdl_type)
+            if type_grammar == 'SimpleTypeWithMetadata':
+                metadata_grammar = type_grammar_items[1].elements[2]
+                metadata_grammar_type = str(type(metadata_grammar))
+                handle_metadata_grammar(metadata_grammar, xml_node)
+
+    annotation.set('String', var_type)
+
+    return
+    # Set some annotation properties because we can do it now. Other
+    # option is to repeat the annotation statements in the if and else sections
+    if None:
+        # if the Type of this variable is an enumeration, then
+        xml_node.set('Type', 'Edm:Enumeration')
+        enumeration_items = type_grammar_items[1].elements[2].elements
+        yang_type = 'enumeration'
+
+        name = tree_node.get_name()
+        enumeration_node = SubElement(xml_node, 'EnumType')
+        enumeration_node.set('Name', name + "Enumeration")
+
+        for enumeration_item in enumeration_items:
+            enum_item_name = None
+            enum_item_value = None
+            enum_item_type = str(type(enumeration_item))
+            enum_member = SubElement(enumeration_node, 'Member')
+            if enum_item_type == 'EnumItemTypeA':
+                enum_item_name = enumeration_item.elements[1].string.strip('"')
+                enum_item_value = enumeration_item.elements[
+                    3].elements[0].elements[1].string.strip('"')
+                enum_member.set('Name', enum_item_name)
+                enum_member.set('Value', enum_item_value)
+            else:
+                enum_item_name = enumeration_item.elements[1].string.strip('"')
+                enum_member.set('Name', enum_item_name)
+            xml_convenience.add_annotation(enum_member, {'Term': 'RedfishYang.enum', 'String': enum_item_name})
+
+# Seperate from the old stuff
+
+pass
+pass
+pass
+pass
 
 def handle_grouping(group_elements, tree_node, xml_node, list_of_xml, target_dir, logger):
     logger.warning(
@@ -95,41 +244,6 @@ def handle_grouping(group_elements, tree_node, xml_node, list_of_xml, target_dir
                 elif repeat_item_type == 'ReferenceGrammar':
                     handle_reference(repeat_item, xml_node)
 
-def handle_choice_grammar(items, tree_node, xml_node, xml_parent, list_of_xml, target_dir, logger):
-    annotation_node = None
-    for item in items:
-        item_type = str(type(item))
-        if item_type == 'ChoiceKeyword' or item_type == 'OPENBRACE':
-            continue
-        elif item_type == 'Name':
-            name = item.elements[0].string.strip('"')
-            csdl_name = get_valid_csdl_identifier(name)
-            logger.debug('Handling choice: ' + name)
-            yang_choice_annotation =  xml_convenience.add_annotation(xml_node, {
-                'Term': redfishtypes.get_descriptive_properties_mapping('Choice'),
-                'String': csdl_name
-            }
-            )
-        elif item_type == 'Description':
-            description = (tr(item.elements[1].string)).strip('"')
-            yang_description_annotation = xml_convenience.add_annotation(yang_choice_annotation, {
-                'Term': redfishtypes.get_descriptive_properties_mapping('description'),
-                'String': description
-            }
-            )
-        elif item_type == '<REPEAT>':  # case will start here
-            repeat_item_elements = item.elements
-            for repeat_item in repeat_item_elements:
-                repeat_item_type = str(type(repeat_item))
-                if repeat_item_type == 'CaseGrammar':
-                    handle_case_grammar(repeat_item, tree_node,
-                                        yang_choice_annotation, xml_node, list_of_xml, target_dir, logger)
-                elif repeat_item_type == 'ContainerGrammar':
-                    (child_node, xml_child_node) = build_tree(
-                        tree_node, xml_node, repeat_item, list_of_xml, target_dir, logger)
-                    tree_node.add_child(child_node)
-
-
 def tr(input_string):
     """ Return the input string after trimming within & outside the string."""
     return(' '.join(input_string.split()))
@@ -137,267 +251,8 @@ def tr(input_string):
 
 def handle_name(name_tag, target):
     """ Given a parsed Name tag, apply it to target node """
-    name = name_tag.string.strip('"')
-    csdl_name = get_valid_csdl_identifier(name)
-    # do we need to change this? (errata)
-    target.set('Name', csdl_name.split('.')[-1])
+    csdl_name = get_valid_csdl_identifier(name_tag.arg)
     return csdl_name
-
-
-def handle_namespace(ns_tag, xml_node):
-    """
-    Handle 'namespace'
-    """
-    # disabled namespace
-    xml_node.set('ns', ns_tag.arg)
-
-
-def handle_prefix(prefix_tag, xml_node):
-    """
-    Handle 'prefix'
-    """
-    tag, name, semicolon = prefix_tag
-    xml_node.set('Prefix', name.string.replace('"', '')) 
-
-
-def handle_import(import_tag, xml_node):
-    if len(import_tag.elements) > 2 and str(type(import_tag.elements[2])) == 'Prefix':  # A 'prefix' is present
-        tag, name, prefix_tag = import_tag
-        print(prefix_tag)
-        brace, tag, prefix, semi, cbrace = prefix_tag
-        prefix_string = prefix.string
-    else:
-        tag, name, semi_colon = import_tag
-        prefix_string = None
-    return name.string, prefix_string
-
-
-def handle_revision(revision_tag, xml_node):
-    """
-    Handle 'revision'
-    """
-    revision_items = revision_tag.elements
-    tag, date = tuple(revision_items[:2])
-    inner_node = xml_convenience.add_annotation(xml_node,
-                                     {'String':  date.string.strip('"'),
-                                      'Term': redfishtypes.get_descriptive_properties_mapping('Revision')
-                                      })
-    for item in revision_items[2:]:
-        for internal_item in item:
-            item_type = str(type(internal_item))
-            if item_type == 'OPENBRACE':
-                continue
-            elif item_type == 'CLOSEBRACE':
-                continue
-            elif item_type == "<REPEAT>":
-                repeat_items = internal_item.elements
-                for extra in repeat_items:
-                    if str(type(extra)) == "Description":
-                        handle_descriptor(extra, inner_node)
-                    if str(type(extra)) == "Reference":
-                        handle_reference(extra, inner_node)
-
-
-
-
-
-def handle_descriptor(descriptor_tag, xml_node):
-    descriptive_type = descriptor_tag.keyword
-    value = descriptor_tag.arg 
-    annotation = xml_convenience.add_annotation(xml_node,
-                    {
-                        'Term': redfishtypes.get_descriptive_properties_mapping(descriptive_type),
-                        'String': value.replace('\n',' ')
-                    })
-    if descriptive_type == 'feature':
-        for item in descriptor_tag.substmts:
-            handle_descriptor(item, annotation)
-
-
-# Handle the typedef statement
-def handle_typedef(typedef_tag, schema_xml, module_xml):
-    """
-    Handle typedef statement.
-    :param items: Grammar items.
-    :param xml_parent: Node to which sub elements are to be added.
-    """
-    name, repeats = typedef_tag.arg, typedef_tag.substmts
-    type_tag, desc, ref_tag = None, None, None
-    for item in repeats:
-        type_repeat = item.keyword
-        if type_repeat == 'type':
-            type_tag = item
-        if type_repeat == 'description':
-            desc = item
-        if type_repeat == 'reference':
-            ref_tag = item
-    if type_tag is None:
-        print("This type tag shouldn't be missing")
-        return
-    if type_tag.arg == 'enumeration':
-        new_node = Element('EnumType')
-        new_node.set('Name', get_valid_csdl_identifier(str(name)))
-        if desc is not None:
-            handle_descriptor(desc, new_node)
-        if ref_tag is not None:
-            handle_reference(ref_tag, new_node)
-        for enum_tag in type_tag.substmts:
-            member_node = SubElement(new_node, 'Member')
-            member_name = enum_tag.arg
-            member_node.set('Name', member_name)
-
-            for extra in enum_tag.substmts:
-                if extra.keyword == "description":
-                    handle_descriptor(extra, member_node)
-                elif extra.keyword == 'value':
-                    member_node.set('Value', extra.arg) 
-
-        schema_xml.append(new_node) 
-        return str(name), new_node
-
-    else: 
-        new_node = Element('TypeDefinition')
-        new_node.set('Name', get_valid_csdl_identifier(str(name)))
-        if desc is not None:
-            handle_descriptor(desc, new_node)
-        if ref_tag is not None:
-            handle_reference(ref_tag, new_node)
-        simple_name, repeat_simple, = type_tag.arg, type_tag.substmts
-
-        simple_name_string = simple_name.replace('"', '')
-
-        new_node.set('UnderlyingType', redfishtypes.get_node_types_mapping(simple_name_string))
-
-        if repeat_simple is not None:
-            for item in repeat_simple:
-                handle_metadata_grammar(item, new_node)
-        schema_xml.append(new_node) 
-        return str(name), new_node
-
-
-def handle_uses(logger):
-    logger.info(
-        'Found uses statement. Please run a pre-processor to handle it. Ignoring uses statement')
-
-
-def handle_metadata_grammar(metadata_grammar_tag, xml_node):
-    """
-    Handle metadata such as Range, Path, Bits, Base, Length, Min, Max
-    Assumption is that only one of the above will be present.
-    :param metadata_grammar_elements: Grammar elements
-    :param xml_node:
-    """
-    metadata_type = metadata_grammar_tag.keyword.strip('"')
-
-    term = redfishtypes.get_descriptive_properties_mapping(metadata_type)
-
-    if term == 'type':  # ignore type within type
-        pass
-    else:
-        for x in items:
-            print(x)
-        string = (metadata_type)
-        xml_convenience.add_annotation(xml_node, {'Term': term, 'String': string})
-
-
-def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
-    """
-    Handle 'type' statement 
-    :param type_grammar_items: Grammar items within type definition in 
-    YANG model
-    :param xml_node: XML node to which sub elements are to be added.
-    """
-    # What are we?  Simple Type?  Get our info.
-    tag, type_grammar = type_tag 
-    if str(type(type_grammar)) == 'SimpleType':
-        simple_name, colon = type_grammar
-    elif str(type(type_grammar)) == 'SimpleTypeWithMetadata':
-        simple_name, brace, repeat_simple, cbrace = type_grammar
-    else:
-        simple_name = None
-    simple_name_string = "None" if simple_name is None else simple_name.string
-    simple_name_string = simple_name_string.replace('"', '')
-    # If there's an import, let's consider it ':'
-    # If it's in the imports, then add the import
-    # If it is a simple name already in types available, then put it in file
-    if ':' in simple_name_string:
-        importname = simple_name_string.split(':')[0]
-        if importname in imports:
-            xml_convenience.add_import(parent_node, imports[importname], importname if importname != imports[importname] else None)
-    elif simple_name_string in types:
-        namespace = parent_entity.attrib.get('Namespace')
-        available_types = list()
-        for ref in parent_node:
-            if str(ref.tag) not in ['TypeDefinition', 'EnumType']:
-                continue
-            available_types.append(ref.attrib.get('Name'))
-        if get_valid_csdl_identifier(simple_name_string) not in available_types:
-            parent_node.append(types[simple_name_string])
-        if namespace is None:
-            print("Namespace shouldn't be none {}".format(parent_entity.attrib))
-            print(get_valid_csdl_identifier(redfishtypes.types_mapping.get(simple_name_string, simple_name_string)))
-        elif namespace is not "":
-            namespace = namespace + "."
-        xml_node.set('BaseType', str(namespace) + get_valid_csdl_identifier(redfishtypes.types_mapping.get(simple_name_string, simple_name_string)))
-        return
-    else:
-        # must be a basic type?  if it isn't, we have a problem
-        pass
-
-    xml_node.set('Type', get_valid_csdl_identifier(redfishtypes.types_mapping.get(simple_name_string, simple_name_string)))
-    # (todo, real type stuff, conflate with typedef)
-    return
-    
-    var_type = str(type(type_grammar_items[1]))
-    yang_type = None
-    # Set some annotation properties because we can do it now. Other
-    # option is to repeat the annotation statements in the if and else sections
-    xml_node.set('Type', var_type)
-    annotation = SubElement(xml_node, 'Annotation')
-    annotation.set('Term', redfishtypes.get_descriptive_properties_mapping('YangType'))
-    if var_type == 'EnumerationGrammar':
-        # if the Type of this variable is an enumeration, then
-        xml_node.set('Type', 'Edm:Enumeration')
-        enumeration_items = type_grammar_items[1].elements[2].elements
-        yang_type = 'enumeration'
-
-        name = tree_node.get_name()
-        enumeration_node = SubElement(xml_node, 'EnumType')
-        enumeration_node.set('Name', name + "Enumeration")
-
-        for enumeration_item in enumeration_items:
-            enum_item_name = None
-            enum_item_value = None
-            enum_item_type = str(type(enumeration_item))
-            enum_member = SubElement(enumeration_node, 'Member')
-            if enum_item_type == 'EnumItemTypeA':
-                enum_item_name = enumeration_item.elements[1].string.strip('"')
-                enum_item_value = enumeration_item.elements[
-                    3].elements[0].elements[1].string.strip('"')
-                enum_member.set('Name', enum_item_name)
-                enum_member.set('Value', enum_item_value)
-            else:
-                enum_item_name = enumeration_item.elements[1].string.strip('"')
-                enum_member.set('Name', enum_item_name)
-            xml_convenience.add_annotation(enum_member, {'Term': 'RedfishYang.enum', 'String': enum_item_name})
-    else:
-        # The var_type == 'SimpleTypeWithMetadata' or 'SimpleType':
-        # Note : Since we have am OR grammar, item.elements[1] = GRAMMAR
-        type_grammar = str(type(type_grammar_items[1]))
-        primitive_yang_type = type_grammar_items[
-            1].elements[0].string.strip('"')
-        csdl_type = redfishtypes.types_mapping.get(
-            primitive_yang_type, 'Yang.' + primitive_yang_type)
-        yang_type = primitive_yang_type
-        if (tree_node is not None) and (tree_node.get_type() == 'LeafListKeyword'):
-            xml_node.set('Type', 'Collection(' + csdl_type + ')')
-        else:  # Tree_node is None : RPC Leaf; Or type is Leaf
-            xml_node.set('Type', csdl_type)
-        if type_grammar == 'SimpleTypeWithMetadata':
-            metadata_grammar = type_grammar_items[1].elements[2]
-            metadata_grammar_type = str(type(metadata_grammar))
-            handle_metadata_grammar(metadata_grammar, xml_node)
-    annotation.set('String', yang_type)
 
 
 def handle_rpc(rpc_tag, xml_node):
@@ -406,6 +261,8 @@ def handle_rpc(rpc_tag, xml_node):
     """
     rpc_items = rpc_tag.elements
     for item in rpc_items:
+        print("\t",item.keyword)
+        print("\t","\t", item.arg)
         item_type = str(type(item))
         if item_type == 'RpcKeyword':
             action_node = SubElement(xml_node, 'Action')
@@ -448,6 +305,8 @@ def handle_print(input_grammar, action_node, xml_node):
     param_annotation = xml_convenience.add_annotation(param, {'Term': 'RedfishYang.NodeType',
                                               'EnumMember': 'RedfishYang.NodeTypes/input'})
     for item in input_grammar:
+        print("\t",item.keyword)
+        print("\t","\t", item.arg)
         item_type = str(type(item))
         if item_type == 'InputKeyword':
             continue
@@ -471,6 +330,8 @@ def handle_output(output_grammar, action_node, xml_node):
     }
     )
     for item in output_grammar:
+        print("\t",item.keyword)
+        print("\t","\t", item.arg)
         item_type = str(type(item))
         if item_type == 'OutputKeyword':
             continue
@@ -524,26 +385,6 @@ def handle_config(config_tag, xml_node):
     return value
 
 
-def handle_reference(reference_tag, xml_node):
-    """
-    Handle 'reference'
-    """
-    name = reference_tag.arg
-    xml_convenience.add_annotation(xml_node, {'Term': redfishtypes.get_descriptive_properties_mapping(
-        'reference'), 'String': name})
-
-
-def handle_unit(unit_tag, xml_node):
-    """
-    Handle 'unit'
-    """
-    items = unit_tag.elements
-    xml_convenience.add_annotation(xml_node, {'Term': redfishtypes.get_descriptive_properties_mapping('Units'),
-                              'String': items[1].string.strip('"')
-                              }
-                   )
-
-
 def handle_default(default_tag, xml_node):
     """
     Handle 'default'
@@ -551,29 +392,6 @@ def handle_default(default_tag, xml_node):
     items = default_tag.elements
     xml_node.set('DefaultValue', items[1].string.strip('"'))
 
-
-
-
-def handle_yang_version(version_tag, xml_node):
-    """
-    Handle 'yang_version'
-    """
-    yang_version_items = version_tag.elements
-    xml_convenience.add_annotation(xml_node, {
-        'Term': 'RedfishYang.yang_version',
-        'String': yang_version_items[1].string.strip('"')}
-    )
-
-
-def handle_presence(presence_tag, xml_node):
-    """
-    Handle 'presence'
-    """
-    presence_elements = presence_tag.elements
-    xml_convenience.add_annotation(xml_node, {
-        'Term': redfishtypes.get_descriptive_properties_mapping('presence'),
-        'String': presence_elements[1].string.strip('"').replace('\n','').strip('  ')
-    })
 
 
 def handle_key(key_tag, xml_node):
@@ -590,17 +408,6 @@ def handle_key(key_tag, xml_node):
         prop_ref.set('Name', keyname) 
 
 
-def handle_unique(unique_key, xml_node):
-    """
-    Handle 'unique'
-    """
-    unique_items = unique_key.elements
-    xml_convenience.add_annotation(xml_node, {
-        'Term':  redfishtypes.get_descriptive_properties_mapping('unique'),
-        'String': unique_items[1].string.strip('"')
-    }
-    )
-
 
 def handle_unmapped(unmapped_tag, xml_node):
     """
@@ -612,19 +419,6 @@ def handle_unmapped(unmapped_tag, xml_node):
         'String': unmapped_items[0].string.strip('"')
     }
     )
-
-
-def handle_when(when_tag, xml_node):
-    """
-    Handle 'when'
-    """
-    when_items = when_tag.elements
-    xml_convenience.add_annotation(xml_node, {
-        'Term': 'RedfishYang.when',
-        'String': when_items[1].string.strip('"')
-    }
-    )
-
 
 def handle_status(status_tag, xml_node):
     """
@@ -648,164 +442,6 @@ def handle_yin(yin_tag, xml_node):
         'Term': redfishtypes.get_descriptive_properties_mapping('YinElement'),
         'EnumMember': 'RedfishYang.YinElement/' + value
     })
-
-
-def handle_identity(identity_tag, xml_node):
-    identity_elements = identity_tag.elements
-    complex_node = xml_convenience.add_annotation(xml_node, {
-                   'Term': 'RedfishYang.identity', 'String': identity_elements[1].string.strip('"')})
-    for identity_item in identity_elements[2:]:
-        identity_item_type = str(type(identity_item))
-        if identity_item_type == '<REPEAT>':
-            repeat_items = identity_item.elements
-            for item in repeat_items:
-                identity_item_type = str(type(item))
-                if identity_item_type == 'Description':
-                    description = (tr(item.elements[1].string)).strip('"')
-                    xml_convenience.add_annotation(complex_node, {'Term': redfishtypes.get_descriptive_properties_mapping(
-                        'description'), 'String': description})
-                elif identity_item_type == 'Reference':
-                    handle_reference(item, complex_node)
-                elif identity_item_type == 'Status':
-                    handle_status(item, complex_node)
-                elif identity_item_type == 'Base':
-                    string = item.elements[1].string.strip('"')
-                    xml_convenience.add_annotation(complex_node, {'Term': redfishtypes.get_descriptive_properties_mapping('base'), 'String': string})
-
-
-# handled ordered-by statement
-def handle_orderedby(ordered_tag, xml_node):
-    """
-    Handle 'orderedby'
-    """
-    orderedby_elements = ordered_tag
-    value = orderedby_elements[1].string.strip('"')
-    xml_convenience.add_annotation(xml_node, {
-        'Term': redfishtypes.get_descriptive_properties_mapping('ordered-by'),
-        'EnumMember': 'RedfishYang.Ordered_by/' + value
-    })
-
-
-def handle_min_elements(min_tag, xml_node):
-    """
-    Handle 'min elements'
-    """
-    minelements = min_tag.elements
-    value = minelements[1].string.strip('"')
-    xml_convenience.add_annotation(xml_node, {
-        'Term': redfishtypes.get_descriptive_properties_mapping('min-elements'),
-        'RedfishYang.min_elements': value
-    }
-    )
-
-
-def handle_max_elements(max_tag, xml_node):
-    """ 
-    Handle 'max elements'
-    """
-    maxelements = max_tag.elements
-    value = maxelements[1].string.strip('"')
-    xml_convenience.add_annotation(xml_node, {
-        'Term': redfishtypes.get_descriptive_properties_mapping('max-elements'),
-        'RedfishYang.max_elements': value
-    }
-    )
-
-
-
-def handle_must(must_tag, xml_node):
-    """
-    Handle 'must' statement
-    """
-    must_elements = must_tag.elements
-    must_annotation = xml_convenience.add_annotation(xml_node, {
-        'Term': redfishtypes.get_descriptive_properties_mapping('must'),
-        'String': must_elements[1].string.strip('"')
-    })
-    # The following constructs are equivalent
-    #(must_elements[1])
-    #(must_elements[1].string)
-    #(must_elements[1].elements[0].string)
-
-    if str(must_elements[2]) == ';':
-        return
-    print(str(must_elements[2]))
-    items = must_elements[3].elements
-    for item in items:
-        # This is a short cut to handle the items. We know that the
-        # substatement will be the first item and some string will be the second.
-        # The only thing we have an explicit handler for is reference, and it is
-        # not being used.
-        term = item.elements[0].string.strip('"')
-        string = item.elements[1].string.strip('"')
-        xml_convenience.add_annotation(must_annotation,
-                       {
-                           'Term': redfishtypes.get_descriptive_properties_mapping(term),
-                           'String': string
-                       }
-                       )
-
-
-def handle_deviation(deviation_tag, xml_node):
-    """
-    Handle 'deviation'
-    """
-    deviation_items = deviation_tag.elements
-    deviation_annotation = None
-    for item in deviation_items:
-        item_type = str(type(item))
-        if item_type == 'DeviationValue':
-            value = item.elements[0].string.strip('"')
-            deviation_annotation = xml_convenience.add_annotation(xml_node,
-                                                  {
-                                                      'Term': redfishtypes.get_descriptive_properties_mapping('deviation'),
-                                                      'String': value
-                                                  })
-        elif item_type == 'Reference':
-            handle_reference(item, deviation_annotation)
-        elif item_type == '<REPEAT>':
-            repeat_items = item.elements
-# Only 'deviate' can be part of deviation. so no need to check the type of the
-# repeated item.
-            for repeat_item in repeat_items:
-                handle_deviate(repeat_item, deviation_annotation)
-
-
-def handle_deviate(deviate_tag, xml_node):
-    """
-    Handle 'deviate'
-    """
-    deviate_items = deviate_tag.elements
-    for item in deviate_items:
-        item_type = str(type(item))
-        if item_type == 'DeviateValue':
-            value = item.elements[0].string.strip('"')
-            xml_convenience.add_annotation(xml_node,
-                           {
-                               'Term': redfishtypes.get_descriptive_properties_mapping('deviate'),
-                               'String': value
-
-                           })
-        elif item_type == 'Config':
-            handle_config(item, xml_node)
-        elif item_type == 'Default':
-            handle_default(item, xml_node)
-        elif item_type == 'Mandatory':
-            handle_mandatory(item, xml_node)
-        elif item_type == 'MinElements':
-            handle_min_elements(item, xml_node)
-        elif item_type == 'MaxElements':
-            handle_max_elements(item, xml_node)
-        elif item_type == 'Units':
-            handle_unit(item, xml_node)
-        elif item_type == 'Must':
-            handle_must(item, xml_node)
-        elif item_type == 'Unique':
-            handle_unique(item, xml_node)
-        elif item_type == 'Type':
-            handle_type(item, xml_node)
-        else:
-            continue
 
 
 def handle_anyxml(anyxml, xml_node, anyxml_counter):
@@ -833,7 +469,7 @@ def handle_anyxml(anyxml, xml_node, anyxml_counter):
     property_node.set('Name', 'Anyxml_' + str(anyxml_counter))
     property_node.set('Type', redfishtypes.get_descriptive_properties_mapping('xmlblock'))
     xml_convenience.add_annotation(property_node, {
-                   'Term': 'RedfishYang.AnyxmlText', 'String': anyxml.string})
+                   'Term': 'RedfishYang.AnyxmlText', 'String': anyxml.arg})
 
     #anyxml_data = anyxml_items[1].string.strip('"')
     #anyxml_root = fromstring(anyxml_data)

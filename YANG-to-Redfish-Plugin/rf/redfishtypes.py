@@ -8,7 +8,7 @@ types_mapping = {
     'boolean': 'Edm.Boolean',
     'decimal64': 'Edm.Decimal',
     'empty': '',
-    'enumeration': 'Edm:EnumType',
+    'enumeration': 'Edm.EnumType',
     'identityref': 'Edm.String',
     'int8': 'Edm.Sbyte',
     'int16': 'Edm.Int16',
@@ -37,10 +37,8 @@ property_mapping = {
     'augment': 'augment',
     'base': 'base',
     'bits': 'bits',
-    'Case': 'case',
     'case': 'case',
-    'Contact': 'contact',
-    'Choice': 'choice',
+    'contact': 'contact',
     'choice': 'choice',
     'description': 'description',
     'deviation': 'deviation',
@@ -48,8 +46,8 @@ property_mapping = {
     'error-message': 'error_message',
     'error-app-tag': 'error_app_tag',
     'extension': 'extension',
-    'Feature': 'feature',
-    'IfFeature': 'if_feature',
+    'feature': 'feature',
+    'iffeature': 'if_feature',
     'isxml': 'IsXml',
     'length': 'length',
     'min': 'min',
@@ -57,23 +55,21 @@ property_mapping = {
     'max': 'max',
     'max-elements': 'max_elements',
     'must': 'must',
-    'Organization': 'organization',
+    'organization': 'organization',
     'ordered-by': 'ordered_by',
     'path': 'path',
     'presence': 'presence',
     'range': 'range',
-    'Reference': 'reference',
     'reference': 'reference',
-    'Revision': 'revision',
+    'revision': 'revision',
     'status': 'status',
-    'Statement': 'statement',
-    'Units': 'units',
+    'statement': 'statement',
+    'units': 'units',
     'unique': 'unique',
     'when': 'when',
-    'When': 'when',
     'xmlblock': 'XmlBlock',
     'YangType': 'YangType',
-    'YangVersion': 'yang_version',
+    'yangversion': 'yang_version',
     'YinElement': 'yin'
 }
 
@@ -84,7 +80,7 @@ def get_descriptive_properties_mapping(property_name):
     :param node_type: YANG statment type
     :return The Redfish Node type in appropriate CSDL string format:
     """
-    if property_name == 'Description':
+    if property_name == 'description':
         return 'OData.Description'
     target_name = property_mapping.get(property_name, property_name)
     return 'RedfishYang.' + str(target_name)

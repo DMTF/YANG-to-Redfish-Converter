@@ -9,19 +9,12 @@ Based on 'name', 'tree' plugin
 
 import optparse
 from xml.etree.ElementTree import Element, SubElement, Comment, tostring, dump
-from rf.csdltree import build_tree_new
+import rf.csdltree as csdltree
 import logging
 import xml.dom.minidom
 import re
 
 from pyang import plugin
-
-
-def write_to_file(filename, xml_string):
-    output_file = open(filename, 'w')
-    xml_string.replace('<?xml version="1.0" ?>', '<?xml version="1.0" encoding="UTF-8"?>')
-    output_file.write(xml_string)
-    output_file.close()
 
 
 def pyang_plugin_init():
@@ -60,8 +53,17 @@ class RedfishPlugin(plugin.PyangPlugin):
         list_of_xml = []
         target_dir = '.'
 
+        csdltree.setLogger(logger)
+
+        path = None
+        if ctx.opts.tree_path is not None:
+            path = ctx.opts.tree_path.split('/')
+            if path[0] == '':
+                path = path[1:]
+            csdltree.path = path
+
         for module in modules:
-            xml_root = build_tree_new(module, list_of_xml, logger)
+            xml_root = csdltree.build_tree(module, list_of_xml, logger)
 
         for xml_item in list_of_xml:
             filename = target_dir + '/' + xml_item.get_filename()
@@ -96,3 +98,10 @@ class RedfishPlugin(plugin.PyangPlugin):
             except BaseException as e:
                 logger.error('Unable to write to file: ' +
                              filename + "\nError message: " + str(e))
+
+def write_to_file(filename, xml_string):
+    output_file = open(filename, 'w')
+    xml_string.replace('<?xml version="1.0" ?>', '<?xml version="1.0" encoding="UTF-8"?>')
+    output_file.write(xml_string)
+    output_file.close()
+
