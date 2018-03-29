@@ -41,7 +41,7 @@ Given an obtained set of YANG files, you can run the plugin in the following way
 
 Along with the parameters for pyang, the plugin has the following independent parameters:
 
-* --target-dir :  where to output the xml files, default './output_dir'
+* --target_dir :  where to output the xml files, default './output_dir'
 
 ## Obtain a YANG code file
 
