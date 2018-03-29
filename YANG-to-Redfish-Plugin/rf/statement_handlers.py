@@ -17,7 +17,7 @@ def get_valid_csdl_identifier(name):
 # Each function handles a keyword and any internal grammar such
 # as the case of type metadata.
 
-def handle_generic(yang_keyword, yang_arg, yang_children = [], target = None, target_entity = None, target_parent = None, list_of_xml=None, imports=None, types=None):
+def handle_generic(yang_keyword, yang_arg, yang_children = [], target = None, target_entity = None, target_parent = None, list_of_xml=None, imports=None, types=None, prefix=None):
     #
     annotation = xml_convenience.add_annotation(
             target, {'Term': redfishtypes.get_descriptive_properties_mapping(yang_keyword),
@@ -25,13 +25,13 @@ def handle_generic(yang_keyword, yang_arg, yang_children = [], target = None, ta
                      }
             )
     
-    handle_generic_children(yang_children, annotation, target_entity, target_parent, list_of_xml, imports, types)
+    handle_generic_children(yang_children, annotation, target_entity, target_parent, list_of_xml, imports, types, prefix)
 
     return annotation
 
-def handle_generic_children(yang_children, target, target_entity=None, target_parent=None, list_of_xml=None, imports=None, types=None):
+def handle_generic_children(yang_children, target, target_entity=None, target_parent=None, list_of_xml=None, imports=None, types=None, prefix=None):
     for child in yang_children:
-        rf.csdltree.build_tree_repeat(child, target, target_entity=target_entity, target_parent=target_parent, list_of_xml=list_of_xml, topleveltypes=types, toplevelimports=imports) 
+        rf.csdltree.build_tree_repeat(child, target, target_entity=target_entity, target_parent=target_parent, list_of_xml=list_of_xml, topleveltypes=types, toplevelimports=imports, prefix=prefix) 
 
 def handle_generic_node(yang_keyword, yang_arg, yang_children):
     annotation = xml_convenience.add_annotation(
@@ -50,25 +50,43 @@ def handle_generic_modifier(yang_keyword, yang_arg, target):
 
     target.set(yang_keyword, get_valid_csdl_identifier(yang_arg))
 
-def handle_choice(yang_keyword, yang_arg, yang_children, target, target_entity, target_parent, list_of_xml, imports, types):
+def handle_choice(yang_keyword, yang_arg, yang_children, target, target_entity, target_parent, list_of_xml, imports, types, prefix):
     new_xml = []
     annotation = handle_generic(yang_keyword, yang_arg, yang_children, target)
     for case in yang_children:
-        handle_generic_children(case.substmts, target, target_entity=target_entity, target_parent=target_parent, list_of_xml=list_of_xml, imports=imports, types=types)
+        handle_generic_children(case.substmts, target, target_entity=target_entity, target_parent=target_parent, list_of_xml=list_of_xml, imports=imports, types=types, prefix=prefix)
     return annotation 
-
-
 
 
 def handle_enum(yang_keyword, yang_arg, yang_children, target):
     member_node = SubElement(target, 'Member')
     member_node.set('Name', yang_arg)
 
+    annotation = xml_convenience.add_annotation(
+            target, {'Term': redfishtypes.get_descriptive_properties_mapping(yang_keyword),
+                     'String':  yang_arg
+                     }
+            )
+
     handle_generic_children(yang_children, member_node)
 
     return member_node
 
 
+def handle_rpc(yang_keyword, yang_arg, yang_children, schema_xml, module_xml):
+    annotation = handle_generic(yang_keyword, yang_arg, yang_children, schema_xml)
+    ds_node = module_xml.find('./')
+    schema_node = ds_node.findall('./')[0]
+
+    inp, desc = None, None
+    for item in yang_children:
+        if type_repeat == 'input':
+            inp = item
+        if type_repeat == 'description':
+            desc = item
+
+
+    
 # Handle the typedef statement
 def handle_typedef(yang_keyword, yang_arg, yang_children, schema_xml, module_xml):
     """
@@ -77,6 +95,12 @@ def handle_typedef(yang_keyword, yang_arg, yang_children, schema_xml, module_xml
     :param xml_parent: Node to which sub elements are to be added.
     """
     type_tag, desc, ref_tag = None, None, None
+
+    annotation = xml_convenience.add_annotation(
+            target, {'Term': redfishtypes.get_descriptive_properties_mapping(type_tag.keyword),
+                     'String':  type_tag.arg
+                     }
+            )
 
     for item in yang_children:
         type_repeat = item.keyword
@@ -182,33 +206,6 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
     annotation.set('String', var_type)
 
     return
-    # Set some annotation properties because we can do it now. Other
-    # option is to repeat the annotation statements in the if and else sections
-    if None:
-        # if the Type of this variable is an enumeration, then
-        xml_node.set('Type', 'Edm:Enumeration')
-        enumeration_items = type_grammar_items[1].elements[2].elements
-        yang_type = 'enumeration'
-
-        name = tree_node.get_name()
-        enumeration_node = SubElement(xml_node, 'EnumType')
-        enumeration_node.set('Name', name + "Enumeration")
-
-        for enumeration_item in enumeration_items:
-            enum_item_name = None
-            enum_item_value = None
-            enum_item_type = str(type(enumeration_item))
-            enum_member = SubElement(enumeration_node, 'Member')
-            if enum_item_type == 'EnumItemTypeA':
-                enum_item_name = enumeration_item.elements[1].string.strip('"')
-                enum_item_value = enumeration_item.elements[
-                    3].elements[0].elements[1].string.strip('"')
-                enum_member.set('Name', enum_item_name)
-                enum_member.set('Value', enum_item_value)
-            else:
-                enum_item_name = enumeration_item.elements[1].string.strip('"')
-                enum_member.set('Name', enum_item_name)
-            xml_convenience.add_annotation(enum_member, {'Term': 'RedfishYang.enum', 'String': enum_item_name})
 
 # Seperate from the old stuff
 
@@ -255,7 +252,7 @@ def handle_name(name_tag, target):
     return csdl_name
 
 
-def handle_rpc(rpc_tag, xml_node):
+def handxle_rpc(rpc_tag, xml_node):
     """
     Handle RPC statement.
     """

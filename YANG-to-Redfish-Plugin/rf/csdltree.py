@@ -236,9 +236,9 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
         yang_children = yang_item.substmts
 
     logger.info('Handling repeat item: ' + str(yang_keyword))
-    print(yang_keyword)
-    print('\t', yang_arg)
-    if yang_arg is None or type(yang_arg) == tuple:
+    # print(yang_keyword)
+    # print('\t', yang_arg)
+    if yang_arg is None or type(yang_keyword) == tuple:
         input("Uhh")
 
     if yang_keyword == 'import': 
@@ -263,7 +263,10 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
         annotation = handlers.handle_enum(yang_keyword, yang_arg, yang_children, target)
     
     elif yang_keyword in ['choice']:
-        annotation = handlers.handle_choice(yang_keyword, yang_arg, yang_children, target, target_entity, target_parent, list_of_xml, toplevelimports, topleveltypes)
+        annotation = handlers.handle_choice(yang_keyword, yang_arg, yang_children, target, target_entity, target_parent, list_of_xml, toplevelimports, topleveltypes, prefix)
+
+    # elif yang_keyword in ['rpc']:
+    #    annotation = handlers.handle_rpc(yang_keyword, yang_arg, yang_children, target, target_entity, target_parent, list_of_xml, toplevelimports, topleveltypes, prefix)
 
     elif yang_keyword in ["namespace", "prefix", "value"]:
         annotation = handlers.handle_generic_modifier(yang_keyword, yang_arg, target)

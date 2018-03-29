@@ -8,6 +8,7 @@ Based on 'name', 'tree' plugin
 """
 
 import optparse
+import os
 from xml.etree.ElementTree import Element, SubElement, Comment, tostring, dump
 import rf.csdltree as csdltree
 import logging
@@ -28,12 +29,11 @@ class RedfishPlugin(plugin.PyangPlugin):
 
     def add_opts(self, optparser):
         optlist = [
-            optparse.make_option("--example",
-                                 dest="example",
-                                 action="store_true",
-                                 help="Print the name and revision in name@revision format"),
+            optparse.make_option("--target_dir",
+                                 dest="target_dir",
+                                 help="Where to output xml files"),
             ]
-        g = optparser.add_option_group("Name output specific options")
+        g = optparser.add_option_group("Redfish output specific options")
         g.add_options(optlist)
 
     def setup_ctx(self, ctx):
@@ -51,16 +51,12 @@ class RedfishPlugin(plugin.PyangPlugin):
         logger.setLevel(logging.DEBUG)
 
         list_of_xml = []
-        target_dir = '.'
+        target_dir = ctx.opts.target_dir if ctx.opts.target_dir is not None else './output_dir'
+
+        if not os.path.exists(target_dir):
+            os.makedirs(target_dir)
 
         csdltree.setLogger(logger)
-
-        path = None
-        if ctx.opts.tree_path is not None:
-            path = ctx.opts.tree_path.split('/')
-            if path[0] == '':
-                path = path[1:]
-            csdltree.path = path
 
         for module in modules:
             xml_root = csdltree.build_tree(module, list_of_xml, logger)
@@ -95,8 +91,11 @@ class RedfishPlugin(plugin.PyangPlugin):
 
             try:
                 write_to_file(filename, pretty_xml_as_string_new)
+                print('Success writing file to disk: ' + filename)
                 logger.info('Success writing file to disk: ' + filename)
             except BaseException as e:
+                print('Unable to write to file: ' +
+                             filename + "\nError message: " + str(e))
                 logger.error('Unable to write to file: ' +
                              filename + "\nError message: " + str(e))
 
