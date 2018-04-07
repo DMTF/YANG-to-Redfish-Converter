@@ -4,18 +4,19 @@ Copyright 2017-2018 Distributed Management Task Force, Inc. All rights reserved.
 
 ## Introduction
 
-This plugin converts a YANG model file to the corresponding Redfish schema, specified in OData CSDL. The conversion is done in accordance with the YANG-to-CSDL Mapping Specification.
+This pyang plugin converts a YANG model file to a set of corresponding Redfish OData CSDL files.
 
-A single YANG model could result in multiple CSDL XML output files being generated. 
+The conversion is done in accordance with the [YANG to Redfish Mapping Specification](https://www.dmtf.org/sites/default/files/standards/documents/DSP0271_0.5.6.pdf).
+Per the specification, a single YANG model can result in multiple CSDL files being generated. 
 
-The Python code executes in **Python 3.x.**, and utilizes the program pyang
+The Python code executes in **Python 3.x.**.
 
 ## Pre-requisites
 
-Python 3 is required for this program, along with the following library:
-* pyang
+The following modules should be installed.
 
-The above can be installed through the pip3 command line tool
+* lxml
+* pyang
 
 ## Folder Structure 
 
@@ -30,18 +31,18 @@ The code is organized in the following folder structure:
 
 The process is composed of two steps
 
-1. Obtain a YANG code file, via official files or from RFC files.
-2. Use this plugin to generate the Redfish CSDL files
+1. Obtain a YANG code file
+2. Execute **pyang** with this plugin to generate the Redfish CSDL files
 
 ## How to run the plugin
 
 Given an obtained set of YANG files, you can run the plugin in the following way:
 
-* run the following: pyang --plugindir ./YANG-to-Redfish-Plugin --format redfish <path-to-file>
+	pyang --plugindir ./YANG-to-Redfish-Plugin --format redfish <path-to-file>
 
-Along with the parameters for pyang, the plugin has the following independent parameters:
+By default, the resultant Redfish CSDL files are place in the directory **output\_dir**. The paramenter **--target\_dir** can be used to specify the output directory.
 
-* --target_dir :  where to output the xml files, default './output_dir'
+	pyang --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir testdir <path-to-file>
 
 ## Obtain a YANG code file
 
@@ -69,22 +70,23 @@ The **xym** tool extracts the YANG code from a YANG file.  If the YANG file cont
 * The **github.com/YangModels**, contains a collection of YANG code files.
 * However the files contain a Byte-Order-Mark at the front of the file. The BOM is three special characters and needs to be removed before the file is used as input into the converter.
 * The BOM can be removed in two ways
-		* Use VIM
-		* Run remove_bom.py
-* Using VIM, open the file and enter the following commands.
+	* Use VIM
+	* Run remove_bom.py
+#### Remove BOM with VIM
+Open the file with VIM and enter the following commands.  Then save and exit the file.
 
         	:setlocal nobomb 
         	:w
-* Using ./src/remove_bom.py, issue the following command. Note: the 'cmd' is needed in the command because "<" is not recognized by Powershell. The above command places the resultant YANG code file into the ./yangs directory.
+#### Remove BOM with remove_bom.py
 
-			$> cmd /c '.\src\remove_bom.py < yangs_bom/[input file] > yangs/[output file]'
+Execute the following command.
 
-2. Execute the yang_to_csdl_tool.yang to convert the file. The **--input** option specifies a YANG code file.  The **--output-dir** option specifies the directory for the resultant CSDL. The directory name should include the backslash.
+			$> cmd /c '.\src\remove_bom.py < [input file] > [output file]'
 
-		$> python src/yang_to_csdl_tool.py --input yangs/input.yang --output-dir csdl/rfc1234
+The remove_bom.py file is located in the directory **src**.
 
-3. Execute the postprocess shell script to beautify the resultant CSDL.  While this command runs, you will see a blank command window will pop up. When the command completes, the command window will disappear.
+Note: the 'cmd' is needed in the command because "<" is not recognized by Powershell, but 'cmd' recognizes it.
 
-		$> .\src\postprocess.sh csdl/rfc1234
+
 
 
