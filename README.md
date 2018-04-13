@@ -58,12 +58,12 @@ The **xym** tool extracts the YANG code from a YANG file.  If the YANG file cont
 
 1. Install the xym tool, using pip or from its Github repository (github.com/xym-tool/xym)
 
-    pip install xym
+        pip install xym
 
 2. Download a YANG RFC in text format.  One source of YANG RFC files is **tools.ietf.org**
 3. Use the tool to extract the YANG model.  The extracted YANG models will each have a *.yang extensions.
 
-    xym <yang_rfc.txt>
+        xym <yang_rfc.txt>
 
 ### Download a YANG code file from the YangModels Github
 
