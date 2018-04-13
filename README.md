@@ -1,6 +1,6 @@
 Copyright 2017-2018 Distributed Management Task Force, Inc. All rights reserved.
 
-# Yang to CSDL Converter tool
+# YANG to Redfish CSDL Converter tool
 
 ## Introduction
 
@@ -38,11 +38,11 @@ The process is composed of two steps
 
 Given an obtained set of YANG files, you can run the plugin in the following way:
 
-	pyang --plugindir ./YANG-to-Redfish-Plugin --format redfish <path-to-file>
+    pyang --plugindir ./YANG-to-Redfish-Plugin --format redfish <path-to-file>
 
 By default, the resultant Redfish CSDL files are place in the directory **output\_dir**. The paramenter **--target\_dir** can be used to specify the output directory.
 
-	pyang --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir testdir <path-to-file>
+    pyang --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir testdir <path-to-file>
 
 ## Obtain a YANG code file
 
@@ -58,35 +58,34 @@ The **xym** tool extracts the YANG code from a YANG file.  If the YANG file cont
 
 1. Install the xym tool, using pip or from its Github repository (github.com/xym-tool/xym)
 
-		pip install xym
+    pip install xym
 
 2. Download a YANG RFC in text format.  One source of YANG RFC files is **tools.ietf.org**
 3. Use the tool to extract the YANG model.  The extracted YANG models will each have a *.yang extensions.
 
-		xym <yang_rfc.txt>
+    xym <yang_rfc.txt>
 
 ### Download a YANG code file from the YangModels Github
 
 * The **github.com/YangModels**, contains a collection of YANG code files.
 * However the files contain a Byte-Order-Mark at the front of the file. The BOM is three special characters and needs to be removed before the file is used as input into the converter.
 * The BOM can be removed in two ways
-	* Use VIM
-	* Run remove_bom.py
+    * Use VIM
+    * Run remove_bom.py
+
 #### Remove BOM with VIM
+
 Open the file with VIM and enter the following commands.  Then save and exit the file.
 
-        	:setlocal nobomb 
-        	:w
+    :setlocal nobomb 
+    :w
+
 #### Remove BOM with remove_bom.py
 
 Execute the following command.
 
-			$> cmd /c '.\src\remove_bom.py < [input file] > [output file]'
+    $> cmd /c '.\src\remove_bom.py < [input file] > [output file]'
 
 The remove_bom.py file is located in the directory **src**.
 
 Note: the 'cmd' is needed in the command because "<" is not recognized by Powershell, but 'cmd' recognizes it.
-
-
-
-
