@@ -11,7 +11,7 @@ def add_import(xml_node, import_value, alias):
     :param import_value: The name of the imported file
     :param alias: Optional alias for the imported file.
     """
-    uri = 'http://redfish.dmtf.org/schemas/v1/' + import_value + ".xml"
+    uri = 'http://redfish.dmtf.org/schemas/v1/' + import_value + "_v1.xml"
     for ref in xml_node:
         if 'Reference' not in str(ref.tag):
             continue
@@ -84,13 +84,14 @@ def add_CSDL_Headers(is_singleton=False):
     add_reference(xml_node,
             'http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Capabilities.V1.xml',
             'Org.OData.Capabilities.V1', 'Capabilities')
+    add_references(xml_node,
+            'http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml',
+            {'RedfishExtensions.v1_0_0': 'Redfish'})
     if is_singleton:
-        add_references(xml_node,
-                'http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml',
-                {'RedfishExtension.v1_0_0': 'Redfish', 'Validation.v1_0_0': 'Validation'})
+        nspaces = {'RedfishExtensions.v1_0_0': 'Redfish', 'Validation.v1_0_0': 'Validation'}
         add_reference(xml_node,
                 'http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml',
-                      'RedfishYangExtension.v1_0_0', 'RedfishYang')
+                      'RedfishYangExtensions.v1_0_0', 'RedfishYang')
     return xml_node
 
 
@@ -101,6 +102,8 @@ def add_annotation(xml_node, key_values):
     :param key_values: Key value pairs which will be used to create the
     annotation entries.
     """
+    if xml_node is None:
+        return Element('Annotation', key_values)
     annotation = SubElement(xml_node, 'Annotation')
     for key in key_values.keys():
         annotation.set(key, key_values[key])
