@@ -2,6 +2,8 @@
 # Copyright 2017 Distributed Management Task Force, Inc. All rights reserved.
 # License: BSD 3-Clause License. For full text see link: https://github.com/DMTF/YANG-to-Redfish-Converter/blob/master/LICENSE.md
 
+import string
+
 types_mapping = {
     'binary': 'Edm.Binary',
     'bits': '',
@@ -21,8 +23,20 @@ types_mapping = {
     'uint32': 'RedfishYang.uint32',
     'uint64': 'RedfishYang.uint64',
     'union': '',
-    'date-and-time': 'Edm.DateTimeOffset'
+    'date_and_time': 'Edm.DateTimeOffset'
 }
+
+def get_valid_csdl_identifier(name):
+    """
+    Replace characters that are invalid in CSDL with appropriate valid ones
+    """
+    new_name = name.replace('-', '_').replace(':', '.').replace('"', '').replace('\'', '')
+    dots = new_name.split('.')
+    # dots = [string.capwords(s, '_') for s in dots]
+
+    # return '.'.join(dots).replace('_', '')
+    return '.'.join(dots)
+
 
 def get_node_types_mapping(node_type):
     """
@@ -30,49 +44,7 @@ def get_node_types_mapping(node_type):
     :param node_type: YANG statment type
     :return The Redfish Node type in appropriate CSDL string format:
     """
-    return 'RedfishYang.NodeTypes/' + node_type
-
-property_mapping = {
-    'argument': 'argument',
-    'augment': 'augment',
-    'base': 'base',
-    'bits': 'bits',
-    'case': 'case',
-    'contact': 'contact',
-    'choice': 'choice',
-    'description': 'description',
-    'deviation': 'deviation',
-    'deviate': 'deviate',
-    'error-message': 'error_message',
-    'error-app-tag': 'error_app_tag',
-    'extension': 'extension',
-    'feature': 'feature',
-    'iffeature': 'if_feature',
-    'isxml': 'IsXml',
-    'length': 'length',
-    'min': 'min',
-    'min-elements': 'min_elements',
-    'max': 'max',
-    'max-elements': 'max_elements',
-    'must': 'must',
-    'organization': 'organization',
-    'ordered-by': 'ordered_by',
-    'path': 'path',
-    'presence': 'presence',
-    'range': 'range',
-    'reference': 'reference',
-    'revision': 'revision',
-    'status': 'status',
-    'statement': 'statement',
-    'units': 'units',
-    'unique': 'unique',
-    'when': 'when',
-    'xmlblock': 'XmlBlock',
-    'YangType': 'YangType',
-    'yangversion': 'yang_version',
-    'YinElement': 'yin'
-}
-
+    return 'RedfishYang.NodeTypes/' + get_valid_csdl_identifier(node_type)
 
 def get_descriptive_properties_mapping(property_name):
     """
@@ -82,5 +54,5 @@ def get_descriptive_properties_mapping(property_name):
     """
     if property_name == 'description':
         return 'OData.Description'
-    target_name = property_mapping.get(property_name, property_name)
+    target_name = get_valid_csdl_identifier(property_name) 
     return 'RedfishYang.' + str(target_name)
