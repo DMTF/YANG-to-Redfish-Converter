@@ -17,7 +17,7 @@ def handle_generic(yang_keyword, yang_arg, yang_children = [], target = None, ta
     #
     if yang_keyword == 'description':
         if yang_arg[-1] != '.':
-            yang_arg.append('.')
+            yang_arg = yang_arg + '.'
     annotation = xml_convenience.add_annotation(
             target, {'Term': redfishtypes.get_descriptive_properties_mapping(yang_keyword),
                      'String':  yang_arg
