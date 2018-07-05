@@ -13,42 +13,73 @@ import rf.csdltree
 # Each function handles a keyword and any internal grammar such
 # as the case of type metadata.
 
-def handle_generic(yang_keyword, yang_arg, yang_children = [], target = None, target_entity = None, target_parent = None, list_of_xml=None, imports=None, types=None, prefix=None):
+def handle_generic(yang_keyword, yang_arg, yang_children=[], target=None, target_entity=None, target_parent=None, list_of_xml=None, imports=None, types=None, prefix=None, generic=False, keyword_raw=None):
     #
-    if yang_keyword == 'description':
+    yang_raw_keyword = keyword_raw if keyword_raw else yang_keyword
+
+    if type(yang_keyword) == tuple:
+        print("We don't recognize keyword, create as statement")
+        annotation = handle_generic_statement(yang_raw_keyword, yang_arg, target)
+
+    elif yang_keyword == 'description' and not generic:
         if yang_arg[-1] != '.':
             yang_arg = yang_arg + '.'
-    annotation = xml_convenience.add_annotation(
-            target, {'Term': redfishtypes.get_descriptive_properties_mapping(yang_keyword),
-                     'String':  yang_arg
-                     }
-            )
-    
-    handle_generic_children(yang_children, annotation, target_entity, target_parent, list_of_xml, imports, types, prefix)
+        annotation = xml_convenience.add_annotation(
+            target, {'Term': 'OData.Description', 'String': yang_arg})
+
+    else:
+        annotation = xml_convenience.add_annotation(
+            target, {'Term': redfishtypes.get_descriptive_properties_mapping(yang_keyword), 'String': yang_arg})
+
+    if generic:
+        for yang_item in yang_children:
+            child_yang_keyword = yang_item.keyword
+            child_yang_raw_keyword = yang_item.raw_keyword
+            child_yang_arg = yang_item.arg.replace('\n',' ') if yang_item.arg is not None else ''
+            child_yang_children = yang_item.substmts
+            handle_generic(child_yang_keyword, child_yang_arg, child_yang_children, annotation, generic=True, keyword_raw=child_yang_raw_keyword) 
+    else:
+        handle_generic_children(yang_children, annotation, target_entity, target_parent, list_of_xml, imports, types, prefix)
 
     return annotation
+
+
+
+def handle_generic_statement(yang_keyword, yang_arg, target):
+    if type(yang_keyword) is tuple:
+        yang_keyword = ':'.join(yang_keyword)
+
+    string = yang_keyword
+    string += ' ' + yang_arg if yang_arg not in ['', ' ', None] else ''
+    annotation = xml_convenience.add_annotation(
+        target, {'Term': 'RedfishYang.statement', 'String': yang_keyword})
+    return annotation
+
 
 def handle_generic_children(yang_children, target, target_entity=None, target_parent=None, list_of_xml=None, imports=None, types=None, prefix=None):
     for child in yang_children:
         rf.csdltree.build_tree_repeat(child, target, target_entity=target_entity, target_parent=target_parent, list_of_xml=list_of_xml, topleveltypes=types, toplevelimports=imports, prefix=prefix) 
 
-def handle_generic_node(yang_keyword, yang_arg, yang_children):
-    annotation = xml_convenience.add_annotation(
-            None, {'Term': redfishtypes.get_descriptive_properties_mapping(yang_keyword),
-                    'EnumMember':  'RedfishYang.Mandatory/' + value
-                     })
+
+def handle_generic_node(yang_keyword, yang_arg, target):
+    term, enummember = redfishtypes.get_annotation_enum(yang_keyword, yang_arg)
+    annotation = xml_convenience.add_annotation(target, {'Term': term, 'EnumMember': enummember})
     return annotation
+
 
 def handle_generic_modifier(yang_keyword, yang_arg, target):
     convert_to_csdl = {
-            "namespace": "yangns",
-            "prefix": "Alias"
+            "namespace": "xmlns",
+            "prefix": "Alias",
+            "default": "DefaultValue"
+
             }
 
-    yang_keyword = convert_to_csdl.get(yang_keyword, yang_keyword.capitalize)
+    handle_generic(yang_keyword, yang_arg, [], target)
+    if yang_keyword not in ["namespace"]:
+        yang_keyword = convert_to_csdl.get(yang_keyword, yang_keyword.capitalize())
+        target.set(yang_keyword, get_valid_csdl_identifier(yang_arg))
 
-    return
-    target.set(yang_keyword, get_valid_csdl_identifier(yang_arg))
 
 def handle_choice(yang_keyword, yang_arg, yang_children, target, target_entity, target_parent, list_of_xml, imports, types, prefix):
     new_xml = []
@@ -77,6 +108,7 @@ def handle_rpc(yang_keyword, yang_arg, yang_children, schema_xml, module_xml):
     annotation = handle_generic(yang_keyword, yang_arg, yang_children, schema_xml)
     ds_node = module_xml.find('./')
     schema_node = ds_node.findall('./')[0]
+    namespace = schema_node.attrib.get('Namespace')
 
     inp, desc = None, None
     for item in yang_children:
@@ -111,10 +143,15 @@ def handle_typedef(yang_keyword, yang_arg, yang_children, schema_xml, module_xml
                      'String':  type_tag.arg
                      }
             )
+    inner_annotation = xml_convenience.add_annotation(
+            None, {'Term': 'RedfishYang.YangType',
+                     'String':  "Unknown"
+                     }
+            )
 
     if type_tag is None:
         print("This type tag shouldn't be missing")
-        return
+        return None
 
     if type_tag.arg == 'enumeration':
         new_node = Element('EnumType')
@@ -129,17 +166,35 @@ def handle_typedef(yang_keyword, yang_arg, yang_children, schema_xml, module_xml
         new_node = Element('TypeDefinition')
         new_node.set('Name', get_valid_csdl_identifier(str(yang_arg)))
 
-        handle_generic_children(type_tag.substmts, new_node)
+        yang_type = 'empty'
+        for item in [x for x in yang_children if x.keyword == 'type']:
+            yang_type = item.arg
+            yang_children_inner = item.substmts
+            if item.arg == 'union':
+                union_annotation = xml_convenience.add_annotation(
+                        new_node, {'Term': 'RedfishYang.union'})
+                col = SubElement(union_annotation, 'Collection') 
+                for child in yang_children_inner:
+                    if child.keyword != 'type':
+                        continue
+                    else:
+                        inn = SubElement(col, 'String')
+                        inn.text = '"{}"'.format(redfishtypes.get_valid_csdl_identifier(child.arg))
+
+            handle_generic_children([x for x in yang_children_inner if x.keyword != 'type'], inner_annotation)
         
         handle_generic_children([x for x in yang_children if x.keyword != 'type'], new_node)
 
         var_type = type_tag.arg.replace('"', '')
 
-        new_node.set('UnderlyingType', redfishtypes.types_mapping.get(var_type, var_type))
+        # default to primitive instead of string, UnderlyingType must be dereferenced
+        new_node.set('UnderlyingType', redfishtypes.types_mapping.get(var_type, 'Edm.Primitive'))
+        inner_annotation.set('String', yang_type)
+        new_node.append(inner_annotation) 
 
     if not no_append:
         schema_xml.append(new_node) 
-    return get_valid_csdl_identifier(str(yang_arg)), new_node
+    return yang_arg, new_node
 
 
 def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
@@ -151,25 +206,26 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
     """
     # What are we?  Simple Type?  Get our info.
     var_type = get_valid_csdl_identifier(type_tag.arg)
+    var_type = type_tag.arg
+    yang_type = var_type
     
     annotation = xml_convenience.add_annotation(
-            xml_node, {'Term': 'RedfishYang.YangType',
+            None, {'Term': 'RedfishYang.YangType',
                      'String':  "Unknown"
                      }
             )
-
-     
 
     # If there's an import, let's consider it ':' = '.'
     # If it's in the imports, then add the import
     # If it is a simple name already in types available, then put it in file
     if var_type != 'enumeration': 
         xml_top = rf.csdltree.current_xml_top[-1]
-        if '.' in var_type:
+        if ':' in var_type:
             # This is an import from another file, add to CSDL imports
-            importname = get_valid_csdl_identifier(var_type.split('.')[0])
+            importname = var_type.split(':')[0]
             if importname in imports:
-                xml_convenience.add_import(xml_top, imports[importname], importname if importname != imports[importname] else None)
+                ns = imports[importname] + '.v1_0_0' 
+                xml_convenience.add_import(xml_top, imports[importname], importname if importname != imports[importname] else None, ns)
             var_type = redfishtypes.types_mapping.get(var_type, var_type)
 
         elif var_type in types:
@@ -198,10 +254,22 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
         else:
             # If it is neither, it must be primitive
             primitive_type = var_type
-            csdl_type = redfishtypes.types_mapping.get(
-                primitive_type, 'Yang.' + primitive_type)
             yang_type = primitive_type
-            var_type = redfishtypes.types_mapping.get(var_type, var_type)
+            var_type = redfishtypes.types_mapping.get(var_type, 'RedfishYang.' + var_type)
+            yang_children = type_tag.substmts
+            if primitive_type == 'union':
+                union_annotation = xml_convenience.add_annotation(
+                        xml_node, {'Term': 'RedfishYang.union'})
+                col = SubElement(union_annotation, 'Collection') 
+                for child in yang_children:
+                    if child.keyword != 'type':
+                        continue
+                    else:
+                        inn = SubElement(col, 'String')
+                        inn.text = '"{}"'.format(redfishtypes.get_valid_csdl_identifier(child.arg))
+            handle_generic_children([x for x in yang_children if x.keyword != 'type'], annotation)
+
+                
             """
             if (xml_node is not None) and (xml_node.get_type() == 'LeafListKeyword'):
                 xml_node.set('Type', 'Collection(' + csdl_type + ')')
@@ -215,7 +283,7 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
         new_type = var_type
         if 'Collection(' in xml_node.get('Type',''):
             new_type = 'Collection({})'.format(var_type)
-        xml_node.set('Type', get_valid_csdl_identifier(var_type))
+        xml_node.set('Type', get_valid_csdl_identifier(new_type))
     else:
         yang_item = type_tag.parent
         yang_keyword = yang_item.keyword
@@ -226,8 +294,10 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
         yang_children = yang_item.substmts
         td, nmd = handle_typedef(yang_keyword, yang_arg, yang_children, parent_node, parent_entity, no_append=True)
         type_tag.arg = td
-        handle_type(type_tag, xml_node, parent_node, parent_entity, {}, {td: nmd})
+        new_annotation = handle_type(type_tag, xml_node, parent_node, parent_entity, {}, {td: nmd})
+        xml_node.remove(new_annotation)
 
-    annotation.set('String', var_type)
+    annotation.set('String', yang_type)
+    xml_node.append(annotation) 
 
-    return
+    return annotation

@@ -91,6 +91,7 @@ class RedfishPlugin(plugin.PyangPlugin):
                     if tag_name in priority_tag_dict:
                         tokened_line = tokened_line.replace('xxToken', priority_tag_dict[tag_name], 1)
 
+                tokened_line = tokened_line.replace('&quot;', '"')
                 pretty_xml_as_string_new += tokened_line + '\n'
 
             try:

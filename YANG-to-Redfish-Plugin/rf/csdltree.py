@@ -3,7 +3,7 @@
 # License: BSD 3-Clause License. For full text see link: https://github.com/DMTF/YANG-to-Redfish-Converter/blob/master/LICENSE.md
 
 import rf.redfishtypes as redfishtypes
-import rf.statement_handlers as handlers 
+import rf.statement_handlers as handlers
 import rf.xml_convenience as xml_convenience
 from rf.xml_content import XMLContent
 from xml.etree.ElementTree import Element, SubElement
@@ -13,25 +13,23 @@ from xml.etree.ElementTree import Element, SubElement
 # called - i.e Yang statements which could have container/list/
 # leaf-list/leaf as one of their sub statements.
 
-logger = None 
+logger = None
 current_xml_top = []
+
 
 def setLogger(mylogger):
     global logger
     logger = mylogger
 
-# Add 2018.1 Annotation "OwningEntity"
 
-def createCollectionXML(name, prefix=None):
+def createCollectionXML(name, prefix=''):
     collection_name = name + "Collection"
 
     collection_xml_root = xml_convenience.add_CSDL_Headers(None)
-    collection_xml_root = xml_convenience.add_reference(collection_xml_root,
-            "http://redfish.dmtf.org/schemas/v1/Resource_v1.xml",
-            "Resource.v1_0_0", None )
-    collection_xml_root = xml_convenience.add_reference(collection_xml_root,
-            "http://redfish.dmtf.org/schemas/v1/" + prefix + name + "_v1.xml",
-            prefix + name, str(name) )
+    xml_convenience.add_reference(
+        collection_xml_root, "http://redfish.dmtf.org/schemas/v1/Resource_v1.xml", "Resource.v1_0_0", None)
+    xml_convenience.add_reference(
+        collection_xml_root, "http://redfish.dmtf.org/schemas/v1/" + prefix + name + "_v1.xml", prefix + name, str(name))
 
     collection_data_services_node = SubElement(
         collection_xml_root, 'edmx:DataServices')
@@ -39,12 +37,11 @@ def createCollectionXML(name, prefix=None):
     collection_schema_node.set("xmlns", "http://docs.oasis-open.org/odata/ns/edm")
     collection_schema_node.set("Namespace", prefix + collection_name)
 
-    xml_convenience.add_annotation(collection_schema_node, {"Term":
-        "Redfish.OwningEntity", "String": "DMTF"})
+    xml_convenience.add_annotation(collection_schema_node, {"Term": "Redfish.OwningEntity", "String": "DMTF"})
 
     collection_target = SubElement(collection_schema_node, "EntityType")
     collection_target.set('Name', collection_name.split('.')[-1])
-    collection_target.set('BaseType' ,"Resource.v1_0_0.ResourceCollection")
+    collection_target.set('BaseType', "Resource.v1_0_0.ResourceCollection")
 
     xml_convenience.add_annotation(collection_target, {"Term": "OData.Description", 
         "String": "A Collection of " + name + " resource instances." 
@@ -68,7 +65,7 @@ def createCollectionXML(name, prefix=None):
     return collection_xml_root
 
 
-def create_xml_base(csdlname, prefix=None):
+def create_xml_base(csdlname, prefix=''):
     main_node = xml_convenience.add_CSDL_Headers(True)
     xml_convenience.add_reference(main_node,
             "http://redfish.dmtf.org/schemas/v1/Resource_v1.xml",
@@ -125,14 +122,16 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
 
     if seg_type in ['module','submodule', 'container', 'list', 'grouping']:
         csdlname = handlers.get_valid_csdl_identifier(name)
+
         main_node, schema_node, data_services_node = create_xml_base(csdlname, prefix)
         main_node.insert(0, data_services_node)
-        member = redfishtypes.get_node_types_mapping(seg_type)
+
         entity_node = Element("EntityType")
         entity_node.set('Name', csdlname.split('.')[-1])
         entity_node.set('BaseType', prefix + csdlname.split('.')[-1] + '.' + csdlname.split('.')[-1])
-        xml_convenience.add_annotation(
-           entity_node, {'Term': 'RedfishYang.NodeType', 'EnumMember': member})
+
+        handlers.handle_generic_node('leaf', seg_type, entity_node)
+
         filename = csdlname + '_v1.xml'
 
         if hasattr(yang_item, 'i_children'):
@@ -176,46 +175,44 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
 
         return main_node
 
-    if seg_type in ['leaf']:
+    if seg_type in ['leaf', 'leaf-list', 'notification', 'anyxml']:
         if hasattr(yang_item, 'i_children'):
             content = yang_item.i_children if len(yang_item.i_children) > 0 else []
         content = yang_item.substmts
         csdlname = handlers.get_valid_csdl_identifier(name)
-        member = redfishtypes.get_node_types_mapping(seg_type)
-
-        target = Element("Property")
-        xml_convenience.add_annotation(
-            target, {'Term': 'RedfishYang.NodeType', 'EnumMember': member})
-        target.set('Name', handlers.get_valid_csdl_identifier(name))
-        for item in content:
-            build_tree_repeat(item, target, parent_entity, parent, list_of_xml, logger, prefix + csdlname + '.', topleveltypes=topleveltypes, toplevelimports=toplevelimports)
-        xml_convenience.add_annotation(
-            target, {'Term': 'OData.Permissions', 'EnumMember': 'OData.Permission/Read'})
-
-        return target
-
-    if seg_type in ['leaf-list']:
-        if hasattr(yang_item, 'i_children'):
-            content = yang_item.i_children if len(yang_item.i_children) > 0 else []
-        content = yang_item.substmts
-        csdlname = handlers.get_valid_csdl_identifier(name)
-        member = redfishtypes.get_node_types_mapping(seg_type)
 
         prop_node = Element("Property")
         prop_node.set('Name', handlers.get_valid_csdl_identifier(name))
-        prop_node.set(
-            'Type', 'Collection({}.{})'.format(prefix + "v1_0_0", csdlname))
-        xml_convenience.add_annotation(
-            prop_node, {'Term': 'RedfishYang.NodeType', 'EnumMember': member})
-        xml_convenience.add_annotation(prop_node, {"Term": "OData.LongDescription",
-                "String": "List of the type {}.".format(csdlname)}
-                )
+        our_parent = parent
+
+        if seg_type == 'leaf-list':
+            prop_node.set(
+                'Type', 'Collection({}.{})'.format(prefix + "v1_0_0", csdlname))
+            xml_convenience.add_annotation(prop_node, {"Term": "OData.LongDescription",
+                    "String": "List of the type {}.".format(csdlname)}
+                    )
+            our_parent = parent_schema
+
+        if seg_type == 'anyxml':
+            prop_node.set('Type', redfishtypes.types_mapping[seg_type] )
+
+        if seg_type == 'notification':
+            prop_node = Element("EntityType")
+            prop_node.set('Name', handlers.get_valid_csdl_identifier(name))
+            prop_node.set('BaseType', 'Resource.v1_0_0.Resource') 
+        
+
+        handlers.handle_generic_node('leaf', seg_type, prop_node)
+
         for item in content:
             build_tree_repeat(item, prop_node, parent_entity, parent_schema, list_of_xml, logger, prefix + csdlname + '.', topleveltypes=topleveltypes, toplevelimports=toplevelimports)
         xml_convenience.add_annotation(
-                prop_node, {'Term': 'OData.Permissions', 'EnumMember': 'OData.Permission/Read'})
+            prop_node, {'Term': 'OData.Permissions', 'EnumMember': 'OData.Permission/Read'})
+
         return prop_node
+
     return None
+
 
 def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None, list_of_xml=None, xlogger=None, prefix='', topleveltypes=None, toplevelimports=None, additional_tags=None):
 
@@ -228,7 +225,8 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
 
     yang_item = yang_item
     yang_keyword = yang_item.keyword
-    yang_arg = yang_item.arg.replace('\n',' ') if yang_item.arg is not None else '-'
+    yang_raw_keyword = yang_item.raw_keyword
+    yang_arg = yang_item.arg.replace('\n', ' ') if yang_item.arg is not None else ''
 
     if hasattr(yang_item, 'i_children'):
         yang_children = yang_item.i_children if len(yang_item.i_children) > 0 else []
@@ -237,14 +235,12 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
     logger.info('Handling repeat item: ' + str(yang_keyword))
     # print(yang_keyword)
     # print('\t', yang_arg)
-    if yang_arg is None or type(yang_keyword) == tuple:
-        input("Uhh")
 
-    if yang_keyword == 'import': 
-        import_name, prefix, date = handlers.get_valid_csdl_identifier(yang_arg), None, None
+    if yang_keyword in ['import', 'include']:
+        import_name, prefix, date = yang_arg, None, None
         for item in yang_children:
             if item.keyword == "prefix":
-                prefix = handlers.get_valid_csdl_identifier(item.arg)
+                prefix = item.arg
             if item.keyword == "revision-date":
                 date = item.arg  
         toplevelimports[prefix if prefix not in [None, ''] else import_name] = import_name
@@ -260,31 +256,26 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
 
     elif yang_keyword in ["enum"]:
         annotation = handlers.handle_enum(yang_keyword, yang_arg, yang_children, target)
-    
+
     elif yang_keyword in ['choice']:
         annotation = handlers.handle_choice(yang_keyword, yang_arg, yang_children, target, target_entity, target_parent, list_of_xml, toplevelimports, topleveltypes, prefix)
 
-    # elif yang_keyword in ['rpc']:
-    #    annotation = handlers.handle_rpc(yang_keyword, yang_arg, yang_children, target, target_entity, target_parent, list_of_xml, toplevelimports, topleveltypes, prefix)
+#    elif yang_keyword in ['rpc']:
+#        annotation = handlers.handle_rpc(yang_keyword, yang_arg, yang_children, target, target_entity, target_parent, list_of_xml, toplevelimports, topleveltypes, prefix)
 
-    elif yang_keyword in ["namespace", "prefix", "value"]:
+    elif yang_keyword in ["namespace", "prefix", "value", "default"]:
         annotation = handlers.handle_generic_modifier(yang_keyword, yang_arg, target)
 
-    elif (yang_keyword == 'list' or yang_keyword == 'container'):
+    elif yang_keyword in ["container", "list"]:
         this_node = build_tree(yang_item, list_of_xml, logger, prefix, topleveltypes=topleveltypes, toplevelimports=toplevelimports)
 
         name = yang_arg
-        if hasattr(yang_item, 'i_children'):
-            content = yang_item.i_children if len(yang_item.i_children) > 0 else []
-        content = yang_item.substmts
         csdlname = handlers.get_valid_csdl_identifier(name)
 
-        navigation_property = SubElement(
-            target_entity, 'NavigationProperty')
-        
+        navigation_property = SubElement(target_entity, 'NavigationProperty')
+
         # Handle Container Grammar
         if yang_keyword in ['container']:
-            member = redfishtypes.get_node_types_mapping('ContainerGrammar')
             tname = csdlname.split('.')[-1] + 'Container'
             navigation_property.set('Name', tname)
             tname = csdlname.split('.')[-1]
@@ -292,7 +283,6 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
 
         # Handle List Grammar
         if yang_keyword in ['list']:
-            member = redfishtypes.get_node_types_mapping('ListGrammar')
             csdlname = csdlname + 'Collection'
             tname = csdlname.split('.')[-1]
             navigation_property.set('Name', tname)
@@ -302,36 +292,31 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
         filename = prefix + csdlname + '_v1.xml'
 
         alias = csdlname.split('.')[-1]
-        xml_convenience.add_reference(target_parent,
-            "http://redfish.dmtf.org/schemas/v1/{}".format(filename),
-            "{}{}".format(prefix, alias), alias)
+        xml_convenience.add_reference(target_parent, "http://redfish.dmtf.org/schemas/v1/{}".format(filename), "{}{}".format(prefix, alias), alias)
         # At the end of the grammar, modify outside nav property
-        xml_convenience.add_annotation(navigation_property, {
-                'Term': 'OData.Permissions',
-                'EnumMember': 'OData.Permissions/Read'
-                })
-        xml_convenience.add_annotation(navigation_property, {
-                'Term': 'OData.Description',
-                'String': 'Navigation property that points to a resource of {}.'.format(str(csdlname))
-                })
-        xml_convenience.add_annotation(navigation_property, {
-                'Term': 'OData.LongDescription',
-                'String': 'Automatically generated.'
-                })
-        xml_convenience.add_annotation(navigation_property, {
-                'Term': 'OData.AutoExpandReferences',
-                })
+        xml_convenience.add_annotation(navigation_property, {'Term': 'OData.Permissions', 'EnumMember': 'OData.Permissions/Read'})
+        xml_convenience.add_annotation(navigation_property, {'Term': 'OData.Description', 'String': 'Navigation property that points to a resource of {}.'.format(str(csdlname))})
+        xml_convenience.add_annotation(navigation_property, {'Term': 'OData.LongDescription', 'String': 'Automatically generated.'})
+        xml_convenience.add_annotation(navigation_property, {'Term': 'OData.AutoExpandReferences'})
         return navigation_property
 
-    elif yang_keyword in ['leaf', 'leaf-list', 'grouping']:
+    elif yang_keyword in ['leaf', 'leaf-list', 'grouping', 'notification', 'anyxml']:
         this_node = build_tree(yang_item, list_of_xml, logger, prefix=prefix, parent=target_parent, parent_schema=target, parent_entity=target_entity, topleveltypes=topleveltypes, toplevelimports=toplevelimports)
-        target_entity.append(this_node)
+        if yang_keyword in ['grouping']:
+            handlers.handle_generic(yang_keyword, yang_arg, yang_children, target, generic=True, keyword_raw=yang_raw_keyword)
+        if yang_keyword in ['notification']:
+            target.append(this_node)
+        else:
+            target_entity.append(this_node)
         return this_node
 
+    elif yang_keyword in redfishtypes.enum_mapping:
+        handlers.handle_generic_node(yang_keyword, yang_arg, target)
     else:
-        if yang_keyword in ['case', 'submodule', 'include', 'augment', 'rpc', 'uses', 'choice']:
-            logger.debug('Ignored tag: {}'.format(yang_keyword))
-            yang_children = []
-        annotation = handlers.handle_generic(yang_keyword, yang_arg, yang_children, target)
+        if yang_keyword in ['case', 'include', 'rpc', 'uses', 'choice', 'augment', 'action']:
+            logger.debug('Tag being defaulted {}'.format(yang_keyword))
+            handlers.handle_generic(yang_keyword, yang_arg, yang_children, target, generic=True, keyword_raw=yang_raw_keyword)
+        else:
+            handlers.handle_generic(yang_keyword, yang_arg, yang_children, target, keyword_raw=yang_raw_keyword)
 
     return
