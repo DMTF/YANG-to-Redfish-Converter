@@ -22,6 +22,7 @@ def setLogger(mylogger):
     logger = mylogger
 
 
+
 def createCollectionXML(name, prefix=''):
     collection_name = name + "Collection"
 
@@ -142,6 +143,10 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
 
         for item in content:
             build_tree_repeat(item, schema_node, entity_node, main_node, list_of_xml, logger, prefix + csdlname + '.', topleveltypes=topleveltypes, toplevelimports=toplevelimports)
+        handlers.collectAnnotations(schema_node)
+        handlers.collectAnnotations(entity_node)
+        handlers.collectAnnotations(main_node)
+        
 
         if seg_type in ['module']:
             # what is this in particular (errata)
@@ -208,6 +213,9 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
             build_tree_repeat(item, prop_node, parent_entity, parent_schema, list_of_xml, logger, prefix + csdlname + '.', topleveltypes=topleveltypes, toplevelimports=toplevelimports)
         xml_convenience.add_annotation(
             prop_node, {'Term': 'OData.Permissions', 'EnumMember': 'OData.Permission/Read'})
+        handlers.collectAnnotations(prop_node)
+        handlers.collectAnnotations(parent_entity)
+        handlers.collectAnnotations(parent_schema)
 
         return prop_node
 
@@ -260,8 +268,8 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
     elif yang_keyword in ['choice']:
         annotation = handlers.handle_choice(yang_keyword, yang_arg, yang_children, target, target_entity, target_parent, list_of_xml, toplevelimports, topleveltypes, prefix)
 
-#    elif yang_keyword in ['rpc']:
-#        annotation = handlers.handle_rpc(yang_keyword, yang_arg, yang_children, target, target_entity, target_parent, list_of_xml, toplevelimports, topleveltypes, prefix)
+    # elif yang_keyword in ['rpc']:
+    #    annotation = handlers.handle_rpc(yang_keyword, yang_arg, yang_children, target, target_entity, target_parent, list_of_xml, toplevelimports, topleveltypes, prefix)
 
     elif yang_keyword in ["namespace", "prefix", "value", "default"]:
         annotation = handlers.handle_generic_modifier(yang_keyword, yang_arg, target)

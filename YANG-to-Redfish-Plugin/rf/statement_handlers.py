@@ -9,6 +9,28 @@ from rf.redfishtypes import get_valid_csdl_identifier
 import rf.csdltree
 
 
+# annotation cleanup
+def collectAnnotations(node):
+    allAnnotations = node.findall('Annotation')
+
+    collected = {}
+    for a in allAnnotations:
+        term = a.attrib.get('Term')
+        if term not in collected:
+            collected[term] = []
+        collected[term].append(a)
+
+    for key in collected:
+        target = collected[key]
+        if len(target) > 1:
+            Collection = SubElement(node, 'Collection')
+            for a in target:
+                Record = SubElement(Collection, 'Record')
+                Record.append(a)
+                node.remove(a)
+
+
+
 # This file contains a series of handle_XXXXX functions.
 # Each function handles a keyword and any internal grammar such
 # as the case of type metadata.
@@ -38,6 +60,7 @@ def handle_generic(yang_keyword, yang_arg, yang_children=[], target=None, target
             child_yang_arg = yang_item.arg.replace('\n',' ') if yang_item.arg is not None else ''
             child_yang_children = yang_item.substmts
             handle_generic(child_yang_keyword, child_yang_arg, child_yang_children, annotation, generic=True, keyword_raw=child_yang_raw_keyword) 
+        collectAnnotations(annotation)
     else:
         handle_generic_children(yang_children, annotation, target_entity, target_parent, list_of_xml, imports, types, prefix)
 
@@ -59,6 +82,7 @@ def handle_generic_statement(yang_keyword, yang_arg, target):
 def handle_generic_children(yang_children, target, target_entity=None, target_parent=None, list_of_xml=None, imports=None, types=None, prefix=None):
     for child in yang_children:
         rf.csdltree.build_tree_repeat(child, target, target_entity=target_entity, target_parent=target_parent, list_of_xml=list_of_xml, topleveltypes=types, toplevelimports=imports, prefix=prefix) 
+    collectAnnotations(target)
 
 
 def handle_generic_node(yang_keyword, yang_arg, target):
@@ -109,6 +133,10 @@ def handle_rpc(yang_keyword, yang_arg, yang_children, schema_xml, module_xml):
     ds_node = module_xml.find('./')
     schema_node = ds_node.findall('./')[0]
     namespace = schema_node.attrib.get('Namespace')
+
+    action = Element('Action')
+    action.set('Name', yang_arg)
+    action.set('IsBound', 'true')
 
     inp, desc = None, None
     for item in yang_children:
