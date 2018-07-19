@@ -115,6 +115,7 @@ def create_xml_base(csdlname, prefix=''):
 
 def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, toplevelimports=None, parent=None, parent_schema=None, parent_entity=None):
     seg_type = yang_item.keyword
+    yang_keyword = seg_type
     name = yang_item.arg
     if topleveltypes == None:
         topleveltypes = dict()
@@ -135,9 +136,7 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
 
         filename = csdlname + '_v1.xml'
 
-        if hasattr(yang_item, 'i_children'):
-            content = yang_item.i_children if len(yang_item.i_children) > 0 else []
-        content = yang_item.substmts
+        content = handlers.collectChildren(yang_item)
 
         current_xml_top.append(main_node)
 
@@ -181,11 +180,9 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
         return main_node
 
     if seg_type in ['leaf', 'leaf-list', 'notification', 'anyxml']:
-        if hasattr(yang_item, 'i_children'):
-            content = yang_item.i_children if len(yang_item.i_children) > 0 else []
-        content = yang_item.substmts
+        content = handlers.collectChildren(yang_item)
+        
         csdlname = handlers.get_valid_csdl_identifier(name)
-
         prop_node = Element("Property")
         prop_node.set('Name', handlers.get_valid_csdl_identifier(name))
         our_parent = parent
@@ -205,6 +202,7 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
             prop_node = Element("EntityType")
             prop_node.set('Name', handlers.get_valid_csdl_identifier(name))
             prop_node.set('BaseType', 'Resource.v1_0_0.Resource') 
+            parent_entity = prop_node
         
 
         handlers.handle_generic_node('leaf', seg_type, prop_node)
@@ -214,8 +212,10 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
         xml_convenience.add_annotation(
             prop_node, {'Term': 'OData.Permissions', 'EnumMember': 'OData.Permission/Read'})
         handlers.collectAnnotations(prop_node)
-        handlers.collectAnnotations(parent_entity)
-        handlers.collectAnnotations(parent_schema)
+        if parent_entity is not None:
+            handlers.collectAnnotations(parent_entity)
+        if parent_schema is not None:
+            handlers.collectAnnotations(parent_schema)
 
         return prop_node
 
@@ -236,9 +236,8 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
     yang_raw_keyword = yang_item.raw_keyword
     yang_arg = yang_item.arg.replace('\n', ' ') if yang_item.arg is not None else ''
 
-    if hasattr(yang_item, 'i_children'):
-        yang_children = yang_item.i_children if len(yang_item.i_children) > 0 else []
-    yang_children = yang_item.substmts
+    content = handlers.collectChildren(yang_item)
+    yang_children = content
 
     logger.info('Handling repeat item: ' + str(yang_keyword))
     # print(yang_keyword)
@@ -300,7 +299,8 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
         filename = prefix + csdlname + '_v1.xml'
 
         alias = csdlname.split('.')[-1]
-        xml_convenience.add_reference(target_parent, "http://redfish.dmtf.org/schemas/v1/{}".format(filename), "{}{}".format(prefix, alias), alias)
+        xml_top = current_xml_top[-1]
+        xml_convenience.add_reference(xml_top, "http://redfish.dmtf.org/schemas/v1/{}".format(filename), "{}{}".format(prefix, alias), alias)
         # At the end of the grammar, modify outside nav property
         xml_convenience.add_annotation(navigation_property, {'Term': 'OData.Permissions', 'EnumMember': 'OData.Permissions/Read'})
         xml_convenience.add_annotation(navigation_property, {'Term': 'OData.Description', 'String': 'Navigation property that points to a resource of {}.'.format(str(csdlname))})
@@ -312,7 +312,7 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
         this_node = build_tree(yang_item, list_of_xml, logger, prefix=prefix, parent=target_parent, parent_schema=target, parent_entity=target_entity, topleveltypes=topleveltypes, toplevelimports=toplevelimports)
         if yang_keyword in ['grouping']:
             handlers.handle_generic(yang_keyword, yang_arg, yang_children, target, generic=True, keyword_raw=yang_raw_keyword)
-        if yang_keyword in ['notification']:
+        elif yang_keyword in ['notification']:
             target.append(this_node)
         else:
             target_entity.append(this_node)

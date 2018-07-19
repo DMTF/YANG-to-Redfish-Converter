@@ -29,7 +29,16 @@ def collectAnnotations(node):
                 Record.append(a)
                 node.remove(a)
 
-
+def collectChildren(yang_item):
+    yang_keyword = yang_item.keyword
+    if hasattr(yang_item, 'i_children'):
+        content = yang_item.i_children if len(yang_item.i_children) > 0 else []
+        #print(yang_keyword, [tag.keyword for tag in content if tag not in yang_item.substmts])
+        content = yang_item.substmts + [tag for tag in content if tag not in yang_item.substmts]
+    else:
+        #print(yang_keyword, 'HAS NO ICHILD')
+        content = yang_item.substmts
+    return content
 
 # This file contains a series of handle_XXXXX functions.
 # Each function handles a keyword and any internal grammar such
@@ -58,8 +67,8 @@ def handle_generic(yang_keyword, yang_arg, yang_children=[], target=None, target
             child_yang_keyword = yang_item.keyword
             child_yang_raw_keyword = yang_item.raw_keyword
             child_yang_arg = yang_item.arg.replace('\n',' ') if yang_item.arg is not None else ''
-            child_yang_children = yang_item.substmts
-            handle_generic(child_yang_keyword, child_yang_arg, child_yang_children, annotation, generic=True, keyword_raw=child_yang_raw_keyword) 
+            child_yang_children = collectChildren(yang_item) 
+            handle_generic(child_yang_keyword, child_yang_arg, child_yang_children, annotation, generic=True, keyword_raw=child_yang_raw_keyword, prefix=prefix) 
         collectAnnotations(annotation)
     else:
         handle_generic_children(yang_children, annotation, target_entity, target_parent, list_of_xml, imports, types, prefix)
@@ -107,9 +116,10 @@ def handle_generic_modifier(yang_keyword, yang_arg, target):
 
 def handle_choice(yang_keyword, yang_arg, yang_children, target, target_entity, target_parent, list_of_xml, imports, types, prefix):
     new_xml = []
-    annotation = handle_generic(yang_keyword, yang_arg, yang_children, target)
+    annotation = handle_generic(yang_keyword, yang_arg, yang_children, target, target_entity, prefix=prefix)
     for case in yang_children:
-        handle_generic_children(case.substmts, target, target_entity=target_entity, target_parent=target_parent, list_of_xml=list_of_xml, imports=imports, types=types, prefix=prefix)
+        case_children = collectChildren(case)
+        handle_generic_children(case_children, target, target_entity=target_entity, target_parent=target_parent, list_of_xml=list_of_xml, imports=imports, types=types, prefix=prefix)
     return annotation 
 
 
@@ -179,13 +189,13 @@ def handle_typedef(yang_keyword, yang_arg, yang_children, schema_xml, module_xml
 
     if type_tag is None:
         print("This type tag shouldn't be missing")
-        return None
+        return None, None
 
     if type_tag.arg == 'enumeration':
         new_node = Element('EnumType')
         new_node.set('Name', get_valid_csdl_identifier(str(yang_arg)))
 
-        handle_generic_children(type_tag.substmts, new_node)
+        handle_generic_children(collectChildren(type_tag), new_node)
         
         handle_generic_children([x for x in yang_children if x.keyword != 'type'], new_node)
 
@@ -197,7 +207,7 @@ def handle_typedef(yang_keyword, yang_arg, yang_children, schema_xml, module_xml
         yang_type = 'empty'
         for item in [x for x in yang_children if x.keyword == 'type']:
             yang_type = item.arg
-            yang_children_inner = item.substmts
+            yang_children_inner = collectChildren(item)
             if item.arg == 'union':
                 union_annotation = xml_convenience.add_annotation(
                         new_node, {'Term': 'RedfishYang.union'})
@@ -284,7 +294,7 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
             primitive_type = var_type
             yang_type = primitive_type
             var_type = redfishtypes.types_mapping.get(var_type, 'RedfishYang.' + var_type)
-            yang_children = type_tag.substmts
+            yang_children = collectChildren(type_tag)
             if primitive_type == 'union':
                 union_annotation = xml_convenience.add_annotation(
                         xml_node, {'Term': 'RedfishYang.union'})
@@ -316,10 +326,8 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
         yang_item = type_tag.parent
         yang_keyword = yang_item.keyword
         yang_arg = yang_item.arg.replace('\n',' ') if yang_item.arg is not None else '-'
+        yang_children = collectChildren(yang_item)
 
-        if hasattr(yang_item, 'i_children'):
-            yang_children = yang_item.i_children if len(yang_item.i_children) > 0 else []
-        yang_children = yang_item.substmts
         td, nmd = handle_typedef(yang_keyword, yang_arg, yang_children, parent_node, parent_entity, no_append=True)
         type_tag.arg = td
         new_annotation = handle_type(type_tag, xml_node, parent_node, parent_entity, {}, {td: nmd})
