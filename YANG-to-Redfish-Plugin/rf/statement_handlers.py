@@ -114,10 +114,17 @@ def handle_generic_modifier(yang_keyword, yang_arg, target):
         target.set(yang_keyword, get_valid_csdl_identifier(yang_arg))
 
 
+"""
+   As a shorthand, the "case" statement can be omitted if the branch
+   contains a single "anyxml", "container", "leaf", "list", or
+   "leaf-list" statement.  In this case, the identifier of the case node
+   is the same as the identifier in the branch statement.  The following
+   example:
+"""
 def handle_choice(yang_keyword, yang_arg, yang_children, target, target_entity, target_parent, list_of_xml, imports, types, prefix):
-    new_xml = []
+    yang_children = [tag for tag in yang_children if tag.keyword not in ['anyxml',  'container', 'leaf', 'list', 'leaf-list']]
     annotation = handle_generic(yang_keyword, yang_arg, yang_children, target, target_entity, prefix=prefix)
-    for case in yang_children:
+    for case in yang_children: 
         case_children = collectChildren(case)
         handle_generic_children(case_children, target, target_entity=target_entity, target_parent=target_parent, list_of_xml=list_of_xml, imports=imports, types=types, prefix=prefix)
     return annotation 
