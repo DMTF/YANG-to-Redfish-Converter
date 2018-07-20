@@ -1,0 +1,2227 @@
+module mef-cfm {
+    
+  namespace "http://metroethernetforum.org/ns/yang/mef-cfm";
+  prefix "mefcfm";
+
+  import ietf-yang-types {
+    prefix yang;
+  }
+  import ietf-inet-types {
+    prefix inet;
+  }
+
+  organization "Metro Ethernet Forum";
+  contact
+    "Web URL: http://metroethernetforum.org/
+     E-mail:  mibs@metroethernetforum.org
+     Postal:  Metro Ethernet Forum
+              6033 W. Century Boulevard, Suite 830
+              Los Angeles, CA 90045
+              U.S.A.
+     Phone:   +1 310-642-2800
+     Fax:     +1 310-642-2808";
+
+  description 
+    "This YANG module contains the management data definitions for the
+     management of Ethernet Services Operations, Administration and
+     Maintenance for Connectivity Fault Management.
+
+     Reference Overview:
+      A number of base documents have been used to create the CFM YANG. The
+      following are the abbreviations for the baseline documents:
+      [802.1AB] refers to 'Station and Media Access Control Connectivity
+          Discovery', IEEE 802.1AB-2009, September 2009
+      [802.1q] refers to IEEE 802.1Q-2011 'IEEE Standard for Local and metropolitan
+          area networks --Media Access Control (MAC) Bridges and Virtual
+          Bridged Local Area Networks, August 2011
+      [802-2001] refers to 'IEEE Standard for Local and Metropolitan Area
+          Networks: Overview and Architecture', IEEE 802-2001, February 2002
+      [MEF30] refers to MEF 30 'Service OAM Fault Management Implementation
+          Agreement', January 2011
+      [RFC 2737] refers to IETF RFC 2737 'Entity MIB (Version 2)', December 1999
+      [RFC 2863] refers to IETF RFC 2863 'The Interfaces Group MIB', June 2000
+      [RFC 3419] refers to IETF RFC 3419 'Textual Conventions for Transport
+          Addresses', December 2002
+      [Y.1731] refers to ITU-T Y.1731 'OAM functions and mechanisms for Ethernet 
+          based networks', July 2011";
+
+  revision "2012-04-16" {
+    description
+      "Initial revision";
+    reference
+      "Service OAM Fault Management YANG Modules (MEF XX), April 2012";
+  }
+
+  //
+  // Type definitions related to CFM
+  //
+
+  typedef mep-id-type {
+    type uint16 {
+      range "1..8191";
+    }
+
+    description
+      "Maintenance association End Point Identifier (MEPID): A small integer,
+       unique over a given Maintenance Association, identifying a
+       specific MEP.";
+    reference
+      "[802.1q] 3.19 and 19.2.1";
+  }
+
+  typedef vlan-id-type {
+    type uint16 {
+      range "1..4094";
+    }
+
+    description
+      "The VLAN-ID that uniquely identifies a VLAN.  This is the 12-bit VLAN-ID
+       used in the VLAN Tag header.";
+
+    reference
+      "[802.1q] 9.6";
+  }
+
+  typedef port-status-type {
+    type enumeration {
+      enum no-status-tlv {
+          description "Indicates either that no CCM has been received or that 
+                       no port status TLV was present in the last CCM received.";
+      }
+      enum blocked {
+          description "Ordinary data cannot pass freely through the port on 
+                       which the remote MEP resides. Value of enableRmepDefect 
+                       is equal to false.";
+      }
+      enum up {
+          description "Ordinary data can pass freely through the port on which
+                       the remote MEP resides. Value of enableRmepDefect is 
+                       equal to true.";
+      }
+    }    
+
+    description
+      "The set of values available from the Port Status TLV in CCM PDUs
+       including the default no-status-tlv";
+
+    reference
+      "[802.1q] 20.19.3, 12.14.7.6.3:f
+       IEEE8021-CFM-MIB.Dot1agCfmPortStatus";
+  }
+
+  typedef interface-status-type {
+    type enumeration {
+      enum no-status-tlv {
+          description "Indicates either that no CCM has been received or that
+                       no interface status TLV was present in the last CCM received.";
+      }
+      enum up {
+          description "The interface is ready to pass packets.";
+      }
+      enum down {
+          description "The interface cannot pass packets.";
+      }
+      enum testing {
+          description "The interface is in some test mode.";
+      }
+      enum unknown {
+          description "The interface status cannot be determined for some reason.";
+      }
+      enum dormant {
+          description "The interface is not in a state to passpackets but is in 
+                       a pending state, waitingfor some external event.";
+      }
+      enum not-present {
+          description "Some component of the interface is missing.";
+      }
+      enum lower-layer-down {
+          description "The interface is down due to state of the lower layer 
+                       interfaces.";
+      }
+    }
+
+    description
+      "The set of values available from the Interface Status TLV in CCM PDUs
+       including the default no-status-tlv";
+    reference
+      "[802.1q] 20.19.4, 12.14.7.6.3:g
+       IEEE8021-CFM-MIB.Dot1agCfmInterfaceStatus";
+  }
+  
+  typedef mhf-creation-type {
+    type enumeration {
+      enum none {
+        description
+          "No MHFs can be created for this VID(s).";
+      }
+      enum default {
+        description
+          "MHFs can be created for this VID(s) on any Bridge Port through which the
+           VID(s) can pass where:
+            - There are no lower active MD levels; or
+            - There is a MEP at the next lower active MD-level on the port.";
+      }
+      enum explicit {
+        description
+          "MHFs can be created for this VID(s) only on Bridge Ports through which
+           this VID(s) can pass, and only if there is a MEP at the next
+           lower active MD-level on the port.";
+      }
+
+      enum defer {
+        description
+          "In the Maintenance Association managed object only, the control of MHF
+           creation is deferred to the corresponding variable in the
+           enclosing Maintenance Domain";
+      }
+    }
+
+    description
+      "An enumerated value indicating whether the management entity can create
+       MHFs for this VID(s)";
+    reference
+      "[802.1q] 22.2.3, 12.14.3.1.3:d";
+  }
+
+  typedef id-permission-type {
+    type enumeration {
+      enum none {
+        description
+          "The Sender ID TLV is not to be sent.";
+      }
+      enum chassis {
+        description
+          "The Chassis ID Length, Chassis ID Subtype, and Chassis ID fields of the
+           Sender ID TLV are to be sent, but not the Management Address
+           Length or Management Address fields.";
+      }
+      enum manage {
+        description
+          "The Management Address Length and Management Address of the Sender ID
+           TLV are to be sent, but the Chassis ID Length is to be
+           transmitted with a 0 value, and the Chassis ID Subtype and
+           Chassis ID fields not sent;";
+      }
+      enum chassis-manage {
+        description
+          "The Chassis ID Length, Chassis ID Subtype, Chassis ID, Management
+           Address Length, and Management Address fields are all to be
+           sent.";
+      }
+      enum defer {
+        description
+          "The contents of the Sender ID TLV are determined by the Maintenance
+           Domain managed object.";
+      }
+    }
+
+    description
+      "An enumerated value indicating what, if anything, is to be included in
+       the Sender ID TLV transmitted by maintenance-points configured in the
+       default Maintenance Domain";
+    reference
+      "[802.1q] 21.5.3, 12.14.3.1.3:e";
+  }
+
+  typedef mac-address-and-uint-type {
+    type binary {
+      length "8";
+    } 
+    description
+      "A MAC address and a two-octet unsigned integer";
+    reference
+      "[802.1q] IEEE8021-CFM-MIB.Dot1agCfmMaintDomainNameType";
+  }
+
+  typedef fault-alarm-defect-type {
+    type enumeration {
+      enum remote-rdi {
+          description "Indicates the aggregate health of the remote MEPs.";
+      }
+      enum remote-mac-error {
+          description "Indicates that one or more of the remote MEPs is
+                       reporting a failure in its Port Status TLV or
+                       Interface Status TLV.";
+      }
+      enum remote-invalid-ccm {
+          description "Indicates that at least one of the Remote MEP
+                       state machines is not receiving valid CCMs
+                       from its remote MEP.";
+      }
+      enum invalid-ccm {
+          description "Indicates that one or more invalid CCMs has been
+                       received and that 3.5 times that CCMs transmission
+                       interval has not yet expired.";
+      }
+      enum cross-connect-ccm {
+          description "Indicates that one or more cross connect CCMs has been
+                       received and that 3.5 times of at least one of those
+                       CCMs transmission interval has not yet expired.";
+      }
+}
+
+    description
+      "An enumerated value indicating the highest priority defect.";
+    reference
+      "[802.1q] 20.33.9";
+  }
+
+  typedef fault-alarm-defect-bits-type {
+    type bits {
+      bit remoterdi;
+      bit remotemacerror;
+      bit remoteinvalidccm;
+      bit invalidccm;
+      bit crossconnectccm;
+    }
+
+    description
+      "A set of bits indicating the the current defects:
+        - cross-connect-ccm One or more cross connect CCMs has been received
+        - invalid-ccm One or more invalid CCMs has been received
+        - remote-invalid-ccm At least one of the Remote MEP state machines is not
+          receiving valid CCMs from its remote MEP
+        - remote-mac-error One or more of the remote MEPs is reporting a failure
+          in its Port Status TLV or Interface Status
+        - remote-rdi Indicates that at least one of the Remote MEP state machines is 
+          receiving valid CCMs from its remote MEP that has the RDI bit set.";
+    reference
+      "[802.1q] 20.33.9";
+  }
+
+  typedef lbm-transaction-id-type {
+    type uint32;
+
+    description
+      "A loopback transaction identifier";
+    reference
+      "[802.1q] 21.7.3";
+  }
+
+  typedef ltm-transaction-id-type {
+    type uint32;
+
+    description
+      "A linktrace transaction identifier";
+    reference
+      "[802.1q] 21.8.3";
+  }
+
+  typedef md-level-type {
+    type int32 {
+      range "0..7";
+    }
+
+    description
+      "Maintenance Domain Level (MD Level) identifier.  Higher numbers
+       correspond to higher Maintenance Domains, those with the greatest
+       physical reach, with the highest values for customers' CFM PDUs.
+       Lower numbers correspond to lower Maintenance Domains, those with
+       more limited physical reach, with the lowest values for CFM PDUs
+       protecting single bridges or physical links.";
+
+    reference
+      "[802.1q] 18.3, 21.4.1, IEEE8021-CFM-MIB.Dot1agCfmMDLevel";
+  }
+
+  typedef error-conditions-type {
+    type bits {
+      bit cfmleak;
+      bit conflictingvids;
+      bit excessivelevels;
+      bit overlappedlevels;
+    }
+
+    description
+      "A list of errors that may occur on creation or deletion of a MEP";
+
+    reference
+      "[802.1q] 22.2.4";
+  }
+
+  typedef priority-type {
+    type uint32 {
+      range "0..7";
+    }
+
+    description
+      "A 3 bit priority value to be used in the VLAN tag, if present
+       in the transmitted frame.";
+    reference
+      "[802.1q] 12.14.7.3.2:e";
+  }
+
+  typedef remote-mep-state-type {
+    type enumeration {
+      enum idle {
+        description
+          "Indicates momentary state during reset.";
+      }
+      enum start {
+        description
+          "Indicates the timer has not expired since the state machine was
+           reset, and no valid CCM has yet been received.";
+      }
+      enum failed {
+        description
+          "Indicates The timer has expired, both since the state machine
+           was reset, and since a valid CCM was received.";
+      }
+      enum ok {
+        description
+          "Indicates The timer has not expired since a valid CCM was 
+           received.";
+      }
+    }
+    description
+      "An enumerated value indicating the operational state of a Remote
+       MEP state machine for a remote MEP.";
+    reference
+      "[802.1q] 12.14.7.6.3:b
+       IEEE8021-CFM-MIB.Dot1agCfmRemoteMepState";
+  }
+
+  typedef component-id-type {
+    type uint32 {
+      range "1..4294967295";
+    }
+
+    description
+      "A Provider Backbone Bridge (PBB) can comprise a number of components,
+       each of which can be managed in a manner essentially equivalent
+       to an 802.1Q bridge.  In order to access these components easily,
+       an index is used in a number of places. If any two lists are
+       indexed by component-identifier, then entries in those
+       tables indexed by the same value correspond to the same component";
+
+    reference
+      "IEEE8021-CFM-MIB.Dot1agCfmPbbComponentIdentifier";
+  }
+
+  // 
+  // Groupings related to CFM
+  //
+
+  grouping target-address-group {
+    description
+      "An indication of a destination MEP, either:
+        1) The MEPID of a MEP; or
+        2) An Individual destination MAC address";
+    
+    reference "[802.1q] 12.14.7.3.2:b";
+
+    choice address-type {
+      case mac-address {
+        leaf mac-address {
+          type yang:mac-address; 
+          description
+            "Target MAC address";
+        }
+      }
+      case mep-id {
+        leaf mep-id {
+          type mep-id-type;
+          description
+            "Target MEP ID";
+        }
+      }
+    }
+  }
+
+  grouping loopback-parameters-group {
+    description
+      "This is the group of parameters associated with Loopback sessions. It is
+       used for loopback RPC input.";
+
+    container target-address {
+      description
+        "Target MAC address or MEP ID for the Loopback session.";
+      uses target-address-group;
+    }
+
+    leaf number-of-messages { 
+      type uint32 {
+        range "1..1024";
+      }
+      default 1;
+
+      description
+        "The number of LBM transmissions in a session.";
+      reference
+        "[802.1q] 12.14.7.3.2:c, [MEF30] R39";
+    }
+
+
+    leaf data-tlv { 
+      type binary;
+
+      description
+        "An arbitrary amount of data to be included in a Data TLV.";
+      reference
+        "[802.1q] 12.14.7.3.d, IEEE8021-CFM-MIB.dot1agCfmMepTransmitLbmDataTlv";
+    }
+
+    leaf vlan-priority {
+      type priority-type;
+
+      description
+        "The priority parameter to be used in the transmitted LBMs";
+      reference
+        "[802.1q] 12.14.7.3.2:e";
+    }
+
+    leaf vlan-drop-eligible { 
+      type boolean;
+      default true;
+ 
+      description
+        "The drop eligible parameter to be used in the transmitted LBMs";
+      reference
+        "[802.1q] 12.14.7.3.2:e";
+    }
+  }
+
+  grouping linktrace-parameters-group {
+    description
+      "This is the group of parameters associated with linktrace sessions. It is
+       used for linktrace RPC input as well as linktrace database entries.";
+
+    container target-address {
+      description
+        "Target MAC address or MEP ID for the Linktrace session.";
+      uses target-address-group;
+    }
+      
+    leaf transmit-ltm-flags { 
+      type bits {
+        bit usefdbonly;
+      }
+
+      description
+        "The Flags field for LTMs transmitted by the MEP";
+      reference
+        "[802.1q] 12.14.7.4.2:b";
+    }      
+
+    leaf default-ttl {
+      type uint8;
+      default 64;
+
+      description
+        "An initial value for the LTM TTL field";
+      reference
+        "[802.1q] 12.14.7.4.2:d";
+    }
+  }
+
+  grouping md-level-group {
+    description
+      "Data definitions related to a default MD level";
+
+    leaf md-level {
+      type int32 {
+        range "-1 | 0..7";
+      }
+      mandatory true;
+
+      description
+        "The MD Level at which MHFs are to be created and Sender ID TLV
+         transmission by those MHFs is to be controlled, for the VLAN to
+         which this entry's definitions apply. If this leaf has the value
+         -1, the MD Level for MHF creation for this VLAN is controlled
+         by the content of the default-md-levels container. -1 is not a
+         valid value for this parameter when used in the
+         default-md-levels.";
+      reference
+        "[802.1q] 12.14.3.1.3:c";
+    }
+
+    leaf mhf-creation {
+      type mhf-creation-type;
+      mandatory true;
+
+      description
+        "This parameter indicates whether the management entity can create MHFs
+         for this VID(s).
+
+         The value 'defer' has different meanings depending on where the grouping is 
+         used:
+          - The value 'defer' is not allowed when this grouping is used in the 
+            'default-md-levels' container
+          - When used in a member of the 'default-md-level' list the value 'defer' 
+            means that MHF creation for the VLAN is controlled by the corresponding 
+            'mhf-creation' leaf in the 'default-md-levels' container.";
+
+      reference
+        "[802.1q] 12.14.3.1.3:d";
+    }
+
+    leaf default-id-permission {
+      type id-permission-type;
+      mandatory true;
+
+      description
+        "This parameter indicates what, if anything, is to be included in the
+         Sender ID TLV transmitted by MPs configured in a default MD Level";
+      reference
+        "[802.1q] 12.14.3.1.3:e";
+    }
+  }
+
+  grouping port-id-tlv-group {
+    description
+      "Data definitions associated with the Port ID TLV";
+
+    reference
+      "[802.1AB] 9.5.3";
+
+    choice port-id-subtype {
+      leaf interface-alias {
+        type string {
+          length "0..64";
+        }
+        description
+          "The ifAlias field from the Interfaces Group MIB";
+        reference
+          "[RFC2863]";
+      }
+
+      leaf port-component {
+        type string {
+          length "0..32";
+        }
+        description
+          "EntPhysicalAlias when entPhysClass has a value of port(10) or
+           backplane(4)";
+        reference
+          "[RFC2737]";
+      }
+      leaf mac-address {
+        type yang:mac-address;
+        description
+          "A MAC address";
+      }                  
+      leaf network-address {
+        type string;
+        description
+          "network-address is an octet string that identifies a particular network
+           address family and an associated network address that are
+           encoded in network octet order. An IP address, for example,
+           would be encoded with the first octet containing the IANA
+           Address Family Numbers enumeration value for the specific
+           address type and octets 2 through n containing the address
+           value";
+        reference
+          "[802.1AB] Table 9.2";
+      }
+
+      leaf interface-name {
+        type string {
+          length "0..64";
+        }
+        description
+          "The ifName field from the Interfaces Group MIB";
+        reference
+          "[RFC2863]";
+      }
+      leaf agent-circuit-id {
+        type string;
+        description
+          "Agent circuit ID";
+        reference
+          "[RFC3046]";
+      }
+      leaf local {
+        type string;
+        description
+          "A locally defined identifier";
+        reference
+          "[802.1AB] Table 9.3";
+      }
+    }
+  }
+
+  grouping sender-id-tlv-group {
+    description
+      "Data definitions associated with the Sender ID TLV";
+
+    reference
+      "[802.1q] 21.5.3";
+
+    choice chassis-id-subtype {
+      description
+        "The chassis-id-subtype contains the chassis ID entity that is listed in
+         the chassis ID field. This is a combination of the 'Chassis ID Subtype'
+         and 'chsssis ID' fields";
+
+      reference
+        "[802.1AB] 9.5.2.2";
+
+      leaf chassis-component {
+        type string {
+          length "0..32";
+        }
+        description
+          "This leaf contains the content of EntPhysicalAlias when entPhysClass has
+           a value of chassis(3)'";
+        reference
+          "[RFC2737]";
+      }
+
+      leaf interface-alias {
+        type string {
+          length "0..64";
+        }
+        description
+          "The IfAlias field from the Interfaces Group MIB";
+        reference
+          "[RFC2863]";
+      }
+
+      leaf port-component {
+        type string {
+          length "0..32";
+        }
+        description
+          "The EntPhysicalAlias from the Interfaces Group MIB when entPhysClass has
+           a value of port(10) or backplane(4)";
+        reference
+          "[RFC2737]";
+      }
+
+      leaf mac-address-type {
+        type yang:mac-address;
+
+        description
+          "An IEEE 802-2001 Ethernet MAC Address";
+        reference
+          "[802-2001]";
+      }
+                  
+      leaf network-address {
+        type string;
+        description
+          "network-address is an octet string that identifies a particular network
+           address family and an associated network address that are encoded in
+           network octet order. An IP address, for example, would be encoded with 
+           the first octet containing the IANA Address Family Numbers enumeration
+           value for the specific address type and octets 2 through n containing
+           the address value";
+        reference
+          "[802.1AB] Table 9.2";
+      }
+
+      leaf interface-name {
+        type string {
+          length "0..64";
+        }
+        description
+          "IfName";
+        reference
+          "[RFC2863]";
+      }
+
+      leaf local {
+        type string;
+        description
+          "A locally assigned alpha-numeric string.";
+        reference
+          "[802.1AB] Table 9.2";
+      }              
+    }
+
+    container management-address {
+      description
+        "Data definitions related to the management address fields defined
+         in a Sender ID TLV";
+      reference
+        "[802.1] Section 21.5.3";
+      choice management-address {
+        case udp-ipv4 {
+          description
+            "Represents an IPv4 UDP transport address consisting of an IPv4 address,
+             and a port number.";
+          reference
+            "[RFC3419] TRANSPORT-ADDRESS-MIB.transportDomainUdpIpv4";
+          leaf udp-ipv4-address {
+            type inet:ipv4-address;
+          }
+          leaf udp-ipv4-port {
+            type inet:port-number;
+          }
+        }
+
+        case udp-ipv6 {
+          description
+            "Represents an IPv6 UDP transport address consisting of an IPv6 address,
+             and a port number.";
+          reference
+            "[RFC3419] TRANSPORT-ADDRESS-MIB.transportDomainUdpIpv6";
+          leaf udp-ipv6-address {
+            type inet:ipv6-address;
+          }
+          leaf udp-ipv6-port {
+            type inet:port-number;
+          }
+        }
+
+        case udp-ipv4z {
+          description
+            "Represents a UDP transport address consisting of an IPv4 address, a zone
+             index and a port number.";
+          reference
+            "[RFC3419] TRANSPORT-ADDRESS-MIB.transportDomainUdpIpv4z";
+          leaf udp-ipv4z-address {
+            type inet:ipv4-address;
+          }
+          leaf udp-ipv4z-index {
+            type uint32;
+          }
+          leaf udp-ipv4z-port {
+            type inet:port-number;
+          }
+        }
+
+        case udp-ipv6z {
+          description
+            "Represents a UDP transport address consisting of an IPv6 address, a zone
+             index and a port number.";
+          reference
+            "[RFC3419] TRANSPORT-ADDRESS-MIB.transportDomainUdpIpv6z";
+          leaf udp-ipv6z-address {
+            type inet:ipv6-address;
+          }
+          leaf udp-ipv6z-index {
+            type uint32;
+          }
+          leaf udp-ipv6z-port {
+            type inet:port-number;
+          }
+        }
+
+        case tcp-ipv4 {
+          description
+            "Represents an IPv4 TCP transport address consisting of an IPv4 address,
+             and a port number.";
+          reference
+            "[RFC3419] TRANSPORT-ADDRESS-MIB.transportDomainTcpIpv4";
+          leaf tcp-ipv4-address {
+            type inet:ipv4-address;
+          }
+          leaf tcp-ipv4-port {
+            type inet:port-number;
+          }
+        }
+
+        case tcp-ipv6 {
+          description
+            "Represents an IPv6 TCP transport address consisting of an IPv6 address,
+             and a port number.";
+          reference
+            "[RFC3419] TRANSPORT-ADDRESS-MIB.transportDomainTcpIpv6";
+          leaf tcp-ipv6-address {
+            type inet:ipv6-address;
+          }
+          leaf tcp-ipv6-port {
+            type inet:port-number;
+          }
+        }
+
+        case tcp-ipv4z {
+          description
+            "Represents a TCP IPv4 transport address consisting of an IPv4 address, a
+             zone index and a port number.";
+          reference
+            "[RFC3419] TRANSPORT-ADDRESS-MIB.transportDomainTcpIpv4z";
+          leaf tcp-ipv4z-address {
+            type inet:ipv4-address;
+          }
+          leaf tcp-ipv4z-index {
+            type uint32;
+          }
+          leaf tcp-ipv4z-port {
+            type inet:port-number;
+          }
+        }
+      
+        case tcp-ipv6z {
+          description
+            "Represents a TCP IPv6 transport address consisting of an IPv6 address,
+             a zone index and a port number.";
+          reference
+            "[RFC3419] TRANSPORT-ADDRESS-MIB.transportDomainTcpIpv6z";        
+          leaf tcp-ipv6z-address {
+            type inet:ipv6-address;
+          }
+          leaf tcp-ipv6z-index {
+            type uint32;
+          }
+          leaf tcp-ipv6z-port {
+            type inet:port-number;
+          }
+        }
+      
+        case sctp-ipv4 {
+          description
+            "Represents an IPv4 SCTP transport address consisting of an IPv4 address,
+             and a port number.";
+          reference
+            "[RFC3419] TRANSPORT-ADDRESS-MIB.transportDomainSctpIpv4";        
+          leaf sctp-ipv4-address {
+            type inet:ipv4-address;
+          }
+          leaf sctp-ipv4-port {
+            type inet:port-number;
+          }
+        }
+
+        case sctp-ipv6 {
+          description
+            "Represents an IPv6 SCTP transport address consisting of an IPv6 address,
+             and a port number.";
+          reference
+            "[RFC3419] TRANSPORT-ADDRESS-MIB.transportDomainSctpIpv6";        
+          leaf sctp-ipv6-address {
+            type inet:ipv6-address;
+          }
+          leaf sctp-ipv6-port {
+            type inet:port-number;
+          }
+        }
+
+        case sctp-ipv4z {
+          description
+            "Represents an SCTP IPv4 transport address consisting of an IPv4 
+             address, a zone index and a port number.";
+          reference
+            "[RFC3419] TRANSPORT-ADDRESS-MIB.transportDomainSctpIpv4z";        
+          leaf sctp-ipv4z-address {
+            type inet:ipv4-address;
+          }
+          leaf sctp-ipv4z-index {
+            type uint32;
+          }
+          leaf sctp-ipv4z-port {
+            type inet:port-number;
+          }
+        }
+      
+        case sctp-ipv6z {
+          description
+            "Represents an SCTP IPv6 transport address consisting of an IPv6 
+             address, a zone index and a port number.";
+          reference
+            "[RFC3419] TRANSPORT-ADDRESS-MIB.transportDomainSctpIpv6z";                
+          leaf sctp-ipv6z-address {
+            type inet:ipv6-address;
+          }
+          leaf sctp-ipv6z-index {
+            type uint32;
+          }
+          leaf sctp-ipv6z-port {
+            type inet:port-number;
+          }
+        }
+
+        case local {
+          leaf local-address {
+            type string {
+              length '1..255';
+            }
+            description
+              "Represents a POSIX Local IPC transport address.";
+          }
+        }
+      
+        case udp-dns {
+          leaf udp-dns-address {
+            type string {
+              length "1..255";
+            }
+            description
+              "The UDP transport domain using fully qualified domain names. Represents
+               a DNS domain name followed by a colon ':' (ASCII character
+               0x3A) and a port number in ASCII.  The name SHOULD be fully
+               qualified whenever possible.";
+            reference
+              "[RFC3419] TRANSPORT-ADDRESS-MIB.transportDomainUdpDns";                
+          }
+        }
+        case tcp-dns {
+          leaf tcp-dns-address {
+            type string {
+              length "1..255";
+            }
+            description
+              "The TCP transport domain using fully qualified domain names. Represents
+               a DNS domain name followed by a colon ':' (ASCII character
+               0x3A) and a port number in ASCII.  The name SHOULD be fully
+               qualified whenever possible.";
+            reference
+              "[RFC3419] TRANSPORT-ADDRESS-MIB.transportDomainTcpDns";                
+          }
+        }
+        case sctp-dns {
+          leaf sctp-dns-address {
+            type string {
+              length "1..255";
+            }
+            description
+              "The SCTP transport domain using fully qualified domain names. 
+               Represents a DNS domain name followed by a colon ':' (ASCII 
+               character 0x3A) and a port number in ASCII.  The name SHOULD be
+               fully qualified whenever possible.";
+            reference
+              "[RFC3419] TRANSPORT-ADDRESS-MIB.transportDomainSctpDns";                
+          }
+        }
+      }
+    }
+  }
+  grouping maintenance-domain-reference {
+    description
+      "This grouping uniquely identifies a maintenance domain.";
+
+    leaf maintenance-domain {
+      type leafref {
+        path "/mef-cfm:maintenance-domain/mef-cfm:id";
+      }
+      description
+        "A reference to a specific Maintenance Domain.";
+    }
+  }
+
+  grouping maintenance-association-reference {
+    description
+      "This grouping uniquely identifies a maintenance association. It consists
+       of a maintence-domain-reference and a maintenance-association leafref";
+
+    uses maintenance-domain-reference;
+
+    leaf maintenance-association {
+      type leafref {
+        path "/mef-cfm:maintenance-domain[mef-cfm:id=current()/../maintenance-domain]/mef-cfm:maintenance-association/mef-cfm:id";
+      }
+     description
+        "A reference to a specific Maintenance Association.";
+    }
+  }
+
+  grouping maintenance-association-end-point-reference {
+    description
+      "This grouping uniquely identifies a maintenance association. It consists
+       of a maintence-association-reference and a maintenance-association-end-point
+       leafref";
+
+    uses maintenance-association-reference;
+
+    leaf maintenance-association-end-point {
+      type leafref {
+        path "/mef-cfm:maintenance-domain[mef-cfm:id=current()/../maintenance-domain]/mef-cfm:maintenance-association[mef-cfm:id=current()/../maintenance-association]/mef-cfm:maintenance-association-end-point/mef-cfm:mep-identifier";
+      }
+     description
+        "A reference to a specific Maintenance association End Point.";
+    }    
+  }
+
+  //
+  // Data definitions related to CFM
+  //
+
+  container default-md-levels {    
+    description
+      "Data definitions related to the global default MD level and the default
+       MD levels associated with specific VIDs";
+
+    uses md-level-group;
+
+    list default-md-level {
+      description
+        "Data definitions related to the default MD level associated with specific 
+         VIDs";
+
+      key "primary-vid component-id";
+      leaf primary-vid {
+        type vlan-id-type;
+
+        description
+          "The primary VID on the MD";
+        reference
+          "[802.1q] 12.14.3.1.3:a";
+      }
+
+      leaf component-id {
+        type component-id-type;
+
+        description
+          "The bridge component within the system to which the information
+           in this default-md-level applies";
+
+        reference
+          "[802.1q] IEEE8021-CFM-V2-MIB.ieee8021CfmDefaultMdComponentId";
+      }
+
+      leaf-list vid {
+        type vlan-id-type;
+        min-elements 1;
+        ordered-by user;
+
+        description
+          "A list of VIDs associated with the MHF";
+        reference
+          "[802.1q] 12.14.3.1.3:a";
+      }
+
+      leaf status {
+        type boolean;
+        
+        description
+          "State of this list entry. The value 'true' if there is no entry in the
+           maintenance-assoication list entry defining an MA for the
+           same VLAN ID and MD Level as this table's entry, and on which
+           MA an Up MEP is defined, else 'false'.";
+        reference
+          "[802.1q] 12.14.3.1.3:b";
+      }
+
+      uses md-level-group;
+    }
+  }
+
+  list configuration-error-list {
+    key "vlan-identifier interface";
+    config false;
+
+    description 
+      "The Configuration Error List managed object provides a list of Bridge
+       Ports, aggregated ports, and VIDs that are incorrectly
+       configured.";
+
+    leaf vlan-identifier {
+      type vlan-id-type;
+
+      description
+        "A VLAN identifier specifying which VLAN to check for Bridge Ports or
+         aggregated ports in error";
+      reference
+        "[802.1q] 12.14.4.1.2:a";
+    }
+
+    leaf interface {
+      type string;
+
+      description
+        "An interface, either a Bridge Port or an aggregated IEEE 802.3 port
+         within a Bridge Port. The value is expected to uniquely identify a
+         single interface on the system. The structure of the identifier is
+         implementation specific.";
+      reference
+        "[802.1q] 12.14.4.1.2:b";
+    }
+
+    leaf error-conditions {
+      type error-conditions-type;
+      mandatory true;
+
+      description
+        "A list of possible errors on a Bridge Port.";
+      reference
+        "[802.1q] 12.14.4.1.3:b";
+    }
+  }
+
+  list maintenance-domain {
+    key id;
+
+    description
+      "A Maintenance Domain managed object is required in order to create an MA
+       with a MAID that includes that Maintenance Domain's Name. From
+       this Maintenance Domain managed object, all Maintenance
+       Association managed objects associated with that Maintenance
+       Domain managed object can be accessed, and thus controlled.";
+    reference
+      "[802.1q] 12.14.5";
+
+    leaf id {
+      type string;
+      description
+        "A unique identifier of a Maintenance Domain";
+      reference
+        "[802.1q] 12.14.5";
+    }
+
+    leaf name-type {
+      type enumeration {
+        enum none {
+            description "No format specified.";
+        }
+        enum domain-name {
+            description "Domain Name like string, globally uniquetext string 
+                         derived from a DNS name.";
+        }
+        enum mac-address-and-uint {
+            description "MAC address + 2-octet (unsigned) integer.";
+        }
+        enum character-string {
+            description "RFC2579 DisplayString, except that thecharacter 
+                         codes 0-31 (decimal) are not used.";
+        }
+      }
+
+      description
+        "Type discriminator for the value union described in the 'name' leaf.";
+      reference
+        " IEEE8021-CFM-MIB.Dot1agCfmMaintDomainNameType";
+
+    }
+    
+    leaf name {
+      type union {
+        type inet:host;
+        type mac-address-and-uint-type;
+        type string;
+      }
+
+      description
+        "The value union for the Maintenance Domain Name. The type must
+         correspond to the configuration name-type according to the
+         following:
+          - If the name-type is 'domain-name ' then the name must be of type
+            inet:host
+          - If the name-type is 'mac-address-and-uint' then the name must
+            be of type mac-address-and-uint-type
+          - If the name-type is 'character-string' then the name must be of
+            type string
+          - If the name-type is 'none' then the name must not be defined";
+      reference
+        "[802.1q] 21.6.5.1 (Table 21-19), 12.14.5.3.2:a";
+    }
+
+    leaf md-level {
+      type md-level-type;
+
+      description
+        "Integer identifying the Maintenance Domain Level (MD Level).  Higher
+        numbers correspond to higher Maintenance Domains, those with the
+        greatest physical reach, with the highest values for customers'
+        CFM PDUs.  Lower numbers correspond to lower Maintenance
+        Domains, those with more limited physical reach, with the lowest
+        values for CFM PDUs protecting single bridges or physical links.";
+
+      reference
+        "[802.1q] 12.14.5.1.3:b";
+    }
+
+    leaf mhf-creation {
+      type mhf-creation-type;
+      mandatory true;
+
+      description
+        "A value indicating if the Management entity can create MHFs
+         (MIP Half Function) for this VID at this MD Level. The value
+         'defer' means that MHF creation for the VLAN is controlled by
+         the corresponding 'mhf-creation' leaf in the 'default-md-level'
+         list entry.";
+      reference	
+        "[802.1q] 22.2.3, 12.14.5.1.3:c";
+    }
+
+    leaf id-permission {
+      type id-permission-type;
+      mandatory true;
+
+      description
+        "This parameter indicates what, if anything, is to be included in the 
+         Sender ID TLV. Since, in this variable, there is no encompassing
+         Maintenance Domain, the value 'defer' is not allowed";
+      reference
+        "[802.1q] 21.5.3, 12.14.6.1.3:d";
+    }
+ 
+    list maintenance-association {
+      key id;
+
+      description
+        "This list represents Maintenance Entity Groups (Y.1731) or 
+         Maintenance Associations (802.1ag). MEGs/MAs are sets of
+         MEPs, each configured to the same service inside a common
+         OAM domain.";
+
+      leaf id {
+        type string;
+        description
+          "A unique identifier of a Maintenance Association";
+        reference
+          "[802.1q] 12.14.6";
+      }
+
+      leaf name-type {
+        type enumeration {
+          enum primary-vid {
+              description "Specifies the Primary VLAN ID.";
+          } 
+          enum character-string {
+              description "RFC2579 DisplayString, except that thecharacter 
+                         codes 0-31 (decimal) are not used.";
+          }
+          enum uint16 {
+              description "2-octet integer/big endian.";
+          }
+          enum rfc2685-vpn-id {
+              description "Specifies the RFC 2685 VPN ID.";
+          }
+        }
+
+        description
+          "Name type discriminator for the 'name' leaf.";
+        reference
+          "[802.1q] 12.14.5.3.2:b, Table 21-20
+           IEEE8021-CFM-MIB.Dot1agCfmMaintAssocNameType";
+      }
+
+      leaf name {
+        type union {
+          type vlan-id-type;
+          type string;
+          type uint16;
+          type binary {
+            length 7;
+          }
+        }
+
+        description
+          "The value union for the Maintenance Association Name. The type must
+           correspond to the configuration name-type according to the
+           following:
+            - If the name-type is 'primary-vid' then the name must be of type
+              vlan-id-type
+            - If the name-type is 'character-string' then the name must be of
+              type string
+            - If the name-type is 'uint16' then the name must be of type uint16
+            - If the name-type is 'rfc2685-vpn-id' then the name must be of type
+              binary";
+        reference
+          "[802.1q] 12.14.5.3.2:b, Table 21-20";        
+      }
+
+      list component-list {
+        key component-id;
+
+        description
+          "A list of components each of which can be managed in a manner
+           essentially equivalent to an 802.1Q bridge.";
+        reference
+            "[802.1q] IEEE8021-CFM-V2-MIB.ieee8021CfmMaCompTable";
+
+        leaf component-id {
+          type uint32;
+          
+          description
+            "The bridge component within the system to which the information
+             in this maintenance-association applies";
+          
+          reference
+            "[802.1q] IEEE8021-CFM-V2-MIB.ieee8021CfmMaComponentId";
+        }
+        
+
+        leaf-list vid {
+          type vlan-id-type;
+          min-elements 1;
+          ordered-by user;
+
+          description
+            "The VID(s) monitored by this MA, or 0, if the MA is not attached to any
+             VID. The first VID returned is the MA's Primary VID";
+          reference
+            "[802.1q] 12.14.5.3.2:b";
+        }
+
+        leaf mhf-creation {
+          type mhf-creation-type;
+          default defer;
+          description
+            "An enumerated value indicating whether the management entity can create
+             MHFs for this MA. A value of 'defer' here means that control of
+             MHF creation is deferred to the corresponding variable in
+             the enclosing maintenance-domain.";
+          reference
+            "[802.1q] 12.14.6.1.3:c";
+        }
+
+        leaf id-permission {
+          type id-permission-type;
+          default defer;
+
+          description
+            "This parameter indicates what, if anything, is to be included in the
+             Sender ID TLV transmitted by MPs configured in this MA. A
+             value of 'defer' means that the contents of the Sender ID
+             TLV are determined by the enclosing maintenance-domain instance,";
+          reference
+            "[802.1q] 12.14.6.1.3:d";
+        }
+      }
+      leaf ccm-interval {
+        type enumeration {
+          enum invalid {
+              description "No CCMs are sent (disabled).";
+          }
+          enum 3.3ms {
+              description "CCMs are sent every 3 1/3 milliseconds (300Hz).";
+          }
+          enum 10ms {
+              description "CCMs are sent every 10 milliseconds.";
+          }
+          enum 100ms {
+              description "CCMs are sent every 100 milliseconds.";
+          }
+          enum 1s {
+              description "CCMs are sent every 1 second.";
+          }
+          enum 10s {
+              description "CCMs are sent every 10 seconds.";
+          }
+          enum 1min {
+              description "CCMs are sent every minute.";
+          }
+          enum 10min {
+              description "CCMs are sent every 10 minutes.";
+          }
+        }
+        mandatory true;
+
+        description
+          "The interval between CCM transmissions to be used by all MEPs in the MA";
+        reference
+          "[802.1q] 12.14.6.1.3:e
+           IEEE8021-CFM-MIB.Dot1agCfmCcmInterval";
+      }
+
+      leaf-list remote-meps {
+        type mep-id-type;
+
+        description
+          "A list of the MEPIDs of the MEPs in the MA.";
+        reference
+          "[802.1q] 12.14.6.1.3:g";
+      }
+
+      list maintenance-association-end-point {
+        key "mep-identifier";
+
+        description
+          "The list of Maintenance association End Points in a specific Maintance
+           Association.";
+
+        leaf mep-identifier {
+          type mep-id-type;
+
+          description
+            "Integer that is unique among all the MEPs in the same MA. Other
+             definition is: a small integer, unique over a given
+             Maintenance Association, identifying a specific Maintenance
+             association End Point.";
+          reference
+            "[802.1q] 12.14.6.3.2:b";
+        }
+
+        leaf interface {
+          type string;
+          mandatory true;
+
+          description
+            "An interface, either a Bridge Port or an aggregated IEEE 802.3 port
+             within a Bridge Port, to which the MEP is attached. Each interface in
+             the system is uniquely identified by an interface-name. The structure
+             and content of the name is outside the scope of this specification.";
+          reference
+            "[802.1q] 12.14.7.1.3:b";
+        }
+
+        leaf direction { 
+          type enumeration {
+            enum up {
+                description "Indicates when CFM frames are transmitted towards and 
+                             received from the bridging function.";
+            }
+            enum down {
+              description "Indicates when CFM frames are transmitted towards and 
+                           received from the wire.";
+            }
+          }
+          mandatory true;
+
+          description
+            "A value indicating the direction in which the MEP faces on the 
+             interface.";
+
+          reference
+            "[802.1q] 12.14.7.1.3:c";
+        }
+
+        leaf primary-vid { 
+          type vlan-id-type;
+          mandatory true;
+
+          description
+            "The Primary VID of the MEP. The value 0 indicates that either the
+             Primary VID is that of the MEP's MA or that the MEP's MA is
+             associated with no VID";
+          reference
+            "[802.1q] 12.14.7.1.3:d";
+        }
+
+        leaf administrative-state {
+          type boolean;
+          mandatory true;
+          
+          description
+            "The administrative state of the MEP";
+          reference
+            "[802.1q] 12.14.7.1.3:e";
+        }
+
+        leaf mac-address {
+          type yang:mac-address;
+          config false;
+
+          description
+            "The MAC address of the MEP";
+          reference
+            "[802.1q] 12.14.7.1.3:i";        
+        }
+
+        leaf ccm-ltm-priority {
+          type priority-type;
+          mandatory true;
+
+          description
+            "The priority parameter for CCMs and LTMs transmitted by the MEP.";
+          reference
+            "[802.1q] 12.14.7.1.3:h";
+        }
+
+        container continuity-check {
+          description
+            "Data definitions related to the Continuity Check function.";
+
+          leaf cci-enabled {
+            type boolean;
+            default false;
+
+            description
+              "An indicator of whether the MEP is or is not to generate CCMs";
+            reference
+              "[802.1q] 12.14.7.1.3:g";
+          }
+        
+          leaf fng-state { 
+            type enumeration {
+              enum reset {
+                  description "No defect has been present since the
+                               fng-reset-time timer expired, or since 
+                               the state machinewas last reset.";
+              }
+              enum defect {
+                  description "A defect is present, but not for a long enough 
+                               time to be reported (fng-alarm-time).";
+              }
+              enum report-defect {
+                  description "A momentary state during which the defect is 
+                               reported by sending afault-alarm notification,
+                               if that action is enabled.";
+              } 
+              enum defect-reported {
+                  description "A defect is present, and some defecthas been 
+                               reported.";
+              }
+              enum defect-clearing {
+                  description "No defect is present, but the fng-reset-time timer
+                               hasnot yet expired.";
+              }
+            }
+            default reset;
+            config false;
+
+            description
+              "A value indicating the current state of the MEP Fault Notification
+               Generator state machine";
+            reference
+              "[802.1q] 12.14.7.1.3:f, 20.35
+               IEEE8021-CFM-MIB.Dot1agCfmFngState";
+          }
+
+          leaf lowest-fault-priority-defect {
+            type fault-alarm-defect-type;
+
+            description
+              "The lowest priority defect that is allowed to generate a Fault
+               Alarm. The non-existence of this leaf means that no
+               defects are to be reported";
+            reference
+              "[802.1q] 12.14.7.1.3:k";
+          }
+
+          leaf highest-priority-defect-found { 
+            type fault-alarm-defect-type;
+            config false;
+
+            description
+              "Value indicating the highest-priority defect that has been 
+               present since the MEP Fault Notification Generator state machine 
+               was last in the FNG_RESET state The non-existence of this
+               leaf represents that no defect has been present since the
+               last FNG_RESET state";
+            reference
+              "[802.1q] 12.14.7.1.3:n";
+          }
+
+          leaf fng-alarm-time { 
+            type yang:timeticks;
+            default 250;
+
+            description
+              "The time that defects must be present before a Fault Alarm is issued";
+            reference
+              "[802.1q] 12.14.7.1.3:l, 20.33.3";
+          }
+
+          leaf fng-reset-time { 
+            type yang:timeticks;
+            default 1000;
+
+            description
+              "The time that defects must be absent before resetting a Fault Alarm";
+            reference
+              "[802.1q] 12.14.7.1.3:m, 20.33.4";
+          }
+
+          leaf active-defects { 
+            type fault-alarm-defect-bits-type;
+            config false;
+            mandatory true;
+
+            description
+              "A bit field of potential active defects. The values are the same as the
+               content of the fault-alarm-defect-type.";
+            reference
+              "[802.1q] 12.14.7.1.3:o, p, q, r, s";
+          }
+
+          leaf last-error-ccm {
+            type binary {
+              length "1..1522";
+            }
+            config false;
+
+            description
+              "The last-received CCM that triggered an invalid-ccm fault";
+            reference
+              "[802.1q] 12.14.7.1.3:t";
+          }
+
+          leaf last-cross-connect-ccm {
+            type binary {
+              length "1..1522";
+            }
+            config false;
+
+            description
+              "The last-received CCM that triggered a cross-connect-ccm fault";
+            reference
+              "[802.1q] 12.14.7.1.3:u";
+          }
+
+          leaf ccm-sequence-error-count {
+            type yang:counter32;
+            config false;
+            mandatory true;
+
+            description
+              "The total number of out-of-sequence CCMs received from all remote
+               MEPs.";
+            reference
+              "[802.1q] 12.14.7.1.3:v"; 
+          }
+
+          leaf sent-ccms {
+            type yang:counter32;
+            config false;
+            mandatory true;
+
+            description
+              "The total number of CCMs transmitted.";
+            reference
+              "[802.1q] 12.14.7.1.3:w";  
+          }
+        }
+
+        container loopback {
+          description
+            "Data definitions related to the Loopback function.";
+
+          config false;
+
+          leaf replies-received { 
+            type yang:counter32; 
+            config false;
+            mandatory true;
+
+            description
+              "The total number of valid, in-order LBRs received.";
+            reference
+              "[802.1q] 12.14.7.1.3:y";              
+          }
+
+          leaf replies-transmitted { 
+            type yang:counter32;
+            config false;
+            mandatory true;
+
+            description
+              "The total number of LBRs transmitted.";
+            reference
+              "[802.1q] 12.14.7.1.3:ad";
+          }
+
+          leaf out-of-order-replies-received { 
+            type yang:counter32; 
+            config false;
+            mandatory true;
+            
+            description
+              "The total number of valid, out-of-order LBRs received.";
+            reference
+              "[802.1q] 12.14.7.1.3:z";
+          }
+
+          leaf bad-msdu { 
+            type yang:counter32; 
+            config false;
+
+            description
+              "The total number of LBRs received whose mac_service_data_unit did not
+               match (except for the OpCode) that of the corresponding LBM";
+            reference
+              "[802.1q] 12.14.7.1.3:aa";
+          }
+        }
+
+        container linktrace {
+          description
+            "Data definitions related to the Linktrace function.";
+
+          config false;
+
+          leaf unexpected-replies-received {
+            type yang:counter32;
+            mandatory true;
+
+            description
+              "The total number of unexpected LTRs received.";
+            reference
+              "[802.1q] 12.14.7.1.3:ac";
+          }
+
+          container linktrace-database {
+            description
+              "Data definitions related to the Linktrace database for a specific MEP";
+
+            list linktrace {
+              key "transaction-id";
+              config false;
+
+              description
+                "The list of entries in a Linktrace database.";
+
+              leaf transaction-id {
+                type ltm-transaction-id-type;
+
+                description
+                  "The LTM Transaction Identifier to which the LTR entries will be
+                   attached";
+                reference
+                  "[802.1q] 12.14.7.5.2:b";
+              } 
+
+              uses linktrace-parameters-group;
+
+              list reply {
+                key reply-order;
+
+                description
+                  "The list of LTRs associated with a specific Linktrace 
+                   transaction.";
+                leaf reply-order {
+                  type uint32;
+
+                  description
+                    "An index to distinguish among multiple LTRs with the same LTR
+                     transaction-id field value. reply-order are
+                     assigned sequentially from 1, in the order that the
+                     Linktrace Initiator received the LTR";
+                  reference "[802.1q] 12.14.7.5.2:c";
+                }
+
+                leaf reply-ttl {
+                  type uint32;
+
+                  description
+                    "The integer Reply TTL field value returned in the LTR.";
+                  reference
+                    "[802.1q] 12.14.7.5.3:b";
+                }
+
+                leaf forwarded {
+                  type boolean;
+
+                  description
+                    "A Boolean value stating whether an LTM was forwarded by 
+                     the responding MP.";
+                  reference
+                    "[802.1q] 12.14.7.5.3:c";
+                }
+
+                leaf terminal-mep {
+                  type boolean; 
+
+                  description
+                    "A Boolean value stating whether the forwarded LTM reached 
+                     a MEP for its MA.";
+                  reference
+                    "[802.1q] 12.14.7.5.3:d";
+                }
+
+                leaf last-egress-identifier {
+                  type binary {
+                    length 8;
+                  }
+
+                  description
+                    "An octet string holding the Last Egress Identifier field 
+                     returned in the LTR Egress Identifier TLV of the LTR.";
+                  reference
+                    "[802.1q] 12.14.7.5.3:e";
+                }
+
+                leaf next-egress-identifier {
+                  type binary {
+                    length 8;
+                  }
+
+                  description
+                    "An octet string holding the Next Egress Identifier field
+                     returned in the LTR Egress Identifier TLV of the LTR";
+                  reference
+                    "[802.1q] 12.14.7.5.3:f";
+                }
+
+                leaf ltr-relay {
+                  type enumeration {
+                    enum hit {
+                        description "Indicates the LTM reached an MP whose MAC
+                                     address matches the target MAC address.";
+                    }
+                    enum filtering-database {
+                        description "Indicates the Egress Port was determined by
+                                     consulting the Filtering Database.";
+                    }
+                    enum mip-ccm-database {
+                        description "Indicates the Egress Port was determined by
+                                     consulting the MIP CCM Database.";
+                    }
+                  }
+
+                  description
+                    "An enumerated value indicating the value returned in the
+                     Relay Action field.";
+                  reference
+                    "[802.1q] 12.14.7.5.3:g, Table 21-27
+                     IEEE8021-CFM-MIB.Dot1agCfmRelayActionFieldValue";
+                }
+
+                uses sender-id-tlv-group;
+
+                leaf ingress-action {
+                  type enumeration {
+                    enum ok {
+                        description "Indicates the target data frame would be
+                                     passed through to the MAC Relay Entity.";
+                    }
+                    enum down {
+                        description "Indicates the Bridge Ports MAC Operational
+                                     parameter is false.";
+                    }
+                    enum blocked {
+                        description "Indicates the target data frame would not
+                                     be forwarded if received on this Port due
+                                     to active topology enforement.";
+                    }
+                    enum vid {
+                        description "Indicates the ingress port is not in the 
+                                     member set of the LTMs VID, and ingress
+                                     filtering is enabled, so the target data
+                                     frame would be filtered by ingress filtering.";
+                    }
+                  }
+
+                  description
+                    "An enumerated value indicating the value returned in the 
+                     Ingress Action field. This leaf is not present if no value
+                     is returned in the LTR.";
+                  reference
+                    "[802.1q] 12.14.7.5.3:k, Table 21-30
+                     IEEE8021-CFM-MIB.Dot1agCfmIngressActionFieldValue";
+                }
+
+                leaf ingress-mac {
+                  type yang:mac-address;
+
+                  description
+                    "The MAC address returned in the Ingress MAC Address field.
+                     This leaf is not present if no value is returned in the LTR.";
+                  reference
+                    "[802.1q] 12.14.7.5.3:l";
+                }
+
+                container ingress-port-id {
+                  uses port-id-tlv-group;
+
+                  description
+                    "The Ingress Port ID field and the corresponding port ID value.
+                     This leaf is not present if no value is returned in the LTR.";
+                  reference
+                    "[802.1q] 12.14.7.5.3:m";
+                }
+                  
+                leaf egress-action {
+                  type enumeration {
+                    enum ok {
+                        description "Indicates the targeted data frame would be
+                                     forwarded.";
+                    }
+                    enum down {
+                        description "Indicates the Egress Port can be identified,
+                                     but that Bridge Ports MAC Operational
+                                     parameter is false.";
+                    }
+                    enum blocked {
+                        description "Indicates the Egress Port can be identified,
+                                     but the data frame would not pass through the
+                                     the Egress Port due to active topology 
+                                     management, i.e., the Bridge Port is not in the
+                                     Forwarding state.";
+                    }
+                    enum vid {
+                        description "Indicates the Egress Port can be identified,
+                                     but the Bridge Port is not in the LTMs VIDs
+                                     member set, so would be filtered by egress 
+                                     filtering.";
+                    }
+                  }
+ 
+                  description
+                    "An enumerated value indicating the value returned in the 
+                     Egress Action field. This leaf is not present if no value
+                     is returned in the LTR.";
+                  reference
+                    "[802.1q] 12.14.7.5.3:o, Table 21-32
+                     IEEE8021-CFM-MIB.Dot1agCfmIngressActionFieldValue";
+                }            
+
+                leaf egress-mac {
+                  type yang:mac-address;
+
+                  description
+                    "The MAC address returned in the Egress MAC Address field.
+                     This leaf is not present if no value is returned in the LTR.";
+                  reference
+                    "[802.1q] 12.14.7.5.3:p";
+                }
+
+                container egress-port-id {
+                  uses port-id-tlv-group;
+
+                  description
+                    "The Egress Port ID field and the corresponding port ID value.
+                     This leaf is not present if no value is returned in the LTR.";
+                  reference
+                    "[802.1q] 12.14.7.5.3:p, 12.14.7.5.3:q";
+                }
+
+                leaf organization-specific-tlv {
+                  type binary {
+                    length "0|4 .. 1500";
+                  }
+                  description
+                    "The OUI and contents of any Organization-Specific TLVs. This
+                     leaf is not present if no value is returned in the LTR.";
+                  reference
+                    "[802.1q] 12.14.7.5.3:s";
+                }
+              }
+            }
+          }
+        }
+
+        container remote-mep-database {
+          description
+            "The MEP CCM database";
+
+          config false;
+
+          list remote-mep {
+            description
+              "The list of remote MEPs in the MEP CCM database";
+            reference
+              "[802.1q] 12.14.7.6";
+
+            key remote-mep-id;
+
+            leaf remote-mep-id {
+              type mep-id-type;
+
+              description
+                "The MEPID of a remote MEP";
+              reference
+                "[802.1q] 12.14.7.6.2";
+            }
+
+            leaf remote-mep-state {
+              type remote-mep-state-type;
+
+              description
+                "An enumerated value indicating the operational state of the 
+                 Remote MEP state machine for this remote MEP.";
+              reference
+                "[802.1q] 12.14.7.6.3:b
+                 IEEE8021-CFM-MIB.Dot1agCfmRemoteMepState";
+            }
+
+            leaf failed-ok-time {
+              type yang:timeticks;
+
+              description
+                "The time (SysUpTime, IETF RFC 3418) at which the Remote MEP state
+                 machine last entered either the RMEP_FAILED or RMEP_OK
+                 state, or 0 if it has not yet entered either of those
+                 states";
+              reference
+                "[802.1q] 12.14.7.6.3:c";
+            }
+
+            leaf mac-address {
+              type yang:mac-address;
+            
+              description
+                "The MAC address of the remote MEP.";
+              reference
+                "[802.1q] 12.14.7.6.3:d";
+            }
+
+            leaf rdi {
+              type boolean;
+
+              description
+                "An indication of the state of the RDI bit in the last received CCM,
+                 true for RDI = 1, or false for RDI = 0 or if none has been 
+                 received.";
+              reference
+                "[802.1q] 12.14.7.6.3:e";
+            }
+
+            leaf port-status-tlv {
+              type port-status-type;
+
+              description
+                "The enumerated value from the Port Status TLV from the last 
+                 CCM received from the remote MEP.";
+              reference
+                "[802.1q] 12.14.7.6.3:f";
+            }
+          
+            leaf interface-status-tlv {
+              type interface-status-type;
+
+              description
+                "The enumerated value from the Interface Status TLV from the 
+                 last CCM received from the remote MEP";
+              reference
+                "[802.1q] 12.14.7.6.3:g";
+            }
+          
+            uses sender-id-tlv-group;
+          }
+        }
+      }
+    }
+  }
+
+  //
+  // RPCs related to CFM
+  //
+
+  rpc transmit-loopback {
+    description
+      "Start a loopback session on a specific MEP
+
+       The counters in the loopback container of the associated MEP will be updated  
+       with the result of the loopback session until the configured number of messages  
+       have been sent.";
+    reference
+      "[802.1q] 12.14.7.3";
+  
+    input {
+      leaf maintenance-domain-id {
+        type string;
+
+        description
+          "The ID of a Maintenance Domain of the MEP on which a loopback session will
+           be started";
+      }
+
+      leaf maintenance-association-id {
+        type string;
+
+        description
+          "The ID of a Maintenance Association of the MEP on which a loopback session 
+           will be started";
+      }
+
+      leaf mep-id {
+        type mep-id-type;
+
+        description
+          "The ID of the MEP on which a loopback session will be started";
+      }
+      uses loopback-parameters-group;
+    }
+  }
+
+  rpc abort-loopback {
+    description
+      "Administratively abort a loopback session in progress on a specific MEP";
+    reference
+      "[MEF30] 8.2, R28";
+
+    input { 
+      leaf maintenance-domain-id {
+        type string;
+
+        description
+          "The ID of a Maintenance Domain of the MEP on which a loopback session 
+           should be administratively aborted";
+      }
+
+      leaf maintenance-association-id {
+        type string;
+
+        description
+          "The ID of a Maintenance Association of the MEP on which a loopback session
+           should be administratively aborted";
+      }
+
+      leaf mep-id {
+        type mep-id-type;
+
+        description
+          "The ID of the MEP on which the loopback session should be
+           administratively aborted";
+      }
+    }
+  }
+
+  rpc transmit-linktrace {
+    description
+      "Start a linktrace session on a specific MEP
+
+       A list entry in the linktrace-database of the associated MEP will
+       be created for each successfully started linktrace session. The
+       RPC output transaction-id corresponds to the transaction-id in the
+       database for the specific session.";
+    reference
+      "[802.1q] 12.14.7.4";
+
+    input {
+      leaf maintenance-domain-id {
+        type string;
+
+        description
+          "The ID of a Maintenance Domain of the MEP on which a linktrace session will
+           be started";
+      }
+
+      leaf maintenance-association-id {
+        type string;
+
+        description
+          "The ID of a Maintenance Association of the MEP on which a linktrace session
+           will be started";
+      }
+
+      leaf mep-id {
+        type mep-id-type;
+
+        description
+          "The ID of the MEP on which a linktrace session will be started.";
+      }
+      uses linktrace-parameters-group;
+    }
+
+    output {
+      leaf transaction-id {
+        type ltm-transaction-id-type;
+        description
+          "The transaction identifier of the newly created linktrace session.";
+        reference
+          "[802.1q] 12.14.7.4.3:b";
+      }
+    }
+  }
+
+  //
+  // Notifications related to CFM
+  //
+
+  notification fault-alarm {
+    description
+      "A notification that a specific MEP has a persistent defect condition.";
+    reference
+      "[802.1q] 12.14.7.7";
+    
+    container alarm {
+      description
+        "Data definitions related to a persistent defect on a specific MEP.";
+
+      leaf maintenance-domain-id {
+        type string;
+
+        description
+          "The ID of a Maintenance Domain of the MEP on which a persistent defect
+           has been detected";
+      }
+
+      leaf maintenance-association-id {
+        type string;
+
+        description
+          "The ID of a Maintenance Association of the MEP on which a persistent
+           defect has been detected";
+      }
+
+      leaf mep-id {
+        type mep-id-type;
+
+        description
+          "The ID of a MEP on which a persistent defect has been detected";
+      }
+      leaf active-defects {
+        type fault-alarm-defect-bits-type;
+        description
+          "The currently active defects on the specific MEP.";
+      }
+    }
+  }
+}
+

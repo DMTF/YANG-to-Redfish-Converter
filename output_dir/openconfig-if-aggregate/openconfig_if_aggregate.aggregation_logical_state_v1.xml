@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
+		<edmx:Include Namespace="Resource.v1_0_0"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/openconfig-interfaces_v1.xml">
+		<edmx:Include Namespace="openconfig-interfaces.v1_0_0" Alias="oc-if"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_if_aggregate.aggregation_logical_state">
+			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
+			<EntityType Name="aggregation_logical_state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for aggregation_logical_state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for aggregation_logical_state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_if_aggregate.aggregation_logical_state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
+			<Annotation Term="OData.Description" String="Operational state data for aggregate interfaces."/>
+			<EntityType Name="aggregation_logical_state" BaseType="openconfig_if_aggregate.aggregation_logical_state.aggregation_logical_state">
+				<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Property Name="lag_speed" Type="RedfishYang.uint32">
+					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" String="uint32"/>
+					<Annotation Term="RedfishYang.units" String="Mbps"/>
+					<Annotation Term="OData.Description" String="Reports effective speed of the aggregate interface, based on speed of active member interfaces."/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="member" Type="Collection(oc_if.base_interface_ref)">
+					<Annotation Term="OData.LongDescription" String="List of the type member."/>
+					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf_list"/>
+					<Annotation Term="RedfishYang.when" String="../../config/lag-type = 'STATIC'">
+						<Annotation Term="OData.Description" String="The simple list of member interfaces is active when the aggregate is statically configured."/>
+					</Annotation>
+					<Annotation Term="RedfishYang.YangType" String="oc-if:base-interface-ref"/>
+					<Annotation Term="OData.Description" String="List of current member interfaces for the aggregate, expressed as references to existing interfaces."/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
+
