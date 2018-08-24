@@ -1,0 +1,676 @@
+<?xml version="1.0" ?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
+		<edmx:Include Namespace="Resource.v1_0_0"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_ip">
+			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
+			<EntityType Name="ietf_ip" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for ietf_ip."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for ietf_ip."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_ip.v1_0_0" Alias="ip">
+			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
+			<Annotation Term="RedfishYang.namespace" String="urn:ietf:params:xml:ns:yang:ietf-ip"/>
+			<Annotation Term="RedfishYang.prefix" String="ip"/>
+			<Annotation Term="RedfishYang.organization" String="IETF NETMOD (NETCONF Data Modeling Language) Working Group"/>
+			<Annotation Term="RedfishYang.contact" String="WG Web:   &lt;http://tools.ietf.org/wg/netmod/&gt; WG List:  &lt;mailto:netmod@ietf.org&gt;  WG Chair: Thomas Nadeau           &lt;mailto:tnadeau@lucidvision.com&gt;  WG Chair: Juergen Schoenwaelder           &lt;mailto:j.schoenwaelder@jacobs-university.de&gt;  Editor:   Martin Bjorklund           &lt;mailto:mbj@tail-f.com&gt;"/>
+			<Annotation Term="OData.Description" String="This module contains a collection of YANG definitions for configuring IP implementations.  Copyright (c) 2014 IETF Trust and the persons identified as authors of the code.  All rights reserved.  Redistribution and use in source and binary forms, with or without modification, is permitted pursuant to, and subject to the license terms contained in, the Simplified BSD License set forth in Section 4.c of the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info).  This version of this YANG module is part of RFC 7277; see the RFC itself for full legal notices."/>
+			<Annotation Term="RedfishYang.revision" String="2014-06-16">
+				<Annotation Term="OData.Description" String="Initial revision."/>
+				<Annotation Term="RedfishYang.reference" String="RFC 7277: A YANG Data Model for IP Management"/>
+			</Annotation>
+			<EnumType Name="ip_address_origin">
+				<Member Name="other">
+					<Annotation Term="OData.Description" String="None of the following."/>
+				</Member>
+				<Member Name="static">
+					<Annotation Term="OData.Description" String="Indicates that the address has been statically configured - for example, using NETCONF or a Command Line Interface."/>
+				</Member>
+				<Member Name="dhcp">
+					<Annotation Term="OData.Description" String="Indicates an address that has been assigned to this system by a DHCP server."/>
+				</Member>
+				<Member Name="link-layer">
+					<Annotation Term="OData.Description" String="Indicates an address created by IPv6 stateless autoconfiguration that embeds a link-layer address in its interface identifier."/>
+				</Member>
+				<Member Name="random">
+					<Annotation Term="OData.Description" String="Indicates an address chosen by the system at  random, e.g., an IPv4 address within 169.254/16, an RFC 4941 temporary address, or an RFC 7217 semantically opaque address."/>
+					<Annotation Term="RedfishYang.reference" String="RFC 4941: Privacy Extensions for Stateless Address           Autoconfiguration in IPv6 RFC 7217: A Method for Generating Semantically Opaque           Interface Identifiers with IPv6 Stateless           Address Autoconfiguration (SLAAC)"/>
+				</Member>
+				<Collection>
+					<Record>
+						<Annotation Term="RedfishYang.enum" String="other"/>
+					</Record>
+					<Record>
+						<Annotation Term="RedfishYang.enum" String="static"/>
+					</Record>
+					<Record>
+						<Annotation Term="RedfishYang.enum" String="dhcp"/>
+					</Record>
+					<Record>
+						<Annotation Term="RedfishYang.enum" String="link-layer"/>
+					</Record>
+					<Record>
+						<Annotation Term="RedfishYang.enum" String="random"/>
+					</Record>
+				</Collection>
+				<Annotation Term="OData.Description" String="The origin of an address."/>
+			</EnumType>
+			<EnumType Name="neighbor_origin">
+				<Member Name="other">
+					<Annotation Term="OData.Description" String="None of the following."/>
+				</Member>
+				<Member Name="static">
+					<Annotation Term="OData.Description" String="Indicates that the mapping has been statically configured - for example, using NETCONF or a Command Line Interface."/>
+				</Member>
+				<Member Name="dynamic">
+					<Annotation Term="OData.Description" String="Indicates that the mapping has been dynamically resolved using, e.g., IPv4 ARP or the IPv6 Neighbor Discovery protocol."/>
+				</Member>
+				<Collection>
+					<Record>
+						<Annotation Term="RedfishYang.enum" String="other"/>
+					</Record>
+					<Record>
+						<Annotation Term="RedfishYang.enum" String="static"/>
+					</Record>
+					<Record>
+						<Annotation Term="RedfishYang.enum" String="dynamic"/>
+					</Record>
+				</Collection>
+				<Annotation Term="OData.Description" String="The origin of a neighbor entry."/>
+			</EnumType>
+			<Collection>
+				<Record>
+					<Annotation Term="RedfishYang.feature" String="ipv4-non-contiguous-netmasks">
+						<Annotation Term="OData.Description" String="Indicates support for configuring non-contiguous subnet masks."/>
+					</Annotation>
+				</Record>
+				<Record>
+					<Annotation Term="RedfishYang.feature" String="ipv6-privacy-autoconf">
+						<Annotation Term="OData.Description" String="Indicates support for Privacy Extensions for Stateless Address Autoconfiguration in IPv6."/>
+						<Annotation Term="RedfishYang.reference" String="RFC 4941: Privacy Extensions for Stateless Address           Autoconfiguration in IPv6"/>
+					</Annotation>
+				</Record>
+			</Collection>
+			<Collection>
+				<Record>
+					<Annotation Term="RedfishYang.augment" String="/if:interfaces/if:interface">
+						<Annotation Term="RedfishYang.description" String="Parameters for configuring IP on interfaces.  If an interface is not capable of running IP, the server must not allow the client to configure these parameters."/>
+						<Collection>
+							<Record>
+								<Annotation Term="RedfishYang.container" String="ipv4">
+									<Annotation Term="RedfishYang.presence" String="Enables IPv4 unless the 'enabled' leaf (which defaults to 'true') is set to 'false'"/>
+									<Annotation Term="RedfishYang.description" String="Parameters for the IPv4 address family."/>
+									<Collection>
+										<Record>
+											<Annotation Term="RedfishYang.list" String="address">
+												<Annotation Term="RedfishYang.key" String="ip"/>
+												<Annotation Term="RedfishYang.description" String="The list of configured IPv4 addresses on the interface."/>
+												<Annotation Term="RedfishYang.leaf" String="ip">
+													<Annotation Term="RedfishYang.type" String="inet:ipv4-address-no-zone"/>
+													<Annotation Term="RedfishYang.description" String="The IPv4 address on the interface."/>
+												</Annotation>
+												<Annotation Term="RedfishYang.choice" String="subnet">
+													<Annotation Term="RedfishYang.mandatory" String="true"/>
+													<Annotation Term="RedfishYang.description" String="The subnet can be specified as a prefix-length, or, if the server supports non-contiguous netmasks, as a netmask."/>
+													<Collection>
+														<Record>
+															<Annotation Term="RedfishYang.case" String="prefix-length">
+																<Annotation Term="RedfishYang.leaf" String="prefix-length">
+																	<Annotation Term="RedfishYang.type" String="uint8">
+																		<Annotation Term="RedfishYang.range" String="0..32"/>
+																	</Annotation>
+																	<Annotation Term="RedfishYang.description" String="The length of the subnet prefix."/>
+																</Annotation>
+															</Annotation>
+														</Record>
+														<Record>
+															<Annotation Term="RedfishYang.case" String="netmask">
+																<Annotation Term="RedfishYang.leaf" String="netmask">
+																	<Annotation Term="RedfishYang.if_feature" String="ipv4-non-contiguous-netmasks"/>
+																	<Annotation Term="RedfishYang.type" String="yang:dotted-quad"/>
+																	<Annotation Term="RedfishYang.description" String="The subnet specified as a netmask."/>
+																</Annotation>
+															</Annotation>
+														</Record>
+													</Collection>
+													<Collection>
+														<Record>
+															<Annotation Term="RedfishYang.leaf" String="prefix-length">
+																<Annotation Term="RedfishYang.type" String="uint8">
+																	<Annotation Term="RedfishYang.range" String="0..32"/>
+																</Annotation>
+																<Annotation Term="RedfishYang.description" String="The length of the subnet prefix."/>
+															</Annotation>
+														</Record>
+														<Record>
+															<Annotation Term="RedfishYang.leaf" String="netmask">
+																<Annotation Term="RedfishYang.if_feature" String="ipv4-non-contiguous-netmasks"/>
+																<Annotation Term="RedfishYang.type" String="yang:dotted-quad"/>
+																<Annotation Term="RedfishYang.description" String="The subnet specified as a netmask."/>
+															</Annotation>
+														</Record>
+													</Collection>
+												</Annotation>
+											</Annotation>
+										</Record>
+										<Record>
+											<Annotation Term="RedfishYang.list" String="neighbor">
+												<Annotation Term="RedfishYang.key" String="ip"/>
+												<Annotation Term="RedfishYang.description" String="A list of mappings from IPv4 addresses to link-layer addresses.  Entries in this list are used as static entries in the ARP Cache."/>
+												<Annotation Term="RedfishYang.reference" String="RFC 826: An Ethernet Address Resolution Protocol"/>
+												<Collection>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="ip">
+															<Annotation Term="RedfishYang.type" String="inet:ipv4-address-no-zone"/>
+															<Annotation Term="RedfishYang.description" String="The IPv4 address of the neighbor node."/>
+														</Annotation>
+													</Record>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="link-layer-address">
+															<Annotation Term="RedfishYang.type" String="yang:phys-address"/>
+															<Annotation Term="RedfishYang.mandatory" String="true"/>
+															<Annotation Term="RedfishYang.description" String="The link-layer address of the neighbor node."/>
+														</Annotation>
+													</Record>
+												</Collection>
+											</Annotation>
+										</Record>
+									</Collection>
+									<Collection>
+										<Record>
+											<Annotation Term="RedfishYang.leaf" String="enabled">
+												<Annotation Term="RedfishYang.type" String="boolean"/>
+												<Annotation Term="RedfishYang.default" String="true"/>
+												<Annotation Term="RedfishYang.description" String="Controls whether IPv4 is enabled or disabled on this interface.  When IPv4 is enabled, this interface is connected to an IPv4 stack, and the interface can send and receive IPv4 packets."/>
+											</Annotation>
+										</Record>
+										<Record>
+											<Annotation Term="RedfishYang.leaf" String="forwarding">
+												<Annotation Term="RedfishYang.type" String="boolean"/>
+												<Annotation Term="RedfishYang.default" String="false"/>
+												<Annotation Term="RedfishYang.description" String="Controls IPv4 packet forwarding of datagrams received by, but not addressed to, this interface.  IPv4 routers forward datagrams.  IPv4 hosts do not (except those source-routed via the host)."/>
+											</Annotation>
+										</Record>
+										<Record>
+											<Annotation Term="RedfishYang.leaf" String="mtu">
+												<Annotation Term="RedfishYang.type" String="uint16">
+													<Annotation Term="RedfishYang.range" String="68..max"/>
+												</Annotation>
+												<Annotation Term="RedfishYang.units" String="octets"/>
+												<Annotation Term="RedfishYang.description" String="The size, in octets, of the largest IPv4 packet that the interface will send and receive.  The server may restrict the allowed values for this leaf, depending on the interface's type.  If this leaf is not configured, the operationally used MTU depends on the interface's type."/>
+												<Annotation Term="RedfishYang.reference" String="RFC 791: Internet Protocol"/>
+											</Annotation>
+										</Record>
+									</Collection>
+								</Annotation>
+							</Record>
+							<Record>
+								<Annotation Term="RedfishYang.container" String="ipv6">
+									<Annotation Term="RedfishYang.presence" String="Enables IPv6 unless the 'enabled' leaf (which defaults to 'true') is set to 'false'"/>
+									<Annotation Term="RedfishYang.description" String="Parameters for the IPv6 address family."/>
+									<Annotation Term="RedfishYang.container" String="autoconf">
+										<Annotation Term="RedfishYang.description" String="Parameters to control the autoconfiguration of IPv6 addresses, as described in RFC 4862."/>
+										<Annotation Term="RedfishYang.reference" String="RFC 4862: IPv6 Stateless Address Autoconfiguration"/>
+										<Collection>
+											<Record>
+												<Annotation Term="RedfishYang.leaf" String="create-global-addresses">
+													<Annotation Term="RedfishYang.type" String="boolean"/>
+													<Annotation Term="RedfishYang.default" String="true"/>
+													<Annotation Term="RedfishYang.description" String="If enabled, the host creates global addresses as described in RFC 4862."/>
+													<Annotation Term="RedfishYang.reference" String="RFC 4862: IPv6 Stateless Address Autoconfiguration           Section 5.5"/>
+												</Annotation>
+											</Record>
+											<Record>
+												<Annotation Term="RedfishYang.leaf" String="create-temporary-addresses">
+													<Annotation Term="RedfishYang.if_feature" String="ipv6-privacy-autoconf"/>
+													<Annotation Term="RedfishYang.type" String="boolean"/>
+													<Annotation Term="RedfishYang.default" String="false"/>
+													<Annotation Term="RedfishYang.description" String="If enabled, the host creates temporary addresses as described in RFC 4941."/>
+													<Annotation Term="RedfishYang.reference" String="RFC 4941: Privacy Extensions for Stateless Address           Autoconfiguration in IPv6"/>
+												</Annotation>
+											</Record>
+											<Record>
+												<Annotation Term="RedfishYang.leaf" String="temporary-valid-lifetime">
+													<Annotation Term="RedfishYang.if_feature" String="ipv6-privacy-autoconf"/>
+													<Annotation Term="RedfishYang.type" String="uint32"/>
+													<Annotation Term="RedfishYang.units" String="seconds"/>
+													<Annotation Term="RedfishYang.default" String="604800"/>
+													<Annotation Term="RedfishYang.description" String="The time period during which the temporary address is valid."/>
+													<Annotation Term="RedfishYang.reference" String="RFC 4941: Privacy Extensions for Stateless Address           Autoconfiguration in IPv6           - TEMP_VALID_LIFETIME"/>
+												</Annotation>
+											</Record>
+											<Record>
+												<Annotation Term="RedfishYang.leaf" String="temporary-preferred-lifetime">
+													<Annotation Term="RedfishYang.if_feature" String="ipv6-privacy-autoconf"/>
+													<Annotation Term="RedfishYang.type" String="uint32"/>
+													<Annotation Term="RedfishYang.units" String="seconds"/>
+													<Annotation Term="RedfishYang.default" String="86400"/>
+													<Annotation Term="RedfishYang.description" String="The time period during which the temporary address is preferred."/>
+													<Annotation Term="RedfishYang.reference" String="RFC 4941: Privacy Extensions for Stateless Address           Autoconfiguration in IPv6           - TEMP_PREFERRED_LIFETIME"/>
+												</Annotation>
+											</Record>
+										</Collection>
+									</Annotation>
+									<Collection>
+										<Record>
+											<Annotation Term="RedfishYang.list" String="address">
+												<Annotation Term="RedfishYang.key" String="ip"/>
+												<Annotation Term="RedfishYang.description" String="The list of configured IPv6 addresses on the interface."/>
+												<Collection>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="ip">
+															<Annotation Term="RedfishYang.type" String="inet:ipv6-address-no-zone"/>
+															<Annotation Term="RedfishYang.description" String="The IPv6 address on the interface."/>
+														</Annotation>
+													</Record>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="prefix-length">
+															<Annotation Term="RedfishYang.type" String="uint8">
+																<Annotation Term="RedfishYang.range" String="0..128"/>
+															</Annotation>
+															<Annotation Term="RedfishYang.mandatory" String="true"/>
+															<Annotation Term="RedfishYang.description" String="The length of the subnet prefix."/>
+														</Annotation>
+													</Record>
+												</Collection>
+											</Annotation>
+										</Record>
+										<Record>
+											<Annotation Term="RedfishYang.list" String="neighbor">
+												<Annotation Term="RedfishYang.key" String="ip"/>
+												<Annotation Term="RedfishYang.description" String="A list of mappings from IPv6 addresses to link-layer addresses.  Entries in this list are used as static entries in the Neighbor Cache."/>
+												<Annotation Term="RedfishYang.reference" String="RFC 4861: Neighbor Discovery for IP version 6 (IPv6)"/>
+												<Collection>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="ip">
+															<Annotation Term="RedfishYang.type" String="inet:ipv6-address-no-zone"/>
+															<Annotation Term="RedfishYang.description" String="The IPv6 address of the neighbor node."/>
+														</Annotation>
+													</Record>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="link-layer-address">
+															<Annotation Term="RedfishYang.type" String="yang:phys-address"/>
+															<Annotation Term="RedfishYang.mandatory" String="true"/>
+															<Annotation Term="RedfishYang.description" String="The link-layer address of the neighbor node."/>
+														</Annotation>
+													</Record>
+												</Collection>
+											</Annotation>
+										</Record>
+									</Collection>
+									<Collection>
+										<Record>
+											<Annotation Term="RedfishYang.leaf" String="enabled">
+												<Annotation Term="RedfishYang.type" String="boolean"/>
+												<Annotation Term="RedfishYang.default" String="true"/>
+												<Annotation Term="RedfishYang.description" String="Controls whether IPv6 is enabled or disabled on this interface.  When IPv6 is enabled, this interface is connected to an IPv6 stack, and the interface can send and receive IPv6 packets."/>
+											</Annotation>
+										</Record>
+										<Record>
+											<Annotation Term="RedfishYang.leaf" String="forwarding">
+												<Annotation Term="RedfishYang.type" String="boolean"/>
+												<Annotation Term="RedfishYang.default" String="false"/>
+												<Annotation Term="RedfishYang.description" String="Controls IPv6 packet forwarding of datagrams received by, but not addressed to, this interface.  IPv6 routers forward datagrams.  IPv6 hosts do not (except those source-routed via the host)."/>
+												<Annotation Term="RedfishYang.reference" String="RFC 4861: Neighbor Discovery for IP version 6 (IPv6)           Section 6.2.1, IsRouter"/>
+											</Annotation>
+										</Record>
+										<Record>
+											<Annotation Term="RedfishYang.leaf" String="mtu">
+												<Annotation Term="RedfishYang.type" String="uint32">
+													<Annotation Term="RedfishYang.range" String="1280..max"/>
+												</Annotation>
+												<Annotation Term="RedfishYang.units" String="octets"/>
+												<Annotation Term="RedfishYang.description" String="The size, in octets, of the largest IPv6 packet that the interface will send and receive.  The server may restrict the allowed values for this leaf, depending on the interface's type.  If this leaf is not configured, the operationally used MTU depends on the interface's type."/>
+												<Annotation Term="RedfishYang.reference" String="RFC 2460: Internet Protocol, Version 6 (IPv6) Specification           Section 5"/>
+											</Annotation>
+										</Record>
+										<Record>
+											<Annotation Term="RedfishYang.leaf" String="dup-addr-detect-transmits">
+												<Annotation Term="RedfishYang.type" String="uint32"/>
+												<Annotation Term="RedfishYang.default" String="1"/>
+												<Annotation Term="RedfishYang.description" String="The number of consecutive Neighbor Solicitation messages sent while performing Duplicate Address Detection on a tentative address.  A value of zero indicates that Duplicate Address Detection is not performed on tentative addresses.  A value of one indicates a single transmission with no follow-up retransmissions."/>
+												<Annotation Term="RedfishYang.reference" String="RFC 4862: IPv6 Stateless Address Autoconfiguration"/>
+											</Annotation>
+										</Record>
+									</Collection>
+								</Annotation>
+							</Record>
+						</Collection>
+					</Annotation>
+				</Record>
+				<Record>
+					<Annotation Term="RedfishYang.augment" String="/if:interfaces-state/if:interface">
+						<Annotation Term="RedfishYang.description" String="Data nodes for the operational state of IP on interfaces."/>
+						<Collection>
+							<Record>
+								<Annotation Term="RedfishYang.container" String="ipv4">
+									<Annotation Term="RedfishYang.presence" String="Present if IPv4 is enabled on this interface"/>
+									<Annotation Term="RedfishYang.config" String="false"/>
+									<Annotation Term="RedfishYang.description" String="Interface-specific parameters for the IPv4 address family."/>
+									<Collection>
+										<Record>
+											<Annotation Term="RedfishYang.list" String="address">
+												<Annotation Term="RedfishYang.key" String="ip"/>
+												<Annotation Term="RedfishYang.description" String="The list of IPv4 addresses on the interface."/>
+												<Annotation Term="RedfishYang.choice" String="subnet">
+													<Annotation Term="RedfishYang.description" String="The subnet can be specified as a prefix-length, or, if the server supports non-contiguous netmasks, as a netmask."/>
+													<Collection>
+														<Record>
+															<Annotation Term="RedfishYang.case" String="prefix-length">
+																<Annotation Term="RedfishYang.leaf" String="prefix-length">
+																	<Annotation Term="RedfishYang.type" String="uint8">
+																		<Annotation Term="RedfishYang.range" String="0..32"/>
+																	</Annotation>
+																	<Annotation Term="RedfishYang.description" String="The length of the subnet prefix."/>
+																</Annotation>
+															</Annotation>
+														</Record>
+														<Record>
+															<Annotation Term="RedfishYang.case" String="netmask">
+																<Annotation Term="RedfishYang.leaf" String="netmask">
+																	<Annotation Term="RedfishYang.if_feature" String="ipv4-non-contiguous-netmasks"/>
+																	<Annotation Term="RedfishYang.type" String="yang:dotted-quad"/>
+																	<Annotation Term="RedfishYang.description" String="The subnet specified as a netmask."/>
+																</Annotation>
+															</Annotation>
+														</Record>
+													</Collection>
+													<Collection>
+														<Record>
+															<Annotation Term="RedfishYang.leaf" String="prefix-length">
+																<Annotation Term="RedfishYang.type" String="uint8">
+																	<Annotation Term="RedfishYang.range" String="0..32"/>
+																</Annotation>
+																<Annotation Term="RedfishYang.description" String="The length of the subnet prefix."/>
+															</Annotation>
+														</Record>
+														<Record>
+															<Annotation Term="RedfishYang.leaf" String="netmask">
+																<Annotation Term="RedfishYang.if_feature" String="ipv4-non-contiguous-netmasks"/>
+																<Annotation Term="RedfishYang.type" String="yang:dotted-quad"/>
+																<Annotation Term="RedfishYang.description" String="The subnet specified as a netmask."/>
+															</Annotation>
+														</Record>
+													</Collection>
+												</Annotation>
+												<Collection>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="ip">
+															<Annotation Term="RedfishYang.type" String="inet:ipv4-address-no-zone"/>
+															<Annotation Term="RedfishYang.description" String="The IPv4 address on the interface."/>
+														</Annotation>
+													</Record>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="origin">
+															<Annotation Term="RedfishYang.type" String="ip-address-origin"/>
+															<Annotation Term="RedfishYang.description" String="The origin of this address."/>
+														</Annotation>
+													</Record>
+												</Collection>
+											</Annotation>
+										</Record>
+										<Record>
+											<Annotation Term="RedfishYang.list" String="neighbor">
+												<Annotation Term="RedfishYang.key" String="ip"/>
+												<Annotation Term="RedfishYang.description" String="A list of mappings from IPv4 addresses to link-layer addresses.  This list represents the ARP Cache."/>
+												<Annotation Term="RedfishYang.reference" String="RFC 826: An Ethernet Address Resolution Protocol"/>
+												<Collection>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="ip">
+															<Annotation Term="RedfishYang.type" String="inet:ipv4-address-no-zone"/>
+															<Annotation Term="RedfishYang.description" String="The IPv4 address of the neighbor node."/>
+														</Annotation>
+													</Record>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="link-layer-address">
+															<Annotation Term="RedfishYang.type" String="yang:phys-address"/>
+															<Annotation Term="RedfishYang.description" String="The link-layer address of the neighbor node."/>
+														</Annotation>
+													</Record>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="origin">
+															<Annotation Term="RedfishYang.type" String="neighbor-origin"/>
+															<Annotation Term="RedfishYang.description" String="The origin of this neighbor entry."/>
+														</Annotation>
+													</Record>
+												</Collection>
+											</Annotation>
+										</Record>
+									</Collection>
+									<Collection>
+										<Record>
+											<Annotation Term="RedfishYang.leaf" String="forwarding">
+												<Annotation Term="RedfishYang.type" String="boolean"/>
+												<Annotation Term="RedfishYang.description" String="Indicates whether IPv4 packet forwarding is enabled or disabled on this interface."/>
+											</Annotation>
+										</Record>
+										<Record>
+											<Annotation Term="RedfishYang.leaf" String="mtu">
+												<Annotation Term="RedfishYang.type" String="uint16">
+													<Annotation Term="RedfishYang.range" String="68..max"/>
+												</Annotation>
+												<Annotation Term="RedfishYang.units" String="octets"/>
+												<Annotation Term="RedfishYang.description" String="The size, in octets, of the largest IPv4 packet that the interface will send and receive."/>
+												<Annotation Term="RedfishYang.reference" String="RFC 791: Internet Protocol"/>
+											</Annotation>
+										</Record>
+									</Collection>
+								</Annotation>
+							</Record>
+							<Record>
+								<Annotation Term="RedfishYang.container" String="ipv6">
+									<Annotation Term="RedfishYang.presence" String="Present if IPv6 is enabled on this interface"/>
+									<Annotation Term="RedfishYang.config" String="false"/>
+									<Annotation Term="RedfishYang.description" String="Parameters for the IPv6 address family."/>
+									<Collection>
+										<Record>
+											<Annotation Term="RedfishYang.list" String="address">
+												<Annotation Term="RedfishYang.key" String="ip"/>
+												<Annotation Term="RedfishYang.description" String="The list of IPv6 addresses on the interface."/>
+												<Collection>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="ip">
+															<Annotation Term="RedfishYang.type" String="inet:ipv6-address-no-zone"/>
+															<Annotation Term="RedfishYang.description" String="The IPv6 address on the interface."/>
+														</Annotation>
+													</Record>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="prefix-length">
+															<Annotation Term="RedfishYang.type" String="uint8">
+																<Annotation Term="RedfishYang.range" String="0..128"/>
+															</Annotation>
+															<Annotation Term="RedfishYang.mandatory" String="true"/>
+															<Annotation Term="RedfishYang.description" String="The length of the subnet prefix."/>
+														</Annotation>
+													</Record>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="origin">
+															<Annotation Term="RedfishYang.type" String="ip-address-origin"/>
+															<Annotation Term="RedfishYang.description" String="The origin of this address."/>
+														</Annotation>
+													</Record>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="status">
+															<Annotation Term="RedfishYang.type" String="enumeration">
+																<Collection>
+																	<Record>
+																		<Annotation Term="RedfishYang.enum" String="preferred">
+																			<Annotation Term="RedfishYang.description" String="This is a valid address that can appear as the destination or source address of a packet."/>
+																		</Annotation>
+																	</Record>
+																	<Record>
+																		<Annotation Term="RedfishYang.enum" String="deprecated">
+																			<Annotation Term="RedfishYang.description" String="This is a valid but deprecated address that should no longer be used as a source address in new communications, but packets addressed to such an address are processed as expected."/>
+																		</Annotation>
+																	</Record>
+																	<Record>
+																		<Annotation Term="RedfishYang.enum" String="invalid">
+																			<Annotation Term="RedfishYang.description" String="This isn't a valid address, and it shouldn't appear as the destination or source address of a packet."/>
+																		</Annotation>
+																	</Record>
+																	<Record>
+																		<Annotation Term="RedfishYang.enum" String="inaccessible">
+																			<Annotation Term="RedfishYang.description" String="The address is not accessible because the interface to which this address is assigned is not operational."/>
+																		</Annotation>
+																	</Record>
+																	<Record>
+																		<Annotation Term="RedfishYang.enum" String="unknown">
+																			<Annotation Term="RedfishYang.description" String="The status cannot be determined for some reason."/>
+																		</Annotation>
+																	</Record>
+																	<Record>
+																		<Annotation Term="RedfishYang.enum" String="tentative">
+																			<Annotation Term="RedfishYang.description" String="The uniqueness of the address on the link is being verified.  Addresses in this state should not be used for general communication and should only be used to determine the uniqueness of the address."/>
+																		</Annotation>
+																	</Record>
+																	<Record>
+																		<Annotation Term="RedfishYang.enum" String="duplicate">
+																			<Annotation Term="RedfishYang.description" String="The address has been determined to be non-unique on the link and so must not be used."/>
+																		</Annotation>
+																	</Record>
+																	<Record>
+																		<Annotation Term="RedfishYang.enum" String="optimistic">
+																			<Annotation Term="RedfishYang.description" String="The address is available for use, subject to restrictions, while its uniqueness on a link is being verified."/>
+																		</Annotation>
+																	</Record>
+																</Collection>
+															</Annotation>
+															<Annotation Term="RedfishYang.description" String="The status of an address.  Most of the states correspond to states from the IPv6 Stateless Address Autoconfiguration protocol."/>
+															<Annotation Term="RedfishYang.reference" String="RFC 4293: Management Information Base for the           Internet Protocol (IP)           - IpAddressStatusTC RFC 4862: IPv6 Stateless Address Autoconfiguration"/>
+														</Annotation>
+													</Record>
+												</Collection>
+											</Annotation>
+										</Record>
+										<Record>
+											<Annotation Term="RedfishYang.list" String="neighbor">
+												<Annotation Term="RedfishYang.key" String="ip"/>
+												<Annotation Term="RedfishYang.description" String="A list of mappings from IPv6 addresses to link-layer addresses.  This list represents the Neighbor Cache."/>
+												<Annotation Term="RedfishYang.reference" String="RFC 4861: Neighbor Discovery for IP version 6 (IPv6)"/>
+												<Collection>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="ip">
+															<Annotation Term="RedfishYang.type" String="inet:ipv6-address-no-zone"/>
+															<Annotation Term="RedfishYang.description" String="The IPv6 address of the neighbor node."/>
+														</Annotation>
+													</Record>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="link-layer-address">
+															<Annotation Term="RedfishYang.type" String="yang:phys-address"/>
+															<Annotation Term="RedfishYang.description" String="The link-layer address of the neighbor node."/>
+														</Annotation>
+													</Record>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="origin">
+															<Annotation Term="RedfishYang.type" String="neighbor-origin"/>
+															<Annotation Term="RedfishYang.description" String="The origin of this neighbor entry."/>
+														</Annotation>
+													</Record>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="is-router">
+															<Annotation Term="RedfishYang.type" String="empty"/>
+															<Annotation Term="RedfishYang.description" String="Indicates that the neighbor node acts as a router."/>
+														</Annotation>
+													</Record>
+													<Record>
+														<Annotation Term="RedfishYang.leaf" String="state">
+															<Annotation Term="RedfishYang.type" String="enumeration">
+																<Collection>
+																	<Record>
+																		<Annotation Term="RedfishYang.enum" String="incomplete">
+																			<Annotation Term="RedfishYang.description" String="Address resolution is in progress, and the link-layer address of the neighbor has not yet been determined."/>
+																		</Annotation>
+																	</Record>
+																	<Record>
+																		<Annotation Term="RedfishYang.enum" String="reachable">
+																			<Annotation Term="RedfishYang.description" String="Roughly speaking, the neighbor is known to have been reachable recently (within tens of seconds ago)."/>
+																		</Annotation>
+																	</Record>
+																	<Record>
+																		<Annotation Term="RedfishYang.enum" String="stale">
+																			<Annotation Term="RedfishYang.description" String="The neighbor is no longer known to be reachable, but until traffic is sent to the neighbor no attempt should be made to verify its reachability."/>
+																		</Annotation>
+																	</Record>
+																	<Record>
+																		<Annotation Term="RedfishYang.enum" String="delay">
+																			<Annotation Term="RedfishYang.description" String="The neighbor is no longer known to be reachable, and traffic has recently been sent to the neighbor. Rather than probe the neighbor immediately, however, delay sending probes for a short while in order to give upper-layer protocols a chance to provide reachability confirmation."/>
+																		</Annotation>
+																	</Record>
+																	<Record>
+																		<Annotation Term="RedfishYang.enum" String="probe">
+																			<Annotation Term="RedfishYang.description" String="The neighbor is no longer known to be reachable, and unicast Neighbor Solicitation probes are being sent to verify reachability."/>
+																		</Annotation>
+																	</Record>
+																</Collection>
+															</Annotation>
+															<Annotation Term="RedfishYang.description" String="The Neighbor Unreachability Detection state of this entry."/>
+															<Annotation Term="RedfishYang.reference" String="RFC 4861: Neighbor Discovery for IP version 6 (IPv6)           Section 7.3.2"/>
+														</Annotation>
+													</Record>
+												</Collection>
+											</Annotation>
+										</Record>
+									</Collection>
+									<Collection>
+										<Record>
+											<Annotation Term="RedfishYang.leaf" String="forwarding">
+												<Annotation Term="RedfishYang.type" String="boolean"/>
+												<Annotation Term="RedfishYang.default" String="false"/>
+												<Annotation Term="RedfishYang.description" String="Indicates whether IPv6 packet forwarding is enabled or disabled on this interface."/>
+												<Annotation Term="RedfishYang.reference" String="RFC 4861: Neighbor Discovery for IP version 6 (IPv6)           Section 6.2.1, IsRouter"/>
+											</Annotation>
+										</Record>
+										<Record>
+											<Annotation Term="RedfishYang.leaf" String="mtu">
+												<Annotation Term="RedfishYang.type" String="uint32">
+													<Annotation Term="RedfishYang.range" String="1280..max"/>
+												</Annotation>
+												<Annotation Term="RedfishYang.units" String="octets"/>
+												<Annotation Term="RedfishYang.description" String="The size, in octets, of the largest IPv6 packet that the interface will send and receive."/>
+												<Annotation Term="RedfishYang.reference" String="RFC 2460: Internet Protocol, Version 6 (IPv6) Specification           Section 5"/>
+											</Annotation>
+										</Record>
+									</Collection>
+								</Annotation>
+							</Record>
+						</Collection>
+					</Annotation>
+				</Record>
+			</Collection>
+			<EntityType Name="ietf_ip" BaseType="ietf_ip.ietf_ip">
+				<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/module"/>
+			</EntityType>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
+

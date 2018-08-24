@@ -68,15 +68,19 @@ def add_list_reference(xml_node, uri, namespace, alias):
     return xml_node
 
 
+def create_Base_Xml():
+    xml_node = Element('edmx:Edmx')
+    xml_node.set('Version', '4.0')
+    xml_node.set('xmlns:edmx', 'http://docs.oasis-open.org/odata/ns/edmx')
+    return xml_node
+
 def add_CSDL_Headers(is_singleton=False):
     """
     Add standard CSDL tags/references which are common across all the CSDL
     XML files.
     :param xml_node:Parent node to which headers must be added.
     """
-    xml_node = Element('edmx:Edmx')
-    xml_node.set('Version', '4.0')
-    xml_node.set('xmlns:edmx', 'http://docs.oasis-open.org/odata/ns/edmx')
+    xml_node = create_Base_Xml()
 
     add_reference(xml_node,
             'http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml',

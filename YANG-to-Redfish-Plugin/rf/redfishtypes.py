@@ -10,29 +10,34 @@ types_mapping = {
     'boolean':           'Edm.Boolean',
     'date_and_time':     'Edm.DateTimeOffset',
     'decimal64':         'Edm.Decimal',
-    'empty':             'RedfishYang.empty', # clause
-    'enumeration':       'Edm.EnumType', # clause
-    'identityref':       'RedfishYang.instance_identifier', # clause
+    'empty':             'RedfishYang.empty',  # clause
+    'enumeration':       'Edm.EnumType',  # clause
+    'identityref':       'RedfishYang.instance_identifier',  # clause
     'int8':              'Edm.Sbyte',
     'int16':             'Edm.Int16',
     'int32':             'Edm.Int32',
     'int64':             'Edm.Int64',
-    'leafref':           'Edm.String', # clause
+    'leafref':           'Edm.String',  # clause
     'string':            'Edm.String',
     'uint8':             'Edm.Byte',
     'uint16':            'RedfishYang.uint16',
     'uint32':            'RedfishYang.uint32',
     'uint64':            'RedfishYang.uint64',
-    'union':             'Edm.Primitive', # clause
-    'anyxml':            'RedfishYang.XmlBlock' # clause
+    'union':             'Edm.Primitive',  # clause
+    'anyxml':            'RedfishYang.XmlBlock',  # clause
+    "counter32": 'Edm.String',
+    "counter64": 'Edm.String',
+    "domain_name": 'Edm.String',
+    "dotted_quad": 'Edm.String',
+    "gauge64": 'Edm.String'
 }
 
 enum_mapping = {
-    'leaf':         'NodeTypes', 
+    'leaf':         'NodeTypes', # also for leaflist, module, all other Nodes
     'yin-element':  'YinElement',
     'status':       'NodeStatus',
     'config':       'ConfigPermission',
-    'mandatory':    'Mandatory' 
+    'mandatory':    'Mandatory'
 }
 
 def get_valid_csdl_identifier(name):
@@ -61,5 +66,5 @@ def get_descriptive_properties_mapping(property_name):
     :param node_type: YANG statment type
     :return The Redfish Node type in appropriate CSDL string format:
     """
-    target_name = get_valid_csdl_identifier(property_name) 
+    target_name = get_valid_csdl_identifier(property_name)
     return 'RedfishYang.' + str(target_name)

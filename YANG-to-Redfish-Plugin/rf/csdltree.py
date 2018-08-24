@@ -15,11 +15,54 @@ from xml.etree.ElementTree import Element, SubElement
 
 logger = None
 current_xml_top = []
-
+all_types_created = {}
 
 def setLogger(mylogger):
     global logger
     logger = mylogger
+
+
+def createExtensionsXML(name, types):
+    xml_node = xml_convenience.create_Base_Xml()
+
+    xml_convenience.add_reference(xml_node,
+                                  'http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml',
+                                  'Org.OData.Core.V1', 'OData')
+
+    extension_data_services_node = SubElement(
+        xml_node, 'edmx:DataServices')
+    extension_schema_node = SubElement(extension_data_services_node, 'Schema')
+    extension_schema_node.set("xmlns", "http://docs.oasis-open.org/odata/ns/edm")
+    extension_schema_node.set("Namespace", name + 'Extensions.v1_0_0')
+
+    xml_convenience.add_annotation(extension_schema_node, {"Term": "Redfish.OwningEntity", "String": "DMTF"})
+    xml_convenience.add_annotation(extension_schema_node, {"Term": "OData.LongDescription", "String": "The CSDL Terms, Type Definitions, and Enumerations defined in this schema section shall be interpreted as defined in RFC6020."})
+
+    extension_target = SubElement(extension_schema_node, "Term")
+    extension_target.set('Name', "YangType")
+    extension_target.set('Type', name + 'Extensions.v1_0_0.YangType')
+
+    xml_convenience.add_annotation(extension_target,
+                                   {"Term": "OData.Description",
+                                    "String": "A extension of " + name + " resource instances."
+                                    })
+
+    extension_target = SubElement(extension_schema_node, "EnumType")
+
+    combinedtypes = {}
+    combinedtypes.update(redfishtypes.types_mapping)
+    combinedtypes.update(types)
+
+    for item in list(sorted(redfishtypes.types_mapping.keys())) + list(sorted(types.keys())):
+        member_node = SubElement(extension_target, 'Member')
+        member_node.set('Name', item)
+        extension_term = SubElement(extension_schema_node, "Term")
+        extension_term.set('Name', item)
+        extension_term.set('Type', combinedtypes[item])
+
+
+    return xml_node
+
 
 
 
@@ -44,8 +87,8 @@ def createCollectionXML(name, prefix=''):
     collection_target.set('Name', collection_name.split('.')[-1])
     collection_target.set('BaseType', "Resource.v1_0_0.ResourceCollection")
 
-    xml_convenience.add_annotation(collection_target, {"Term": "OData.Description", 
-        "String": "A Collection of " + name + " resource instances." 
+    xml_convenience.add_annotation(collection_target, {"Term": "OData.Description",
+        "String": "A Collection of " + name + " resource instances."
         })
     xml_convenience.add_collection_annotation(collection_target, {"Term":
         "Capabilities.InsertRestrictions"}, {"Insertable": "false"})
@@ -55,7 +98,7 @@ def createCollectionXML(name, prefix=''):
         "Capabilities.DeleteRestrictions"}, {"Deletable": "false"})
 
     nav_prop = SubElement(collection_target, 'NavigationProperty')
-    nav_prop.set('Name', 'Members') 
+    nav_prop.set('Name', 'Members')
     listname = name.split('.')[-1]
     # should this be without the namespace at all (errata)
     nav_prop.set('Type', 'Collection(' + listname + '.' + listname + ')')
@@ -145,7 +188,7 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
         handlers.collectAnnotations(schema_node)
         handlers.collectAnnotations(entity_node)
         handlers.collectAnnotations(main_node)
-        
+
 
         if seg_type in ['module']:
             # what is this in particular (errata)
@@ -153,7 +196,7 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
 
         if seg_type in ['container']:
             prefix = prefix if prefix is not None else ""
-            
+
         if seg_type in ['list']:
             prefix = prefix if prefix is not None else ""
 
@@ -166,7 +209,7 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
             list_of_xml.append(xml_content)
 
         filename = prefix + filename
-        
+
         schema_node.append(entity_node)
         main_node.remove(data_services_node)
         main_node.append(data_services_node)
@@ -177,11 +220,19 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
 
         current_xml_top.pop()
 
+        if len(current_xml_top) == 0:
+            get_item = createExtensionsXML(csdlname, all_types_created)
+            xml_content = XMLContent()
+            xml_content.set_filename(csdlname + 'Extensions_v1.xml')
+            xml_content.set_xml(get_item)
+            print(all_types_created)
+            list_of_xml.append(xml_content)
+
         return main_node
 
     if seg_type in ['leaf', 'leaf-list', 'notification', 'anyxml']:
         content = handlers.collectChildren(yang_item)
-        
+
         csdlname = handlers.get_valid_csdl_identifier(name)
         prop_node = Element("Property")
         prop_node.set('Name', handlers.get_valid_csdl_identifier(name))
@@ -201,9 +252,9 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
         if seg_type == 'notification':
             prop_node = Element("EntityType")
             prop_node.set('Name', handlers.get_valid_csdl_identifier(name))
-            prop_node.set('BaseType', 'Resource.v1_0_0.Resource') 
+            prop_node.set('BaseType', 'Resource.v1_0_0.Resource')
             parent_entity = prop_node
-        
+
 
         handlers.handle_generic_node('leaf', seg_type, prop_node)
 
@@ -249,7 +300,7 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
             if item.keyword == "prefix":
                 prefix = item.arg
             if item.keyword == "revision-date":
-                date = item.arg  
+                date = item.arg
         toplevelimports[prefix if prefix not in [None, ''] else import_name] = import_name
 
     elif yang_keyword in ['typedef']:
@@ -257,6 +308,11 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
         if result is not None:
             type_name, type_node = result
             topleveltypes[type_name] = type_node
+            if type_name not in all_types_created:
+                if type_node.tag == 'EnumType':
+                    all_types_created[type_name] = 'Edm.String'
+                else:
+                    all_types_created[type_name] = type_node.get('UnderlyingType')
 
     elif yang_keyword in ['type']:
         annotation = handlers.handle_type(yang_item, target, target_parent, target_entity, imports=toplevelimports, types=topleveltypes)
