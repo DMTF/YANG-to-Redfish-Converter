@@ -15,8 +15,8 @@
 	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
 		<edmx:Include Namespace="Resource.v1_0_0"/>
 	</edmx:Reference>
-	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf-yang-types_v1.xml">
-		<edmx:Include Namespace="ietf-yang-types.v1_0_0" Alias="yang"/>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_yang_types_v1.xml">
+		<edmx:Include Namespace="ietf_yang_types.v1_0_0" Alias="yang"/>
 	</edmx:Reference>
 	<edmx:DataServices>
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces_state.interface.ipv6.neighbor">
@@ -83,34 +83,34 @@
 				<Annotation Term="RedfishYang.reference" String="RFC 4861: Neighbor Discovery for IP version 6 (IPv6)           Section 7.3.2"/>
 			</EnumType>
 			<EntityType Name="neighbor" BaseType="ietf_interfaces.interfaces_state.interface.ipv6.neighbor.neighbor">
-				<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
 				<Property Name="ip" Type="inet.ipv6_address_no_zone">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="inet:ipv6-address-no-zone"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="inet.YangType" EnumMember="inet.YangTypes/ipv6_address_no_zone"/>
 					<Annotation Term="OData.Description" String="The IPv6 address of the neighbor node."/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="link_layer_address" Type="yang.phys_address">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:phys-address"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/phys_address"/>
 					<Annotation Term="OData.Description" String="The link-layer address of the neighbor node."/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="origin" Type="RedfishYang.neighbor_origin">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="neighbor-origin"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/neighbor_origin"/>
 					<Annotation Term="OData.Description" String="The origin of this neighbor entry."/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="is_router" Type="RedfishYang.empty">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="empty"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/empty"/>
 					<Annotation Term="OData.Description" String="Indicates that the neighbor node acts as a router."/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="state" Type="ietf_interfaces.interfaces_state.interface.ipv6.neighbor.v1_0_0.state">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="enumeration"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/enumeration"/>
 					<Annotation Term="OData.Description" String="The Neighbor Unreachability Detection state of this entry."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 4861: Neighbor Discovery for IP version 6 (IPv6)           Section 7.3.2"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>

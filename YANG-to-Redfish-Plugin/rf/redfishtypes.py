@@ -32,13 +32,18 @@ types_mapping = {
     "gauge64": 'Edm.String'
 }
 
-enum_mapping = {
+enum_mapping_left = {
+    'leaf':         'NodeType' # also for leaflist, module, all other Nodes
+}
+
+enum_mapping_right = {
     'leaf':         'NodeTypes', # also for leaflist, module, all other Nodes
     'yin-element':  'YinElement',
     'status':       'NodeStatus',
     'config':       'ConfigPermission',
     'mandatory':    'Mandatory'
 }
+
 
 def get_valid_csdl_identifier(name):
     """
@@ -57,8 +62,9 @@ def get_annotation_enum(node_type, enum_val):
     :param node_type: YANG statment type
     :return The Redfish Node type in appropriate CSDL string format:
     """
-    enum_name = 'RedfishYang.{}'.format(enum_mapping.get(node_type, get_valid_csdl_identifier(node_type)))
-    return enum_name, '{}/{}'.format(enum_name, get_valid_csdl_identifier(enum_val))
+    enum_name_left = 'RedfishYang.{}'.format(enum_mapping_left.get(node_type, get_valid_csdl_identifier(node_type)))
+    enum_name_right = 'RedfishYang.{}'.format(enum_mapping_right.get(node_type, get_valid_csdl_identifier(node_type)))
+    return enum_name_left, '{}/{}'.format(enum_name_right, get_valid_csdl_identifier(enum_val))
 
 def get_descriptive_properties_mapping(property_name):
     """

@@ -43,10 +43,10 @@
 		</Schema>
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces_state.v1_0_0">
 			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
-			<Annotation Term="RedfishYang.ConfigPermission" EnumMember="RedfishYang.ConfigPermission/false"/>
+			<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
 			<Annotation Term="OData.Description" String="Data nodes for the operational state of interfaces."/>
 			<EntityType Name="interfaces_state" BaseType="ietf_interfaces.interfaces_state.interfaces_state">
-				<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
 				<NavigationProperty Name="interfaceCollection" Type="interfaceCollection.interfaceCollection" ContainsTarget="true">
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
 					<Annotation Term="OData.Description" String="Navigation property that points to a resource of interfaceCollection."/>

@@ -15,8 +15,11 @@
 	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
 		<edmx:Include Namespace="Resource.v1_0_0"/>
 	</edmx:Reference>
-	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf-yang-types_v1.xml">
-		<edmx:Include Namespace="ietf-yang-types.v1_0_0" Alias="yang"/>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_yang_types_v1.xml">
+		<edmx:Include Namespace="ietf_yang_types.v1_0_0" Alias="yang"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf-interfaces_v1.xml">
+		<edmx:Include Namespace="ietf-interfaces.v1_0_0" Alias="if"/>
 	</edmx:Reference>
 	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_interfaces.interfaces_state.interface.statistics_v1.xml">
 		<edmx:Include Namespace="ietf_interfaces.interfaces_state.interface.statistics" Alias="statistics"/>
@@ -79,7 +82,7 @@
 					</Record>
 				</Collection>
 				<Annotation Term="RedfishYang.if_feature" String="if-mib"/>
-				<Annotation Term="RedfishYang.Mandatory" EnumMember="RedfishYang.Mandatory/true"/>
+				<Annotation Term="RedfishYang.mandatory" EnumMember="RedfishYang.Mandatory/true"/>
 				<Annotation Term="OData.Description" String="The desired state of the interface.  This leaf has the same read semantics as ifAdminStatus."/>
 				<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifAdminStatus"/>
 			</EnumType>
@@ -135,96 +138,90 @@
 						<Annotation Term="RedfishYang.enum" String="lower-layer-down"/>
 					</Record>
 				</Collection>
-				<Annotation Term="RedfishYang.Mandatory" EnumMember="RedfishYang.Mandatory/true"/>
+				<Annotation Term="RedfishYang.mandatory" EnumMember="RedfishYang.Mandatory/true"/>
 				<Annotation Term="OData.Description" String="The current operational state of the interface. This leaf has the same semantics as ifOperStatus."/>
 				<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifOperStatus"/>
 			</EnumType>
-			<TypeDefinition Name="interface_state_ref" UnderlyingType="Edm.String">
-				<Annotation Term="OData.Description" String="This type is used by data models that need to reference the operationally present interfaces."/>
-				<Annotation Term="RedfishYang.YangType" String="leafref">
-					<Annotation Term="RedfishYang.path" String="/if:interfaces-state/if:interface/if:name"/>
-				</Annotation>
-			</TypeDefinition>
 			<EntityType Name="interface" BaseType="ietf_interfaces.interfaces_state.interface.interface">
-				<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
 				<Property Name="name" Type="Edm.String">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="string"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
 					<Annotation Term="OData.Description" String="The name of the interface.  A server implementation MAY map this leaf to the ifName MIB object.  Such an implementation needs to use some mechanism to handle the differences in size and characters allowed between this leaf and ifName.  The definition of such a mechanism is outside the scope of this document."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifName"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="type" Type="RedfishYang.instance_identifier">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="identityref">
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref">
 						<Annotation Term="RedfishYang.base" String="interface-type"/>
 					</Annotation>
-					<Annotation Term="RedfishYang.Mandatory" EnumMember="RedfishYang.Mandatory/true"/>
+					<Annotation Term="RedfishYang.mandatory" EnumMember="RedfishYang.Mandatory/true"/>
 					<Annotation Term="OData.Description" String="The type of the interface."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifType"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="admin_status" Type="ietf_interfaces.interfaces_state.interface.v1_0_0.admin_status">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
 					<Annotation Term="RedfishYang.if_feature" String="if-mib"/>
-					<Annotation Term="RedfishYang.YangType" String="enumeration"/>
-					<Annotation Term="RedfishYang.Mandatory" EnumMember="RedfishYang.Mandatory/true"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/enumeration"/>
+					<Annotation Term="RedfishYang.mandatory" EnumMember="RedfishYang.Mandatory/true"/>
 					<Annotation Term="OData.Description" String="The desired state of the interface.  This leaf has the same read semantics as ifAdminStatus."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifAdminStatus"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="oper_status" Type="ietf_interfaces.interfaces_state.interface.v1_0_0.oper_status">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="enumeration"/>
-					<Annotation Term="RedfishYang.Mandatory" EnumMember="RedfishYang.Mandatory/true"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/enumeration"/>
+					<Annotation Term="RedfishYang.mandatory" EnumMember="RedfishYang.Mandatory/true"/>
 					<Annotation Term="OData.Description" String="The current operational state of the interface. This leaf has the same semantics as ifOperStatus."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifOperStatus"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="last_change" Type="yang.date_and_time">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:date-and-time"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/date_and_time"/>
 					<Annotation Term="OData.Description" String="The time the interface entered its current operational state.  If the current state was entered prior to the last re-initialization of the local network management subsystem, then this node is not present."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifLastChange"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="if_index" Type="Edm.Int32">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
 					<Annotation Term="RedfishYang.if_feature" String="if-mib"/>
-					<Annotation Term="RedfishYang.YangType" String="int32">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/int32">
 						<Annotation Term="RedfishYang.range" String="1..2147483647"/>
 					</Annotation>
-					<Annotation Term="RedfishYang.Mandatory" EnumMember="RedfishYang.Mandatory/true"/>
+					<Annotation Term="RedfishYang.mandatory" EnumMember="RedfishYang.Mandatory/true"/>
 					<Annotation Term="OData.Description" String="The ifIndex value for the ifEntry represented by this interface."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifIndex"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="phys_address" Type="yang.phys_address">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:phys-address"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/phys_address"/>
 					<Annotation Term="OData.Description" String="The interface's address at its protocol sub-layer.  For example, for an 802.x interface, this object normally contains a Media Access Control (MAC) address.  The interface's media-specific modules must define the bit and byte ordering and the format of the value of this object.  For interfaces that do not have such an address (e.g., a serial line), this node is not present."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifPhysAddress"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
-				<Property Name="higher_layer_if" Type="Collection(ietf_interfaces.interfaces_state.interface.v1_0_0.interface_state_ref)">
+				<Property Name="higher_layer_if" Type="Collection(if.interface_state_ref)">
 					<Annotation Term="OData.LongDescription" String="List of the type higher_layer_if."/>
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf_list"/>
-					<Annotation Term="RedfishYang.YangType" String="interface-state-ref"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf_list"/>
+					<Annotation Term="if.YangType" EnumMember="if.YangTypes/interface_state_ref"/>
 					<Annotation Term="OData.Description" String="A list of references to interfaces layered on top of this interface."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifStackTable"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
-				<Property Name="lower_layer_if" Type="Collection(ietf_interfaces.interfaces_state.interface.v1_0_0.interface_state_ref)">
+				<Property Name="lower_layer_if" Type="Collection(if.interface_state_ref)">
 					<Annotation Term="OData.LongDescription" String="List of the type lower_layer_if."/>
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf_list"/>
-					<Annotation Term="RedfishYang.YangType" String="interface-state-ref"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf_list"/>
+					<Annotation Term="if.YangType" EnumMember="if.YangTypes/interface_state_ref"/>
 					<Annotation Term="OData.Description" String="A list of references to interfaces layered underneath this interface."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifStackTable"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="speed" Type="yang.gauge64">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:gauge64"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/gauge64"/>
 					<Annotation Term="RedfishYang.units" String="bits/second"/>
 					<Annotation Term="OData.Description" String="An estimate of the interface's current bandwidth in bits per second.  For interfaces that do not vary in bandwidth or for those where no accurate estimation can be made, this node should contain the nominal bandwidth. For interfaces that have no concept of bandwidth, this node is not present."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB -           ifSpeed, ifHighSpeed"/>

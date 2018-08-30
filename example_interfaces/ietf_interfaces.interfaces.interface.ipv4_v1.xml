@@ -49,24 +49,24 @@
 			<Annotation Term="RedfishYang.presence" String="Enables IPv4 unless the 'enabled' leaf (which defaults to 'true') is set to 'false'"/>
 			<Annotation Term="OData.Description" String="Parameters for the IPv4 address family."/>
 			<EntityType Name="ipv4" BaseType="ietf_interfaces.interfaces.interface.ipv4.ipv4">
-				<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
 				<Property Name="enabled" Type="Edm.Boolean" DefaultValue="true">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="boolean"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
 					<Annotation Term="RedfishYang.default" String="true"/>
 					<Annotation Term="OData.Description" String="Controls whether IPv4 is enabled or disabled on this interface.  When IPv4 is enabled, this interface is connected to an IPv4 stack, and the interface can send and receive IPv4 packets."/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="forwarding" Type="Edm.Boolean" DefaultValue="false">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="boolean"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
 					<Annotation Term="RedfishYang.default" String="false"/>
 					<Annotation Term="OData.Description" String="Controls IPv4 packet forwarding of datagrams received by, but not addressed to, this interface.  IPv4 routers forward datagrams.  IPv4 hosts do not (except those source-routed via the host)."/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="mtu" Type="RedfishYang.uint16">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="uint16">
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint16">
 						<Annotation Term="RedfishYang.range" String="68..max"/>
 					</Annotation>
 					<Annotation Term="RedfishYang.units" String="octets"/>

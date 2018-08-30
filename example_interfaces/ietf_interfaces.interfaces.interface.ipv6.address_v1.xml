@@ -43,19 +43,19 @@
 			<Annotation Term="RedfishYang.key" String="ip"/>
 			<Annotation Term="OData.Description" String="The list of configured IPv6 addresses on the interface."/>
 			<EntityType Name="address" BaseType="ietf_interfaces.interfaces.interface.ipv6.address.address">
-				<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
 				<Property Name="ip" Type="inet.ipv6_address_no_zone">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="inet:ipv6-address-no-zone"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="inet.YangType" EnumMember="inet.YangTypes/ipv6_address_no_zone"/>
 					<Annotation Term="OData.Description" String="The IPv6 address on the interface."/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="prefix_length" Type="Edm.Byte">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="uint8">
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint8">
 						<Annotation Term="RedfishYang.range" String="0..128"/>
 					</Annotation>
-					<Annotation Term="RedfishYang.Mandatory" EnumMember="RedfishYang.Mandatory/true"/>
+					<Annotation Term="RedfishYang.mandatory" EnumMember="RedfishYang.Mandatory/true"/>
 					<Annotation Term="OData.Description" String="The length of the subnet prefix."/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>

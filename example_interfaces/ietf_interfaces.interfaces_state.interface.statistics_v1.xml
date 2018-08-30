@@ -15,8 +15,8 @@
 	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
 		<edmx:Include Namespace="Resource.v1_0_0"/>
 	</edmx:Reference>
-	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf-yang-types_v1.xml">
-		<edmx:Include Namespace="ietf-yang-types.v1_0_0" Alias="yang"/>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_yang_types_v1.xml">
+		<edmx:Include Namespace="ietf_yang_types.v1_0_0" Alias="yang"/>
 	</edmx:Reference>
 	<edmx:DataServices>
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces_state.interface.statistics">
@@ -45,101 +45,101 @@
 			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
 			<Annotation Term="OData.Description" String="A collection of interface-related statistics objects."/>
 			<EntityType Name="statistics" BaseType="ietf_interfaces.interfaces_state.interface.statistics.statistics">
-				<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
 				<Property Name="discontinuity_time" Type="yang.date_and_time">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:date-and-time"/>
-					<Annotation Term="RedfishYang.Mandatory" EnumMember="RedfishYang.Mandatory/true"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/date_and_time"/>
+					<Annotation Term="RedfishYang.mandatory" EnumMember="RedfishYang.Mandatory/true"/>
 					<Annotation Term="OData.Description" String="The time on the most recent occasion at which any one or more of this interface's counters suffered a discontinuity.  If no such discontinuities have occurred since the last re-initialization of the local management subsystem, then this node contains the time the local management subsystem re-initialized itself."/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="in_octets" Type="yang.counter64">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:counter64"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/counter64"/>
 					<Annotation Term="OData.Description" String="The total number of octets received on the interface, including framing characters.  Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of 'discontinuity-time'."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifHCInOctets"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="in_unicast_pkts" Type="yang.counter64">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:counter64"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/counter64"/>
 					<Annotation Term="OData.Description" String="The number of packets, delivered by this sub-layer to a higher (sub-)layer, that were not addressed to a multicast or broadcast address at this sub-layer.  Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of 'discontinuity-time'."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifHCInUcastPkts"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="in_broadcast_pkts" Type="yang.counter64">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:counter64"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/counter64"/>
 					<Annotation Term="OData.Description" String="The number of packets, delivered by this sub-layer to a higher (sub-)layer, that were addressed to a broadcast address at this sub-layer.  Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of 'discontinuity-time'."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB -           ifHCInBroadcastPkts"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="in_multicast_pkts" Type="yang.counter64">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:counter64"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/counter64"/>
 					<Annotation Term="OData.Description" String="The number of packets, delivered by this sub-layer to a higher (sub-)layer, that were addressed to a multicast address at this sub-layer.  For a MAC-layer protocol, this includes both Group and Functional addresses.  Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of 'discontinuity-time'."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB -           ifHCInMulticastPkts"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="in_discards" Type="yang.counter32">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:counter32"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/counter32"/>
 					<Annotation Term="OData.Description" String="The number of inbound packets that were chosen to be discarded even though no errors had been detected to prevent their being deliverable to a higher-layer protocol.  One possible reason for discarding such a packet could be to free up buffer space.  Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of 'discontinuity-time'."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifInDiscards"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="in_errors" Type="yang.counter32">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:counter32"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/counter32"/>
 					<Annotation Term="OData.Description" String="For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.  For character- oriented or fixed-length interfaces, the number of inbound transmission units that contained errors preventing them from being deliverable to a higher-layer protocol.  Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of 'discontinuity-time'."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifInErrors"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="in_unknown_protos" Type="yang.counter32">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:counter32"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/counter32"/>
 					<Annotation Term="OData.Description" String="For packet-oriented interfaces, the number of packets received via the interface that were discarded because of an unknown or unsupported protocol.  For character-oriented or fixed-length interfaces that support protocol multiplexing, the number of transmission units received via the interface that were discarded because of an unknown or unsupported protocol. For any interface that does not support protocol multiplexing, this counter is not present.  Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of 'discontinuity-time'."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifInUnknownProtos"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="out_octets" Type="yang.counter64">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:counter64"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/counter64"/>
 					<Annotation Term="OData.Description" String="The total number of octets transmitted out of the interface, including framing characters.  Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of 'discontinuity-time'."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifHCOutOctets"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="out_unicast_pkts" Type="yang.counter64">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:counter64"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/counter64"/>
 					<Annotation Term="OData.Description" String="The total number of packets that higher-level protocols requested be transmitted, and that were not addressed to a multicast or broadcast address at this sub-layer, including those that were discarded or not sent.  Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of 'discontinuity-time'."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifHCOutUcastPkts"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="out_broadcast_pkts" Type="yang.counter64">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:counter64"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/counter64"/>
 					<Annotation Term="OData.Description" String="The total number of packets that higher-level protocols requested be transmitted, and that were addressed to a broadcast address at this sub-layer, including those that were discarded or not sent.  Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of 'discontinuity-time'."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB -           ifHCOutBroadcastPkts"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="out_multicast_pkts" Type="yang.counter64">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:counter64"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/counter64"/>
 					<Annotation Term="OData.Description" String="The total number of packets that higher-level protocols requested be transmitted, and that were addressed to a multicast address at this sub-layer, including those that were discarded or not sent.  For a MAC-layer protocol, this includes both Group and Functional addresses.  Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of 'discontinuity-time'."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB -           ifHCOutMulticastPkts"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="out_discards" Type="yang.counter32">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:counter32"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/counter32"/>
 					<Annotation Term="OData.Description" String="The number of outbound packets that were chosen to be discarded even though no errors had been detected to prevent their being transmitted.  One possible reason for discarding such a packet could be to free up buffer space.  Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of 'discontinuity-time'."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifOutDiscards"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="out_errors" Type="yang.counter32">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="yang:counter32"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/counter32"/>
 					<Annotation Term="OData.Description" String="For packet-oriented interfaces, the number of outbound packets that could not be transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units that could not be transmitted because of errors.  Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of 'discontinuity-time'."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifOutErrors"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>

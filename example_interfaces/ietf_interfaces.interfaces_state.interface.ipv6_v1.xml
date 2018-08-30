@@ -47,21 +47,21 @@
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces_state.interface.ipv6.v1_0_0">
 			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
 			<Annotation Term="RedfishYang.presence" String="Present if IPv6 is enabled on this interface"/>
-			<Annotation Term="RedfishYang.ConfigPermission" EnumMember="RedfishYang.ConfigPermission/false"/>
+			<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
 			<Annotation Term="OData.Description" String="Parameters for the IPv6 address family."/>
 			<EntityType Name="ipv6" BaseType="ietf_interfaces.interfaces_state.interface.ipv6.ipv6">
-				<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
 				<Property Name="forwarding" Type="Edm.Boolean" DefaultValue="false">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="boolean"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
 					<Annotation Term="RedfishYang.default" String="false"/>
 					<Annotation Term="OData.Description" String="Indicates whether IPv6 packet forwarding is enabled or disabled on this interface."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 4861: Neighbor Discovery for IP version 6 (IPv6)           Section 6.2.1, IsRouter"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="mtu" Type="RedfishYang.uint32">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="uint32">
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint32">
 						<Annotation Term="RedfishYang.range" String="1280..max"/>
 					</Annotation>
 					<Annotation Term="RedfishYang.units" String="octets"/>

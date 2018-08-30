@@ -45,7 +45,7 @@
 			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
 			<Annotation Term="OData.Description" String="Interface configuration parameters."/>
 			<EntityType Name="interfaces" BaseType="ietf_interfaces.interfaces.interfaces">
-				<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
 				<NavigationProperty Name="interfaceCollection" Type="interfaceCollection.interfaceCollection" ContainsTarget="true">
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
 					<Annotation Term="OData.Description" String="Navigation property that points to a resource of interfaceCollection."/>

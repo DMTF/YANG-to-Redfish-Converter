@@ -4,6 +4,7 @@
 
 from xml.etree.ElementTree import Element, SubElement, Comment, tostring
 
+
 def add_import(xml_node, import_value, alias, namespace=None):
     """
     Add import stament node into XML.
@@ -17,9 +18,9 @@ def add_import(xml_node, import_value, alias, namespace=None):
             continue
         uri_old = ref.attrib.get('Uri')
         if uri_old == uri:
-            return
+            return None
     namespace = import_value if not namespace else namespace
-    add_reference(xml_node, uri, namespace, alias)
+    return add_reference(xml_node, uri, namespace, alias)
 
 
 def add_reference(xml_node, uri, namespace, alias=None):

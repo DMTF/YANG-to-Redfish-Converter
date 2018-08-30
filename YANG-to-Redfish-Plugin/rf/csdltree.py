@@ -22,25 +22,29 @@ def setLogger(mylogger):
     logger = mylogger
 
 
-def createExtensionsXML(name, types):
-    xml_node = xml_convenience.create_Base_Xml()
+def createExtensionsXML(name, types, xml_node = None):
+    if xml_node is None:
+        xml_node = xml_convenience.create_Base_Xml()
 
-    xml_convenience.add_reference(xml_node,
-                                  'http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml',
-                                  'Org.OData.Core.V1', 'OData')
+        xml_convenience.add_reference(xml_node,
+                                      'http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml',
+                                      'Org.OData.Core.V1', 'OData')
 
-    extension_data_services_node = SubElement(
-        xml_node, 'edmx:DataServices')
-    extension_schema_node = SubElement(extension_data_services_node, 'Schema')
-    extension_schema_node.set("xmlns", "http://docs.oasis-open.org/odata/ns/edm")
-    extension_schema_node.set("Namespace", name + 'Extensions.v1_0_0')
+        extension_data_services_node = SubElement(
+            xml_node, 'edmx:DataServices')
+        extension_schema_node = SubElement(extension_data_services_node, 'Schema')
+        extension_schema_node.set("xmlns", "http://docs.oasis-open.org/odata/ns/edm")
+        extension_schema_node.set("Namespace", name + 'Extensions.v1_0_0')
 
-    xml_convenience.add_annotation(extension_schema_node, {"Term": "Redfish.OwningEntity", "String": "DMTF"})
-    xml_convenience.add_annotation(extension_schema_node, {"Term": "OData.LongDescription", "String": "The CSDL Terms, Type Definitions, and Enumerations defined in this schema section shall be interpreted as defined in RFC6020."})
+        xml_convenience.add_annotation(extension_schema_node, {"Term": "Redfish.OwningEntity", "String": "DMTF"})
+        xml_convenience.add_annotation(extension_schema_node, {"Term": "OData.LongDescription", "String": "The CSDL Terms, Type Definitions, and Enumerations defined in this schema section shall be interpreted as defined in RFC6020."})
+    else:
+        extension_schema_node = xml_node
+
 
     extension_target = SubElement(extension_schema_node, "Term")
     extension_target.set('Name', "YangType")
-    extension_target.set('Type', name + 'Extensions.v1_0_0.YangType')
+    extension_target.set('Type', name + '.v1_0_0.YangTypes')
 
     xml_convenience.add_annotation(extension_target,
                                    {"Term": "OData.Description",
@@ -48,18 +52,18 @@ def createExtensionsXML(name, types):
                                     })
 
     extension_target = SubElement(extension_schema_node, "EnumType")
+    extension_target.set('Name', 'YangTypes')
 
     combinedtypes = {}
-    combinedtypes.update(redfishtypes.types_mapping)
     combinedtypes.update(types)
 
-    for item in list(sorted(redfishtypes.types_mapping.keys())) + list(sorted(types.keys())):
+    for item in list(sorted(types.keys())):
+        og_item, item = item, handlers.get_valid_csdl_identifier(item)
         member_node = SubElement(extension_target, 'Member')
         member_node.set('Name', item)
         extension_term = SubElement(extension_schema_node, "Term")
         extension_term.set('Name', item)
-        extension_term.set('Type', combinedtypes[item])
-
+        extension_term.set('Type', combinedtypes[og_item])
 
     return xml_node
 
@@ -160,10 +164,12 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
     seg_type = yang_item.keyword
     yang_keyword = seg_type
     name = yang_item.arg
-    if topleveltypes == None:
+    if topleveltypes is None:
         topleveltypes = dict()
-    if toplevelimports == None:
+        print('created new types???')
+    if toplevelimports is None:
         toplevelimports = dict()
+        print('created new imports???')
 
     if seg_type in ['module','submodule', 'container', 'list', 'grouping']:
         csdlname = handlers.get_valid_csdl_identifier(name)
@@ -181,7 +187,14 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
 
         content = handlers.collectChildren(yang_item)
 
-        current_xml_top.append(main_node)
+        current_xml_top.append((name, main_node))
+
+        prefix_import = name
+        for item in [tag for tag in content if tag.keyword == 'prefix']:
+            prefix_import = item.arg
+        toplevelimports[prefix_import] = name
+        if seg_type in ['module', 'submodule']:
+            toplevelimports['module'.upper()] = prefix_import
 
         for item in content:
             build_tree_repeat(item, schema_node, entity_node, main_node, list_of_xml, logger, prefix + csdlname + '.', topleveltypes=topleveltypes, toplevelimports=toplevelimports)
@@ -221,12 +234,14 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
         current_xml_top.pop()
 
         if len(current_xml_top) == 0:
-            get_item = createExtensionsXML(csdlname, all_types_created)
+            get_item = createExtensionsXML(csdlname, all_types_created, schema_node)
+            """
             xml_content = XMLContent()
             xml_content.set_filename(csdlname + 'Extensions_v1.xml')
             xml_content.set_xml(get_item)
             print(all_types_created)
             list_of_xml.append(xml_content)
+            """
 
         return main_node
 
@@ -301,13 +316,14 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
                 prefix = item.arg
             if item.keyword == "revision-date":
                 date = item.arg
-        toplevelimports[prefix if prefix not in [None, ''] else import_name] = import_name
+        toplevelimports[prefix if prefix not in [None, ''] else import_name] = handlers.get_valid_csdl_identifier(import_name)
 
     elif yang_keyword in ['typedef']:
-        result = handlers.handle_typedef(yang_keyword, yang_arg, yang_children, target, target_parent)
+        result = handlers.handle_typedef(yang_keyword, yang_arg, yang_children, target, target_parent, imports=toplevelimports, types=topleveltypes)
         if result is not None:
             type_name, type_node = result
             topleveltypes[type_name] = type_node
+            print('new TYPE::', type_name)
             if type_name not in all_types_created:
                 if type_node.tag == 'EnumType':
                     all_types_created[type_name] = 'Edm.String'
@@ -355,7 +371,7 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
         filename = prefix + csdlname + '_v1.xml'
 
         alias = csdlname.split('.')[-1]
-        xml_top = current_xml_top[-1]
+        top_name, xml_top = current_xml_top[-1]
         xml_convenience.add_reference(xml_top, "http://redfish.dmtf.org/schemas/v1/{}".format(filename), "{}{}".format(prefix, alias), alias)
         # At the end of the grammar, modify outside nav property
         xml_convenience.add_annotation(navigation_property, {'Term': 'OData.Permissions', 'EnumMember': 'OData.Permissions/Read'})
@@ -367,20 +383,20 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
     elif yang_keyword in ['leaf', 'leaf-list', 'grouping', 'notification', 'anyxml']:
         this_node = build_tree(yang_item, list_of_xml, logger, prefix=prefix, parent=target_parent, parent_schema=target, parent_entity=target_entity, topleveltypes=topleveltypes, toplevelimports=toplevelimports)
         if yang_keyword in ['grouping']:
-            handlers.handle_generic(yang_keyword, yang_arg, yang_children, target, generic=True, keyword_raw=yang_raw_keyword)
+            handlers.handle_generic(yang_keyword, yang_arg, yang_children, target, generic=True, keyword_raw=yang_raw_keyword, imports=toplevelimports, types=topleveltypes)
         elif yang_keyword in ['notification']:
             target.append(this_node)
         else:
             target_entity.append(this_node)
         return this_node
 
-    elif yang_keyword in redfishtypes.enum_mapping:
+    elif yang_keyword in redfishtypes.enum_mapping_right:
         handlers.handle_generic_node(yang_keyword, yang_arg, target)
     else:
         if yang_keyword in ['case', 'include', 'rpc', 'uses', 'choice', 'augment', 'action']:
             logger.debug('Tag being defaulted {}'.format(yang_keyword))
-            handlers.handle_generic(yang_keyword, yang_arg, yang_children, target, generic=True, keyword_raw=yang_raw_keyword)
+            handlers.handle_generic(yang_keyword, yang_arg, yang_children, target, generic=True, keyword_raw=yang_raw_keyword, imports=toplevelimports, types=topleveltypes)
         else:
-            handlers.handle_generic(yang_keyword, yang_arg, yang_children, target, keyword_raw=yang_raw_keyword)
+            handlers.handle_generic(yang_keyword, yang_arg, yang_children, target, keyword_raw=yang_raw_keyword, imports=toplevelimports, types=topleveltypes)
 
     return

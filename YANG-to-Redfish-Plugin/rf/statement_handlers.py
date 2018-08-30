@@ -200,7 +200,7 @@ def handle_rpc(yang_keyword, yang_arg, yang_children, schema_xml, module_xml):
 
 
 # Handle the typedef statement
-def handle_typedef(yang_keyword, yang_arg, yang_children, schema_xml, module_xml, no_append=False):
+def handle_typedef(yang_keyword, yang_arg, yang_children, schema_xml, module_xml, imports=None, types=None, no_append=False):
     """
     Handle typedef statement.
     :param items: Grammar items.
@@ -223,11 +223,8 @@ def handle_typedef(yang_keyword, yang_arg, yang_children, schema_xml, module_xml
                      'String':  type_tag.arg
                      }
             )
-    inner_annotation = xml_convenience.add_annotation(
-            None, {'Term': 'RedfishYang.YangType',
-                     'String':  "Unknown"
-                     }
-            )
+
+    yang_type_location = 'RedfishYang'
 
     if type_tag is None:
         print("This type tag shouldn't be missing")
@@ -261,16 +258,15 @@ def handle_typedef(yang_keyword, yang_arg, yang_children, schema_xml, module_xml
                         inn = SubElement(col, 'String')
                         inn.text = '"{}"'.format(redfishtypes.get_valid_csdl_identifier(child.arg))
 
-            handle_generic_children([x for x in yang_children_inner if x.keyword != 'type'], inner_annotation)
-
-        handle_generic_children([x for x in yang_children if x.keyword != 'type'], new_node)
+        handle_generic_children([x for x in yang_children], new_node, imports=imports, types=types)
 
         var_type = type_tag.arg.replace('"', '')
 
         # default to primitive instead of string, UnderlyingType must be dereferenced
-        new_node.set('UnderlyingType', redfishtypes.types_mapping.get(var_type, 'Edm.Primitive'))
-        inner_annotation.set('String', yang_type)
-        new_node.append(inner_annotation)
+        if 'Type' not in new_node.attrib:
+            new_node.set('UnderlyingType', redfishtypes.types_mapping.get(var_type, 'Edm.Primitive'))
+        else:
+            new_node.set('UnderlyingType', new_node.attrib.pop('Type'))
 
     if not no_append:
         schema_xml.append(new_node)
@@ -291,48 +287,63 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
 
     annotation = xml_convenience.add_annotation(
             None, {'Term': 'RedfishYang.YangType',
-                     'String':  "Unknown"
+                     'EnumMember':  "Unknown"
                      }
             )
+    yang_type_location = 'RedfishYang'
 
     # If there's an import, let's consider it ':' = '.'
     # If it's in the imports, then add the import
     # If it is a simple name already in types available, then put it in file
     if var_type != 'enumeration':
-        xml_top = rf.csdltree.current_xml_top[-1]
+        top_name, xml_top = rf.csdltree.current_xml_top[-1]
         if ':' in var_type:
+            # print(var_type, var_type.split(':')[-1] in types)
             # This is an import from another file, add to CSDL imports
             importname = var_type.split(':')[0]
-            if importname in imports:
-                ns = imports[importname] + '.v1_0_0'
+            if importname in imports and imports[importname] != top_name:
+                ns = (imports[importname]) + '.v1_0_0'
                 xml_convenience.add_import(xml_top, imports[importname], importname if importname != imports[importname] else None, ns)
+            annotation.set('Term', '{}.YangType'.format(importname))
+            yang_type_location = importname
             var_type = redfishtypes.types_mapping.get(var_type, var_type)
 
         elif var_type in types:
             # If we haven't defined this type, this must be added to imports
-            ds_node = xml_top.find('./')
-            schema_node = ds_node.findall('./')[1]
-            namespace = schema_node.attrib.get('Namespace')
-            available_types = list()
+            # print(var_type, var_type in types, 'ofcourse')
+            if 'module'.upper() in imports:
+                importname = imports['module'.upper()]
+                if imports[importname] != top_name:
+                    ns = (imports[importname]) + '.v1_0_0'
+                    xml_convenience.add_import(xml_top, imports[importname], importname if importname != imports[importname] else None, ns)
+                annotation.set('Term', '{}.YangType'.format(importname))
+                yang_type_location = importname
+                var_type = importname + '.' + redfishtypes.types_mapping.get(var_type, var_type)
+            else:
+                ds_node = xml_top.find('./')
+                schema_node = ds_node.findall('./')[1]
+                namespace = schema_node.attrib.get('Namespace')
+                available_types = list()
 
-            for ref in schema_node:
-                if str(ref.tag) not in ['TypeDefinition', 'EnumType']:
-                    continue
-                available_types.append(ref.attrib.get('Name'))
+                for ref in schema_node:
+                    if str(ref.tag) not in ['TypeDefinition', 'EnumType']:
+                        continue
+                    available_types.append(ref.attrib.get('Name'))
 
-            if get_valid_csdl_identifier(var_type) not in available_types:
-                schema_node.append(types[var_type])
+                if get_valid_csdl_identifier(var_type) not in available_types:
+                    schema_node.append(types[var_type])
 
-            if namespace is None:
-                print("Namespace shouldn't be none {}".format(parent_entity.attrib))
-                get_valid_csdl_identifier(redfishtypes.types_mapping.get(var_type, var_type))
+                if namespace is None:
+                    print("Namespace shouldn't be none {}".format(parent_entity.attrib))
+                    get_valid_csdl_identifier(redfishtypes.types_mapping.get(var_type, var_type))
 
-            elif namespace is not "":
-                namespace = namespace + "."
-            var_type = namespace + var_type
+                elif namespace is not "":
+                    namespace = namespace + "."
+                var_type = namespace + var_type
 
         else:
             # If it is neither, it must be primitive
+            # print(var_type, var_type in types)
             primitive_type = var_type
             yang_type = primitive_type
             var_type = redfishtypes.types_mapping.get(var_type, 'RedfishYang.' + var_type)
@@ -375,7 +386,7 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
         new_annotation = handle_type(type_tag, xml_node, parent_node, parent_entity, {}, {td: nmd})
         xml_node.remove(new_annotation)
 
-    annotation.set('String', yang_type)
+    annotation.set('EnumMember', yang_type_location + '.YangTypes/' + get_valid_csdl_identifier(yang_type.split(':')[-1]))
     xml_node.append(annotation)
 
     return annotation

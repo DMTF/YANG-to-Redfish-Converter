@@ -47,19 +47,19 @@
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces_state.interface.ipv4.v1_0_0">
 			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
 			<Annotation Term="RedfishYang.presence" String="Present if IPv4 is enabled on this interface"/>
-			<Annotation Term="RedfishYang.ConfigPermission" EnumMember="RedfishYang.ConfigPermission/false"/>
+			<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
 			<Annotation Term="OData.Description" String="Interface-specific parameters for the IPv4 address family."/>
 			<EntityType Name="ipv4" BaseType="ietf_interfaces.interfaces_state.interface.ipv4.ipv4">
-				<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
 				<Property Name="forwarding" Type="Edm.Boolean">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="boolean"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
 					<Annotation Term="OData.Description" String="Indicates whether IPv4 packet forwarding is enabled or disabled on this interface."/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
 				<Property Name="mtu" Type="RedfishYang.uint16">
-					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" String="uint16">
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint16">
 						<Annotation Term="RedfishYang.range" String="68..max"/>
 					</Annotation>
 					<Annotation Term="RedfishYang.units" String="octets"/>

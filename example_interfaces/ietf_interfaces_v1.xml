@@ -56,16 +56,16 @@
 				<Annotation Term="RedfishYang.reference" String="RFC 7223: A YANG Data Model for Interface Management"/>
 			</Annotation>
 			<TypeDefinition Name="interface_ref" UnderlyingType="Edm.String">
-				<Annotation Term="OData.Description" String="This type is used by data models that need to reference configured interfaces."/>
-				<Annotation Term="RedfishYang.YangType" String="leafref">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref">
 					<Annotation Term="RedfishYang.path" String="/if:interfaces/if:interface/if:name"/>
 				</Annotation>
+				<Annotation Term="OData.Description" String="This type is used by data models that need to reference configured interfaces."/>
 			</TypeDefinition>
 			<TypeDefinition Name="interface_state_ref" UnderlyingType="Edm.String">
-				<Annotation Term="OData.Description" String="This type is used by data models that need to reference the operationally present interfaces."/>
-				<Annotation Term="RedfishYang.YangType" String="leafref">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref">
 					<Annotation Term="RedfishYang.path" String="/if:interfaces-state/if:interface/if:name"/>
 				</Annotation>
+				<Annotation Term="OData.Description" String="This type is used by data models that need to reference the operationally present interfaces."/>
 			</TypeDefinition>
 			<Annotation Term="RedfishYang.identity" String="interface-type">
 				<Annotation Term="OData.Description" String="Base identity from which specific interface types are derived."/>
@@ -89,7 +89,7 @@
 				</Record>
 			</Collection>
 			<EntityType Name="ietf_interfaces" BaseType="ietf_interfaces.ietf_interfaces">
-				<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/module"/>
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/module"/>
 				<NavigationProperty Name="interfacesContainer" Type="interfaces.interfaces" ContainsTarget="true">
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
 					<Annotation Term="OData.Description" String="Navigation property that points to a resource of interfaces."/>
@@ -103,6 +103,15 @@
 					<Annotation Term="OData.AutoExpandReferences"/>
 				</NavigationProperty>
 			</EntityType>
+			<Term Name="YangType" Type="ietf_interfaces.v1_0_0.YangTypes">
+				<Annotation Term="OData.Description" String="A extension of ietf_interfaces resource instances."/>
+			</Term>
+			<EnumType Name="YangTypes">
+				<Member Name="interface_ref"/>
+				<Member Name="interface_state_ref"/>
+			</EnumType>
+			<Term Name="interface_ref" Type="Edm.String"/>
+			<Term Name="interface_state_ref" Type="Edm.String"/>
 		</Schema>
 	</edmx:DataServices>
 </edmx:Edmx>
