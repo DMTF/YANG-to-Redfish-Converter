@@ -122,6 +122,32 @@
 				</NavigationProperty>
 			</EntityType>
 		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces.interfaceCollection">
+			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
+			<EntityType Name="interfaceCollection" BaseType="Resource.v1_0_0.ResourceCollection">
+				<Annotation Term="OData.Description" String="A Collection of interface resource instances."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<NavigationProperty Name="Members" Type="Collection(interface.interface)">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Contains members of this collection."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
 	</edmx:DataServices>
 </edmx:Edmx>
 

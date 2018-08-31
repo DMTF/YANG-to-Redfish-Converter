@@ -18,9 +18,6 @@
 	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_yang_types_v1.xml">
 		<edmx:Include Namespace="ietf_yang_types.v1_0_0" Alias="yang"/>
 	</edmx:Reference>
-	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf-interfaces_v1.xml">
-		<edmx:Include Namespace="ietf-interfaces.v1_0_0" Alias="if"/>
-	</edmx:Reference>
 	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_interfaces.interfaces_state.interface.statistics_v1.xml">
 		<edmx:Include Namespace="ietf_interfaces.interfaces_state.interface.statistics" Alias="statistics"/>
 	</edmx:Reference>
@@ -142,6 +139,19 @@
 				<Annotation Term="OData.Description" String="The current operational state of the interface. This leaf has the same semantics as ifOperStatus."/>
 				<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifOperStatus"/>
 			</EnumType>
+			<TypeDefinition Name="interface_state_ref" UnderlyingType="Edm.String">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref">
+					<Annotation Term="RedfishYang.path" String="/if:interfaces-state/if:interface/if:name"/>
+				</Annotation>
+				<Annotation Term="OData.Description" String="This type is used by data models that need to reference the operationally present interfaces."/>
+			</TypeDefinition>
+			<Term Name="YangType" Type="ietf_interfaces.interfaces_state.interface.v1_0_0.YangTypes">
+				<Annotation Term="OData.Description" String="A extension of ietf_interfaces.interfaces_state.interface resource instances."/>
+			</Term>
+			<EnumType Name="YangTypes">
+				<Member Name="interface_ref"/>
+				<Member Name="interface_state_ref"/>
+			</EnumType>
 			<EntityType Name="interface" BaseType="ietf_interfaces.interfaces_state.interface.interface">
 				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
 				<Property Name="name" Type="Edm.String">
@@ -203,18 +213,18 @@
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifPhysAddress"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
-				<Property Name="higher_layer_if" Type="Collection(if.interface_state_ref)">
+				<Property Name="higher_layer_if" Type="Collection(ietf_interfaces.interfaces_state.interface.v1_0_0.interface_state_ref)">
 					<Annotation Term="OData.LongDescription" String="List of the type higher_layer_if."/>
 					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf_list"/>
-					<Annotation Term="if.YangType" EnumMember="if.YangTypes/interface_state_ref"/>
+					<Annotation Term="ietf_interfaces.interfaces_state.interface.v1_0_0.YangType" EnumMember="ietf_interfaces.interfaces_state.interface.v1_0_0.YangTypes/interface_state_ref"/>
 					<Annotation Term="OData.Description" String="A list of references to interfaces layered on top of this interface."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifStackTable"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
-				<Property Name="lower_layer_if" Type="Collection(if.interface_state_ref)">
+				<Property Name="lower_layer_if" Type="Collection(ietf_interfaces.interfaces_state.interface.v1_0_0.interface_state_ref)">
 					<Annotation Term="OData.LongDescription" String="List of the type lower_layer_if."/>
 					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf_list"/>
-					<Annotation Term="if.YangType" EnumMember="if.YangTypes/interface_state_ref"/>
+					<Annotation Term="ietf_interfaces.interfaces_state.interface.v1_0_0.YangType" EnumMember="ietf_interfaces.interfaces_state.interface.v1_0_0.YangTypes/interface_state_ref"/>
 					<Annotation Term="OData.Description" String="A list of references to interfaces layered underneath this interface."/>
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifStackTable"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
@@ -243,6 +253,32 @@
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
 					<Annotation Term="OData.Description" String="Navigation property that points to a resource of ipv6."/>
 					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces_state.interfaceCollection">
+			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
+			<EntityType Name="interfaceCollection" BaseType="Resource.v1_0_0.ResourceCollection">
+				<Annotation Term="OData.Description" String="A Collection of interface resource instances."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<NavigationProperty Name="Members" Type="Collection(interface.interface)">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Contains members of this collection."/>
 					<Annotation Term="OData.AutoExpandReferences"/>
 				</NavigationProperty>
 			</EntityType>

@@ -9,13 +9,97 @@
 	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
 		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
 	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
+	</edmx:Reference>
 	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
 		<edmx:Include Namespace="Resource.v1_0_0"/>
 	</edmx:Reference>
-	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_interfaces.interfaces_state.interface.ipv4.address_v1.xml">
-		<edmx:Include Namespace="ietf_interfaces.interfaces_state.interface.ipv4.address" Alias="address"/>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_yang_types_v1.xml">
+		<edmx:Include Namespace="ietf_yang_types.v1_0_0" Alias="yang"/>
 	</edmx:Reference>
 	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces_state.interface.ipv4.address">
+			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
+			<EntityType Name="address" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for address."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for address."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces_state.interface.ipv4.address.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
+			<Annotation Term="RedfishYang.key" String="ip"/>
+			<Annotation Term="OData.Description" String="The list of IPv4 addresses on the interface."/>
+			<Annotation Term="RedfishYang.choice" String="subnet">
+				<Annotation Term="OData.Description" String="The subnet can be specified as a prefix-length, or, if the server supports non-contiguous netmasks, as a netmask."/>
+				<Collection>
+					<Record>
+						<Annotation Term="RedfishYang.case" String="prefix-length">
+							<Annotation Term="RedfishYang.leaf" String="prefix-length">
+								<Annotation Term="RedfishYang.type" String="uint8">
+									<Annotation Term="RedfishYang.range" String="0..32"/>
+								</Annotation>
+								<Annotation Term="RedfishYang.description" String="The length of the subnet prefix."/>
+							</Annotation>
+						</Annotation>
+					</Record>
+					<Record>
+						<Annotation Term="RedfishYang.case" String="netmask">
+							<Annotation Term="RedfishYang.leaf" String="netmask">
+								<Annotation Term="RedfishYang.if_feature" String="ipv4-non-contiguous-netmasks"/>
+								<Annotation Term="RedfishYang.type" String="yang:dotted-quad"/>
+								<Annotation Term="RedfishYang.description" String="The subnet specified as a netmask."/>
+							</Annotation>
+						</Annotation>
+					</Record>
+				</Collection>
+			</Annotation>
+			<EntityType Name="address" BaseType="ietf_interfaces.interfaces_state.interface.ipv4.address.address">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Property Name="ip" Type="inet.ipv4_address_no_zone">
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="inet.YangType" EnumMember="inet.YangTypes/ipv4_address_no_zone"/>
+					<Annotation Term="OData.Description" String="The IPv4 address on the interface."/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="prefix_length" Type="Edm.Byte">
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint8">
+						<Annotation Term="RedfishYang.range" String="0..32"/>
+					</Annotation>
+					<Annotation Term="OData.Description" String="The length of the subnet prefix."/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="netmask" Type="yang.dotted_quad">
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.if_feature" String="ipv4-non-contiguous-netmasks"/>
+					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/dotted_quad"/>
+					<Annotation Term="OData.Description" String="The subnet specified as a netmask."/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="origin" Type="RedfishYang.ip_address_origin">
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/ip_address_origin"/>
+					<Annotation Term="OData.Description" String="The origin of this address."/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces_state.interface.ipv4.addressCollection">
 			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
 			<EntityType Name="addressCollection" BaseType="Resource.v1_0_0.ResourceCollection">

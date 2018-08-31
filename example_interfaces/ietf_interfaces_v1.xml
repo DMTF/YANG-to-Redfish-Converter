@@ -110,8 +110,6 @@
 				<Member Name="interface_ref"/>
 				<Member Name="interface_state_ref"/>
 			</EnumType>
-			<Term Name="interface_ref" Type="Edm.String"/>
-			<Term Name="interface_state_ref" Type="Edm.String"/>
 		</Schema>
 	</edmx:DataServices>
 </edmx:Edmx>

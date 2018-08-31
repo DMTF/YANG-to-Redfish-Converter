@@ -17,6 +17,11 @@ logger = None
 current_xml_top = []
 all_types_created = {}
 
+config = {
+        'single_file': False,
+        'remove_cyclical': False,
+        }
+
 def setLogger(mylogger):
     global logger
     logger = mylogger
@@ -61,26 +66,30 @@ def createExtensionsXML(name, types, xml_node = None):
         og_item, item = item, handlers.get_valid_csdl_identifier(item)
         member_node = SubElement(extension_target, 'Member')
         member_node.set('Name', item)
-        extension_term = SubElement(extension_schema_node, "Term")
-        extension_term.set('Name', item)
-        extension_term.set('Type', combinedtypes[og_item])
+        # extension_term = SubElement(extension_schema_node, "Term")
+        # extension_term.set('Name', item)
+        # extension_term.set('Type', combinedtypes[og_item])
 
     return xml_node
 
 
-
-
-def createCollectionXML(name, prefix=''):
+def createCollectionXML(name, prefix='', xml_node=None):
     collection_name = name + "Collection"
 
-    collection_xml_root = xml_convenience.add_CSDL_Headers(None)
-    xml_convenience.add_reference(
-        collection_xml_root, "http://redfish.dmtf.org/schemas/v1/Resource_v1.xml", "Resource.v1_0_0", None)
-    xml_convenience.add_reference(
-        collection_xml_root, "http://redfish.dmtf.org/schemas/v1/" + prefix + name + "_v1.xml", prefix + name, str(name))
+    if xml_node is None:
+        collection_xml_root = xml_convenience.add_CSDL_Headers(None)
+        xml_convenience.add_reference(
+            collection_xml_root, "http://redfish.dmtf.org/schemas/v1/Resource_v1.xml", "Resource.v1_0_0", None)
+        xml_convenience.add_reference(
+            collection_xml_root, "http://redfish.dmtf.org/schemas/v1/" + prefix + name + "_v1.xml", prefix + name, str(name))
 
-    collection_data_services_node = SubElement(
-        collection_xml_root, 'edmx:DataServices')
+        collection_data_services_node = SubElement(
+            collection_xml_root, 'edmx:DataServices')
+    else:
+        collection_xml_root = xml_node
+        collection_data_services_node = xml_node.find('./')
+
+
     collection_schema_node = SubElement(collection_data_services_node, 'Schema')
     collection_schema_node.set("xmlns", "http://docs.oasis-open.org/odata/ns/edm")
     collection_schema_node.set("Namespace", prefix + collection_name)
@@ -113,14 +122,18 @@ def createCollectionXML(name, prefix=''):
     return collection_xml_root
 
 
-def create_xml_base(csdlname, prefix=''):
-    main_node = xml_convenience.add_CSDL_Headers(True)
-    xml_convenience.add_reference(main_node,
-            "http://redfish.dmtf.org/schemas/v1/Resource_v1.xml",
-            "Resource.v1_0_0", None )
-    entity_node = None
-    # add refs to main, then add data services node
-    data_services_node = Element('edmx:DataServices')
+def create_xml_base(csdlname, prefix='', xml_node = None):
+    if xml_node is None:
+        main_node = xml_convenience.add_CSDL_Headers(True)
+        xml_convenience.add_reference(main_node,
+                "http://redfish.dmtf.org/schemas/v1/Resource_v1.xml",
+                "Resource.v1_0_0", None )
+        entity_node = None
+        # add refs to main, then add data services node
+        data_services_node = Element('edmx:DataServices')
+    else:
+        main_node = xml_node
+        data_services_node = xml_node.find('./')
     schema_node = SubElement(data_services_node, 'Schema')
     schema_node.set(
         'Namespace', prefix + csdlname + ".v1_0_0")
@@ -154,7 +167,7 @@ def create_xml_base(csdlname, prefix=''):
         "Capabilities.DeleteRestrictions"}, {"Deletable": "false"})
     return main_node, schema_node, data_services_node
 
-#=======================================================
+# =======================================================
 # Recursive function to handle containment statements
 # such as container, list, leaf, leaf-list.
 # Other statements are handed off to respective handlers - handlers.handle_XXXXX
@@ -166,15 +179,18 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
     name = yang_item.arg
     if topleveltypes is None:
         topleveltypes = dict()
-        print('created new types???')
     if toplevelimports is None:
         toplevelimports = dict()
-        print('created new imports???')
 
     if seg_type in ['module','submodule', 'container', 'list', 'grouping']:
         csdlname = handlers.get_valid_csdl_identifier(name)
 
-        main_node, schema_node, data_services_node = create_xml_base(csdlname, prefix)
+        if len(current_xml_top) > 0 and config['single_file']:
+            top_name, main_node = current_xml_top[-1]
+        else:
+            main_node = None
+
+        main_node, schema_node, data_services_node = create_xml_base(csdlname, prefix, main_node)
         main_node.insert(0, data_services_node)
 
         entity_node = Element("EntityType")
@@ -213,25 +229,27 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
         if seg_type in ['list']:
             prefix = prefix if prefix is not None else ""
 
-            collection_node = createCollectionXML(csdlname, prefix)
+            collection_node = createCollectionXML(csdlname, prefix, main_node)
             ccsdlname = csdlname + 'Collection'
             cfilename = prefix + ccsdlname + '_v1.xml'
-            xml_content = XMLContent()
-            xml_content.set_filename(cfilename)
-            xml_content.set_xml(collection_node)
-            list_of_xml.append(xml_content)
+            if len(current_xml_top) > 0 and not config['single_file']:
+                xml_content = XMLContent()
+                xml_content.set_filename(cfilename)
+                xml_content.set_xml(collection_node)
+                list_of_xml.append(xml_content)
 
         filename = prefix + filename
 
+        current_xml_top.pop()
+
         schema_node.append(entity_node)
         main_node.remove(data_services_node)
-        main_node.append(data_services_node)
-        xml_content = XMLContent()
-        xml_content.set_filename(filename)
-        xml_content.set_xml(main_node)
-        list_of_xml.append(xml_content)
-
-        current_xml_top.pop()
+        if not config['single_file'] or (config['single_file'] and len(current_xml_top) == 0):
+            main_node.append(data_services_node)
+            xml_content = XMLContent()
+            xml_content.set_filename(filename)
+            xml_content.set_xml(main_node)
+            list_of_xml.append(xml_content)
 
         if len(current_xml_top) == 0:
             get_item = createExtensionsXML(csdlname, all_types_created, schema_node)
@@ -371,8 +389,9 @@ def build_tree_repeat(yang_item, target, target_entity=None, target_parent=None,
         filename = prefix + csdlname + '_v1.xml'
 
         alias = csdlname.split('.')[-1]
-        top_name, xml_top = current_xml_top[-1]
-        xml_convenience.add_reference(xml_top, "http://redfish.dmtf.org/schemas/v1/{}".format(filename), "{}{}".format(prefix, alias), alias)
+        if not config['single_file']:
+            top_name, xml_top = current_xml_top[-1]
+            xml_convenience.add_reference(xml_top, "http://redfish.dmtf.org/schemas/v1/{}".format(filename), "{}{}".format(prefix, alias), alias)
         # At the end of the grammar, modify outside nav property
         xml_convenience.add_annotation(navigation_property, {'Term': 'OData.Permissions', 'EnumMember': 'OData.Permissions/Read'})
         xml_convenience.add_annotation(navigation_property, {'Term': 'OData.Description', 'String': 'Navigation property that points to a resource of {}.'.format(str(csdlname))})

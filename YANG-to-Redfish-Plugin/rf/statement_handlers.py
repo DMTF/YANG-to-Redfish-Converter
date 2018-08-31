@@ -9,6 +9,7 @@ from rf.redfishtypes import get_valid_csdl_identifier
 import rf.csdltree
 
 
+
 # annotation cleanup
 def collectAnnotations(node):
     """
@@ -292,11 +293,18 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
             )
     yang_type_location = 'RedfishYang'
 
+    config = rf.csdltree.config
+
     # If there's an import, let's consider it ':' = '.'
     # If it's in the imports, then add the import
     # If it is a simple name already in types available, then put it in file
     if var_type != 'enumeration':
         top_name, xml_top = rf.csdltree.current_xml_top[-1]
+        if ':' in var_type:
+            importname = var_type.split(':')[0]
+            if 'module'.upper() in imports and config['remove_cyclical'] and imports['module'.upper()] == importname:
+                var_type = var_type.split(':')[1]
+
         if ':' in var_type:
             # print(var_type, var_type.split(':')[-1] in types)
             # This is an import from another file, add to CSDL imports
@@ -304,14 +312,14 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
             if importname in imports and imports[importname] != top_name:
                 ns = (imports[importname]) + '.v1_0_0'
                 xml_convenience.add_import(xml_top, imports[importname], importname if importname != imports[importname] else None, ns)
-            annotation.set('Term', '{}.YangType'.format(importname))
             yang_type_location = importname
+            annotation.set('Term', '{}.YangType'.format(yang_type_location))
             var_type = redfishtypes.types_mapping.get(var_type, var_type)
 
         elif var_type in types:
             # If we haven't defined this type, this must be added to imports
             # print(var_type, var_type in types, 'ofcourse')
-            if 'module'.upper() in imports:
+            if 'module'.upper() in imports and not config['remove_cyclical']:
                 importname = imports['module'.upper()]
                 if imports[importname] != top_name:
                     ns = (imports[importname]) + '.v1_0_0'
@@ -324,6 +332,8 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
                 schema_node = ds_node.findall('./')[1]
                 namespace = schema_node.attrib.get('Namespace')
                 available_types = list()
+                yang_type_location = namespace
+                annotation.set('Term', '{}.YangType'.format(yang_type_location))
 
                 for ref in schema_node:
                     if str(ref.tag) not in ['TypeDefinition', 'EnumType']:
@@ -332,6 +342,8 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
 
                 if get_valid_csdl_identifier(var_type) not in available_types:
                     schema_node.append(types[var_type])
+                    if var_type in rf.csdltree.all_types_created and 'YangTypes' not in available_types:
+                        rf.csdltree.createExtensionsXML(namespace.rsplit('.', 1)[0], rf.csdltree.all_types_created, schema_node)
 
                 if namespace is None:
                     print("Namespace shouldn't be none {}".format(parent_entity.attrib))
