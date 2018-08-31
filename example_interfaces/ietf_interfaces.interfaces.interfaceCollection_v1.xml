@@ -9,119 +9,13 @@
 	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
 		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
 	</edmx:Reference>
-	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
-		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
-	</edmx:Reference>
 	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
 		<edmx:Include Namespace="Resource.v1_0_0"/>
 	</edmx:Reference>
-	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_interfaces.interfaces.interface.ipv4_v1.xml">
-		<edmx:Include Namespace="ietf_interfaces.interfaces.interface.ipv4" Alias="ipv4"/>
-	</edmx:Reference>
-	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_interfaces.interfaces.interface.ipv6_v1.xml">
-		<edmx:Include Namespace="ietf_interfaces.interfaces.interface.ipv6" Alias="ipv6"/>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_interfaces.interfaces.interface_v1.xml">
+		<edmx:Include Namespace="ietf_interfaces.interfaces.interface" Alias="interface"/>
 	</edmx:Reference>
 	<edmx:DataServices>
-		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces.interface">
-			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
-			<EntityType Name="interface" Abstract="true" BaseType="Resource.v1_0_0.Resource">
-				<Annotation Term="OData.Description" String="Parameters for interface."/>
-				<Annotation Term="OData.LongDescription" String="Parameters for interface."/>
-				<Annotation Term="Capabilities.InsertRestrictions">
-					<Record>
-						<PropertyValue Property="Insertable" Bool="false"/>
-					</Record>
-				</Annotation>
-				<Annotation Term="Capabilities.UpdateRestrictions">
-					<Record>
-						<PropertyValue Property="Updatable" Bool="false"/>
-					</Record>
-				</Annotation>
-				<Annotation Term="Capabilities.DeleteRestrictions">
-					<Record>
-						<PropertyValue Property="Deletable" Bool="false"/>
-					</Record>
-				</Annotation>
-			</EntityType>
-		</Schema>
-		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces.interface.v1_0_0">
-			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
-			<Annotation Term="RedfishYang.key" String="name"/>
-			<Annotation Term="OData.Description" String="The list of configured interfaces on the device.  The operational state of an interface is available in the /interfaces-state/interface list.  If the configuration of a system-controlled interface cannot be used by the system (e.g., the interface hardware present does not match the interface type), then the configuration is not applied to the system-controlled interface shown in the /interfaces-state/interface list.  If the configuration of a user-controlled interface cannot be used by the system, the configured interface is not instantiated in the /interfaces-state/interface list."/>
-			<EnumType Name="link_up_down_trap_enable">
-				<Member Name="enabled" Value="1">
-					<Annotation Term="RedfishYang.value" String="1"/>
-				</Member>
-				<Member Name="disabled" Value="2">
-					<Annotation Term="RedfishYang.value" String="2"/>
-				</Member>
-				<Collection>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="enabled"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="disabled"/>
-					</Record>
-				</Collection>
-				<Annotation Term="RedfishYang.if_feature" String="if-mib"/>
-				<Annotation Term="OData.Description" String="Controls whether linkUp/linkDown SNMP notifications should be generated for this interface.  If this node is not configured, the value 'enabled' is operationally used by the server for interfaces that do not operate on top of any other interface (i.e., there are no 'lower-layer-if' entries), and 'disabled' otherwise."/>
-				<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB -           ifLinkUpDownTrapEnable"/>
-			</EnumType>
-			<EntityType Name="interface" BaseType="ietf_interfaces.interfaces.interface.interface">
-				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
-				<Property Name="name" Type="Edm.String">
-					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
-					<Annotation Term="OData.Description" String="The name of the interface.  A device MAY restrict the allowed values for this leaf, possibly depending on the type of the interface. For system-controlled interfaces, this leaf is the device-specific name of the interface.  The 'config false' list /interfaces-state/interface contains the currently existing interfaces on the device.  If a client tries to create configuration for a system-controlled interface that is not present in the /interfaces-state/interface list, the server MAY reject the request if the implementation does not support pre-provisioning of interfaces or if the name refers to an interface that can never exist in the system.  A NETCONF server MUST reply with an rpc-error with the error-tag 'invalid-value' in this case.  If the device supports pre-provisioning of interface configuration, the 'pre-provisioning' feature is advertised.  If the device allows arbitrarily named user-controlled interfaces, the 'arbitrary-names' feature is advertised.  When a configured user-controlled interface is created by the system, it is instantiated with the same name in the /interface-state/interface list."/>
-					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
-				</Property>
-				<Property Name="description" Type="Edm.String">
-					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
-					<Annotation Term="OData.Description" String="A textual description of the interface.  A server implementation MAY map this leaf to the ifAlias MIB object.  Such an implementation needs to use some mechanism to handle the differences in size and characters allowed between this leaf and ifAlias.  The definition of such a mechanism is outside the scope of this document.  Since ifAlias is defined to be stored in non-volatile storage, the MIB implementation MUST map ifAlias to the value of 'description' in the persistently stored datastore.  Specifically, if the device supports ':startup', when ifAlias is read the device MUST return the value of 'description' in the 'startup' datastore, and when it is written, it MUST be written to the 'running' and 'startup' datastores.  Note that it is up to the implementation to  decide whether to modify this single leaf in 'startup' or perform an implicit copy-config from 'running' to 'startup'.  If the device does not support ':startup', ifAlias MUST be mapped to the 'description' leaf in the 'running' datastore."/>
-					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifAlias"/>
-					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
-				</Property>
-				<Property Name="type" Type="RedfishYang.instance_identifier">
-					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref">
-						<Annotation Term="RedfishYang.base" String="interface-type"/>
-					</Annotation>
-					<Annotation Term="RedfishYang.mandatory" EnumMember="RedfishYang.Mandatory/true"/>
-					<Annotation Term="OData.Description" String="The type of the interface.  When an interface entry is created, a server MAY initialize the type leaf with a valid value, e.g., if it is possible to derive the type from the name of the interface.  If a client tries to set the type of an interface to a value that can never be used by the system, e.g., if the type is not supported or if the type does not match the name of the interface, the server MUST reject the request. A NETCONF server MUST reply with an rpc-error with the error-tag 'invalid-value' in this case."/>
-					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifType"/>
-					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
-				</Property>
-				<Property Name="enabled" Type="Edm.Boolean" DefaultValue="true">
-					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
-					<Annotation Term="RedfishYang.default" String="true"/>
-					<Annotation Term="OData.Description" String="This leaf contains the configured, desired state of the interface.  Systems that implement the IF-MIB use the value of this leaf in the 'running' datastore to set IF-MIB.ifAdminStatus to 'up' or 'down' after an ifEntry has been initialized, as described in RFC 2863.  Changes in this leaf in the 'running' datastore are reflected in ifAdminStatus, but if ifAdminStatus is changed over SNMP, this leaf is not affected."/>
-					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifAdminStatus"/>
-					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
-				</Property>
-				<Property Name="link_up_down_trap_enable" Type="ietf_interfaces.interfaces.interface.v1_0_0.link_up_down_trap_enable">
-					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.if_feature" String="if-mib"/>
-					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/enumeration"/>
-					<Annotation Term="OData.Description" String="Controls whether linkUp/linkDown SNMP notifications should be generated for this interface.  If this node is not configured, the value 'enabled' is operationally used by the server for interfaces that do not operate on top of any other interface (i.e., there are no 'lower-layer-if' entries), and 'disabled' otherwise."/>
-					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB -           ifLinkUpDownTrapEnable"/>
-					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
-				</Property>
-				<NavigationProperty Name="ipv4Container" Type="ipv4.ipv4" ContainsTarget="true">
-					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
-					<Annotation Term="OData.Description" String="Navigation property that points to a resource of ipv4."/>
-					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
-					<Annotation Term="OData.AutoExpandReferences"/>
-				</NavigationProperty>
-				<NavigationProperty Name="ipv6Container" Type="ipv6.ipv6" ContainsTarget="true">
-					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
-					<Annotation Term="OData.Description" String="Navigation property that points to a resource of ipv6."/>
-					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
-					<Annotation Term="OData.AutoExpandReferences"/>
-				</NavigationProperty>
-			</EntityType>
-		</Schema>
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces.interfaceCollection">
 			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
 			<EntityType Name="interfaceCollection" BaseType="Resource.v1_0_0.ResourceCollection">

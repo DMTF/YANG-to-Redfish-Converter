@@ -9,114 +9,13 @@
 	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
 		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
 	</edmx:Reference>
-	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
-		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
-	</edmx:Reference>
 	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
 		<edmx:Include Namespace="Resource.v1_0_0"/>
 	</edmx:Reference>
-	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_yang_types_v1.xml">
-		<edmx:Include Namespace="ietf_yang_types.v1_0_0" Alias="yang"/>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_interfaces.interfaces_state.interface.ipv6.neighbor_v1.xml">
+		<edmx:Include Namespace="ietf_interfaces.interfaces_state.interface.ipv6.neighbor" Alias="neighbor"/>
 	</edmx:Reference>
 	<edmx:DataServices>
-		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces_state.interface.ipv6.neighbor">
-			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
-			<EntityType Name="neighbor" Abstract="true" BaseType="Resource.v1_0_0.Resource">
-				<Annotation Term="OData.Description" String="Parameters for neighbor."/>
-				<Annotation Term="OData.LongDescription" String="Parameters for neighbor."/>
-				<Annotation Term="Capabilities.InsertRestrictions">
-					<Record>
-						<PropertyValue Property="Insertable" Bool="false"/>
-					</Record>
-				</Annotation>
-				<Annotation Term="Capabilities.UpdateRestrictions">
-					<Record>
-						<PropertyValue Property="Updatable" Bool="false"/>
-					</Record>
-				</Annotation>
-				<Annotation Term="Capabilities.DeleteRestrictions">
-					<Record>
-						<PropertyValue Property="Deletable" Bool="false"/>
-					</Record>
-				</Annotation>
-			</EntityType>
-		</Schema>
-		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces_state.interface.ipv6.neighbor.v1_0_0">
-			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
-			<Annotation Term="RedfishYang.key" String="ip"/>
-			<Annotation Term="OData.Description" String="A list of mappings from IPv6 addresses to link-layer addresses.  This list represents the Neighbor Cache."/>
-			<Annotation Term="RedfishYang.reference" String="RFC 4861: Neighbor Discovery for IP version 6 (IPv6)"/>
-			<EnumType Name="state">
-				<Member Name="incomplete">
-					<Annotation Term="OData.Description" String="Address resolution is in progress, and the link-layer address of the neighbor has not yet been determined."/>
-				</Member>
-				<Member Name="reachable">
-					<Annotation Term="OData.Description" String="Roughly speaking, the neighbor is known to have been reachable recently (within tens of seconds ago)."/>
-				</Member>
-				<Member Name="stale">
-					<Annotation Term="OData.Description" String="The neighbor is no longer known to be reachable, but until traffic is sent to the neighbor no attempt should be made to verify its reachability."/>
-				</Member>
-				<Member Name="delay">
-					<Annotation Term="OData.Description" String="The neighbor is no longer known to be reachable, and traffic has recently been sent to the neighbor. Rather than probe the neighbor immediately, however, delay sending probes for a short while in order to give upper-layer protocols a chance to provide reachability confirmation."/>
-				</Member>
-				<Member Name="probe">
-					<Annotation Term="OData.Description" String="The neighbor is no longer known to be reachable, and unicast Neighbor Solicitation probes are being sent to verify reachability."/>
-				</Member>
-				<Collection>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="incomplete"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="reachable"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="stale"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="delay"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="probe"/>
-					</Record>
-				</Collection>
-				<Annotation Term="OData.Description" String="The Neighbor Unreachability Detection state of this entry."/>
-				<Annotation Term="RedfishYang.reference" String="RFC 4861: Neighbor Discovery for IP version 6 (IPv6)           Section 7.3.2"/>
-			</EnumType>
-			<EntityType Name="neighbor" BaseType="ietf_interfaces.interfaces_state.interface.ipv6.neighbor.neighbor">
-				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
-				<Property Name="ip" Type="inet.ipv6_address_no_zone">
-					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="inet.YangType" EnumMember="inet.YangTypes/ipv6_address_no_zone"/>
-					<Annotation Term="OData.Description" String="The IPv6 address of the neighbor node."/>
-					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
-				</Property>
-				<Property Name="link_layer_address" Type="yang.phys_address">
-					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="yang.YangType" EnumMember="yang.YangTypes/phys_address"/>
-					<Annotation Term="OData.Description" String="The link-layer address of the neighbor node."/>
-					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
-				</Property>
-				<Property Name="origin" Type="RedfishYang.neighbor_origin">
-					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/neighbor_origin"/>
-					<Annotation Term="OData.Description" String="The origin of this neighbor entry."/>
-					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
-				</Property>
-				<Property Name="is_router" Type="RedfishYang.empty">
-					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/empty"/>
-					<Annotation Term="OData.Description" String="Indicates that the neighbor node acts as a router."/>
-					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
-				</Property>
-				<Property Name="state" Type="ietf_interfaces.interfaces_state.interface.ipv6.neighbor.v1_0_0.state">
-					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/enumeration"/>
-					<Annotation Term="OData.Description" String="The Neighbor Unreachability Detection state of this entry."/>
-					<Annotation Term="RedfishYang.reference" String="RFC 4861: Neighbor Discovery for IP version 6 (IPv6)           Section 7.3.2"/>
-					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
-				</Property>
-			</EntityType>
-		</Schema>
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces_state.interface.ipv6.neighborCollection">
 			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
 			<EntityType Name="neighborCollection" BaseType="Resource.v1_0_0.ResourceCollection">

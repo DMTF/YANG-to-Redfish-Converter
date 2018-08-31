@@ -186,11 +186,11 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
         csdlname = handlers.get_valid_csdl_identifier(name)
 
         if len(current_xml_top) > 0 and config['single_file']:
-            top_name, main_node = current_xml_top[-1]
+            top_name, top_node = current_xml_top[-1]
         else:
-            main_node = None
+            top_node = None
 
-        main_node, schema_node, data_services_node = create_xml_base(csdlname, prefix, main_node)
+        main_node, schema_node, data_services_node = create_xml_base(csdlname, prefix, top_node)
         main_node.insert(0, data_services_node)
 
         entity_node = Element("EntityType")
@@ -229,7 +229,7 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
         if seg_type in ['list']:
             prefix = prefix if prefix is not None else ""
 
-            collection_node = createCollectionXML(csdlname, prefix, main_node)
+            collection_node = createCollectionXML(csdlname, prefix, top_node)
             ccsdlname = csdlname + 'Collection'
             cfilename = prefix + ccsdlname + '_v1.xml'
             if len(current_xml_top) > 0 and not config['single_file']:
@@ -240,16 +240,16 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
 
         filename = prefix + filename
 
-        current_xml_top.pop()
-
         schema_node.append(entity_node)
         main_node.remove(data_services_node)
-        if not config['single_file'] or (config['single_file'] and len(current_xml_top) == 0):
+        if not config['single_file'] or (config['single_file'] and len(current_xml_top) == 1):
             main_node.append(data_services_node)
             xml_content = XMLContent()
             xml_content.set_filename(filename)
             xml_content.set_xml(main_node)
             list_of_xml.append(xml_content)
+
+        current_xml_top.pop()
 
         if len(current_xml_top) == 0:
             get_item = createExtensionsXML(csdlname, all_types_created, schema_node)
