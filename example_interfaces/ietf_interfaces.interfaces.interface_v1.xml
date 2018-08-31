@@ -55,14 +55,6 @@
 				<Member Name="disabled" Value="2">
 					<Annotation Term="RedfishYang.value" String="2"/>
 				</Member>
-				<Collection>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="enabled"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="disabled"/>
-					</Record>
-				</Collection>
 				<Annotation Term="RedfishYang.if_feature" String="if-mib"/>
 				<Annotation Term="OData.Description" String="Controls whether linkUp/linkDown SNMP notifications should be generated for this interface.  If this node is not configured, the value 'enabled' is operationally used by the server for interfaces that do not operate on top of any other interface (i.e., there are no 'lower-layer-if' entries), and 'disabled' otherwise."/>
 				<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB -           ifLinkUpDownTrapEnable"/>
@@ -92,7 +84,7 @@
 					<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifType"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
-				<Property Name="enabled" Type="Edm.Boolean" DefaultValue="true">
+				<Property Name="enabled" Type="Edm.Boolean">
 					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
 					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
 					<Annotation Term="RedfishYang.default" String="true"/>

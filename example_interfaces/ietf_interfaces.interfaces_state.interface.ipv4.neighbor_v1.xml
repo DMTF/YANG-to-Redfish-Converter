@@ -15,8 +15,14 @@
 	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
 		<edmx:Include Namespace="Resource.v1_0_0"/>
 	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_inet_types_v1.xml">
+		<edmx:Include Namespace="ietf_inet_types.v1_0_0" Alias="inet"/>
+	</edmx:Reference>
 	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_yang_types_v1.xml">
 		<edmx:Include Namespace="ietf_yang_types.v1_0_0" Alias="yang"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_ip_v1.xml">
+		<edmx:Include Namespace="ietf_ip.v1_0_0" Alias="ip"/>
 	</edmx:Reference>
 	<edmx:DataServices>
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces_state.interface.ipv4.neighbor">
@@ -60,9 +66,9 @@
 					<Annotation Term="OData.Description" String="The link-layer address of the neighbor node."/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
-				<Property Name="origin" Type="RedfishYang.neighbor_origin">
+				<Property Name="origin" Type="ip.neighbor_origin">
 					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/neighbor_origin"/>
+					<Annotation Term="ip.YangType" EnumMember="ip.YangTypes/neighbor_origin"/>
 					<Annotation Term="OData.Description" String="The origin of this neighbor entry."/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>

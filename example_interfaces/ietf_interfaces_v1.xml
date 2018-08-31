@@ -70,24 +70,6 @@
 			<Annotation Term="RedfishYang.identity" String="interface-type">
 				<Annotation Term="OData.Description" String="Base identity from which specific interface types are derived."/>
 			</Annotation>
-			<Collection>
-				<Record>
-					<Annotation Term="RedfishYang.feature" String="arbitrary-names">
-						<Annotation Term="OData.Description" String="This feature indicates that the device allows user-controlled interfaces to be named arbitrarily."/>
-					</Annotation>
-				</Record>
-				<Record>
-					<Annotation Term="RedfishYang.feature" String="pre-provisioning">
-						<Annotation Term="OData.Description" String="This feature indicates that the device supports pre-provisioning of interface configuration, i.e., it is possible to configure an interface whose physical interface hardware is not present on the device."/>
-					</Annotation>
-				</Record>
-				<Record>
-					<Annotation Term="RedfishYang.feature" String="if-mib">
-						<Annotation Term="OData.Description" String="This feature indicates that the device implements the IF-MIB."/>
-						<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB"/>
-					</Annotation>
-				</Record>
-			</Collection>
 			<EntityType Name="ietf_interfaces" BaseType="ietf_interfaces.ietf_interfaces">
 				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/module"/>
 				<NavigationProperty Name="interfacesContainer" Type="interfaces.interfaces" ContainsTarget="true">

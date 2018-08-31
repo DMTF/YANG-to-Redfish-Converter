@@ -1,0 +1,2 @@
+~/.local/bin/pyang --plugindir ./YANG-to-Redfish-Plugin -p ~/pyang/modules/combined --format redfish ~/pyang/modules/combined/ietf-inet-types.yang ~/pyang/modules/combined/ietf-ip.yang ~/pyang/modules/combined/ietf-interfaces.yang ~/pyang/modules/combined/ietf-yang-types.yang --target_dir example_interfaces
+

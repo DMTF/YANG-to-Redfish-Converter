@@ -50,14 +50,14 @@
 			<Annotation Term="OData.Description" String="Parameters for the IPv4 address family."/>
 			<EntityType Name="ipv4" BaseType="ietf_interfaces.interfaces.interface.ipv4.ipv4">
 				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
-				<Property Name="enabled" Type="Edm.Boolean" DefaultValue="true">
+				<Property Name="enabled" Type="Edm.Boolean">
 					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
 					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
 					<Annotation Term="RedfishYang.default" String="true"/>
 					<Annotation Term="OData.Description" String="Controls whether IPv4 is enabled or disabled on this interface.  When IPv4 is enabled, this interface is connected to an IPv4 stack, and the interface can send and receive IPv4 packets."/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
-				<Property Name="forwarding" Type="Edm.Boolean" DefaultValue="false">
+				<Property Name="forwarding" Type="Edm.Boolean">
 					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
 					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
 					<Annotation Term="RedfishYang.default" String="false"/>

@@ -28,6 +28,7 @@ def collectAnnotations(node):
     for key in collected:
         target = collected[key]
         if len(target) > 1:
+            # comment out Collection and Record lines to fix npm test
             Collection = SubElement(node, 'Collection')
             for a in target:
                 Record = SubElement(Collection, 'Record')
@@ -137,13 +138,15 @@ def handle_generic_modifier(yang_keyword, yang_arg, target):
             "namespace": "xmlns",
             "prefix": "Alias",
             "default": "DefaultValue"
-
             }
+
+
 
     handle_generic(yang_keyword, yang_arg, [], target)
     if yang_keyword not in ["namespace"]:
         yang_keyword = convert_to_csdl.get(yang_keyword, yang_keyword.capitalize())
-        target.set(yang_keyword, get_valid_csdl_identifier(yang_arg))
+        if yang_keyword != "DefaultValue":
+            target.set(yang_keyword, get_valid_csdl_identifier(yang_arg))
 
 
 """
@@ -305,53 +308,65 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
             if 'module'.upper() in imports and config['remove_cyclical'] and imports['module'.upper()] == importname:
                 var_type = var_type.split(':')[1]
 
+        # lots of checks and repeated code, clean this up
         if ':' in var_type:
             # print(var_type, var_type.split(':')[-1] in types)
             # This is an import from another file, add to CSDL imports
             importname = var_type.split(':')[0]
             if importname in imports and imports[importname] != top_name:
-                ns = (imports[importname]) + '.v1_0_0'
-                xml_convenience.add_import(xml_top, imports[importname], importname if importname != imports[importname] else None, ns)
+                ns = get_valid_csdl_identifier(imports[importname]) + '.v1_0_0'
+                xml_convenience.add_import(xml_top, get_valid_csdl_identifier(imports[importname]), importname if importname != imports[importname] else None, ns)
+            elif importname in imports:
+                importname = get_valid_csdl_identifier(imports[importname]) + '.v1_0_0'
+                var_type = importname + ':' + var_type.split(':')[1]
             yang_type_location = importname
             annotation.set('Term', '{}.YangType'.format(yang_type_location))
             var_type = redfishtypes.types_mapping.get(var_type, var_type)
 
+        elif var_type in [x for module in rf.csdltree.types_created_by_import.values() for x in module] or\
+            (var_type in types and 'module'.upper() in imports and not config['remove_cyclical']):
+
+            importname = imports['module'.upper()] if 'module'.upper() in imports else 'RedfishYang'
+            for module in rf.csdltree.types_created_by_import:
+                if var_type in rf.csdltree.types_created_by_import[module]:
+                    importname = module
+                    break
+            if imports[importname] != top_name:
+                ns = get_valid_csdl_identifier(imports[importname]) + '.v1_0_0'
+                xml_convenience.add_import(xml_top, get_valid_csdl_identifier(imports[importname]), importname if importname != imports[importname] else None, ns)
+            else:
+                importname = get_valid_csdl_identifier(imports[importname]) + '.v1_0_0'
+            yang_type_location = importname
+            annotation.set('Term', '{}.YangType'.format(yang_type_location))
+            var_type = importname + '.' + redfishtypes.types_mapping.get(var_type, var_type)
+
         elif var_type in types:
             # If we haven't defined this type, this must be added to imports
             # print(var_type, var_type in types, 'ofcourse')
-            if 'module'.upper() in imports and not config['remove_cyclical']:
-                importname = imports['module'.upper()]
-                if imports[importname] != top_name:
-                    ns = (imports[importname]) + '.v1_0_0'
-                    xml_convenience.add_import(xml_top, imports[importname], importname if importname != imports[importname] else None, ns)
-                annotation.set('Term', '{}.YangType'.format(importname))
-                yang_type_location = importname
-                var_type = importname + '.' + redfishtypes.types_mapping.get(var_type, var_type)
-            else:
-                ds_node = xml_top.find('./')
-                schema_node = ds_node.findall('./')[1]
-                namespace = schema_node.attrib.get('Namespace')
-                available_types = list()
-                yang_type_location = namespace
-                annotation.set('Term', '{}.YangType'.format(yang_type_location))
+            ds_node = xml_top.find('./')
+            schema_node = ds_node.findall('./')[1]
+            namespace = schema_node.attrib.get('Namespace')
+            available_types = list()
+            yang_type_location = namespace
+            annotation.set('Term', '{}.YangType'.format(yang_type_location))
 
-                for ref in schema_node:
-                    if str(ref.tag) not in ['TypeDefinition', 'EnumType']:
-                        continue
-                    available_types.append(ref.attrib.get('Name'))
+            for ref in schema_node:
+                if str(ref.tag) not in ['TypeDefinition', 'EnumType']:
+                    continue
+                available_types.append(ref.attrib.get('Name'))
 
-                if get_valid_csdl_identifier(var_type) not in available_types:
-                    schema_node.append(types[var_type])
-                    if var_type in rf.csdltree.all_types_created and 'YangTypes' not in available_types:
-                        rf.csdltree.createExtensionsXML(namespace.rsplit('.', 1)[0], rf.csdltree.all_types_created, schema_node)
+            if get_valid_csdl_identifier(var_type) not in available_types:
+                schema_node.append(types[var_type])
+                if var_type in rf.csdltree.all_types_created and 'YangTypes' not in available_types:
+                    rf.csdltree.createExtensionsXML(namespace.rsplit('.', 1)[0], rf.csdltree.all_types_created, schema_node)
 
-                if namespace is None:
-                    print("Namespace shouldn't be none {}".format(parent_entity.attrib))
-                    get_valid_csdl_identifier(redfishtypes.types_mapping.get(var_type, var_type))
+            if namespace is None:
+                print("Namespace shouldn't be none {}".format(parent_entity.attrib))
+                get_valid_csdl_identifier(redfishtypes.types_mapping.get(var_type, var_type))
 
-                elif namespace is not "":
-                    namespace = namespace + "."
-                var_type = namespace + var_type
+            elif namespace is not "":
+                namespace = namespace + "."
+            var_type = namespace + var_type
 
         else:
             # If it is neither, it must be primitive

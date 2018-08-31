@@ -18,8 +18,8 @@
 	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_yang_types_v1.xml">
 		<edmx:Include Namespace="ietf_yang_types.v1_0_0" Alias="yang"/>
 	</edmx:Reference>
-	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf-interfaces_v1.xml">
-		<edmx:Include Namespace="ietf-interfaces.v1_0_0" Alias="if"/>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_interfaces_v1.xml">
+		<edmx:Include Namespace="ietf_interfaces.v1_0_0" Alias="if"/>
 	</edmx:Reference>
 	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_interfaces.interfaces_state.interface.statistics_v1.xml">
 		<edmx:Include Namespace="ietf_interfaces.interfaces_state.interface.statistics" Alias="statistics"/>
@@ -70,17 +70,6 @@
 					<Annotation Term="RedfishYang.value" String="3"/>
 					<Annotation Term="OData.Description" String="In some test mode."/>
 				</Member>
-				<Collection>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="up"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="down"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="testing"/>
-					</Record>
-				</Collection>
 				<Annotation Term="RedfishYang.if_feature" String="if-mib"/>
 				<Annotation Term="RedfishYang.mandatory" EnumMember="RedfishYang.Mandatory/true"/>
 				<Annotation Term="OData.Description" String="The desired state of the interface.  This leaf has the same read semantics as ifAdminStatus."/>
@@ -115,29 +104,6 @@
 					<Annotation Term="RedfishYang.value" String="7"/>
 					<Annotation Term="OData.Description" String="Down due to state of lower-layer interface(s)."/>
 				</Member>
-				<Collection>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="up"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="down"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="testing"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="unknown"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="dormant"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="not-present"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="lower-layer-down"/>
-					</Record>
-				</Collection>
 				<Annotation Term="RedfishYang.mandatory" EnumMember="RedfishYang.Mandatory/true"/>
 				<Annotation Term="OData.Description" String="The current operational state of the interface. This leaf has the same semantics as ifOperStatus."/>
 				<Annotation Term="RedfishYang.reference" String="RFC 2863: The Interfaces Group MIB - ifOperStatus"/>

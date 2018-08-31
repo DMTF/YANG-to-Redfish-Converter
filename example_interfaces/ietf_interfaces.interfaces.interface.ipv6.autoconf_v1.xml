@@ -44,7 +44,7 @@
 			<Annotation Term="RedfishYang.reference" String="RFC 4862: IPv6 Stateless Address Autoconfiguration"/>
 			<EntityType Name="autoconf" BaseType="ietf_interfaces.interfaces.interface.ipv6.autoconf.autoconf">
 				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
-				<Property Name="create_global_addresses" Type="Edm.Boolean" DefaultValue="true">
+				<Property Name="create_global_addresses" Type="Edm.Boolean">
 					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
 					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
 					<Annotation Term="RedfishYang.default" String="true"/>
@@ -52,7 +52,7 @@
 					<Annotation Term="RedfishYang.reference" String="RFC 4862: IPv6 Stateless Address Autoconfiguration           Section 5.5"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
-				<Property Name="create_temporary_addresses" Type="Edm.Boolean" DefaultValue="false">
+				<Property Name="create_temporary_addresses" Type="Edm.Boolean">
 					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
 					<Annotation Term="RedfishYang.if_feature" String="ipv6-privacy-autoconf"/>
 					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
@@ -61,7 +61,7 @@
 					<Annotation Term="RedfishYang.reference" String="RFC 4941: Privacy Extensions for Stateless Address           Autoconfiguration in IPv6"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
-				<Property Name="temporary_valid_lifetime" Type="RedfishYang.uint32" DefaultValue="604800">
+				<Property Name="temporary_valid_lifetime" Type="RedfishYang.uint32">
 					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
 					<Annotation Term="RedfishYang.if_feature" String="ipv6-privacy-autoconf"/>
 					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint32"/>
@@ -71,7 +71,7 @@
 					<Annotation Term="RedfishYang.reference" String="RFC 4941: Privacy Extensions for Stateless Address           Autoconfiguration in IPv6           - TEMP_VALID_LIFETIME"/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
-				<Property Name="temporary_preferred_lifetime" Type="RedfishYang.uint32" DefaultValue="86400">
+				<Property Name="temporary_preferred_lifetime" Type="RedfishYang.uint32">
 					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
 					<Annotation Term="RedfishYang.if_feature" String="ipv6-privacy-autoconf"/>
 					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint32"/>

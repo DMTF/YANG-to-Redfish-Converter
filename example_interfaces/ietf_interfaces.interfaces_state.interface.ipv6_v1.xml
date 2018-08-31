@@ -51,7 +51,7 @@
 			<Annotation Term="OData.Description" String="Parameters for the IPv6 address family."/>
 			<EntityType Name="ipv6" BaseType="ietf_interfaces.interfaces_state.interface.ipv6.ipv6">
 				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
-				<Property Name="forwarding" Type="Edm.Boolean" DefaultValue="false">
+				<Property Name="forwarding" Type="Edm.Boolean">
 					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
 					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
 					<Annotation Term="RedfishYang.default" String="false"/>

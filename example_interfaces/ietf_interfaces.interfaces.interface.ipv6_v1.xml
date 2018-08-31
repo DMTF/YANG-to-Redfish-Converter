@@ -53,14 +53,14 @@
 			<Annotation Term="OData.Description" String="Parameters for the IPv6 address family."/>
 			<EntityType Name="ipv6" BaseType="ietf_interfaces.interfaces.interface.ipv6.ipv6">
 				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
-				<Property Name="enabled" Type="Edm.Boolean" DefaultValue="true">
+				<Property Name="enabled" Type="Edm.Boolean">
 					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
 					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
 					<Annotation Term="RedfishYang.default" String="true"/>
 					<Annotation Term="OData.Description" String="Controls whether IPv6 is enabled or disabled on this interface.  When IPv6 is enabled, this interface is connected to an IPv6 stack, and the interface can send and receive IPv6 packets."/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
-				<Property Name="forwarding" Type="Edm.Boolean" DefaultValue="false">
+				<Property Name="forwarding" Type="Edm.Boolean">
 					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
 					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
 					<Annotation Term="RedfishYang.default" String="false"/>
@@ -90,7 +90,7 @@
 					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
 					<Annotation Term="OData.AutoExpandReferences"/>
 				</NavigationProperty>
-				<Property Name="dup_addr_detect_transmits" Type="RedfishYang.uint32" DefaultValue="1">
+				<Property Name="dup_addr_detect_transmits" Type="RedfishYang.uint32">
 					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
 					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint32"/>
 					<Annotation Term="RedfishYang.default" String="1"/>

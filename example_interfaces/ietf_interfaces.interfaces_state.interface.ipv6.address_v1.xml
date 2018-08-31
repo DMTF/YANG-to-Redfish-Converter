@@ -15,6 +15,12 @@
 	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
 		<edmx:Include Namespace="Resource.v1_0_0"/>
 	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_inet_types_v1.xml">
+		<edmx:Include Namespace="ietf_inet_types.v1_0_0" Alias="inet"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/ietf_ip_v1.xml">
+		<edmx:Include Namespace="ietf_ip.v1_0_0" Alias="ip"/>
+	</edmx:Reference>
 	<edmx:DataServices>
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ietf_interfaces.interfaces_state.interface.ipv6.address">
 			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
@@ -67,32 +73,6 @@
 				<Member Name="optimistic">
 					<Annotation Term="OData.Description" String="The address is available for use, subject to restrictions, while its uniqueness on a link is being verified."/>
 				</Member>
-				<Collection>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="preferred"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="deprecated"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="invalid"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="inaccessible"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="unknown"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="tentative"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="duplicate"/>
-					</Record>
-					<Record>
-						<Annotation Term="RedfishYang.enum" String="optimistic"/>
-					</Record>
-				</Collection>
 				<Annotation Term="OData.Description" String="The status of an address.  Most of the states correspond to states from the IPv6 Stateless Address Autoconfiguration protocol."/>
 				<Annotation Term="RedfishYang.reference" String="RFC 4293: Management Information Base for the           Internet Protocol (IP)           - IpAddressStatusTC RFC 4862: IPv6 Stateless Address Autoconfiguration"/>
 			</EnumType>
@@ -113,9 +93,9 @@
 					<Annotation Term="OData.Description" String="The length of the subnet prefix."/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>
-				<Property Name="origin" Type="RedfishYang.ip_address_origin">
+				<Property Name="origin" Type="ip.ip_address_origin">
 					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
-					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/ip_address_origin"/>
+					<Annotation Term="ip.YangType" EnumMember="ip.YangTypes/ip_address_origin"/>
 					<Annotation Term="OData.Description" String="The origin of this address."/>
 					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
 				</Property>

@@ -15,7 +15,9 @@ from xml.etree.ElementTree import Element, SubElement
 
 logger = None
 current_xml_top = []
+types_created_by_import = {}
 all_types_created = {}
+all_imports = {}
 
 config = {
         'single_file': False,
@@ -180,7 +182,7 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
     if topleveltypes is None:
         topleveltypes = dict()
     if toplevelimports is None:
-        toplevelimports = dict()
+        toplevelimports = all_imports
 
     if seg_type in ['module','submodule', 'container', 'list', 'grouping']:
         csdlname = handlers.get_valid_csdl_identifier(name)
@@ -208,8 +210,8 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
         prefix_import = name
         for item in [tag for tag in content if tag.keyword == 'prefix']:
             prefix_import = item.arg
-        toplevelimports[prefix_import] = name
         if seg_type in ['module', 'submodule']:
+            toplevelimports[prefix_import] = name
             toplevelimports['module'.upper()] = prefix_import
 
         for item in content:
@@ -253,6 +255,10 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
 
         if len(current_xml_top) == 0:
             get_item = createExtensionsXML(csdlname, all_types_created, schema_node)
+            del toplevelimports['module'.upper()]
+            types_created_by_import[prefix_import] = {}
+            types_created_by_import[prefix_import].update(topleveltypes)
+            all_types_created.clear()
             """
             xml_content = XMLContent()
             xml_content.set_filename(csdlname + 'Extensions_v1.xml')
