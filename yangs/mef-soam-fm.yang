@@ -1,0 +1,1762 @@
+module mef-soam-fm {
+
+  namespace "http://metroethernetforum.org/ns/yang/mef-soam-fm";
+  prefix "mef-soam-fm";
+
+  import mef-cfm {
+    prefix cfm;
+    revision-date 2012-04-16;
+  }
+  import ietf-yang-types {
+    prefix yang;
+    revision-date 2010-09-24;
+  }
+
+  organization "Metro Ethernet Forum";
+  contact
+    "Web URL: http://metroethernetforum.org/
+     E-mail:  mibs@metroethernetforum.org
+     Postal:  Metro Ethernet Forum
+              6033 W. Century Boulevard, Suite 830
+              Los Angeles, CA 90045
+              U.S.A.
+     Phone:   +1 310-642-2800
+     Fax:     +1 310-642-2808";
+
+  description 
+    "This YANG module contains the management data definitions for the
+     management of Ethernet Services Operations, Administration and
+     Maintenance for Fault Management and extends the Connectivity Fault
+     Management (CFM) YANG modules.
+
+    Reference Overview:
+      A number of base documents have been used to create the SOAM FM YANG. The
+      following are the abbreviations for the baseline documents:
+      [802.1q] refers to IEEE 802.1Q-2011 'IEEE Standard for Local and metropolitan
+          area networks --Media Access Control (MAC) Bridges and Virtual
+          Bridged Local Area Networks, August 2011
+      [MEF7.1] refers to MEF 7.1 'Phase 2 EMS-NMS Information Model', 
+          October 2009
+      [MEF30] refers to MEF 30 'Service OAM Fault Management Implementation
+          Agreement', January 2011
+      [MEF31] refers to MEF 31 'Service OAM Fault Management Definition of Managed
+          Objects', January 2011
+      [Y.1731] refers to ITU-T Y.1731 'OAM functions and mechanisms for Ethernet 
+          based networks', July 2011";
+
+
+  revision "2012-04-16" {
+    description
+      "Initial revision";
+    reference
+      "Service OAM Fault Management YANG Modules (MEF XX), April 2012";
+  }
+
+  //
+  // Type definitions related to MEF SOAM FM
+  //
+
+  typedef interval-type-ais-lck-type {
+    type  enumeration {
+      enum one-second {
+        description
+          "A one second transmission interval";
+      }
+      enum one-minute {
+        description
+          "A one minute transmission interval";
+      }
+}
+
+    description
+      "This enumeration data type defines the AIS/LCK interval (transmission
+       period for a frame)";
+    reference
+      "[Y.1731] sections 7.4, 7.6; [MEF7.1] III.2";
+  }
+
+  typedef operational-state-type {
+    type enumeration {
+      enum enabled {
+        description
+          "The MEP is able to provide OAM capabilities and has been set to
+           active via the 'administrative-state' leaf.";
+      }
+      enum disabled {
+        description
+          "The MEP is not able to provide OAM capabilities, for example
+           because it has been disabled via the administrative-state leaf,
+           has detected an operational failure condition, or has failed an
+           internal test.";
+      }
+      enum testing {
+        description
+          "The MEP has been placed into a test mode, either a troubleshooting
+           mode or ETH-Test 'Out-of-service' mode.";
+      }
+      enum unknown {
+        description
+          "The MEP is unable to report the operational state.";
+      }
+    }
+    description
+      "This attribute indicates the operational state (current capability) of
+       a MEP.";
+    reference
+      "[MEF7.1] 9.2.5";
+  }
+
+  typedef test-pattern-type {
+    type enumeration {
+      enum null-signal-without-crc-32 {
+        description
+          "Null signal without CRC-32";
+      }
+      enum null-signal-with-crc-32 {
+        description
+          "Null signal with CRC-32";
+      }
+      enum prbs-2311-without-crc-32 {
+        description
+          "PRBS 2^31-1 without CRC-32";
+      }
+      enum prbs-2311-with-crc-32 {
+        description
+          "PRBS 2^31-1 with CRC-32";
+      }
+    }
+    
+    description
+      "This enumeration data type indicates the type of test pattern to be
+       sent in an OAM PDU Data TLV";
+    reference
+      "[Y.1731]";
+  }
+  
+  //
+  // Groupings related to MEF SOAM FM
+  //
+  
+  grouping locked-signal-parameters-group {
+    description
+      "Data definitions related to the administrative locking state of the MEP";
+
+    leaf state {
+      type enumeration {
+        enum lock {
+        description
+          "Indicates the resource is administrativelyprohibited from use.";
+        }
+        enum unlock {
+        description
+          "Indicates the resource is notadministratively prohibited from use.";
+        }
+      }
+
+
+      description
+        "This attribute specifies the locking state. If state is 'lock',the
+         MEP will be administratively locked. If state is 'unlock',
+         the MEP will be administratively unlocked if previously
+         locked.";
+      reference
+        "[MEF7.1] 9.3.4.2";
+    }
+ 
+    leaf interval {
+      type interval-type-ais-lck-type;
+      default one-second;
+
+      description
+        "This attribute specifies the ETH-LCK transmission period. The default
+         value is 1 frame per second.";        
+      reference
+        "[MEF7.1] 9.3.4.2";
+    }
+
+    leaf priority {
+      type cfm:priority-type;
+
+      description
+        "This attribute specifies the priority of frames with ETH-LCK
+         information.";
+      reference
+        "[MEF7.1] 9.3.4.2";
+    }
+
+    leaf client-meg-level {
+      type cfm:md-level-type;
+
+      description
+        "The MEG/Maintenance Domain Level of the Client LCK PDU (transmitted
+         level).";
+      reference
+        "[Y.1731] 7.6";
+    }
+  }
+
+  grouping test-signal-parameters-group {
+    description
+      "Data definitions related to generating and receiving test signals
+       (ETH-Test) frames";
+
+    leaf is-receiver {
+      type boolean;
+      default true;
+
+      description
+        "Indicates the MEP is acting in the role of a receiver.";
+      reference
+        "[MEF7.1] 9.3.4.3";
+    }
+
+    leaf is-generator {
+      type boolean;
+      default false;
+
+      description
+        "Indicates the MEP is acting in the role of a generator.";
+      reference
+        "[MEF7.1] 9.3.4.3";
+    }
+    
+    leaf test-type {
+      type enumeration {
+        enum in-service {
+        description
+          "Indicates the ETH-Test is in-service and normal client service traffic 
+           is not interrupted.";
+        }
+        enum out-of-service {
+        description
+          "Indicates the ETH-Test is out-of-service and normal client service 
+           traffic is disrupted.";
+        }
+      }
+      default in-service;
+
+      must "../is-generator = true" {
+        error-message "The test-type parameter is only relevant for the generator side";
+      }
+
+      description
+        "This attribute specifies the type of ETH-Test to perform, whether it is
+         service interrupting or not. An 'in-service' value indicates
+         that the ETH-Test is in service and normal client service
+         traffic is not interrupted. A 'out-of-service' value indicates
+         that the ETH-Test is out of service and normal client service
+         traffic is disrupted.";
+
+      reference "[Y.1731] 7.7";
+    }
+
+    container target-address {
+      uses cfm:target-address-group;
+
+      must "../is-generator = true" {
+        error-message "The target-address parameter is only relevant for the generator side";
+      }
+
+      description
+        "Unicast MAC address or MEPID of the peer MEP for which ETH-Test is
+         intended. This information is configurable per operation.";
+      reference
+        "[Y.1731] 7.7";
+    }
+
+    leaf interval {
+      type uint32 {
+        range "0..60000000";
+      }
+      units microseconds;
+      default 1000000;
+
+      must "../is-generator = true" {
+        error-message
+         "The interval parameter is only relevant for the generator side";
+      }
+
+      description 
+        "This attribute specifies the ETH-Test transmission period between
+        consecutive transmitted frames in microseconds. A value of '0'
+        indicates that the Test TLVs are sent as quickly as possible
+        across the interface.";
+
+      reference "[MEF7.1] 9.3.4.3";
+    }
+
+    leaf priority {
+      type cfm:priority-type;
+
+      must "../is-generator = true" {
+        error-message "The priority parameter is only relevant for the generator side";
+      }
+
+      description
+        "This attribute specifies the priority of frames with ETH-Test
+         information";
+
+      reference "[MEF7.1] 9.3.4.3";
+    }
+
+    container measurement-timing {
+      description
+        "Data definitions related to measurement timing";
+
+      choice measurement-timing {
+        mandatory true;
+
+        description
+          "On-demand measurements can be scheduled using absolute
+           time or relative time
+            - absolute-time specifies absolute start and stop, date and time
+            - relative-time specifies an offset from current system time and
+             a duration";
+
+        case absolute-time {
+          leaf start-time {
+            type yang:date-and-time;
+          
+            description
+              "This attribute specifies the scheduled start date/time to perform the
+               on-demand ETH-Test operations. The default value for this
+               attribute is the current system date and time which
+               represents an immediate time.";
+          }
+        
+          leaf stop-time {
+            type yang:date-and-time;
+          
+            description
+              "This attribute specifies the scheduled stop date/time to perform
+               on-demand ETH-Test operations. The stop date/time value
+               should be greater than or equal to the scheduled start
+               date/time value.";
+          }
+        }
+
+        case relative-time {
+          choice start-time-type {
+            case relative-start-time {
+              leaf relative-start-time {
+                type uint32;
+                units "minutes";
+                mandatory true;
+                
+                description
+                  "This attribute specifies the relative start time, from the current
+                   system time, to perform on-demand ETH-Test. The
+                   default value for this attribute is zero, indicating
+                   the current system time, which represents an
+                   immediate start time.";
+              }
+            }
+            case absolute-start-time {
+              leaf absolute-start-time {
+                type yang:date-and-time;
+                
+                description
+                  "This attribute specifies the scheduled start date/time to 
+                   perform the on-demand ETH-Test operations. The default value 
+                   for this attribute is the current system date and time
+                   which represents an immediate time.";
+              }
+            }
+          }
+
+          leaf duration {
+            type uint32;
+            units "minutes";
+            mandatory true;
+          
+            description
+              "This attribute specifies the duration of the Locking. The duration time
+               can be specified as forever (represented by a zero value)
+               or as relative time (e.g., a given number of hours,
+               minutes, and seconds from the start time). If the
+               duration time is relative time, then the duration time
+               should be equal to or greater than the frame transmission
+               period.";
+          }
+        }
+      }
+    }
+
+    leaf drop-eligible {
+      type boolean;
+      default false;
+
+      must "../is-generator = true" {
+        error-message "The drop-eligible parameter is only relevant for the generator side";
+      }
+
+      description
+        "This attribute specifies the eligibility of frames with ETH-Test
+         information to be discarded when congestion conditions are
+         encountered. The value 'true' indicates frames are eligible to
+         be discarded. The value 'false' indicates frames are not
+         eligible to be discarded. This attribute may be constrained to
+         read-only in some implementations.";
+
+      reference "[Y.1731] 7.7";
+    }
+
+    leaf frame-size {
+      type uint32 {
+        range "64..9600";
+      }
+      units bytes;
+      default 64;
+
+      must "../is-generator = true" {
+        error-message "The frame-size parameter is only relevant for the generator side";
+      }
+
+      description
+        "This attribute specifies the ETH-Test Ethernet frame size between 64
+         bytes and the maximum transmission unit of the EVC. The
+         adjustment to the frame size of the standard Test PDU size is
+         accomplished by the addition of a Test TLV.";
+
+      reference "[MEF7.1] 9.3.4.3";
+    }
+
+    leaf test-pattern {
+      type test-pattern-type;
+
+      description
+        "This attribute specifies an arbitrary element to include in the Data
+         TLV, if the Data TLV is selected to be sent, whose length and
+         contents are configurable at the MEP. The contents can be a
+         test pattern and an optional checksum.";
+    }
+    reference "[Y.1731] Figure 9.3-4";
+  }
+
+  grouping test-signal-stats-in-group {
+    description
+      "Data definitions related to TST frames received";
+
+    leaf number-test-in {
+      type yang:zero-based-counter64;
+
+      description
+        "This attribute contains the count of the total number of TST frames
+         received. The count is incremented when a message is received
+         with or without errors. This attribute is only applicable to the
+         MEP receiving ETH TST frames.";
+      reference
+        "[MEF7.1] 9.3.4.4";
+    }
+
+    leaf number-test-in-out-of-order {
+      type yang:zero-based-counter64;
+
+      description
+        "This attribute contains the count of the total number of valid,
+         out-of-order TST frameTST frames received. The count is incremented when
+         the sequence number in the TST frame received does not match
+         the expected sequence number. This attribute is only applicable
+         to the MEP receiving ETH-TST frames.";
+      reference
+        "[MEF7.1] 9.3.4.4";
+    }
+
+    leaf number-test-in-crc-errors {
+      type yang:zero-based-counter64;
+
+      description
+        "This attribute contains the count of the total number of TST frames
+         received with CRC errors. This attribute is only applicable to
+         the MEP receiving ETH-Test messages that include the test TLV with
+         test pattern of null CRC 32 or PBRS CRC 32.
+
+        The CRC is dependent upon the Test TLV only and is independent of BER
+        errors, which is used to indicate a pattern error.";
+      reference
+        "[MEF7.1] 9.3.4.4";
+    }
+
+    leaf number-test-in-ber-errors {
+      type yang:zero-based-counter64;
+
+      description
+        "This attribute contains the count of the total number of TST frames
+         received with BER or data errors. The count is incremented when the bit
+         pattern in the received TST frame does not match the expected bit
+         pattern. This attribute is only applicable to the MEP receiving ETH-Test 
+         messages.
+
+         The BER error count is independent of the CRC error count and is usedto
+         indicate a data pattern error, while the CRC error is used to indicate
+         a TLV CRC error.";
+      reference
+        "[MEF7.1] 9.3.4.4";
+    }
+  }
+
+  grouping test-signal-stats-out-group {
+    description
+      "Data definitions related to TST frames sent";
+
+    leaf number-test-out {
+      type yang:zero-based-counter64;
+    
+      description
+        "This attribute contains the count of the total number of TST frames
+         transmitted. This attribute is only applicable to the MEP sending
+         ETH-TST frames. (i.e. The MEP under Test)";
+      reference
+        "[MEF7.1] 9.3.4.4";
+    }
+  }
+
+  //
+  // Augments into CFM related to MEF SOAM FM
+  //
+  augment "/cfm:maintenance-domain/cfm:maintenance-association" {
+    description
+      "This set of data definitions represents the Maintenance Entity Group (Y.1731) 
+       configuration that is unique from the Maintenance Association.";
+
+    leaf y1731-compliant {
+      type boolean;
+      description
+        "A boolean flag to indicate whether the MEG ID/MAID for this MEG operates
+         in conformance with 802.1q (if false) or Y.1731 (if true).
+         When set to false:
+          - The format of the MAID (Maintenance Association ID) is controlled
+            by the name-type and name in the maintenance-association instance,
+            and the name-type and name in the maintenance-domain instance.
+          - The meg-id-format and meg-level leafs are ignored.
+          - The level is controlled by the md-level leaf.
+         When set to true:
+          - The MEG shall be in a maintenance-domain where name-type has the value
+            none(1).
+          - The format of the MEG ID is as defined by meg-id-format.
+          - The name-type in the maintenance-association is ignored.
+          - The name leaf contains the MEG ID value unless the meg-id-format
+            is set to 'icc-based' in which case it contains the value of the
+            'icc-name-value' leaf
+          - The md-level leaf is ignored, and the level is controlled
+            by the meg-level leaf.";
+      reference
+        "[MEF31], MEF-SOAM-FM-MIB.mefSoamNetCfgY1731Compliant";
+    }
+
+    leaf meg-id-format {
+      type enumeration {
+        enum primary-vid {
+          value 1;
+          description
+            "Primary VLAN ID. 12 bits represented in a 2-octet integer:
+              - 4 least significant bits of the first byte contains the
+                4 most significant bits of the 12 bits primary VID
+              - second byte contains the 8 least significant bits of the
+                primary VID";
+        }
+        enum char-string {
+          value 2;
+          description
+            "RFC2579 DisplayString, except that the character codes 0-31 (decimal)
+             are not used. (1..45) octets";
+        }
+        enum unsigned-int16 {
+          value 3;
+          description
+            "2-octet integer/big endian";
+        }
+        enum rfc2865-vpn-id {
+          value 4;
+          description
+            "RFC 2685 VPN ID 3 octet VPN authority Organizationally Unique Identifier
+             followed by 4 octet VPN index identifying VPN according to
+             the OUI";
+        }
+        enum icc-based {
+          value 32;
+          description
+            "ICC-based MEG ID Format, thirteen octet field";
+        }
+      }
+
+      must "../y1731-compliant = true";
+
+      description
+        "This enumeration indicates the format of the MEG ID that is
+         sent in the OAM PDUs. The primary-vid, char-string,
+         unsigned-int16, and rfc2865-vpn-id types are more fully
+         explained in [802.1q] 17.5. The icc-based type is from [Y.1731]
+         Annex A.";
+      reference
+        "[Y.1731] Table A-1, [802.1q] 17.5, 21.6.5.1";
+    }
+
+    leaf icc-name-value {
+      type string {
+        length 13;
+      }
+
+      must "../meg-id-format = icc-based";
+      
+      description
+        "ICC-based MEG ID Format, thirteen octet field. It consists of two
+         subfields: the ITU Carrier Code (ICC) followed by a unique MEG
+         ID code (UMC). The ITU Carrier Code consists of 1-6
+         left-justified characters, alphabetic, or leading alphabetic
+         with trailing numeric. The UMC code immediately follows the ICC
+         and shall consist of 7-12 characters, with trailing NULLs,
+         completing the 13-character MEG ID Value.";
+      reference
+        "[Y.1731] Annex A";
+    }
+
+    leaf meg-level {
+      type cfm:md-level-type;
+      
+      must "../y1731-compliant = true";
+      
+      description
+        "This attribute indicates the MEG Level of the MEG";
+      
+      reference
+        "[MEF31] MEF-SOAM-FM-MIB.mefSoamNetCfgMegLevel";      
+    }
+  }
+
+  augment "/cfm:maintenance-domain/cfm:maintenance-association/cfm:component-list" {
+    description
+      "This set of data definitions extends the component list of the Maintenance
+       Entity Group (as defined in Y.1731) or Maintenance Association (as defined
+       in 802.1q)";
+    reference
+      "[MEF7.1] 9.2.2";
+
+
+    leaf connectivity-status-interval {
+      type yang:gauge32 {
+        range "1..2100000";
+      }
+      units "milliseconds";
+
+      description
+        " This attribute specifies a configurable time interval to detect a
+         change in Connectivity Status. This is the timer timeout value that
+         is used by the Remote Maintenance Endpoint (MEP)state machine.
+
+
+         This attribute overrides the standard CCMloss of connectivity
+         time interval which is 3.5 times the CCM interval.";
+      reference
+        "[MEF17] R2c, [802.1q] 20.1";
+    }
+
+    leaf peer-mep-info-aging-time {
+      type uint32 {
+        range "0..86400";
+      }
+      default 0;
+      units "seconds";
+
+      description
+        "This attribute defines a period of time after which an instance in the
+         remote-mep-database is removed if a valid CCM has not been
+         received by the local MEP, i.e. remote-mep-state is set to
+         'failed' for the period of time indicated by this parameter.
+
+        A value of zero indicates no aging will occur.";
+      reference
+        "[MEF17] R5a and R5b, [802.1q] 20.19, 20.20";
+    }
+    leaf mep-port-status-tlv-included {
+      type boolean;
+      default true;
+
+      description
+        "Indicates whether a Port Status TLV is included in CCM frame
+         transmission. A value of 'true' indicates that the Port Status
+         TLV is to be included. A value of 'false' indicates that the
+         Port Status TLV is not to be included.";
+      reference
+        "[MEF7.1] 9.2.2";
+    }
+
+    leaf mep-interface-status-tlv-included {
+      type boolean;
+      default true;
+
+      description
+        "Indicates whether a Interface Status TLV is included in CCM frame
+         transmission. A value of 'true' indicates that the Interface Status TLV
+         is to be included. A value of 'false' indicates that the Interface
+         Status TLV is not to be included.";
+      reference
+        "[MEF7.1] 9.2.2";
+    }
+  }
+
+  augment "/cfm:maintenance-domain/cfm:maintenance-association/cfm:maintenance-association-end-point" {
+    description
+      "This set of data definitions extends the MEG End Point (as described in
+       Y.1731) or Maintenance association End Point (as described in 802.1q)
+       defined in the MEF CFM module (MEF-CFM)";
+    reference
+      "[MEF7.1] 9.2.2";
+
+    leaf operational-state {
+      type operational-state-type;
+
+      config false;
+
+      description
+        "This attribute indicates the operational state (current capability) of
+         the MEP.";
+      reference
+        "[MEF7.1] 9.2.5";
+    }
+
+    leaf connectivity-status {
+      type enumeration {
+        enum active {
+        description
+          "Refers to the ability to exchange SOAM PDU frames among all the UNIs 
+           of an EVC.";
+        }
+        enum partially-active {
+        description
+          "Refers to the ability to exchange SOAM PDU frames among some but not
+           all the UNIs of an EVC.";
+        }
+        enum inactive {
+        description
+          "Refers to the ability to exchange SOAM PDU frames among any of the UNIs
+           of an EVC.";
+        }
+      }
+      config false;
+
+      description
+        "This attribute indicates the connectivity status for a MEP in an EVC
+         MEs. An 'active' MEP Connectivity Status refers to the ability
+         to exchange SOAM PDU frames among all the UNIs of an EVC. A
+         'partially-active' MEP Connectivity Status refers to the
+         ability to exchange SOAM PDU frames among some but not all the
+         UNIs of an EVC. An 'inactive' MEP Connectivity Status refers to
+         the inability to exchange SOAM PDU frames among any of the UNIs
+         of an EVC.";
+      reference
+        "[MEF7.1] 9.2.5";
+    }
+
+    leaf port-status {
+      type cfm:port-status-type;
+      config false;
+
+      description
+        "An enumerated value of the Port status TLV sent in the last CCM from the
+         local MEP or the default value psNoPortStateTLV indicating no
+         CCM has been sent or no Port Status TLV has been sent.";
+      reference
+        "[802.1q] 17.5";
+    }
+
+    leaf interface-status {
+      type cfm:interface-status-type;
+      config false;
+
+      description
+        "An enumerated value of the Interface status TLV sent in the last CCM
+         from the local MEP or the default value no-status-tlv
+         indicating no CCM has been sent or no Interface Status TLV has
+         been sent.";
+      reference
+        "[802.1q] 17.5";
+    }
+
+    leaf last-defect-sent {
+      type cfm:fault-alarm-defect-bits-type;
+      config false;
+
+      description
+        "This attribute indicates the state of the previous MEP defects,
+         that was sent with the previous
+         mep-defect-alarm notification. It is always some *previous*
+         value of cfm:active-defects. Once an mep-defect-alarm is sent
+         the mep-defect-alarm that was sent in the notification
+         updates the contents of this leaf.
+
+         If no mep-defect-alarm notification has been sent the value of
+         this leaf is '0'.";
+      reference
+        "[MEF31] MEF-SOAM-FM-MIB.mefSoamMepStatusLastDefectSentStatus";
+    }
+
+    leaf rdi-transmit-status {
+      type boolean;
+      config false;
+
+      description
+        "Indicates whether the local MEP is generating a RDI bit in the CCM that
+         it transmits. A value of 'true' indicates that a RDI bit was
+         set in the last CCM that the MEP transmitted. A value of
+         'false' indicates that the last CCM transmitted by the MEP did
+         not set the RDI bit or that a CCM has never been transmitted by
+         the MEP.";
+      reference
+        "[MEF7.1] 9.2.2";
+    }
+
+    leaf oam-frames-discarded {
+      type yang:counter32;
+      config false;
+
+      description
+        "This attribute indicates the count of incoming OAM frames discarded at
+         the MEP. This count includes frames discarded because they have
+         an unknown OpCode, and frames (other than CCMs) discarded
+         because they have a level below the level of the MEP.  In other
+         words, this attribute counts frames discarded by the MEP Equal
+         OpCode Demultiplexer and the MEP Low OpCode Demultiplexer
+         described in IEEE 802.1q Sn 19.2.7, Table 19-1 and Figure
+         19-2.  This count does not include frames that are malformed,
+         or that contain OpCode-specific errors (such as CCM defects or
+         LBRs with bad data).";
+      reference
+        "[802.1q] 19.2.7, [MEF31]
+        MEF-SOAM-FM-MIB.mefSoamMepFmStatsInOamFramesDiscarded";
+    }
+  }
+
+  augment "/cfm:maintenance-domain/cfm:maintenance-association/cfm:maintenance-association-end-point/cfm:continuity-check" {
+    description
+      "This set of data definitions extends the proactive Ethernet OAM Fault
+       Management and Performance Monitoring Continuity Check function
+       (ETH-CC) as described in Y.1731 and 802.1q and defined in
+       MEF-CFM";
+    reference
+      "[MEF7.1] 9.3.1";
+
+    leaf drop-eligible {
+      type boolean;
+      default false;
+
+      description
+        "This attribute specifies the eligibility of frames with ETH-CC and
+         ETH-RDI information to be discarded when congestion conditions
+         are encountered.
+
+         The value 'true' indicates frames are eligible to be discarded.
+
+         The value 'false' indicates frames are not eligible to be
+         discarded.";
+      reference
+        "[MEF7.1] 9.3.1.1";
+    }
+
+    leaf total-ccm-in {
+      type yang:counter32;
+      config false;
+
+      description
+        "This attribute indicates the count of the total number of valid (not
+         malformed) CCMs received by the MEP.  In other words, it counts
+         the frames received by the MEP Continuity Check Receiver
+         described in IEEE 802.1q Sn 19.2.8 and Figure 19-2.  This
+         includes CCMs at a lower level, CCMs with defects, CCMs from an
+         unexpected peer MEP and out-of-sequence CCMs.  It does not
+         include CCMs at a higher level than the MEP.";
+      reference
+        "[802.1q] 19.2.8, [MEF31] MEF-SOAM-FM-MIB.mefSoamMepFmStatsInCcmTotal";
+    }
+  }
+
+  augment "/cfm:maintenance-domain/cfm:maintenance-association/cfm:maintenance-association-end-point/cfm:loopback" {
+    description
+      "This set of data definitions extends on-demand Ethernet OAM Fault
+       Management Loopback function (ETH-LB) as defined in Y.1731 and
+       802.1q and defined in MEF-CFM";
+    reference
+      "[MEF7.1] 9.3.2";
+
+    leaf multicast-enabled {
+      type boolean;
+      default false;
+
+      description
+        "This attribute specifies whether a MEP uses unicast or multicast
+         to send the ETH-LB messages (LBM). The 802.1ag standardonly allows
+         unicast LBM. ITU-T Y.1731 allows LBM to be multicast.This attribute
+         allows the MEP to send either multicast or unicastLBM on a per MEP
+         basis.
+
+         The value 'true' indicates multicast is enabled.
+
+         The value 'false' indicates unicast is enabled.";
+      reference
+        "[MEF7.1] 9.3.2.1";
+    }
+
+    leaf interval {
+      type uint32 {
+        range "0..60000";
+      }
+      default 1000;
+      units milliseconds;
+
+      description
+        "This attribute specifies the period between LBM transmissions in an LB
+         Session. For an LB Session, the period for LBM transmission
+         is configurable in the range 0 and sixty seconds (60 s). Granularity
+         of 100ms is required.
+
+         The transmission of the next LBM is not dependent upon the
+         reception the first LBR. The next LBM is sent out based upon
+         the interval count.
+
+         An interval count of '0' indicates that the subsequent LBM is sent
+         out with the minimum possible delay.";
+      reference
+        "[MEF7.1] 9.3.2.1";
+    }
+
+    leaf frame-size {
+      type uint32 {
+        range "64..9600";
+      }
+      units "bytes";
+
+      must "not(../data-tlv)" {
+        error-message "Specific frame-size not allowed, frame size is based on data-tlv";
+      }
+
+      description
+        "This attribute specifies the LBM frame size. For an LB Session, the size
+         of the LBM frame is configurable to any Ethernet frame size
+         between 64 Bytes and the maximum transmission unit of the
+         EVC.
+
+         The range of frame sizes from 64 through 2000 octets, in 4 octet increments,
+         MUST be supported, and the range of frame sizes from 2004through 9600
+         octets, in 4 octet increments, SHOULD be supported.
+
+         The adjustment to the frame size of the standard LBM PDU size is accomplished
+         by the addition of a Data TLV or a Test TLV.";
+      reference
+        "[MEF7.1] 9.3.2.1";
+    }
+
+    leaf data-pattern {
+      type enumeration {
+        enum zeroes {
+            description "Indicates the Data TLV contains all zeros.";
+                }
+        enum ones {
+            description "Indicates the Data TLV contains all ones.";
+                }
+      }
+      default zeroes;        
+      must "not(../data-tlv)" {
+        error-message "Specific data-pattern not allowed, pattern is based on data-tlv";
+      }
+
+      description
+        "This attribute specifies the LBM data pattern included in a Data TLV
+         when the size of the LBM frame is determined by the frame-size
+         leaf and test-tlv-included is 'false'.";
+      reference
+        "[MEF31] MEF-SOAM-FM-MIB.mefSoamLbCfgDataPattern";
+    }
+
+    leaf test-tlv-included {
+      type boolean;
+      default false;  
+      must "not(../data-tlv)" {
+        error-message "Test-tlv-included does not apply when data-tlv exists";
+      }
+      
+      description
+        "Indicates whether a Test TLV or Data TLV is included when the size of
+         the LBM frame is determined by the frame-size leaf.
+
+         A value of 'true' indicates that the Test TLV is to be
+         included.
+
+         A value of 'false' indicates that the Data TLV is to be
+         included.";
+      reference
+        "[Y.1731] 9.3, [MEF31] MEF-SOAM-FM-MIB.mefSoamLbCfgDataPattern";
+    }  
+
+    leaf test-tlv-pattern {
+      type test-pattern-type;
+      default "null-signal-without-crc-32";  
+
+      must "not(../data-tlv)" {
+        error-message "Test-tlv-pattern does not apply when data-tlv exists";
+      }
+
+      description
+        "This attribute specifies the type of test pattern to be sent in the LBM
+         frame Test TLV when the size of LBM PDU is determined by the
+         frame-size leaf and test-tlv-included is 'true'.";
+      reference
+        "[MEF7.1] 9.3.2.1, [MEF31] MEF-SOAM-FM-MIB.mefSoamLbCfgTestTlvPattern";
+    }
+    
+    leaf crc-errors-in {
+      type yang:counter32;
+      config false;
+
+      description
+        "This attribute contains the count of the total number of LBR messages
+         received with CRC errors. This is only applicable when the
+         ETH-LB includes the test TLV with a test pattern of null-crc-32
+         or pbrs-crc-32.";
+      reference
+        "[MEF7.1] 9.3.2.2";
+    }
+
+    leaf timeout {
+      type yang:gauge32 {
+        range "1..10000";
+      }
+      default 5000;
+
+      description
+        "This attribute specifies the maximum amount of time to receive an LBR in
+         response to a LBM. If a LBR is not received within the timeout
+         value it is considered lost.";
+      reference
+        "[MEF31] MEF-SOAM-FM-MIB.mefSoamLbCfgTimeout";
+    }
+
+    list responses {
+      key "transaction-id receive-order";
+      unique "transaction-id receive-order";
+      config false;
+
+      description
+        "A list of responses from a Multicast Loopback Message";
+      reference
+        "[MEF31] MEF-SOAM-FM-MIB.mefSoamLbrMulticastTable";
+
+      leaf transaction-id {
+        type cfm:lbm-transaction-id-type;
+
+        description
+          "Loopback transaction identifier returned by a previous loopback message
+           command, indicating which loopback request is returned.";
+        reference
+          "[MEF31] MEF-SOAM-FM-MIB.mefSoamLbrMulticastTransId";
+      }
+      leaf receive-order {
+        type uint32 {
+          range "0..2147483647";
+        }
+          
+        description
+          "An index to distinguish among multiple LBRs with the same LBR
+           Transaction Identifier field value. Value is assigned
+           sequentially from 1, in the order that the Loopback Initiator
+           received the LBR";
+        reference
+          "[MEF31] MEF-SOAM-FM-MIB.mefSoamLbrMulticastReceiveOrder";
+      }
+        
+      leaf multicast-reply-mac {
+        type yang:mac-address;
+          
+        description
+          "Source MAC address returned in the LBR Ethernet frame";
+        reference
+          "[802.1q] 21.7, [Y.1731] 7.2,
+           [MEF31] MEF-SOAM-FM-MIB.mefSoamLbrMulticastReplyMac";
+      }
+    }
+  }
+
+  augment "/cfm:maintenance-domain/cfm:maintenance-association/cfm:maintenance-association-end-point/cfm:linktrace" {
+    description
+      "Augments to support the enhanced CFM Linktrace functionality";
+    reference
+      "[MEF30] 8.4";
+
+    leaf ltm-msgs-transmitted {
+      type yang:zero-based-counter32;
+      config false;
+
+      description
+        "This attribute contains the count of the total number of LTM messages
+         transmitted by the MEP";
+      reference
+        "[MEF31] MEF-SOAM-FM-MIB.mefSoamLtLtmTransmitted";
+    }
+
+    leaf ltr-msgs-received {
+      type yang:zero-based-counter32;
+      config false;
+
+      description
+        "This attribute contains the count of the total number of LTR messages
+         received by the MEP";
+      reference
+        "[MEF31] MEF-SOAM-FM-MIB.mefSoamLtLtrReceived";
+    }
+
+    leaf ltm-msgs-received {
+      type yang:zero-based-counter32;
+      config false;
+
+      description
+        "This attribute contains the count of the total number of LTM messages
+         received by the MEP";
+      reference
+        "[MEF31] MEF-SOAM-FM-MIB.mefSoamLtLtmReceived";
+    }
+
+    leaf ltr-msgs-transmitted {
+      type yang:zero-based-counter32;
+      config false;
+
+      description
+        "This attribute contains the count of the total number of LTR messages
+         transmitted by the MEP";
+      reference
+        "[MEF31] MEF-SOAM-FM-MIB.mefSoamLtLtrTransmitted";
+    }
+  }
+
+  augment "/cfm:maintenance-domain/cfm:maintenance-association/cfm:maintenance-association-end-point" {
+    description
+      "Augments to support the AIS functionality";
+    reference
+      "[Y.1731] 7.4, [MEF30] 8.5";
+
+    container alarm-indication-signal {
+      description
+        "This set of data definitions covers the proactive Ethernet OAM Fault
+         Management Alarm Indication Signal function (ETH-AIS) as
+         defined in Y.1731 and extended in MEF30";
+      reference
+        "[Y.1731] 7.4, [MEF30] 8.5";
+
+      leaf enabled {
+        type boolean;
+        default false;
+
+        description
+          "This attribute specifies whether ETH-AIS transmission is enabled. The
+           value 'true' indicates ETH-AIS transmission is enabled. The
+           value 'false' indicates ETH-AIS transmission is disabled.";
+        reference
+          "[MEF7.1] 9.3.4.1, [MEF30] 8.4";
+      }
+
+      leaf interval {
+        type interval-type-ais-lck-type;
+        default one-second;
+
+        description
+          "This attribute specifies the ETH-AIS transmission period.";
+        reference
+          "[MEF7.1] 9.3.4.1";
+      }
+
+      leaf priority {
+        type cfm:priority-type;
+       
+        description
+          "This attribute specifies the priority of frames with ETH-AIS
+           information. If ETH-AIS is supported, the default value for
+           the CoS for AIS frame MUST be the value which yields the
+           lowest frame loss performance for this EVC.";
+        reference
+          "[MEF7.1] 9.3.4.1";
+      }
+
+      leaf client-meg-level {
+        type cfm:md-level-type;
+        default 0;
+
+        description
+          "The MEG/Maintenance Domain Level of the Client ETH-AIS PDU (transmitted
+           level).";
+        reference
+          "[Y.1731] 7.4";
+      }
+
+      leaf drop-eligible {
+        type boolean;
+        default false;
+
+        description
+          "This attribute specifies the eligibility of frames with ETH-AIS
+           information to be discarded when congestion conditions are
+           encountered.
+
+           The value 'true' indicates frames are eligible to be
+           discarded.
+
+           The value 'false' indicates frames are not eligible to be
+           discarded. This attribute may be constrained to read-only in
+           some implementations";
+        reference
+          "[MEF7.1] 9.3.4.1";
+      }
+
+      leaf transmit-status {
+        type boolean;
+        config false;
+
+        description
+          "This attribute specifies the current AIS transmission status of the
+           MEP.
+
+           The value 'true' indicates AIS frames are currently being
+           transmitted by the MEP.
+
+           The value 'false' indicates AIS frames are not currently
+           being transmitted by the MEP.";
+        reference
+          "[Y.1731] 7.4";
+      }
+
+      leaf receive-status {
+        type boolean;
+        config false;
+
+        description
+          "This attribute specifies the current AIS receive status of the
+           MEP. The value 'true' indicates an AIS PDU has been received 
+           and 3.5 times the interval defined in the PDU has not yet 
+           passed, otherwise it is 'false'.";
+        reference
+          "[Y.1731] 7.4";
+      }
+
+      leaf transmit-counter {
+        type yang:zero-based-counter32;
+        config false;
+
+        description
+          "This attribute contains the count of the total number of AIS messages
+           sent by the MEP. The count is incremented every time an AIS
+           PDU is transmitted by the MEP.";
+        reference
+          "[MEF7.1] 9.3.2.2";        
+      }
+
+      leaf receive-counter {
+        type yang:counter32;
+        config false;
+
+        description
+          "This attribute contains the count of the total number of AIS messages
+           received by the MEP. The count is incremented every time an
+           AIS PDU is received by the MEP.";
+        reference
+          "[MEF7.1] 9.3.2.2";
+      }
+
+      leaf last-received-mac-address {
+        type yang:mac-address;
+        config false;
+
+        description
+          "The source MAC Address Field of last AIS received by the MEP.
+           If no AIS PDU has been received by the NE the MAC address is 
+           set to all zeros.";
+        reference
+          "[Y.1731] 7.7";
+      }
+    }
+  }
+
+  augment "/cfm:maintenance-domain/cfm:maintenance-association/cfm:maintenance-association-end-point" {
+    description
+      "Augments to support the Locked Signal functionality";
+    reference
+      "[Y.1731] 8.6, [MEF30] 8.4";
+
+    container locked-signal {
+      description
+        "This set of data definitions covers the on-demand Ethernet OAM Fault
+         Management Locked Signal function (ETH-LCK) as defined in
+         Y.1731.";
+      reference
+        "[Y.1731] 8.6, [MEF7.1] 9.3.4.2";
+
+      uses locked-signal-parameters-group;
+
+      leaf receive-status {
+        type boolean;
+        config false;
+
+        description
+          "This attribute specifies the current LCK receive status of the MEP.
+
+           The value 'true' indicates LCK frames are currently being
+           received by the MEP.
+
+           The value 'false' indicates LCK frames are not currently
+           being received by the MEP at the specified interval in the
+           LCK PDU.
+
+           If no LCK frames are received within an interval of 3.5 times
+           the LCK transmission period indicated in the last LCK frame
+           received, the MEP clears the LCK condition by setting
+           mefSoamLckInStatus to 'false'.";
+        reference
+          "[Y.1731] 7.6";
+      }
+
+      leaf messages-received {
+        type yang:zero-based-counter32;
+        config false;
+
+        description
+          "This attribute contains the count of the total number of LCK messages
+           received. The count is incremented when a ETH-LCK message is
+           received.  This attribute is only applicable to the MEP
+           receiving ETH-LCK messages.
+
+           The initial value of this leaf is
+           zero.";
+        reference
+          "[Y.1731] 7.6";
+      }
+
+      leaf transmit-status {
+        type boolean;
+        config false;
+
+        description
+          "This attribute specifies the current LCK transmission status of the MEP.
+
+           The value 'true' indicates LCK frames are currently being
+           transmitted by the MEP.
+
+           The value 'false' indicates LCK frames are not currently being
+           transmitted by the MEP.";
+        reference
+          "[Y.1731] 7.6";
+      }
+
+      leaf messages-transmitted {
+        type yang:zero-based-counter32;
+        config false;
+
+        description
+          "This attribute contains the count of the total number of LCK messages
+           transmitted. This attribute is only applicable to the MEP
+           sending ETH-LCK messages.
+
+           The initial value of this leaf is zero.";
+        reference
+          "[Y.1731] 7.6";
+      }
+    }
+  }
+
+  augment "/cfm:maintenance-domain/cfm:maintenance-association/cfm:maintenance-association-end-point" {
+    description
+      "Augments to support the Test Signal functionality";
+    reference
+      "[Y.1731] 7.7, [MEF30] 8.7";
+
+    container test-signal {
+      description
+        "This container augments cfm:maintenance-association-end-point with data 
+         definitions related to the on-demand OAM Fault Management Test function
+         (ETH-Test) defined in [Y.1731].";
+      reference
+        "[Y.1731] 7.7, [MEF7.1] 9.3.4.3";
+
+      leaf transmit-enabled {
+        type boolean;
+        default false;
+
+        description
+          " This attribute specifies the enabling of the ETH-Test 
+           transmit function. A value of 'true' indicates that the 
+           ETH-Test transmit function is enabled. A value of of 
+           'false' indicates that ETH-Test transmit function is 
+           disabled.";
+        reference
+          "[Y.1731] 7.7";
+      }
+
+      uses test-signal-parameters-group;
+      container test-signal-stats-in {
+        description
+          "Data definitions related to received Test Signal PDUs statistics";
+
+        config false;
+        must "../is-receiver = true";
+        uses test-signal-stats-in-group;
+      }
+      container test-signal-stats-out {
+        description
+          "Data definitions related to transmitted Test Signal PDUs statistics";
+
+        config false;
+        must "../is-generator = true";
+        uses test-signal-stats-out-group;
+      }
+    }
+  }
+
+  //
+  // Data definitions related to MEF SOAM FM
+  //
+
+  container notification-configuration {
+    description
+      "A set of data definitions related to FM event notifications.";
+    reference
+      "[MEF31] MEF-SOAM-FM-MIB.mefSoamFmNotificationCfg";
+
+    leaf alarm-interval {
+      type uint32 {
+        range "0..60";
+      }
+      default 5;
+      units seconds;
+
+      description
+        " A value indicating the shortest time interval in seconds between 
+         the generation of the same notification type per MEP to the list of
+         notification destinations. A server shall generate the first
+         notification of given type for a given MEP immediately. A server shall
+         not generate a second specific notification of the same type for the
+         same MEP until the time interval has expired. A value of zero
+         indicates that all notifications are sent immediately upon detection
+         of the condition.";
+      reference
+        "[MEF31] MEF-SOAM-FM-MIB.mefSoamAlarmInterval";
+    }
+  }
+
+  //
+  // RPCs related to MEF SOAM FM
+  //
+
+  rpc create-test-signal {
+    description
+      "Start a test-signal session on a specific MEP according to the
+       content of the test signal parameters.
+
+       The content of the test-signal container in the associated MEP
+       will be updated throughout the session upon successful creation.";
+
+    input {
+      leaf maintenance-domain-id {
+        type string;
+
+        description
+          "The ID of a Maintenance Domain of the MEP on which a test session will
+           be started";
+      }
+
+      leaf maintenance-association-id {
+        type string;
+
+        description
+          "The ID of a Maintenance Association of the MEP on which a test session
+           will be started";
+      }
+
+      leaf mep-id {
+        type cfm:mep-id-type;
+
+        description
+          "The ID of a MEP on which a test session will be started";
+      }
+      uses test-signal-parameters-group;
+    }
+  }
+
+  rpc abort-test-signal {
+    description
+      "Administratively abort a test-signal session on a specific MEP";
+
+    input {
+      leaf maintenance-domain-id {
+        type string;
+
+        description
+          "The ID of a Maintenance Domain of the MEP on which a test session will
+           be aborted";
+      }
+
+      leaf maintenance-association-id {
+        type string;
+
+        description
+          "The ID of a Maintenance Association of the MEP on which a test session
+           will be aborted";
+      }
+
+      leaf mep-id {
+        type cfm:mep-id-type;
+
+        description
+          "The ID of the MEP on which the ETH Test session should
+           be aborted";
+      }
+    }
+  }
+
+  //
+  // Notifications related to MEF SOAM FM
+  //
+
+  notification mep-defect-alarm {
+    description
+      "A mep-defect-alarm notification is generated when the value of
+       mep-defects changes. It indicates a persistent defect in
+       the MEP. This notification is sent whenever the
+       cfm:active-defects of the MEP changes, regardless of the
+       cfm:highest-priority-defect-found leaf.
+
+       The inclusion of the cfm:remote-mep-state leaf is
+       optional. It shall not be included if the defect is not based
+       upon a specific MEP instance, e.g.. bDefErrorCCM.";
+
+    reference
+      "[MEF31] MEF-SOAM-FM-MIB.mefSoamMepDefectAlarm";
+
+    leaf maintenance-domain-id {
+      type string;
+
+      description
+        "The ID of a Maintenance Domain of the MEP on which the persistent
+         defect is present";
+    }
+
+    leaf maintenance-association-id {
+      type string;
+
+      description
+        "The ID of a Maintenance Association of the MEP on which the persistent
+         defect is present";
+    }
+
+    leaf mep-id {
+      type cfm:mep-id-type;
+
+      description
+        "A reference to the specific MEP on which the persistent defect is
+         present";
+    }
+
+    leaf last-defect-sent {
+      type cfm:fault-alarm-defect-bits-type;
+
+      description
+        "The last defect sent on the specific MEP";
+    }
+    leaf active-defects {
+      type cfm:fault-alarm-defect-bits-type;
+      description
+        "The currently active defects on the specific MEP.";
+    }
+    
+    leaf remote-mep-state {
+      type cfm:remote-mep-state-type;
+
+      description
+        "The value of the remote MEP state on a specific MEP";      
+      reference
+        "[802.1q] 12.14.7.6.3:b";
+    }
+  }
+  
+  notification configuration-error-assert {
+    description
+      "A configuration-error-assert notification is generated when an entry is
+       added to the configuration-error-list. The vlan-identifier and interface
+       pair uniquely identifies the configuration-error-list entry that was
+       added.";
+    reference
+      "[MEF31] MEF-SOAM-FM-MIB.mefSoamConfigErrorAssertAlarm";
+
+    leaf vlan-identifier {
+      type leafref {
+        path "/cfm:configuration-error-list/cfm:vlan-identifier";
+      }
+      description
+        "Reference to a specific vlan-identifier in the configuration-error-list";
+    }
+    leaf interface {
+      type leafref {
+        path "/cfm:configuration-error-list/cfm:interface";
+      }
+      description
+        "Reference to a specific interface in the configuration-error-list";
+    }
+  }
+
+  notification configuration-error-clear {
+    description
+      "A configuration-error-clear notification is generated when an entry is
+       removed to the configuration-error-list. The vlan-identifier and interface
+       pair uniquely identifies the configuration-error-list entry that was
+       removed.";
+    reference
+      "[MEF31] MEF-SOAM-FM-MIB.mefSoamConfigErrorClearAlarm";
+
+    leaf vlan-identifier {
+      type leafref {
+        path "/cfm:configuration-error-list/cfm:vlan-identifier";
+      }
+      description
+        "Reference to a specific vlan-identifier in the configuration-error-list";
+    }
+    leaf interface {
+      type leafref {
+        path "/cfm:configuration-error-list/cfm:interface";
+      }
+      description
+        "Reference to a specific interface in the configuration-error-list";
+    }
+  }
+
+  notification mep-operational-state-changed {
+    description
+      "A mep-operational-state-changed notification is sent when the value of a
+       MEP's operational-state changes. It indicates an operational
+       state change in the MEP. This notification is sent whenever the
+       operational status of the MEP changes.";
+    reference
+      "[MEF31] MEF-SOAM-FM-MIB.mefSoamMepOperStatusAlarm";
+
+    leaf maintenance-domain-id {
+      type string;
+
+      description
+        "The ID of a Maintenance Domain of the MEP on which the operational state
+         changed";
+    }
+
+    leaf maintenance-association-id {
+      type string;
+
+      description
+        "The ID of a Maintenance Association of the MEP on which the operational
+         state changed";
+    }
+
+
+    leaf mep-id {
+      type cfm:mep-id-type;
+
+      description
+        "The ID of the MEP on which the operational-state changed";
+    }
+
+    leaf operational-state {
+      type operational-state-type;
+
+      description
+        "The operational-state leaf of the affected MEP";
+    }
+  }
+
+  notification lock-alarm {
+    description
+      "A lock-alarm notification is sent when either receive-status or
+       transmit-status changes. Reception of the LCK PDU causes the MEP
+       to enter Lock State.  This notification is sent whenever the
+       operational lock status of the MEP changes.";
+    reference
+      "[MEF31] MEF-SOAM-FM-MIB.mefSoamLckAlarm";
+
+    leaf maintenance-domain-id {
+      type string;
+
+      description
+        "The ID of a Maintenance Domain of the MEP on which the lock alarm is
+         present";
+    }
+
+    leaf maintenance-association-id {
+      type string;
+
+      description
+        "The ID of a Maintenance Association of the MEP on which the lock alarm
+         is present";
+    }
+
+    leaf mep-id {
+      type cfm:mep-id-type;
+
+      description
+        "The ID of the MEP on which the lock alarm is present.";
+    }
+
+    leaf receive-status {
+      type boolean;
+
+      description
+        "The value of the locked signal receive-status of the affected MEP";
+    }    
+
+    leaf transmit-status {
+      type boolean;
+
+      description
+        "The value of the locked signal transmit-status of the affected MEP";
+    }    
+  }
+
+  notification ais-alarm {
+    description
+      "An ais-alarm notification is sent when the state of either
+       transmit-status or receive-status changes. Transmit-status is set
+       to 'true' when AIS frames are sent by the MEP and set to 'false'
+       when the MEP stops sending AIS frames. Receive-status is set to
+       'true' when AIS PDUs are received and is set to 'false' when AIS
+       PDUs stop being received.";
+    reference
+      "[MEF31] MEF-SOAM-FM-MIB.mefSoamAisAlarm";
+
+    leaf maintenance-domain-id {
+      type string;
+
+      description
+        "The ID of a Maintenance Domain of the MEP on which the AIS alarm is
+         present";
+    }
+
+    leaf maintenance-association-id {
+      type string;
+
+      description
+        "The ID of a Maintenance Association of the MEP on which the AIS alarm
+         is present";
+    }
+
+    leaf mep-id {
+      type cfm:mep-id-type;
+
+      description
+        "The ID of the MEP on which the AIS alarm is present.";
+    }
+
+    leaf receive-status {
+      type boolean;
+
+      description
+        "The value of the AIS receive-status of the affected MEP";
+    }
+
+    leaf transmit-status {
+      type boolean;
+
+      description
+        "The value of the AIS transmit-status of the affected MEP";
+    }
+  }
+}
+

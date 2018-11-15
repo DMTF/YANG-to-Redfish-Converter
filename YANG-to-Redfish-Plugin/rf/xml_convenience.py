@@ -4,7 +4,8 @@
 
 from xml.etree.ElementTree import Element, SubElement, Comment, tostring
 
-def add_import(xml_node, import_value, alias):
+
+def add_import(xml_node, import_value, alias, namespace=None):
     """
     Add import stament node into XML.
     :param xml_node:Parent node to which 'import' node must be added.
@@ -17,9 +18,9 @@ def add_import(xml_node, import_value, alias):
             continue
         uri_old = ref.attrib.get('Uri')
         if uri_old == uri:
-            return
-    namespace = import_value
-    add_reference(xml_node, uri, namespace, alias)
+            return None
+    namespace = import_value if not namespace else namespace
+    return add_reference(xml_node, uri, namespace, alias)
 
 
 def add_reference(xml_node, uri, namespace, alias=None):
@@ -68,15 +69,19 @@ def add_list_reference(xml_node, uri, namespace, alias):
     return xml_node
 
 
+def create_Base_Xml():
+    xml_node = Element('edmx:Edmx')
+    xml_node.set('Version', '4.0')
+    xml_node.set('xmlns:edmx', 'http://docs.oasis-open.org/odata/ns/edmx')
+    return xml_node
+
 def add_CSDL_Headers(is_singleton=False):
     """
     Add standard CSDL tags/references which are common across all the CSDL
     XML files.
     :param xml_node:Parent node to which headers must be added.
     """
-    xml_node = Element('edmx:Edmx')
-    xml_node.set('Version', '4.0')
-    xml_node.set('xmlns:edmx', 'http://docs.oasis-open.org/odata/ns/edmx')
+    xml_node = create_Base_Xml()
 
     add_reference(xml_node,
             'http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml',

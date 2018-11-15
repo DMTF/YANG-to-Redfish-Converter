@@ -1,0 +1,16 @@
+module minimal {
+  yang-version "1";
+
+  // namespace
+  namespace "http://minimal";
+
+  prefix "m";
+
+  import minimal_base { prefix base; }
+
+  augment "/base:base_container" {
+    leaf name {
+      type string;
+    }
+  }
+}

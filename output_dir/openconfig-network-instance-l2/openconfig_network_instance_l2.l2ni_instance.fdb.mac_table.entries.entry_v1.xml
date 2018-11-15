@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
+		<edmx:Include Namespace="Resource.v1_0_0"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/openconfig_network_instance_l2.l2ni_instance.fdb.mac_table.entries.entry.config_v1.xml">
+		<edmx:Include Namespace="openconfig_network_instance_l2.l2ni_instance.fdb.mac_table.entries.entry.config" Alias="config"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/openconfig_network_instance_l2.l2ni_instance.fdb.mac_table.entries.entry.state_v1.xml">
+		<edmx:Include Namespace="openconfig_network_instance_l2.l2ni_instance.fdb.mac_table.entries.entry.state" Alias="state"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/openconfig_network_instance_l2.l2ni_instance.fdb.mac_table.entries.entry.interface_v1.xml">
+		<edmx:Include Namespace="openconfig_network_instance_l2.l2ni_instance.fdb.mac_table.entries.entry.interface" Alias="interface"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_network_instance_l2.l2ni_instance.fdb.mac_table.entries.entry">
+			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
+			<EntityType Name="entry" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for entry."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for entry."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_network_instance_l2.l2ni_instance.fdb.mac_table.entries.entry.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="DMTF"/>
+			<Annotation Term="RedfishYang.key" String="mac-address"/>
+			<Annotation Term="OData.Description" String="List of learned MAC addresses."/>
+			<EntityType Name="entry" BaseType="openconfig_network_instance_l2.l2ni_instance.fdb.mac_table.entries.entry.entry">
+				<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Property Name="mac_address" Type="Edm.String">
+					<Annotation Term="RedfishYang.NodeTypes" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="RedfishYang.YangType" String="leafref">
+						<Annotation Term="RedfishYang.path" String="../config/mac-address"/>
+					</Annotation>
+					<Annotation Term="OData.Description" String="Reference to mac-address list key."/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="configContainer" Type="config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="interfaceContainer" Type="interface.interface" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of interface."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
+

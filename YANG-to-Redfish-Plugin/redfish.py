@@ -13,7 +13,7 @@ Based on 'name', 'tree' plugin
 
 import optparse
 import os
-from xml.etree.ElementTree import Element, SubElement, Comment, tostring, dump
+from xml.etree.ElementTree import tostring
 import rf.csdltree as csdltree
 import logging
 import xml.dom.minidom
@@ -36,6 +36,14 @@ class RedfishPlugin(plugin.PyangPlugin):
             optparse.make_option("--target_dir",
                                  dest="target_dir",
                                  help="Where to output xml files"),
+            optparse.make_option("--remove_cyclical_imports",
+                                 dest="remove_cyclical_imports",
+                                 action="store_true",
+                                 help="Remove possible cyclical imports to module xml"),
+            optparse.make_option("--combine_all_nodes",
+                                 dest="combine_all_nodes",
+                                 action="store_true",
+                                 help="Combine all XML files to a single file"),
             ]
         g = optparser.add_option_group("Redfish output specific options")
         g.add_options(optlist)
@@ -57,14 +65,19 @@ class RedfishPlugin(plugin.PyangPlugin):
         list_of_xml = []
         target_dir = ctx.opts.target_dir if ctx.opts.target_dir is not None else './output_dir'
 
+        if ctx.opts.remove_cyclical_imports:
+            csdltree.config['remove_cyclical'] = True
+
+        if ctx.opts.combine_all_nodes:
+            csdltree.config['single_file'] = True
+
         if not os.path.exists(target_dir):
             os.makedirs(target_dir)
 
         csdltree.setLogger(logger)
 
         for module in modules:
-            xml_root = csdltree.build_tree(module, list_of_xml, logger)
-            break
+            csdltree.build_tree(module, list_of_xml, logger)
 
         for xml_item in list_of_xml:
             filename = target_dir + '/' + xml_item.get_filename()
@@ -91,6 +104,7 @@ class RedfishPlugin(plugin.PyangPlugin):
                     if tag_name in priority_tag_dict:
                         tokened_line = tokened_line.replace('xxToken', priority_tag_dict[tag_name], 1)
 
+                tokened_line = tokened_line.replace('&quot;', '"')
                 pretty_xml_as_string_new += tokened_line + '\n'
 
             try:
@@ -99,13 +113,13 @@ class RedfishPlugin(plugin.PyangPlugin):
                 logger.info('Success writing file to disk: ' + filename)
             except BaseException as e:
                 print('Unable to write to file: ' +
-                             filename + "\nError message: " + str(e))
+                      filename + "\nError message: " + str(e))
                 logger.error('Unable to write to file: ' +
                              filename + "\nError message: " + str(e))
+
 
 def write_to_file(filename, xml_string):
     output_file = open(filename, 'w')
     xml_string.replace('<?xml version="1.0" ?>', '<?xml version="1.0" encoding="UTF-8"?>')
     output_file.write(xml_string)
     output_file.close()
-
