@@ -1,0 +1,14 @@
+module minimal_base {
+  yang-version "1";
+
+  // namespace
+  namespace "http://minimal-base";
+
+  prefix "base";
+
+  container base_container {
+    leaf id {
+      type uint32;
+    }
+  }
+}

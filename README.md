@@ -44,6 +44,12 @@ By default, the resultant Redfish CSDL files are place in the directory **output
 
     pyang --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir testdir <path-to-file>
 
+To process multiple files, which have augmentations and uses statements, you may list multiple files in one call:
+    
+    pyang --plugindir ./YANG-to-Redfish-Plugin --format redfish <path-to-file1> <path-to-file2> <path-to-file3> <...>
+
+Two additional parameters exist --remove_cyclical_imports and --combine_all_nodes, which can solve particular resolution issues.
+
 ## Obtain a YANG code file
 
 The YANG code file contains the text between <CODE BEGINS\> and <CODE ENDS\> within a YANG RFC file.  There several ways to obtain this file.
