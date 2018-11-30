@@ -1,6 +1,6 @@
-Copyright 2017-2018 Distributed Management Task Force, Inc. All rights reserved.
-
 # YANG to Redfish CSDL Converter tool
+
+Copyright 2017-2018 DMTF. All rights reserved.
 
 ## Introduction
 
