@@ -95,3 +95,11 @@ Execute the following command.
 The remove_bom.py file is located in the directory **src**.
 
 Note: the 'cmd' is needed in the command because "<" is not recognized by Powershell, but 'cmd' recognizes it.
+
+
+## Release Process
+
+1. Update `CHANGELOG.md` with the list of changes since the last release
+2. TODO: Add version string in the tool somewhere
+3. Push changes to Github
+4. Create a new release in Github
