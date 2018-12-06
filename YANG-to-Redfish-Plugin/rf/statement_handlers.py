@@ -331,11 +331,14 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
                 if var_type in rf.csdltree.types_created_by_import[module]:
                     importname = module
                     break
-            if imports[importname] != top_name:
-                ns = get_valid_csdl_identifier(imports[importname]) + '.v1_0_0'
-                xml_convenience.add_import(xml_top, get_valid_csdl_identifier(imports[importname]), importname if importname != imports[importname] else None, ns)
+            imported_name = imports.get(importname, 'MissingTypeName') # backup
+            if imported_name != top_name:
+                ns = get_valid_csdl_identifier(imported_name) + '.v1_0_0'
+                xml_convenience.add_import(xml_top,
+                        get_valid_csdl_identifier(imported_name),
+                        importname if importname != imported_name else None, ns)
             else:
-                importname = get_valid_csdl_identifier(imports[importname]) + '.v1_0_0'
+                importname = get_valid_csdl_identifier(imported_name) + '.v1_0_0'
             yang_type_location = importname
             annotation.set('Term', '{}.YangType'.format(yang_type_location))
             var_type = importname + '.' + redfishtypes.types_mapping.get(var_type, var_type)
