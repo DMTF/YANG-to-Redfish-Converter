@@ -2,7 +2,8 @@
 # Copyright 2017 Distributed Management Task Force, Inc. All rights reserved.
 # License: BSD 3-Clause License. For full text see link: https://github.com/DMTF/YANG-to-Redfish-Converter/blob/master/LICENSE.md
 
-from xml.etree.ElementTree import Element, SubElement
+from xml.etree.ElementTree import Element, SubElement, tostring
+import xml.etree as etree
 import rf.xml_convenience as xml_convenience
 import rf.redfishtypes as redfishtypes
 from rf.redfishtypes import get_valid_csdl_identifier
@@ -28,12 +29,20 @@ def collectAnnotations(node):
     for key in collected:
         target = collected[key]
         if len(target) > 1:
-            # comment out Collection and Record lines to fix npm test
-            Collection = SubElement(node, 'Collection')
-            for a in target:
-                Record = SubElement(Collection, 'Record')
-                Record.append(a)
-                node.remove(a)
+            if (key == 'OData.LongDescription' or key == 'OData.Description'):
+                Collection = SubElement(node, 'Annotation', attrib={'Term': key})
+                text = []
+                for a in target:
+                    text.append(a.attrib.get('String'))
+                    node.remove(a)
+                Collection.attrib['String'] = '  '.join(text)
+            else:
+                # comment out Collection and Record lines to fix npm test
+                Collection = SubElement(node, 'Collection')
+                for a in target:
+                    Record = SubElement(Collection, 'Record')
+                    Record.append(a)
+                    node.remove(a)
 
 def collectChildren(yang_item):
     """
@@ -74,7 +83,9 @@ def handle_generic(yang_keyword, yang_arg, yang_children=[], target=None, target
         if yang_arg[-1] != '.':
             yang_arg = yang_arg + '.'
         annotation = xml_convenience.add_annotation(
-            target, {'Term': 'OData.Description', 'String': yang_arg})
+            target, {'Term': 'OData.Description', 'String': yang_arg.split('. ')[0].strip('.') + '.'})
+        annotation = xml_convenience.add_annotation(
+            target, {'Term': 'OData.LongDescription', 'String': yang_arg})
 
     else:
         annotation = xml_convenience.add_annotation(
@@ -174,7 +185,7 @@ def handle_enum(yang_keyword, yang_arg, yang_children, target):
     member_node.set('Name', yang_arg)
 
     annotation = xml_convenience.add_annotation(
-            target, {'Term': redfishtypes.get_descriptive_properties_mapping(yang_keyword),
+            member_node, {'Term': redfishtypes.get_descriptive_properties_mapping(yang_keyword),
                      'String':  yang_arg
                      }
             )
@@ -351,7 +362,6 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
             namespace = schema_node.attrib.get('Namespace')
             available_types = list()
             yang_type_location = namespace
-            annotation.set('Term', '{}.YangType'.format(yang_type_location))
 
             for ref in schema_node:
                 if str(ref.tag) not in ['TypeDefinition', 'EnumType']:
@@ -415,6 +425,7 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
         type_tag.arg = td
         new_annotation = handle_type(type_tag, xml_node, parent_node, parent_entity, {}, {td: nmd})
         xml_node.remove(new_annotation)
+        types[td] = nmd
 
     annotation.set('EnumMember', yang_type_location + '.YangTypes/' + get_valid_csdl_identifier(yang_type.split(':')[-1]))
     xml_node.append(annotation)
