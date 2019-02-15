@@ -13,13 +13,13 @@ types_mapping = {
     'empty':             'RedfishYang.empty',  # clause
     'enumeration':       'Edm.EnumType',  # clause
     'identityref':       'RedfishYang.instance_identifier',  # clause
-    'int8':              'Edm.Sbyte',
+    'int8':              'Edm.Int16',
     'int16':             'Edm.Int16',
     'int32':             'Edm.Int32',
     'int64':             'Edm.Int64',
     'leafref':           'Edm.String',  # clause
     'string':            'Edm.String',
-    'uint8':             'Edm.Int16',
+    'uint8':             'RedfishYang.uint16',
     'uint16':            'RedfishYang.uint16',
     'uint32':            'RedfishYang.uint32',
     'uint64':            'RedfishYang.uint64',
