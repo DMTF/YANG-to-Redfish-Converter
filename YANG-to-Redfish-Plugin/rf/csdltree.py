@@ -6,7 +6,7 @@ import rf.redfishtypes as redfishtypes
 import rf.statement_handlers as handlers
 import rf.xml_convenience as xml_convenience
 from rf.xml_content import XMLContent
-from xml.etree.ElementTree import Element, SubElement
+from xml.etree.ElementTree import Element, SubElement, tostring
 
 # This file contains the build_tree function and handlers
 # for YANG statements that would result in the build_tree being
@@ -21,7 +21,8 @@ all_imports = {}
 
 config = {
         'single_file': False,
-        'remove_cyclical': False,
+        'no_groupings': True,
+        'remove_cyclical': True,
         }
 
 def setLogger(mylogger):
@@ -105,6 +106,9 @@ def createCollectionXML(name, prefix='', xml_node=None):
     xml_convenience.add_annotation(collection_target, {"Term": "OData.Description",
         "String": "A Collection of " + name + " resource instances."
         })
+    xml_convenience.add_annotation(collection_target, {"Term": "OData.LongDescription",
+        "String": "A Collection of " + name + " resource instances."
+        })
     xml_convenience.add_collection_annotation(collection_target, {"Term":
         "Capabilities.InsertRestrictions"}, {"Insertable": "false"})
     xml_convenience.add_collection_annotation(collection_target, {"Term":
@@ -120,6 +124,7 @@ def createCollectionXML(name, prefix='', xml_node=None):
     xml_convenience.add_annotation(nav_prop, {'Term':'OData.Permissions',
         'EnumMember':'OData.Permissions/Read'})
     xml_convenience.add_annotation(nav_prop, {'Term':'OData.Description', 'String':'Contains members of this collection.'})
+    xml_convenience.add_annotation(nav_prop, {'Term':'OData.LongDescription', 'String':'Contains members of this collection.'})
     xml_convenience.add_annotation(nav_prop, {'Term':'OData.AutoExpandReferences'})
     return collection_xml_root
 
@@ -141,15 +146,14 @@ def create_xml_base(csdlname, prefix='', xml_node = None):
         'Namespace', prefix + csdlname + ".v1_0_0")
     schema_node.set(
         'xmlns', 'http://docs.oasis-open.org/odata/ns/edm')
-    xml_convenience.add_annotation(schema_node, {"Term":
-        "Redfish.OwningEntity", "String": "DMTF"})
+    xml_convenience.add_annotation(schema_node, {"Term": "Redfish.OwningEntity", "String": "DMTF"})
+    xml_convenience.add_annotation(schema_node, {"Term": "Redfish.Release", "String": "TBD"})
     # add in first schema
     schema_node_og = Element('Schema')
     schema_node_og.set('Namespace', prefix + csdlname)
     schema_node_og.set(
         'xmlns', 'http://docs.oasis-open.org/odata/ns/edm')
-    xml_convenience.add_annotation(schema_node_og, {"Term":
-        "Redfish.OwningEntity", "String": "DMTF"})
+    xml_convenience.add_annotation(schema_node_og, {"Term": "Redfish.OwningEntity", "String": "DMTF"})
     data_services_node.insert(0, schema_node_og)
 
     schema1_entity = SubElement(schema_node_og, 'EntityType')
@@ -185,6 +189,7 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
         toplevelimports = all_imports
 
     if seg_type in ['module','submodule', 'container', 'list', 'grouping']:
+        # input((seg_type, name))
         csdlname = handlers.get_valid_csdl_identifier(name)
 
         if len(current_xml_top) > 0 and config['single_file']:
@@ -245,11 +250,16 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
         schema_node.append(entity_node)
         main_node.remove(data_services_node)
         if not config['single_file'] or (config['single_file'] and len(current_xml_top) == 1):
-            main_node.append(data_services_node)
-            xml_content = XMLContent()
-            xml_content.set_filename(filename)
-            xml_content.set_xml(main_node)
-            list_of_xml.append(xml_content)
+            if seg_type == 'grouping' and config['no_groupings']:
+                parent_of = filename.split('_v1.xml')[0]
+                new_list = [x for x in list_of_xml if parent_of in x.filename]
+                _temp = [list_of_xml.remove(x) for x in new_list]
+            else:
+                main_node.append(data_services_node)
+                xml_content = XMLContent()
+                xml_content.set_filename(filename)
+                xml_content.set_xml(main_node)
+                list_of_xml.append(xml_content)
 
         current_xml_top.pop()
 
@@ -281,8 +291,7 @@ def build_tree(yang_item, list_of_xml, xlogger, prefix="", topleveltypes=None, t
             prop_node.set(
                 'Type', 'Collection({}.{})'.format(prefix + "v1_0_0", csdlname))
             xml_convenience.add_annotation(prop_node, {"Term": "OData.LongDescription",
-                    "String": "List of the type {}.".format(csdlname)}
-                    )
+                    "String": "List of the type {}.".format(csdlname)})
             our_parent = parent_schema
 
         if seg_type == 'anyxml':

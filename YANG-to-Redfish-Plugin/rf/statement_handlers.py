@@ -2,7 +2,8 @@
 # Copyright 2017 DMTF. All rights reserved.
 # License: BSD 3-Clause License. For full text see link: https://github.com/DMTF/YANG-to-Redfish-Converter/blob/master/LICENSE.md
 
-from xml.etree.ElementTree import Element, SubElement
+from xml.etree.ElementTree import Element, SubElement, tostring
+import xml.etree as etree
 import rf.xml_convenience as xml_convenience
 import rf.redfishtypes as redfishtypes
 from rf.redfishtypes import get_valid_csdl_identifier
@@ -28,12 +29,20 @@ def collectAnnotations(node):
     for key in collected:
         target = collected[key]
         if len(target) > 1:
-            # comment out Collection and Record lines to fix npm test
-            Collection = SubElement(node, 'Collection')
-            for a in target:
-                Record = SubElement(Collection, 'Record')
-                Record.append(a)
-                node.remove(a)
+            if (key == 'OData.LongDescription' or key == 'OData.Description'):
+                Collection = SubElement(node, 'Annotation', attrib={'Term': key})
+                text = []
+                for a in target:
+                    text.append(a.attrib.get('String'))
+                    node.remove(a)
+                Collection.attrib['String'] = '  '.join(text)
+            else:
+                # comment out Collection and Record lines to fix npm test
+                Collection = SubElement(node, 'Collection')
+                for a in target:
+                    Record = SubElement(Collection, 'Record')
+                    Record.append(a)
+                    node.remove(a)
 
 def collectChildren(yang_item):
     """
@@ -74,7 +83,9 @@ def handle_generic(yang_keyword, yang_arg, yang_children=[], target=None, target
         if yang_arg[-1] != '.':
             yang_arg = yang_arg + '.'
         annotation = xml_convenience.add_annotation(
-            target, {'Term': 'OData.Description', 'String': yang_arg})
+            target, {'Term': 'OData.Description', 'String': yang_arg.split('. ')[0].strip('.') + '.'})
+        annotation = xml_convenience.add_annotation(
+            target, {'Term': 'OData.LongDescription', 'String': yang_arg})
 
     else:
         annotation = xml_convenience.add_annotation(
@@ -174,7 +185,7 @@ def handle_enum(yang_keyword, yang_arg, yang_children, target):
     member_node.set('Name', yang_arg)
 
     annotation = xml_convenience.add_annotation(
-            target, {'Term': redfishtypes.get_descriptive_properties_mapping(yang_keyword),
+            member_node, {'Term': redfishtypes.get_descriptive_properties_mapping(yang_keyword),
                      'String':  yang_arg
                      }
             )
@@ -315,11 +326,12 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
             importname = var_type.split(':')[0]
             if importname in imports and imports[importname] != top_name:
                 ns = get_valid_csdl_identifier(imports[importname]) + '.v1_0_0'
-                xml_convenience.add_import(xml_top, get_valid_csdl_identifier(imports[importname]), importname if importname != imports[importname] else None, ns)
+                xml_convenience.add_import(xml_top, get_valid_csdl_identifier(imports[importname]),
+                    get_valid_csdl_identifier(importname) if importname != imports[importname] else None, ns)
             elif importname in imports:
                 importname = get_valid_csdl_identifier(imports[importname]) + '.v1_0_0'
                 var_type = importname + ':' + var_type.split(':')[1]
-            yang_type_location = importname
+            yang_type_location = get_valid_csdl_identifier(importname)
             annotation.set('Term', '{}.YangType'.format(yang_type_location))
             var_type = redfishtypes.types_mapping.get(var_type, var_type)
 
@@ -331,14 +343,20 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
                 if var_type in rf.csdltree.types_created_by_import[module]:
                     importname = module
                     break
-            if imports[importname] != top_name:
-                ns = get_valid_csdl_identifier(imports[importname]) + '.v1_0_0'
-                xml_convenience.add_import(xml_top, get_valid_csdl_identifier(imports[importname]), importname if importname != imports[importname] else None, ns)
-            else:
-                importname = get_valid_csdl_identifier(imports[importname]) + '.v1_0_0'
-            yang_type_location = importname
+            imported_name = imports.get(importname, 'MissingTypeName') # backup
+            if imported_name != top_name:
+                ns = get_valid_csdl_identifier(imported_name) + '.v1_0_0'
+                xml_convenience.add_import(xml_top,
+                        get_valid_csdl_identifier(imported_name),
+                        get_valid_csdl_identifier(importname) if importname != imported_name else None, ns)
+            yang_type_location = get_valid_csdl_identifier(importname)
             annotation.set('Term', '{}.YangType'.format(yang_type_location))
-            var_type = importname + '.' + redfishtypes.types_mapping.get(var_type, var_type)
+
+            if (importname in imports):
+                var_type = get_valid_csdl_identifier(imports[importname])+ '.v1_0_0.' + \
+                    get_valid_csdl_identifier( redfishtypes.types_mapping.get(var_type, var_type) )
+            else:
+                var_type = get_valid_csdl_identifier(importname) + '.v1_0_0.' + get_valid_csdl_identifier( redfishtypes.types_mapping.get(var_type, var_type) )
 
         elif var_type in types:
             # If we haven't defined this type, this must be added to imports
@@ -348,7 +366,6 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
             namespace = schema_node.attrib.get('Namespace')
             available_types = list()
             yang_type_location = namespace
-            annotation.set('Term', '{}.YangType'.format(yang_type_location))
 
             for ref in schema_node:
                 if str(ref.tag) not in ['TypeDefinition', 'EnumType']:
@@ -412,8 +429,9 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
         type_tag.arg = td
         new_annotation = handle_type(type_tag, xml_node, parent_node, parent_entity, {}, {td: nmd})
         xml_node.remove(new_annotation)
+        types[td] = nmd
 
-    annotation.set('EnumMember', yang_type_location + '.YangTypes/' + get_valid_csdl_identifier(yang_type.split(':')[-1]))
+    annotation.set('EnumMember', get_valid_csdl_identifier(yang_type_location) + '.YangTypes/' + get_valid_csdl_identifier(yang_type.split(':')[-1]))
     xml_node.append(annotation)
 
     return annotation

@@ -35,10 +35,14 @@ class RedfishPlugin(plugin.PyangPlugin):
             optparse.make_option("--target_dir",
                                  dest="target_dir",
                                  help="Where to output xml files"),
-            optparse.make_option("--remove_cyclical_imports",
-                                 dest="remove_cyclical_imports",
+            optparse.make_option("--create_groupings",
+                                 dest="create_groupings",
                                  action="store_true",
-                                 help="Remove possible cyclical imports to module xml"),
+                                 help="Create XML definitions for grouping definitions pulled by uses"),
+            optparse.make_option("--keep_cyclical_imports",
+                                 dest="keep_cyclical_imports",
+                                 action="store_true",
+                                 help="Keep possible cyclical imports to module xml"),
             optparse.make_option("--combine_all_nodes",
                                  dest="combine_all_nodes",
                                  action="store_true",
@@ -64,11 +68,14 @@ class RedfishPlugin(plugin.PyangPlugin):
         list_of_xml = []
         target_dir = ctx.opts.target_dir if ctx.opts.target_dir is not None else './output_dir'
 
-        if ctx.opts.remove_cyclical_imports:
-            csdltree.config['remove_cyclical'] = True
+        if ctx.opts.keep_cyclical_imports:
+            csdltree.config['remove_cyclical'] = False
 
         if ctx.opts.combine_all_nodes:
             csdltree.config['single_file'] = True
+
+        if ctx.opts.create_groupings:
+            csdltree.config['no_groupings'] = False
 
         if not os.path.exists(target_dir):
             os.makedirs(target_dir)

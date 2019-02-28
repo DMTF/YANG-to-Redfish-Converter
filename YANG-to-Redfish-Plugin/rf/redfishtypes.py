@@ -5,21 +5,21 @@
 import string
 
 types_mapping = {
-    'binary':            'Edm.Binary',
-    'bits':              'Edm.Binary',
+    'binary':            'Edm.Int32',
+    'bits':              'Edm.Int32',
     'boolean':           'Edm.Boolean',
     'date_and_time':     'Edm.DateTimeOffset',
     'decimal64':         'Edm.Decimal',
     'empty':             'RedfishYang.empty',  # clause
     'enumeration':       'Edm.EnumType',  # clause
     'identityref':       'RedfishYang.instance_identifier',  # clause
-    'int8':              'Edm.Sbyte',
+    'int8':              'Edm.Int16',
     'int16':             'Edm.Int16',
     'int32':             'Edm.Int32',
     'int64':             'Edm.Int64',
     'leafref':           'Edm.String',  # clause
     'string':            'Edm.String',
-    'uint8':             'Edm.Byte',
+    'uint8':             'RedfishYang.uint16',
     'uint16':            'RedfishYang.uint16',
     'uint32':            'RedfishYang.uint32',
     'uint64':            'RedfishYang.uint64',
