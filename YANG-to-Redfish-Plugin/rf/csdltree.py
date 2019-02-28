@@ -22,7 +22,7 @@ all_imports = {}
 config = {
         'single_file': False,
         'no_groupings': True,
-        'remove_cyclical': False,
+        'remove_cyclical': True,
         }
 
 def setLogger(mylogger):

@@ -326,11 +326,12 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
             importname = var_type.split(':')[0]
             if importname in imports and imports[importname] != top_name:
                 ns = get_valid_csdl_identifier(imports[importname]) + '.v1_0_0'
-                xml_convenience.add_import(xml_top, get_valid_csdl_identifier(imports[importname]), importname if importname != imports[importname] else None, ns)
+                xml_convenience.add_import(xml_top, get_valid_csdl_identifier(imports[importname]),
+                    get_valid_csdl_identifier(importname) if importname != imports[importname] else None, ns)
             elif importname in imports:
                 importname = get_valid_csdl_identifier(imports[importname]) + '.v1_0_0'
                 var_type = importname + ':' + var_type.split(':')[1]
-            yang_type_location = importname
+            yang_type_location = get_valid_csdl_identifier(importname)
             annotation.set('Term', '{}.YangType'.format(yang_type_location))
             var_type = redfishtypes.types_mapping.get(var_type, var_type)
 
@@ -347,12 +348,15 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
                 ns = get_valid_csdl_identifier(imported_name) + '.v1_0_0'
                 xml_convenience.add_import(xml_top,
                         get_valid_csdl_identifier(imported_name),
-                        importname if importname != imported_name else None, ns)
-            else:
-                importname = get_valid_csdl_identifier(imported_name) + '.v1_0_0'
-            yang_type_location = importname
+                        get_valid_csdl_identifier(importname) if importname != imported_name else None, ns)
+            yang_type_location = get_valid_csdl_identifier(importname)
             annotation.set('Term', '{}.YangType'.format(yang_type_location))
-            var_type = importname + '.' + redfishtypes.types_mapping.get(var_type, var_type)
+
+            if (importname in imports):
+                var_type = get_valid_csdl_identifier(imports[importname])+ '.v1_0_0.' + \
+                    get_valid_csdl_identifier( redfishtypes.types_mapping.get(var_type, var_type) )
+            else:
+                var_type = get_valid_csdl_identifier(importname) + '.v1_0_0.' + get_valid_csdl_identifier( redfishtypes.types_mapping.get(var_type, var_type) )
 
         elif var_type in types:
             # If we haven't defined this type, this must be added to imports
@@ -427,7 +431,7 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
         xml_node.remove(new_annotation)
         types[td] = nmd
 
-    annotation.set('EnumMember', yang_type_location + '.YangTypes/' + get_valid_csdl_identifier(yang_type.split(':')[-1]))
+    annotation.set('EnumMember', get_valid_csdl_identifier(yang_type_location) + '.YangTypes/' + get_valid_csdl_identifier(yang_type.split(':')[-1]))
     xml_node.append(annotation)
 
     return annotation
