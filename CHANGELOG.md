@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.0.3] - 2019-03-01
+- Added fixes to the plugin that resolves resolution issues when generating multiple CSDL files
+- Removed generation of groupings/uses statements, as they're definitions but not resources
+- Resolved typing resolutions for enumerations in groupings
+
 ## [1.0.2] - 2018-11-30
 - Updates to the tool based on feedback from test tools that verify schema format
 - Moved repeated annotations into collections of annotations
