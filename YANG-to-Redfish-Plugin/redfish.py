@@ -47,6 +47,12 @@ class RedfishPlugin(plugin.PyangPlugin):
                                  dest="combine_all_nodes",
                                  action="store_true",
                                  help="Combine all XML files to a single file"),
+            optparse.make_option("--release",
+                                 dest="release",
+                                 help="Release version of files (default TBD)"),
+            optparse.make_option("--owning_entity",
+                                 dest="owning_entity",
+                                 help="Owning entity of files (default TBD)"),
             ]
         g = optparser.add_option_group("Redfish output specific options")
         g.add_options(optlist)
@@ -77,13 +83,20 @@ class RedfishPlugin(plugin.PyangPlugin):
         if ctx.opts.create_groupings:
             csdltree.config['no_groupings'] = False
 
+        if ctx.opts.release:
+            csdltree.config['release'] = ctx.opts.release
+
+        if ctx.opts.owning_entity:
+            csdltree.config['owner'] = ctx.opts.owning_entity
+
         if not os.path.exists(target_dir):
             os.makedirs(target_dir)
 
         csdltree.setLogger(logger)
 
         for module in modules:
-            csdltree.build_tree(module, list_of_xml, logger)
+            module_obj = csdltree.YangCSDLConversionObj(module)
+            csdltree.build_tree(module_obj, list_of_xml, logger)
 
         for xml_item in list_of_xml:
             filename = target_dir + '/' + xml_item.get_filename()

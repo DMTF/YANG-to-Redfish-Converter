@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!---->
+<!--################################################################################       -->
+<!--# Redfish Schema:  RedfishYangExtensions v1.0.0-->
+<!--#                                                                                      -->
+<!--# For a detailed change log, see the README file contained in the DSP8010 bundle,      -->
+<!--# available at http://www.dmtf.org/standards/redfish                                   -->
+<!--# Copyright 2014-2017 Distributed Management Task Force, Inc. (DMTF).                  -->
+<!--# For the full DMTF copyright policy, see http://www.dmtf.org/about/policies/copyright -->
+<!--################################################################################       -->
+<!---->
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+
+  <edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
+    <edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
+  </edmx:Reference>
+
+  <edmx:DataServices>
+
+    <!--These terms extend the schema language for Redfish Yang translations -->
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="RedfishYangExtensions.v1_0_0">
+
+      <Annotation Term="OData.LongDescription" String="The CSDL Terms, Type Definitions, and Enumerations defined in this schema section shall be interpreted as defined in RFC6020."/>
+
+      <TypeDefinition Name="uint16" UnderlyingType="Edm.Int32"/>
+      <TypeDefinition Name="uint32" UnderlyingType="Edm.Int64"/>
+      <TypeDefinition Name="uint64" UnderlyingType="Edm.Decimal"/>
+      <TypeDefinition Name="XmlBlock" UnderlyingType="Edm.String"/>
+
+      <Term Name="NodeType" Type="RedfishYangExtensions.v1_0_0.NodeTypes">
+        <Annotation Term="OData.Description" String="Yang NodeTypes."/>
+      </Term>
+      <EnumType Name="NodeTypes">
+        <Member Name="leaf"/>
+        <Member Name="leaf_list"/>
+        <Member Name="container"/>
+        <Member Name="list"/>
+        <Member Name="rpc"/>
+        <Member Name="input"/>
+        <Member Name="output"/>
+        <Member Name="notification"/>
+        <Member Name="choice"/>
+        <Member Name="case"/>
+        <Member Name="grouping"/>
+        <Member Name="uses"/>
+        <Member Name="module"/>
+      </EnumType>
+
+      <Term Name="NodeName" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang node name for use in choice/case."/>
+      </Term>
+
+<!-- Declarations to resolve the value of TYPE attribute in CSDL Property tags -->
+
+      <Term Name="YangType" Type="RedfishYangExtensions.v1_0_0.YangTypes">
+        <Annotation Term="OData.Description" String="The yang type."/>
+      </Term>
+      <EnumType Name="YangTypes">
+        <Member Name="binary"/>
+        <Member Name="boolean"/>
+        <Member Name="decimal64"/>
+        <Member Name="bits"/>
+        <Member Name="int8"/>
+        <Member Name="int16"/>
+        <Member Name="int32"/>
+        <Member Name="int64"/>
+        <Member Name="uint8"/>
+        <Member Name="uint16"/>
+        <Member Name="uint32"/>
+        <Member Name="uint64"/>
+        <Member Name="string"/>
+        <Member Name="counter32"/>
+        <Member Name="counter64"/>
+        <Member Name="date_and_time"/>
+        <Member Name="domain_name"/>
+        <Member Name="dotted_quad"/>
+        <Member Name="empty"/>
+        <Member Name="enumeration"/>
+        <Member Name="gauge64"/>
+        <Member Name="identityref"/>
+      </EnumType>
+
+ 
+      <Term Name="uint8" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang namespace."/>
+      </Term>
+
+      <Term Name="namespace" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang namespace."/>
+      </Term>
+
+      <Term Name="prefix" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang prefix."/>
+      </Term>
+
+      <Term Name="augment" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang augment node identifier."/>
+      </Term>
+
+      <Term Name="belongs_to" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang belongs-to string."/>
+      </Term>
+
+      <Term Name="max_elements" Type="RedfishYangExtensions.v1_0_0.uint64">
+        <Annotation Term="OData.Description" String="The maximum number elements in a list or leaf-list node."/>
+      </Term>
+
+      <Term Name="min_elements" Type="RedfishYangExtensions.v1_0_0.uint64">
+        <Annotation Term="OData.Description" String="The minimum number of elements in a list or leaf-list node."/>
+      </Term>
+
+      <Term Name="ordered_by" Type="RedfishYangExtensions.v1_0_0.OrderedBy">
+        <Annotation Term="OData.Description" String="Yang ordered-by for list and leaf-list nodes."/>
+      </Term>
+      <EnumType Name="OrderedBy">
+        <Member Name="system"/>
+        <Member Name="user"/>
+      </EnumType>
+
+      <Term Name="XPath" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The Yang XPath string."/>
+      </Term>
+
+      <Term Name="instance_identifier" Type="RedfishYangExtensions.v1_0_0.XPath">
+        <Annotation Term="OData.Description" String="The yang istance identifier XPath statement."/>
+      </Term>
+
+      <Term Name="anyxml" Type="Edm.String">
+        <Annotation Term="OData.Description" String="Reference to a block of XML code in the yang file."/>
+      </Term>
+
+      <Term Name="IsXml" Type="Edm.Boolean" DefaultValue="True">
+        <Annotation Term="OData.Description" String="The string type contains XML."/>
+      </Term>
+
+      <Term Name="must" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The must annotation term is a string containing the corresponding XPath statement from the yang module. The must annotation may have a block of annotation statements."/>
+        <Annotation Term="OData.LongDescriotion" String="RFC6020: The must statement, which is optional, takes as an argument a string that contains an XPath expression (see Section 6.4). It is used to formally declare a constraint on valid data. The constraint is enforced according to the rules in Section 8."/>
+      </Term>
+
+      <Term Name="error_message" Type="Edm.String">
+        <Annotation Term="OData.Description" String="If the must constraint evaluates to false, the string is the associated error message."/>
+      </Term>
+
+      <Term Name="error_app_tag" Type="Edm.String">
+        <Annotation Term="OData.Description" String="If the must constraint evaluates to false, the string is the associated app tag indication."/>
+      </Term>
+
+      <Term Name="mandatory" Type="RedfishYangExtensions.v1_0_0.Mandatory">
+        <Annotation Term="OData.Description" String="Config true means the node is configurable (writeable), false means read only."/>
+      </Term>
+      <EnumType Name="Mandatory">
+        <Member Name="false"/>
+        <Member Name="true"/>
+      </EnumType>
+
+      <Term Name="units" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang statement units string."/>
+      </Term>
+
+      <Term Name="presence" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang statement presence string."/>
+      </Term>
+
+      <Term Name="empty" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The leafname of the empty leaf."/>
+        <Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+      </Term>
+
+      <Term Name="when" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The when string contains the XPath string from the corresponding yang statement."/>
+      </Term>
+
+      <Term Name="config" Type="RedfishYangExtensions.v1_0_0.ConfigPermission">
+        <Annotation Term="OData.Description" String="Config true means the node is configurable (writeable), false means read only."/>
+      </Term>
+      <EnumType Name="ConfigPermission">
+        <Member Name="false"/>
+        <Member Name="true"/>
+      </EnumType>
+
+      <Term Name="extension" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang extension statement."/>
+      </Term>
+
+      <Term Name="yin_element" Type="RedfishYangExtensions.v1_0_0.YinElement">
+        <Annotation Term="OData.Description" String="The arugument of the extension is expressed in the YIN representation."/>
+      </Term>
+      <EnumType Name="YinElement">
+        <Member Name="false"/>
+        <Member Name="true"/>
+      </EnumType>
+
+      <Term Name="feature" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang statement feature string."/>
+      </Term>
+
+      <Term Name="if_feature" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang statement if-feature string."/>
+      </Term>
+
+      <Term Name="description" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang statement description string."/>
+      </Term>
+
+      <Term Name="reference" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang statement reference string."/>
+      </Term>
+
+      <Term Name="status" Type="RedfishYangExtensions.v1_0_0.NodeStatusEnum">
+        <Annotation Term="OData.Description" String="Yang Node model element status."/>
+      </Term>
+      <EnumType Name="NodeStatusEnum">
+        <Member Name="current"/>
+        <Member Name="deprecated"/>
+        <Member Name="obsolete"/>
+      </EnumType>
+
+      <Term Name="choice" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang statement choice string."/>
+      </Term>
+
+      <Term Name="length" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang statement range string."/>
+      </Term>
+
+      <Term Name="range" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang statement range string."/>
+      </Term>
+
+      <Term Name="pattern" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang statement pattern string."/>
+      </Term>
+
+      <Term Name="base" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang statement base string."/>
+      </Term>
+
+      <Term Name="position" Type="RedfishYangExtensions.v1_0_0.uint32">
+        <Annotation Term="OData.Description" String="The yang statement bit position value."/>
+      </Term>
+
+      <Term Name="revision" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang revision name."/>
+      </Term>
+
+      <Term Name="fraction_digits" Type="Edm.Byte">
+        <Annotation Term="OData.Description" String="The yang revision name."/>
+      </Term>
+
+      <Term Name="key" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang complete key string."/>
+      </Term>
+
+      <Term Name="default" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang default statement."/>
+      </Term>
+
+      <Term Name="unique" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang unique statement."/>
+      </Term>
+
+      <Term Name="identity" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang identity statement."/>
+      </Term>
+
+      <Term Name="identityref" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang identityref statement."/>
+      </Term>
+
+      <Term Name="leafref" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang leafref statement."/>
+      </Term>
+
+      <Term Name="enum" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang enum member string."/>
+      </Term>
+
+      <Term Name="deviate" Type="RedfishYangExtensions.v1_0_0.DeviateType">
+        <Annotation Term="OData.Description" String="Yang Node model element status."/>
+      </Term>
+      <EnumType Name="DeviateType">
+        <Member Name="not_supported"/>
+        <Member Name="add"/>
+        <Member Name="replace"/>
+        <Member Name="delete"/>
+      </EnumType>
+
+      <Term Name="union" Type="Collection(Edm.String)">
+        <Annotation Term="OData.Description" String="The types of the individual union members."/>
+      </Term>
+
+      <Term Name="statement" Type="Edm.String">
+        <Annotation Term="OData.Description" String="Text from the yang statement."/>
+      </Term>
+
+<!-- Declarations to resolve the value of TYPE attribute in CSDL Property tags -->
+
+      <Term Name="counter32" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang enum member string."/>
+      </Term>
+      <Term Name="counter64" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang enum member string."/>
+      </Term>
+      <Term Name="uint8" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang enum member string."/>
+      </Term>
+      <Term Name="uint16" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang enum member string."/>
+      </Term>
+      <Term Name="gauge64" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang enum member string."/>
+      </Term>
+      <Term Name="date_and_time" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang enum member string."/>
+      </Term>
+      <Term Name="dotted_quad" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang enum member string."/>
+      </Term>
+      <Term Name="domain_name" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang enum member string."/>
+      </Term>
+      <Term Name="phys_address" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang enum member string."/>
+      </Term>
+      <Term Name="interface_state_ref" Type="Edm.String">
+        <Annotation Term="OData.Description" String="The yang enum member string."/>
+      </Term>
+
+
+    </Schema>
+
+  </edmx:DataServices>
+</edmx:Edmx>

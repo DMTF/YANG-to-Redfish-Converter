@@ -17,6 +17,8 @@ def collectAnnotations(node):
     Taking a node with possible repeated annotations, place them into their own Records
     For each discovered Term, place into new list; if list is greater than 1, create collection
     """
+    return
+
     allAnnotations = node.findall('Annotation')
 
     collected = {}
@@ -38,11 +40,17 @@ def collectAnnotations(node):
                 Collection.attrib['String'] = '  '.join(text)
             else:
                 # comment out Collection and Record lines to fix npm test
-                Collection = SubElement(node, 'Collection')
-                for a in target:
+                NewAnnotation = SubElement(node, 'Annotation')
+                Collection = SubElement(NewAnnotation, 'Collection')
+                for repeat in target:
                     Record = SubElement(Collection, 'Record')
-                    Record.append(a)
-                    node.remove(a)
+                    Record.append(repeat)
+                    node.remove(repeat)
+                    for inner_tag in repeat:
+                        key = inner_tag.attrib['Term']
+                        if not (key == 'OData.LongDescription' or key == 'OData.Description'):
+                            inner_tag.tag = "Annotation"
+                            # inner_tag.attrib['Term'] = inner_tag.attrib['Term'].split('.')[-1]
 
 def collectChildren(yang_item):
     """
@@ -51,13 +59,12 @@ def collectChildren(yang_item):
         between i_children and substmts
     Else, just use substmts
     """
-    yang_keyword = yang_item.keyword
     if hasattr(yang_item, 'i_children'):
         content = yang_item.i_children if len(yang_item.i_children) > 0 else []
-        #print(yang_keyword, [tag.keyword for tag in content if tag not in yang_item.substmts])
+        # print(yang_keyword, [tag.keyword for tag in content if tag not in yang_item.substmts])
         content = yang_item.substmts + [tag for tag in content if tag not in yang_item.substmts]
     else:
-        #print(yang_keyword, 'HAS NO ICHILD')
+        # print(yang_keyword, 'HAS NO ICHILD')
         content = yang_item.substmts
     return content
 
@@ -147,7 +154,6 @@ def handle_generic_modifier(yang_keyword, yang_arg, target):
     """
     convert_to_csdl = {
             "namespace": "xmlns",
-            "prefix": "Alias",
             "default": "DefaultValue"
             }
 
@@ -343,7 +349,7 @@ def handle_type(type_tag, xml_node, parent_node, parent_entity, imports, types):
                 if var_type in rf.csdltree.types_created_by_import[module]:
                     importname = module
                     break
-            imported_name = imports.get(importname, 'MissingTypeName') # backup
+            imported_name = imports.get(importname, importname) # backup for modules modified by augment
             if imported_name != top_name:
                 ns = get_valid_csdl_identifier(imported_name) + '.v1_0_0'
                 xml_convenience.add_import(xml_top,
