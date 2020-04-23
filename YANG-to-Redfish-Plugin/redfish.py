@@ -13,7 +13,7 @@ Based on 'name', 'tree' plugin
 import optparse
 import os
 from xml.etree.ElementTree import tostring
-import rf.csdltree as csdltree
+import rf.yangobj as yangobj
 import logging
 import xml.dom.minidom
 import re
@@ -71,32 +71,30 @@ class RedfishPlugin(plugin.PyangPlugin):
         logger.addHandler(hdlr)
         logger.setLevel(logging.DEBUG)
 
-        list_of_xml = []
         target_dir = ctx.opts.target_dir if ctx.opts.target_dir is not None else './output_dir'
 
         if ctx.opts.keep_cyclical_imports:
-            csdltree.config['remove_cyclical'] = False
+            yangobj.config['remove_cyclical'] = False
 
         if ctx.opts.combine_all_nodes:
-            csdltree.config['single_file'] = True
+            yangobj.config['single_file'] = True
 
         if ctx.opts.create_groupings:
-            csdltree.config['no_groupings'] = False
+            yangobj.config['no_groupings'] = False
 
         if ctx.opts.release:
-            csdltree.config['release'] = ctx.opts.release
+            yangobj.config['release'] = ctx.opts.release
 
         if ctx.opts.owning_entity:
-            csdltree.config['owner'] = ctx.opts.owning_entity
+            yangobj.config['owner'] = ctx.opts.owning_entity
 
         if not os.path.exists(target_dir):
             os.makedirs(target_dir)
 
-        csdltree.setLogger(logger)
-
+        list_of_xml = []
         for module in modules:
-            module_obj = csdltree.YangCSDLConversionObj(module)
-            csdltree.build_tree(module_obj, list_of_xml, logger)
+            mobj = yangobj.YangCSDLConversionObj(module)
+            list_of_xml.extend(mobj.return_docs())
 
         for xml_item in list_of_xml:
             filename = target_dir + '/' + xml_item.get_filename()
