@@ -1,0 +1,103 @@
+<?xml version="1.0" ?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
+		<edmx:Include Namespace="Resource.v1_0_0"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_types">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="openconfig_types" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_types."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_types."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_types.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<TypeDefinition Name="percentage" UnderlyingType="RedfishYang.uint16">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint8"/>
+				<Annotation Term="OData.Description" String="Integer indicating a percentage value."/>
+				<Annotation Term="OData.LongDescription" String="Integer indicating a percentage value."/>
+			</TypeDefinition>
+			<TypeDefinition Name="std_regexp" UnderlyingType="Edm.String">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+				<Annotation Term="OData.Description" String="This type definition is a placeholder for a standard definition of a regular expression that can be utilised in OpenConfig models."/>
+				<Annotation Term="OData.LongDescription" String="This type definition is a placeholder for a standard definition of a regular expression that can be utilised in OpenConfig models. Further discussion is required to consider the type of regular expressions that are to be supported. An initial proposal is POSIX compatible."/>
+			</TypeDefinition>
+			<TypeDefinition Name="timeticks64" UnderlyingType="RedfishYang.uint64">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint64"/>
+				<Annotation Term="OData.Description" String="This type is based on the timeticks type defined in RFC 6991, but with 64-bit width."/>
+				<Annotation Term="OData.LongDescription" String="This type is based on the timeticks type defined in RFC 6991, but with 64-bit width.  It represents the time, modulo 2^64, in hundredths of a second between two epochs."/>
+				<Annotation Term="RedfishYang.reference" String="RFC 6991 - Common YANG Data Types"/>
+			</TypeDefinition>
+			<TypeDefinition Name="ieeefloat32" UnderlyingType="Edm.Int32">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/binary"/>
+				<Annotation Term="OData.Description" String="An IEEE 32-bit floating point number."/>
+				<Annotation Term="OData.LongDescription" String="An IEEE 32-bit floating point number. The format of this number is of the form:  1-bit  sign  8-bit  exponent  23-bit fraction The floating point value is calculated using:  (-1)**S * 2**(Exponent-127) * (1+Fraction)."/>
+			</TypeDefinition>
+			<TypeDefinition Name="routing_password" UnderlyingType="Edm.String">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+				<Annotation Term="OData.Description" String="This type is indicative of a password that is used within a routing protocol which can be returned in plain text to the NMS by the local system."/>
+				<Annotation Term="OData.LongDescription" String="This type is indicative of a password that is used within a routing protocol which can be returned in plain text to the NMS by the local system. Such passwords are typically stored as encrypted strings. Since the encryption used is generally well known, it is possible to extract the original value from the string - and hence this format is not considered secure. Leaves specified with this type should not be modified by the system, and should be returned to the end-user in plain text. This type exists to differentiate passwords, which may be sensitive, from other string leaves. It could, for example, be used by the NMS to censor this data when viewed by particular users."/>
+			</TypeDefinition>
+			<TypeDefinition Name="stat_interval" UnderlyingType="RedfishYang.uint64">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint64"/>
+				<Annotation Term="RedfishYang.units" String="nanoseconds"/>
+				<Annotation Term="OData.Description" String="A time interval over which a set of statistics is computed."/>
+				<Annotation Term="OData.LongDescription" String="A time interval over which a set of statistics is computed. A common usage is to report the interval over which avg/min/max stats are computed and reported."/>
+			</TypeDefinition>
+			<EntityType Name="openconfig_types" BaseType="openconfig_types.openconfig_types">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/module"/>
+				<Annotation Term="RedfishYang.yang_version" String="1"/>
+				<Annotation Term="RedfishYang.namespace" String="http://openconfig.net/yang/openconfig-types"/>
+				<Annotation Term="RedfishYang.organization" String="OpenConfig working group"/>
+				<Annotation Term="RedfishYang.contact" String="OpenConfig working groupnetopenconfig@googlegroups.com"/>
+				<Annotation Term="OData.Description" String="This module contains a set of general type definitions that are used across OpenConfig models."/>
+				<Annotation Term="OData.LongDescription" String="This module contains a set of general type definitions that are used across OpenConfig models. It can be imported by modules that make use of these types."/>
+				<Annotation Term="RedfishYang.statement" String="openconfig-extensions:openconfig-version,  openconfig-extensions:regexp-posix,  openconfig-extensions:catalog-organization,  openconfig-extensions:origin"/>
+				<Annotation Term="RedfishYang.revision" String="2018-11-21,  2018-05-05,  2018-01-16,  2017-08-16,  2017-01-13,  2016-11-14,  2016-11-11,  2016-05-31"/>
+				<Annotation Term="RedfishYang.grouping" String="stat-interval-state,  min-max-time,  avg-min-max-stats-precision1,  avg-min-max-instant-stats-precision1,  avg-min-max-instant-stats-precision2-dB,  avg-min-max-instant-stats-precision2-dBm,  avg-min-max-instant-stats-precision2-mA,  avg-min-max-instant-stats-pct"/>
+				<Annotation Term="RedfishYang.identity" String="ADDRESS_FAMILY,  IPV4,  IPV6,  MPLS,  L2_ETHERNET"/>
+			</EntityType>
+			<Term Name="YangType" Type="openconfig_types.v1_0_0.YangTypes">
+				<Annotation Term="OData.Description" String="A extension of openconfig_types resource instances."/>
+			</Term>
+			<EnumType Name="YangTypes">
+				<Member Name="ieeefloat32"/>
+				<Member Name="percentage"/>
+				<Member Name="routing_password"/>
+				<Member Name="stat_interval"/>
+				<Member Name="std_regexp"/>
+				<Member Name="timeticks64"/>
+			</EnumType>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
+

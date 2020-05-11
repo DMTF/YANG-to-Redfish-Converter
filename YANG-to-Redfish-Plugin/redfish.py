@@ -20,7 +20,6 @@ import re
 
 from pyang import plugin
 
-
 def pyang_plugin_init():
     plugin.register_plugin(RedfishPlugin())
 
@@ -92,9 +91,38 @@ class RedfishPlugin(plugin.PyangPlugin):
             os.makedirs(target_dir)
 
         list_of_xml = []
+        other_docs = {}
+        import_counts = {}
+        my_modules = {}
+
         for module in modules:
-            mobj = yangobj.YangCSDLConversionObj(module)
-            list_of_xml.extend(mobj.return_docs())
+            my_modules[module.arg] = module
+            import_counts[module.arg] = set([tag.arg for tag in yangobj.collectChildren(module) if tag.keyword in ['import']])
+        
+        satisfied_modules = [my_modules[x] for x in my_modules if len(import_counts[x]) == 0]
+        unsatisfied_modules = {x: my_modules[x] for x in my_modules if len(import_counts[x]) > 0}
+
+        finished_modules = set()
+
+        while len( satisfied_modules ) > 0:
+            for module in satisfied_modules:
+                print(module.arg)
+                mobj = yangobj.YangCSDLConversionObj(module, other_docs=other_docs)
+                other_docs.update(mobj.my_doc.imports)
+                list_of_xml.extend(mobj.return_docs(yangobj.config['single_file']))
+            done = set(other_docs.keys())
+            satisfied_modules = [unsatisfied_modules[x] for x in unsatisfied_modules if len(import_counts[x].difference(done)) == 0]
+            unsatisfied_modules = {x: unsatisfied_modules[x] for x in unsatisfied_modules if len(import_counts[x].difference(done)) > 0}
+
+        done = set(other_docs.keys())
+        if len(unsatisfied_modules) > 0:
+            for x in unsatisfied_modules:
+                module = unsatisfied_modules[x]
+                mobj = yangobj.YangCSDLConversionObj(module, other_docs=other_docs)
+                other_docs.update(mobj.my_doc.imports)
+                list_of_xml.extend(mobj.return_docs(yangobj.config['single_file']))
+
+
 
         for xml_item in list_of_xml:
             filename = target_dir + '/' + xml_item.get_filename()
@@ -133,6 +161,11 @@ class RedfishPlugin(plugin.PyangPlugin):
                       filename + "\nError message: " + str(e))
                 logger.error('Unable to write to file: ' +
                              filename + "\nError message: " + str(e))
+
+        if len(unsatisfied_modules) > 0:
+            print('There were unsatisfied modules: ')
+            for x in unsatisfied_modules:
+                print('{} required: {}'.format(x, list(import_counts[x].difference(done))))
 
 
 def write_to_file(filename, xml_string):

@@ -23,7 +23,7 @@ def add_import(xml_node, import_value, alias, namespace=None):
     return add_reference(xml_node, uri, namespace, alias)
 
 
-def add_reference(xml_node, uri, namespace, alias=None):
+def add_reference(xml_node, uri, namespace, alias=None, version=None):
     """
     Add "edmx:Reference" node to XML.
     :param xml_node:Parent node to which reference  node must be added.
@@ -31,13 +31,20 @@ def add_reference(xml_node, uri, namespace, alias=None):
     :param namespace: XML namespace or namespaces
     :param alias: Optional alias
     """
-    ref = SubElement(xml_node, 'edmx:Reference')
+    if uri in ['', None]:
+        uri = 'http://redfish.dmtf.org/schemas/v1/' + namespace + "_v1.xml"
+    ref = Element('edmx:Reference')
     ref.set('Uri', uri)
     include = SubElement(ref, 'edmx:Include')
     if alias is not None:
         include.set('Alias', alias)
-    include.set('Namespace', namespace)
-    return xml_node
+    if version:
+        include.set('Namespace', namespace + '.' + version)
+    else:
+        include.set('Namespace', namespace)
+    if xml_node is not None:
+        xml_node.insert(0, ref)
+    return ref
 
 
 def add_references(xml_node, uri, entries):
@@ -181,7 +188,7 @@ def createCollectionXML(name, prefix='', xml_node=None, owner='TBD', release='TB
         add_reference(
             collection_xml_root, "http://redfish.dmtf.org/schemas/v1/Resource_v1.xml", "Resource.v1_0_0", None)
         add_reference(
-            collection_xml_root, "http://redfish.dmtf.org/schemas/v1/" + prefix + name + "_v1.xml", prefix + name, str(name))
+            collection_xml_root, "http://redfish.dmtf.org/schemas/v1/" + prefix + name + "_v1.xml", prefix + name, name.split('.')[-1])
 
         collection_data_services_node = SubElement(
             collection_xml_root, 'edmx:DataServices')

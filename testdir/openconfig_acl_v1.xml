@@ -1,0 +1,1996 @@
+<?xml version="1.0" ?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/openconfig_yang_types_v1.xml">
+		<edmx:Include Namespace="openconfig_yang_types.v1_0_0" Alias="openconfig_yang_types"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
+		<edmx:Include Namespace="Resource.v1_0_0"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="openconfig_acl" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="openconfig_acl" BaseType="openconfig_acl.openconfig_acl">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/module"/>
+				<Annotation Term="RedfishYang.yang_version" String="1"/>
+				<Annotation Term="RedfishYang.namespace" String="http://openconfig.net/yang/acl"/>
+				<Annotation Term="RedfishYang.organization" String="OpenConfig working group"/>
+				<Annotation Term="RedfishYang.contact" String="OpenConfig working groupwww.openconfig.net"/>
+				<Annotation Term="OData.Description" String="This module defines configuration and operational state data for network access control lists (i.e., filters, rules, etc.)."/>
+				<Annotation Term="OData.LongDescription" String="This module defines configuration and operational state data for network access control lists (i.e., filters, rules, etc.).  ACLs are organized into ACL sets, with each set containing one or more ACL entries.  ACL sets are identified by a unique name, while each entry within a set is assigned a sequence-id that determines the order in which the ACL rules are applied to a packet.  Note that ACLs are evaluated in ascending order based on the sequence-id (low to high).  Individual ACL rules specify match criteria based on fields in the packet, along with an action that defines how matching packets should be handled. Entries have a type that indicates the type of match criteria, e.g., MAC layer, IPv4, IPv6, etc."/>
+				<Annotation Term="RedfishYang.statement" String="openconfig-extensions:openconfig-version,  openconfig-extensions:regexp-posix,  openconfig-extensions:catalog-organization,  openconfig-extensions:origin"/>
+				<Annotation Term="RedfishYang.revision" String="2018-11-21,  2018-04-24,  2017-05-26,  2016-08-08,  2016-01-22"/>
+				<Annotation Term="RedfishYang.identity" String="ACL_TYPE,  ACL_IPV4,  ACL_IPV6,  ACL_L2,  ACL_MIXED,  FORWARDING_ACTION,  ACCEPT,  DROP,  REJECT,  LOG_ACTION,  LOG_SYSLOG,  LOG_NONE,  ACL_COUNTER_CAPABILITY,  INTERFACE_ONLY,  AGGREGATE_ONLY,  INTERFACE_AGGREGATE"/>
+				<Annotation Term="RedfishYang.grouping" String="input-interface-config,  input-interface-state,  input-interface-top,  action-config,  action-state,  action-top,  acl-counters-state,  access-list-entries-config,  access-list-entries-state,  access-list-entries-top,  acl-set-config,  acl-set-state,  acl-set-top,  interface-acl-entries-config,  interface-acl-entries-state,  interface-acl-entries-top,  interface-ingress-acl-config,  interface-ingress-acl-state,  interface-ingress-acl-top,  interface-egress-acl-config,  interface-egress-acl-state,  interface-egress-acl-top,  acl-interfaces-config,  acl-interfaces-state,  acl-interfaces-top,  acl-config,  acl-state,  acl-top"/>
+				<Annotation Term="RedfishYang.uses" String="acl-top"/>
+				<NavigationProperty Name="aclContainer" Type="openconfig_acl.acl.acl" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of acl."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configured reference to interface / subinterface."/>
+				<Annotation Term="OData.LongDescription" String="Configured reference to interface / subinterface."/>
+				<Annotation Term="RedfishYang.statement" String="openconfig-extensions:telemetry-on-change"/>
+				<Annotation Term="RedfishYang.uses" String="interface-ref-common"/>
+				<Property Name="interface" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to a base interface."/>
+					<Annotation Term="OData.LongDescription" String="Reference to a base interface.  If a reference to a subinterface is required, this leaf must be specified to indicate the base interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="subinterface" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to a subinterface -- this requires the base interface to be specified using the interface leaf in this container."/>
+					<Annotation Term="OData.LongDescription" String="Reference to a subinterface -- this requires the base interface to be specified using the interface leaf in this container.  If only a reference to a base interface is requuired, this leaf should not be set."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state for interface-ref."/>
+				<Annotation Term="OData.LongDescription" String="Operational state for interface-ref."/>
+				<Annotation Term="RedfishYang.uses" String="interface-ref-common"/>
+				<Property Name="interface" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to a base interface."/>
+					<Annotation Term="OData.LongDescription" String="Reference to a base interface.  If a reference to a subinterface is required, this leaf must be specified to indicate the base interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="subinterface" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to a subinterface -- this requires the base interface to be specified using the interface leaf in this container."/>
+					<Annotation Term="OData.LongDescription" String="Reference to a subinterface -- this requires the base interface to be specified using the interface leaf in this container.  If only a reference to a base interface is requuired, this leaf should not be set."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Config data."/>
+				<Annotation Term="OData.LongDescription" String="Config data."/>
+				<Annotation Term="RedfishYang.uses" String="input-interface-config"/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="State information."/>
+				<Annotation Term="OData.LongDescription" String="State information."/>
+				<Annotation Term="RedfishYang.uses" String="input-interface-config,  input-interface-state"/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="interface_ref" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="interface_ref" BaseType="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref.interface_ref">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Reference to an interface or subinterface."/>
+				<Annotation Term="OData.LongDescription" String="Reference to an interface or subinterface."/>
+				<NavigationProperty Name="configContainer" Type="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<Annotation Term="RedfishYang.uses" String="interface-ref-state-container"/>
+				<NavigationProperty Name="stateContainer" Type="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Config data for ACL actions."/>
+				<Annotation Term="OData.LongDescription" String="Config data for ACL actions."/>
+				<Annotation Term="RedfishYang.uses" String="action-config"/>
+				<Property Name="forwarding_action" Type="RedfishYang.instance_identifier">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref"/>
+					<Annotation Term="RedfishYang.mandatory" EnumMember="RedfishYang.Mandatory/true"/>
+					<Annotation Term="OData.Description" String="Specifies the forwarding action."/>
+					<Annotation Term="OData.LongDescription" String="Specifies the forwarding action.  One forwarding action must be specified for each ACL entry."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="log_action" Type="RedfishYang.instance_identifier">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref"/>
+					<Annotation Term="RedfishYang.default" String="LOG_NONE"/>
+					<Annotation Term="OData.Description" String="Specifies the log action and destination for matched packets."/>
+					<Annotation Term="OData.LongDescription" String="Specifies the log action and destination for matched packets.  The default is not to log the packet."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="State information for ACL actions."/>
+				<Annotation Term="OData.LongDescription" String="State information for ACL actions."/>
+				<Annotation Term="RedfishYang.uses" String="action-config,  action-state"/>
+				<Property Name="forwarding_action" Type="RedfishYang.instance_identifier">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref"/>
+					<Annotation Term="RedfishYang.mandatory" EnumMember="RedfishYang.Mandatory/true"/>
+					<Annotation Term="OData.Description" String="Specifies the forwarding action."/>
+					<Annotation Term="OData.LongDescription" String="Specifies the forwarding action.  One forwarding action must be specified for each ACL entry."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="log_action" Type="RedfishYang.instance_identifier">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref"/>
+					<Annotation Term="RedfishYang.default" String="LOG_NONE"/>
+					<Annotation Term="OData.Description" String="Specifies the log action and destination for matched packets."/>
+					<Annotation Term="OData.LongDescription" String="Specifies the log action and destination for matched packets.  The default is not to log the packet."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Access list entries config."/>
+				<Annotation Term="OData.LongDescription" String="Access list entries config."/>
+				<Annotation Term="RedfishYang.uses" String="access-list-entries-config"/>
+				<Property Name="sequence_id" Type="RedfishYang.uint32">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint32"/>
+					<Annotation Term="OData.Description" String="The sequence id determines the order in which ACL entries are applied."/>
+					<Annotation Term="OData.LongDescription" String="The sequence id determines the order in which ACL entries are applied.  The sequence id must be unique for each entry in an ACL set.  Target devices should apply the ACL entry rules in ascending order determined by sequence id (low to high), rather than the relying only on order in the list."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="description" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="A user-defined description, or comment, for this Access List Entry."/>
+					<Annotation Term="OData.LongDescription" String="A user-defined description, or comment, for this Access List Entry."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="State information for ACL entries."/>
+				<Annotation Term="OData.LongDescription" String="State information for ACL entries."/>
+				<Annotation Term="RedfishYang.uses" String="access-list-entries-config,  access-list-entries-state"/>
+				<Property Name="sequence_id" Type="RedfishYang.uint32">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint32"/>
+					<Annotation Term="OData.Description" String="The sequence id determines the order in which ACL entries are applied."/>
+					<Annotation Term="OData.LongDescription" String="The sequence id determines the order in which ACL entries are applied.  The sequence id must be unique for each entry in an ACL set.  Target devices should apply the ACL entry rules in ascending order determined by sequence id (low to high), rather than the relying only on order in the list."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="description" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="A user-defined description, or comment, for this Access List Entry."/>
+					<Annotation Term="OData.LongDescription" String="A user-defined description, or comment, for this Access List Entry."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="matched_packets" Type="openconfig_yang_types.v1_0_0.counter64">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/counter64"/>
+					<Annotation Term="OData.Description" String="Count of the number of packets matching the current ACL entry."/>
+					<Annotation Term="OData.LongDescription" String="Count of the number of packets matching the current ACL entry.  An implementation should provide this counter on a per-interface per-ACL-entry if possible.  If an implementation only supports ACL counters per entry (i.e., not broken out per interface), then the value should be equal to the aggregate count across all interfaces.  An implementation that provides counters per entry per interface is not required to also provide an aggregate count, e.g., per entry -- the user is expected to be able implement the required aggregation if such a count is needed."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="matched_octets" Type="openconfig_yang_types.v1_0_0.counter64">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/counter64"/>
+					<Annotation Term="OData.Description" String="Count of the number of octets (bytes) matching the current ACL entry."/>
+					<Annotation Term="OData.LongDescription" String="Count of the number of octets (bytes) matching the current ACL entry.  An implementation should provide this counter on a per-interface per-ACL-entry if possible.  If an implementation only supports ACL counters per entry (i.e., not broken out per interface), then the value should be equal to the aggregate count across all interfaces.  An implementation that provides counters per entry per interface is not required to also provide an aggregate count, e.g., per entry -- the user is expected to be able implement the required aggregation if such a count is needed."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="input_interface" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="input_interface" BaseType="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.input_interface">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Input interface container."/>
+				<Annotation Term="OData.LongDescription" String="Input interface container."/>
+				<NavigationProperty Name="configContainer" Type="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<Annotation Term="RedfishYang.uses" String="oc-if:interface-ref"/>
+				<NavigationProperty Name="interface_refContainer" Type="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref.interface_ref" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of interface_ref."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="actions" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="actions" BaseType="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions.actions">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Enclosing container for list of ACL actions associated with an entry."/>
+				<Annotation Term="OData.LongDescription" String="Enclosing container for list of ACL actions associated with an entry."/>
+				<NavigationProperty Name="configContainer" Type="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="acl_entry" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="acl_entry" BaseType="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.acl_entry">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.key" String="sequence-id"/>
+				<Annotation Term="OData.Description" String="List of ACL entries comprising an ACL set."/>
+				<Annotation Term="OData.LongDescription" String="List of ACL entries comprising an ACL set."/>
+				<Property Name="sequence_id" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="references the list key."/>
+					<Annotation Term="OData.LongDescription" String="references the list key."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="configContainer" Type="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<Annotation Term="RedfishYang.uses" String="oc-match:ethernet-header-top,  oc-match:ipv4-protocol-fields-top,  oc-match:ipv6-protocol-fields-top,  oc-match:transport-fields-top,  input-interface-top,  action-top"/>
+				<NavigationProperty Name="input_interfaceContainer" Type="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.input_interface" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of input_interface."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="actionsContainer" Type="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions.actions" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of actions."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_acl.acl.acl_sets.acl_set.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Access list config."/>
+				<Annotation Term="OData.LongDescription" String="Access list config."/>
+				<Annotation Term="RedfishYang.uses" String="acl-set-config"/>
+				<Property Name="name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The name of the access-list set."/>
+					<Annotation Term="OData.LongDescription" String="The name of the access-list set."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="type" Type="RedfishYang.instance_identifier">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref"/>
+					<Annotation Term="OData.Description" String="The type determines the fields allowed in the ACL entries belonging to the ACL set (e.g., IPv4, IPv6, etc.)."/>
+					<Annotation Term="OData.LongDescription" String="The type determines the fields allowed in the ACL entries belonging to the ACL set (e.g., IPv4, IPv6, etc.)."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="description" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Description, or comment, for the ACL set."/>
+					<Annotation Term="OData.LongDescription" String="Description, or comment, for the ACL set."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_acl.acl.acl_sets.acl_set.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Access list state information."/>
+				<Annotation Term="OData.LongDescription" String="Access list state information."/>
+				<Annotation Term="RedfishYang.uses" String="acl-set-config,  acl-set-state"/>
+				<Property Name="name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The name of the access-list set."/>
+					<Annotation Term="OData.LongDescription" String="The name of the access-list set."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="type" Type="RedfishYang.instance_identifier">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref"/>
+					<Annotation Term="OData.Description" String="The type determines the fields allowed in the ACL entries belonging to the ACL set (e.g., IPv4, IPv6, etc.)."/>
+					<Annotation Term="OData.LongDescription" String="The type determines the fields allowed in the ACL entries belonging to the ACL set (e.g., IPv4, IPv6, etc.)."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="description" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Description, or comment, for the ACL set."/>
+					<Annotation Term="OData.LongDescription" String="Description, or comment, for the ACL set."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="acl_entries" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.acl_sets.acl_set.acl_entries."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.acl_entries.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="acl_entries" BaseType="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entries">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Access list entries container."/>
+				<Annotation Term="OData.LongDescription" String="Access list entries container."/>
+				<NavigationProperty Name="acl_entryCollection" Type="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.acl_entryCollection" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of acl_entryCollection."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="acl_set" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.acl_sets.acl_set."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.acl_sets.acl_set."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.acl_set.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="acl_set" BaseType="openconfig_acl.acl.acl_sets.acl_set.acl_set">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.key" String="name type"/>
+				<Annotation Term="OData.Description" String="List of ACL sets, each comprising of a list of ACL entries."/>
+				<Annotation Term="OData.LongDescription" String="List of ACL sets, each comprising of a list of ACL entries."/>
+				<Property Name="name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to the name list key."/>
+					<Annotation Term="OData.LongDescription" String="Reference to the name list key."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="type" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to the type list key."/>
+					<Annotation Term="OData.LongDescription" String="Reference to the type list key."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="configContainer" Type="openconfig_acl.acl.acl_sets.acl_set.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_acl.acl.acl_sets.acl_set.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<Annotation Term="RedfishYang.uses" String="access-list-entries-top"/>
+				<NavigationProperty Name="acl_entriesContainer" Type="openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entries" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of acl_entries."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.interface_ref.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.interface_ref.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.interface_ref.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.interface_ref.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_acl.acl.interfaces.interface.interface_ref.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configured reference to interface / subinterface."/>
+				<Annotation Term="OData.LongDescription" String="Configured reference to interface / subinterface."/>
+				<Annotation Term="RedfishYang.statement" String="openconfig-extensions:telemetry-on-change"/>
+				<Annotation Term="RedfishYang.uses" String="interface-ref-common"/>
+				<Property Name="interface" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to a base interface."/>
+					<Annotation Term="OData.LongDescription" String="Reference to a base interface.  If a reference to a subinterface is required, this leaf must be specified to indicate the base interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="subinterface" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to a subinterface -- this requires the base interface to be specified using the interface leaf in this container."/>
+					<Annotation Term="OData.LongDescription" String="Reference to a subinterface -- this requires the base interface to be specified using the interface leaf in this container.  If only a reference to a base interface is requuired, this leaf should not be set."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.interface_ref.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.interface_ref.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.interface_ref.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.interface_ref.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_acl.acl.interfaces.interface.interface_ref.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state for interface-ref."/>
+				<Annotation Term="OData.LongDescription" String="Operational state for interface-ref."/>
+				<Annotation Term="RedfishYang.uses" String="interface-ref-common"/>
+				<Property Name="interface" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to a base interface."/>
+					<Annotation Term="OData.LongDescription" String="Reference to a base interface.  If a reference to a subinterface is required, this leaf must be specified to indicate the base interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="subinterface" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to a subinterface -- this requires the base interface to be specified using the interface leaf in this container."/>
+					<Annotation Term="OData.LongDescription" String="Reference to a subinterface -- this requires the base interface to be specified using the interface leaf in this container.  If only a reference to a base interface is requuired, this leaf should not be set."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries.acl_entry.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries.acl_entry.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries.acl_entry.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries.acl_entry.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries.acl_entry.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state data for per-interface ACL entries."/>
+				<Annotation Term="OData.LongDescription" String="Operational state data for per-interface ACL entries."/>
+				<Annotation Term="RedfishYang.uses" String="interface-acl-entries-config,  interface-acl-entries-state"/>
+				<Property Name="sequence_id" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to an entry in the ACL set applied to an interface."/>
+					<Annotation Term="OData.LongDescription" String="Reference to an entry in the ACL set applied to an interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="matched_packets" Type="openconfig_yang_types.v1_0_0.counter64">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/counter64"/>
+					<Annotation Term="OData.Description" String="Count of the number of packets matching the current ACL entry."/>
+					<Annotation Term="OData.LongDescription" String="Count of the number of packets matching the current ACL entry.  An implementation should provide this counter on a per-interface per-ACL-entry if possible.  If an implementation only supports ACL counters per entry (i.e., not broken out per interface), then the value should be equal to the aggregate count across all interfaces.  An implementation that provides counters per entry per interface is not required to also provide an aggregate count, e.g., per entry -- the user is expected to be able implement the required aggregation if such a count is needed."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="matched_octets" Type="openconfig_yang_types.v1_0_0.counter64">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/counter64"/>
+					<Annotation Term="OData.Description" String="Count of the number of octets (bytes) matching the current ACL entry."/>
+					<Annotation Term="OData.LongDescription" String="Count of the number of octets (bytes) matching the current ACL entry.  An implementation should provide this counter on a per-interface per-ACL-entry if possible.  If an implementation only supports ACL counters per entry (i.e., not broken out per interface), then the value should be equal to the aggregate count across all interfaces.  An implementation that provides counters per entry per interface is not required to also provide an aggregate count, e.g., per entry -- the user is expected to be able implement the required aggregation if such a count is needed."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries.acl_entry">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="acl_entry" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries.acl_entry."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries.acl_entry."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries.acl_entry.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="acl_entry" BaseType="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries.acl_entry.acl_entry">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.key" String="sequence-id"/>
+				<Annotation Term="OData.Description" String="List of ACL entries assigned to an interface."/>
+				<Annotation Term="OData.LongDescription" String="List of ACL entries assigned to an interface."/>
+				<Property Name="sequence_id" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to per-interface acl entry key."/>
+					<Annotation Term="OData.LongDescription" String="Reference to per-interface acl entry key."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="stateContainer" Type="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries.acl_entry.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration data ."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data ."/>
+				<Annotation Term="RedfishYang.uses" String="interface-ingress-acl-config"/>
+				<Property Name="set_name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to the ACL set name applied on ingress."/>
+					<Annotation Term="OData.LongDescription" String="Reference to the ACL set name applied on ingress."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="type" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to the ACL set type applied on ingress."/>
+					<Annotation Term="OData.LongDescription" String="Reference to the ACL set type applied on ingress."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state data for interface ingress ACLs."/>
+				<Annotation Term="OData.LongDescription" String="Operational state data for interface ingress ACLs."/>
+				<Annotation Term="RedfishYang.uses" String="interface-ingress-acl-config,  interface-ingress-acl-state"/>
+				<Property Name="set_name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to the ACL set name applied on ingress."/>
+					<Annotation Term="OData.LongDescription" String="Reference to the ACL set name applied on ingress."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="type" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to the ACL set type applied on ingress."/>
+					<Annotation Term="OData.LongDescription" String="Reference to the ACL set type applied on ingress."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="acl_entries" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="acl_entries" BaseType="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries.acl_entries">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Enclosing container for list of references to ACLs."/>
+				<Annotation Term="OData.LongDescription" String="Enclosing container for list of references to ACLs."/>
+				<NavigationProperty Name="acl_entryCollection" Type="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries.acl_entry.acl_entryCollection" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of acl_entryCollection."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="ingress_acl_set" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="ingress_acl_set" BaseType="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.ingress_acl_set">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.key" String="set-name type"/>
+				<Annotation Term="OData.Description" String="List of ingress ACLs on the interface."/>
+				<Annotation Term="OData.LongDescription" String="List of ingress ACLs on the interface."/>
+				<Property Name="set_name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to set name list key."/>
+					<Annotation Term="OData.LongDescription" String="Reference to set name list key."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="type" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to type list key."/>
+					<Annotation Term="OData.LongDescription" String="Reference to type list key."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="configContainer" Type="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<Annotation Term="RedfishYang.uses" String="interface-acl-entries-top"/>
+				<NavigationProperty Name="acl_entriesContainer" Type="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries.acl_entries" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of acl_entries."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries.acl_entry.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries.acl_entry.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries.acl_entry.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries.acl_entry.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries.acl_entry.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state data for per-interface ACL entries."/>
+				<Annotation Term="OData.LongDescription" String="Operational state data for per-interface ACL entries."/>
+				<Annotation Term="RedfishYang.uses" String="interface-acl-entries-config,  interface-acl-entries-state"/>
+				<Property Name="sequence_id" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to an entry in the ACL set applied to an interface."/>
+					<Annotation Term="OData.LongDescription" String="Reference to an entry in the ACL set applied to an interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="matched_packets" Type="openconfig_yang_types.v1_0_0.counter64">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/counter64"/>
+					<Annotation Term="OData.Description" String="Count of the number of packets matching the current ACL entry."/>
+					<Annotation Term="OData.LongDescription" String="Count of the number of packets matching the current ACL entry.  An implementation should provide this counter on a per-interface per-ACL-entry if possible.  If an implementation only supports ACL counters per entry (i.e., not broken out per interface), then the value should be equal to the aggregate count across all interfaces.  An implementation that provides counters per entry per interface is not required to also provide an aggregate count, e.g., per entry -- the user is expected to be able implement the required aggregation if such a count is needed."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="matched_octets" Type="openconfig_yang_types.v1_0_0.counter64">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/counter64"/>
+					<Annotation Term="OData.Description" String="Count of the number of octets (bytes) matching the current ACL entry."/>
+					<Annotation Term="OData.LongDescription" String="Count of the number of octets (bytes) matching the current ACL entry.  An implementation should provide this counter on a per-interface per-ACL-entry if possible.  If an implementation only supports ACL counters per entry (i.e., not broken out per interface), then the value should be equal to the aggregate count across all interfaces.  An implementation that provides counters per entry per interface is not required to also provide an aggregate count, e.g., per entry -- the user is expected to be able implement the required aggregation if such a count is needed."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries.acl_entry">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="acl_entry" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries.acl_entry."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries.acl_entry."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries.acl_entry.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="acl_entry" BaseType="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries.acl_entry.acl_entry">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.key" String="sequence-id"/>
+				<Annotation Term="OData.Description" String="List of ACL entries assigned to an interface."/>
+				<Annotation Term="OData.LongDescription" String="List of ACL entries assigned to an interface."/>
+				<Property Name="sequence_id" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to per-interface acl entry key."/>
+					<Annotation Term="OData.LongDescription" String="Reference to per-interface acl entry key."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="stateContainer" Type="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries.acl_entry.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration data ."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data ."/>
+				<Annotation Term="RedfishYang.uses" String="interface-egress-acl-config"/>
+				<Property Name="set_name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to the ACL set name applied on egress."/>
+					<Annotation Term="OData.LongDescription" String="Reference to the ACL set name applied on egress."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="type" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to the ACL set type applied on egress."/>
+					<Annotation Term="OData.LongDescription" String="Reference to the ACL set type applied on egress."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state data for interface egress ACLs."/>
+				<Annotation Term="OData.LongDescription" String="Operational state data for interface egress ACLs."/>
+				<Annotation Term="RedfishYang.uses" String="interface-egress-acl-config,  interface-egress-acl-state"/>
+				<Property Name="set_name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to the ACL set name applied on egress."/>
+					<Annotation Term="OData.LongDescription" String="Reference to the ACL set name applied on egress."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="type" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to the ACL set type applied on egress."/>
+					<Annotation Term="OData.LongDescription" String="Reference to the ACL set type applied on egress."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="acl_entries" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="acl_entries" BaseType="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries.acl_entries">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Enclosing container for list of references to ACLs."/>
+				<Annotation Term="OData.LongDescription" String="Enclosing container for list of references to ACLs."/>
+				<NavigationProperty Name="acl_entryCollection" Type="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries.acl_entry.acl_entryCollection" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of acl_entryCollection."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="egress_acl_set" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="egress_acl_set" BaseType="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.egress_acl_set">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.key" String="set-name type"/>
+				<Annotation Term="OData.Description" String="List of egress ACLs on the interface."/>
+				<Annotation Term="OData.LongDescription" String="List of egress ACLs on the interface."/>
+				<Property Name="set_name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to set name list key."/>
+					<Annotation Term="OData.LongDescription" String="Reference to set name list key."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="type" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to type list key."/>
+					<Annotation Term="OData.LongDescription" String="Reference to type list key."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="configContainer" Type="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<Annotation Term="RedfishYang.uses" String="interface-acl-entries-top"/>
+				<NavigationProperty Name="acl_entriesContainer" Type="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries.acl_entries" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of acl_entries."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_acl.acl.interfaces.interface.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration for ACL per-interface data."/>
+				<Annotation Term="OData.LongDescription" String="Configuration for ACL per-interface data."/>
+				<Annotation Term="RedfishYang.uses" String="acl-interfaces-config"/>
+				<Property Name="id" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="User-defined identifier for the interface -- a common convention could be '&lt;if name&gt;.&lt;subif index&gt;'."/>
+					<Annotation Term="OData.LongDescription" String="User-defined identifier for the interface -- a common convention could be '&lt;if name&gt;.&lt;subif index&gt;'."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_acl.acl.interfaces.interface.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state for ACL per-interface data."/>
+				<Annotation Term="OData.LongDescription" String="Operational state for ACL per-interface data."/>
+				<Annotation Term="RedfishYang.uses" String="acl-interfaces-config,  acl-interfaces-state"/>
+				<Property Name="id" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="User-defined identifier for the interface -- a common convention could be '&lt;if name&gt;.&lt;subif index&gt;'."/>
+					<Annotation Term="OData.LongDescription" String="User-defined identifier for the interface -- a common convention could be '&lt;if name&gt;.&lt;subif index&gt;'."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.interface_ref">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="interface_ref" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.interface_ref."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.interface_ref."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.interface_ref.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="interface_ref" BaseType="openconfig_acl.acl.interfaces.interface.interface_ref.interface_ref">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Reference to an interface or subinterface."/>
+				<Annotation Term="OData.LongDescription" String="Reference to an interface or subinterface."/>
+				<NavigationProperty Name="configContainer" Type="openconfig_acl.acl.interfaces.interface.interface_ref.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<Annotation Term="RedfishYang.uses" String="interface-ref-state-container"/>
+				<NavigationProperty Name="stateContainer" Type="openconfig_acl.acl.interfaces.interface.interface_ref.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.ingress_acl_sets">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="ingress_acl_sets" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.ingress_acl_sets."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.ingress_acl_sets."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="ingress_acl_sets" BaseType="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_sets">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Enclosing container the list of ingress ACLs on the interface."/>
+				<Annotation Term="OData.LongDescription" String="Enclosing container the list of ingress ACLs on the interface."/>
+				<NavigationProperty Name="ingress_acl_setCollection" Type="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.ingress_acl_setCollection" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of ingress_acl_setCollection."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.egress_acl_sets">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="egress_acl_sets" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface.egress_acl_sets."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface.egress_acl_sets."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.egress_acl_sets.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="egress_acl_sets" BaseType="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_sets">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Enclosing container the list of egress ACLs on the interface."/>
+				<Annotation Term="OData.LongDescription" String="Enclosing container the list of egress ACLs on the interface."/>
+				<NavigationProperty Name="egress_acl_setCollection" Type="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.egress_acl_setCollection" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of egress_acl_setCollection."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="interface" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces.interface."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces.interface."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.interface.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="interface" BaseType="openconfig_acl.acl.interfaces.interface.interface">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.key" String="id"/>
+				<Annotation Term="OData.Description" String="List of interfaces on which ACLs are set."/>
+				<Annotation Term="OData.LongDescription" String="List of interfaces on which ACLs are set."/>
+				<Property Name="id" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to the interface id list key."/>
+					<Annotation Term="OData.LongDescription" String="Reference to the interface id list key."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="configContainer" Type="openconfig_acl.acl.interfaces.interface.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_acl.acl.interfaces.interface.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<Annotation Term="RedfishYang.uses" String="oc-if:interface-ref,  interface-ingress-acl-top,  interface-egress-acl-top"/>
+				<NavigationProperty Name="interface_refContainer" Type="openconfig_acl.acl.interfaces.interface.interface_ref.interface_ref" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of interface_ref."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="ingress_acl_setsContainer" Type="openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_sets" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of ingress_acl_sets."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="egress_acl_setsContainer" Type="openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_sets" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of egress_acl_sets."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_acl.acl.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Global config data for ACLs."/>
+				<Annotation Term="OData.LongDescription" String="Global config data for ACLs."/>
+				<Annotation Term="RedfishYang.uses" String="acl-config"/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_acl.acl.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Global operational state data for ACLs."/>
+				<Annotation Term="OData.LongDescription" String="Global operational state data for ACLs."/>
+				<Annotation Term="RedfishYang.uses" String="acl-config,  acl-state"/>
+				<Property Name="counter_capability" Type="RedfishYang.instance_identifier">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref"/>
+					<Annotation Term="OData.Description" String="System reported indication of how ACL counters are reported by the target."/>
+					<Annotation Term="OData.LongDescription" String="System reported indication of how ACL counters are reported by the target."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="acl_sets" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.acl_sets."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.acl_sets."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.acl_sets.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="acl_sets" BaseType="openconfig_acl.acl.acl_sets.acl_sets">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Access list entries variables enclosing container."/>
+				<Annotation Term="OData.LongDescription" String="Access list entries variables enclosing container."/>
+				<NavigationProperty Name="acl_setCollection" Type="openconfig_acl.acl.acl_sets.acl_set.acl_setCollection" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of acl_setCollection."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="interfaces" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl.interfaces."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl.interfaces."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.interfaces.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="interfaces" BaseType="openconfig_acl.acl.interfaces.interfaces">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Enclosing container for the list of interfaces on which ACLs are set."/>
+				<Annotation Term="OData.LongDescription" String="Enclosing container for the list of interfaces on which ACLs are set."/>
+				<NavigationProperty Name="interfaceCollection" Type="openconfig_acl.acl.interfaces.interface.interfaceCollection" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of interfaceCollection."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="acl" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_acl.acl."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_acl.acl."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_acl.acl.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="acl" BaseType="openconfig_acl.acl.acl">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Top level enclosing container for ACL model config and operational state data."/>
+				<Annotation Term="OData.LongDescription" String="Top level enclosing container for ACL model config and operational state data."/>
+				<NavigationProperty Name="configContainer" Type="openconfig_acl.acl.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_acl.acl.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<Annotation Term="RedfishYang.uses" String="acl-set-top,  acl-interfaces-top"/>
+				<NavigationProperty Name="acl_setsContainer" Type="openconfig_acl.acl.acl_sets.acl_sets" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of acl_sets."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="interfacesContainer" Type="openconfig_acl.acl.interfaces.interfaces" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of interfaces."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
+

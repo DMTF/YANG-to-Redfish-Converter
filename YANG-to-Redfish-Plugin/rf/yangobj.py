@@ -1,6 +1,6 @@
 from xml.etree.ElementTree import Element, SubElement, tostring
 from collections import namedtuple
-from rf.xml_convenience import create_xml_base, createCollectionXML
+from rf.xml_convenience import create_xml_base, createCollectionXML, createExtensionsXML, add_reference
 from rf.redfishtypes import get_valid_csdl_identifier
 from rf.xml_content import XMLContent
 import rf.redfishtypes as redfishtypes
@@ -20,7 +20,13 @@ config = {
 terminate = False
 
 class YangCSDLConversionObj:
-    def __init__(self, yang_obj, parent=None):
+    def get_full_csdlname(self):
+        if self.parent is not None:
+            return '.'.join([self.parent.get_full_csdlname(), self.csdlname])
+        else:
+            return self.csdlname
+    
+    def __init__(self, yang_obj, parent=None, other_docs={}):
         print('new obj')
         self.yang_obj = yang_obj
         self.keyword = self.yang_obj.keyword
@@ -29,104 +35,127 @@ class YangCSDLConversionObj:
         self.parent = parent
 
         self.csdlname = get_valid_csdl_identifier(self.arg)
-        if parent is not None:
-            self.csdlname = '.'.join([parent.csdlname, self.csdlname])
-        csdlname = self.csdlname
-        csdlname_type = csdlname.split('.')[-1]
+        full_csdlname = self.get_full_csdlname()
+        csdlname_type = self.csdlname.split('.')[-1]
 
-        self.my_doc = DocNodes(*create_xml_base(csdlname), csdlname, {}, {})
-        self.my_docs = { csdlname: self.my_doc }
+        self.my_doc = DocNodes(*create_xml_base(full_csdlname), self.csdlname, {self.arg: self}, {})
+        self.used_imports = {}
+
+        self.external_docs = other_docs
+
+        self.children = []
+
+        if parent is not None:
+            parent.children.append(self)
+            self.external_docs = parent.external_docs
+    
+        self.additional_docs = []
 
         self.content = collectChildren(yang_obj)
 
-        top_parent = self.parent
-        if top_parent is not None:
-            while top_parent.parent is not None:
-                top_parent = top_parent.parent
-            top_parent.my_docs.update(self.my_docs)
-
         print('YangTAG--- {} {}'.format(self.keyword, self.arg))
         if self.keyword in ['module','submodule', 'container', 'list', 'grouping']:
-            entity_node = Element('Entity', {
+            entity_node = Element('EntityType', {
                 'Name': csdlname_type,
-                'BaseType': '.'.join(['prefix', csdlname_type, csdlname_type])
+                'BaseType': self.get_full_csdlname() + '.' + csdlname_type
             })
 
             handle_generic_node('leaf', self.keyword, entity_node)
 
             if self.keyword in ['list']:
-                collection_csdlname = csdlname + 'Collection'
-                self.my_docs[collection_csdlname] = DocNodes(createCollectionXML(csdlname), None, None, collection_csdlname, {}, {})
-                top_parent.my_docs.update(self.my_docs)
+                collection_csdlname = self.get_full_csdlname() + 'Collection'
+                self.additional_docs.append(DocNodes(createCollectionXML(full_csdlname), None, None, collection_csdlname, {}, {}))
 
-            if self.keyword in ['module', 'container', 'list']:
-                self.consume_tags()
+            if self.keyword in ['module', 'container', 'list', 'submodule', 'grouping']:
+                self.consume_tags(entity_node)
+            
+            self.my_doc.Schema.append(entity_node)
         else:
             print('Given tag is NOT convertable into a CSDL document alone')
             raise ValueError
-        print('leaving obj', self.my_doc.imports, self.my_doc.types)
+        if len(self.my_doc.types) > 0:
+            createExtensionsXML(self.csdlname, self.my_doc.types, self.my_doc.Schema)
+
+        collectAnnotations(self.my_doc.Schema)
+
+
+    def get_sub_children(self):
+        children = []
+        for c in self.children:
+            children.extend(c.get_sub_children())
+        children.extend(self.children)
+        return children
+
+    def get_import(self, name):
+        if name in self.my_doc.imports:
+            return self.my_doc.imports[name]
+        elif self.parent is not None:
+            return self.parent.get_import(name)
+        else:
+            return None
+
+    def get_type(self, name):
+        if name in self.my_doc.types:
+            return self.my_doc.types[name]
+        elif self.parent is not None:
+            return self.parent.get_type(name)
+        else:
+            return None
 
     def return_docs(self, single_file=False):
-        csdlname = get_valid_csdl_identifier(self.arg)
-        if single_file:
-            xml_content = XMLContent()
-            xml_content.set_filename(csdlname + '_v1.xml')
-            xml_content.set_xml(self.my_doc.Main)
-            yield xml_content
+        if not single_file:
+            for i in self.used_imports:
+                child = self.used_imports[i]
+                if child == self:
+                    continue
+                add_reference(self.my_doc.Main, '', child.get_full_csdlname(), alias=i, version='v1_0_0')
+            yield XMLContent.create_doc_with(self.get_full_csdlname(), self.my_doc.Main)
+            for doc in self.additional_docs:
+                add_reference(self.my_doc.Main, '', doc.prefix, version='v1_0_0')
+                yield XMLContent.create_doc_with(doc.prefix, doc.Main)
+            for child in self.children:
+                add_reference(self.my_doc.Main, '', child.get_full_csdlname(), version='v1_0_0')
+                for doc in child.return_docs(single_file):
+                    yield doc 
         else:
-            for doc_name, my_doc in self.my_docs.items():
-                xml_content = XMLContent()
-                xml_content.set_filename(doc_name + '_v1.xml')
-                xml_content.set_xml(my_doc.Main)
-                yield xml_content
+            my_used_imports = {}
+            my_used_imports.update(self.used_imports)
+            for child in self.get_sub_children():
+                for node in child.my_doc.DataService:
+                    self.my_doc.DataService.append(node)
+                my_used_imports.update(child.used_imports)
+                my_used_imports = {x: my_used_imports[x] for x in my_used_imports if x not in [child.get_full_csdlname()]}
+                print(my_used_imports, child.get_full_csdlname())
+            for i in my_used_imports:
+                child = my_used_imports[i]
+                add_reference(self.my_doc.Main, '', child.get_full_csdlname(), alias=i, version='v1_0_0')
+            yield XMLContent.create_doc_with(self.get_full_csdlname(), self.my_doc.Main)
+            
 
-    def consume_tags(self, tag_names=None):
+    def consume_tags(self, node, tag_names=None):
         for tag in self.content:
             if tag_names is not None and tag.keyword not in tag_names:
                 print('not in accept')
             if tag.keyword in ['import', 'include']:
                 # TODO: Create proper statement from this tag
-                import_name, prefix, date = self.arg, None, None
+                import_name, prefix, date = tag.arg, tag.arg, None
                 for item in collectChildren(tag):
                     if item.keyword == "prefix":
                         prefix = item.arg
                     if item.keyword == "revision-date":
                         date = item.arg
-            elif tag.keyword in ["container", "list"]:
-                create_container(tag, self)
-            elif tag.keyword in ['leaf', 'leaf-list', 'notification', 'anyxml']:
-                create_leaf(tag, self)
-            else:
-                consume_tag_basic(tag, self.my_doc.Schema, self)
-
-
-    def renderTree(self, parent_doc=None, target=None):
-         
-
-
-        # elif yang_keyword in ['rpc']:
-        #    annotation = handle_rpc(yang_keyword, yang_arg, yang_children, target, target_entity, target_parent, list_of_xml, toplevelimports, topleveltypes, prefix)
-
-        if self.keyword in redfishtypes.enum_mapping_right:
-            annotation = handle_generic_node(self.keyword, self.arg, target)
-            return parent_doc, annotation
-
-        else:
-            if self.keyword in ['uses', 'grouping', 'augment', 'include', 'import', 'belongsto', 'extension', 'prefix']:
-                print('Tag ignored {}'.format(self.keyword))
-                self.content = []
-            elif self.keyword in ['case', 'rpc', 'choice', 'action']:
-                print('Tag being defaulted {}'.format(self.keyword))
-                handle_generic(self)
-            else:
-                annotations = handle_generic(self)
-                for a in annotations:
-                    target.append(a)
-                if len(annotations) <= 0:
-                    return parent_doc, None
+                if tag.arg in self.external_docs:
+                    self.my_doc.imports[prefix] = self.external_docs[tag.arg]
                 else:
-                    return parent_doc, annotations[0]
-        return None, None
+                    print('doc not found in previous?')
+            elif tag.keyword in ['prefix']:
+                self.my_doc.imports[tag.arg] = self
+            elif tag.keyword in ["container", "list"]:
+                create_container(tag, node, self)
+            elif tag.keyword in ['leaf', 'leaf-list', 'notification', 'anyxml']:
+                create_leaf(tag, node, self)
+            else:
+                consume_tag_basic(tag, node, self)
 
 
 def collectAnnotations(node):
@@ -134,8 +163,6 @@ def collectAnnotations(node):
     Taking a node with possible repeated annotations, place them into their own Records
     For each discovered Term, place into new list; if list is greater than 1, create collection
     """
-    return
-
     allAnnotations = node.findall('Annotation')
 
     collected = {}
@@ -157,17 +184,13 @@ def collectAnnotations(node):
                 Collection.attrib['String'] = '  '.join(text)
             else:
                 # comment out Collection and Record lines to fix npm test
-                NewAnnotation = SubElement(node, 'Annotation')
-                Collection = SubElement(NewAnnotation, 'Collection')
-                for repeat in target:
-                    Record = SubElement(Collection, 'Record')
-                    Record.append(repeat)
+                NewAnnotation = target[0]
+                NewAnnotation.attrib['String'] = NewAnnotation.attrib.get('String', '')
+                for repeat in target[1:]:
                     node.remove(repeat)
-                    for inner_tag in repeat:
-                        key = inner_tag.attrib['Term']
-                        if not (key == 'OData.LongDescription' or key == 'OData.Description'):
-                            inner_tag.tag = "Annotation"
-                            # inner_tag.attrib['Term'] = inner_tag.attrib['Term'].split('.')[-1]
+                    NewAnnotation.attrib['String'] += ',  ' + repeat.attrib['String']
+    for n in node:
+        collectAnnotations(n)
 
 
 def collectChildren(yang_item):
@@ -205,26 +228,29 @@ def handle_description(yang_obj, target):
     return annotation_b
 
 
-def create_container(yang_obj, parent):
+def create_container(yang_obj, target, parent):
     mobj = YangCSDLConversionObj(yang_obj, parent)
     csdlname = mobj.csdlname
 
-    navigation_property = SubElement(parent.my_doc.Schema, 'NavigationProperty')
+    if yang_obj.keyword in ['grouping']:
+        return
+
+    navigation_property = SubElement(target, 'NavigationProperty')
 
     # Handle Container Grammar
     if yang_obj.keyword in ['container']:
         tname = csdlname.split('.')[-1]
-        parent.my_doc.imports[csdlname] = csdlname
+        parent.my_doc.imports[csdlname] = mobj
         navigation_property.set('Name', tname + 'Container')
-        navigation_property.set('Type', tname + '.' + tname)
+        navigation_property.set('Type', mobj.get_full_csdlname() + '.' + tname)
 
     # Handle List Grammar
     if yang_obj.keyword in ['list']:
         csdlname = csdlname + 'Collection'
-        parent.my_doc.imports[csdlname] = csdlname
         tname = csdlname.split('.')[-1]
+        parent.my_doc.imports[csdlname] = csdlname
         navigation_property.set('Name', tname)
-        navigation_property.set('Type', tname + '.' + tname)
+        navigation_property.set('Type', mobj.get_full_csdlname() + '.' + tname)
 
     navigation_property.set('ContainsTarget', 'true')
 
@@ -236,7 +262,7 @@ def create_container(yang_obj, parent):
 
 
 
-def create_leaf(yang_obj, parent):
+def create_leaf(yang_obj, target, parent):
     csdlname = get_valid_csdl_identifier(yang_obj.arg)
 
     my_content = collectChildren(yang_obj)
@@ -247,7 +273,7 @@ def create_leaf(yang_obj, parent):
             'BaseType': 'Resource.v1_0_0.Resource'
         })
     else:
-        prop_node = SubElement(parent.my_doc.Schema, "Property", {
+        prop_node = SubElement(target, "Property", {
             'Name': csdlname,
             'Type': 'Edm.Primitive'
         })
@@ -281,13 +307,13 @@ def consume_tag_basic(tag, target, parent):
     elif tag.keyword in ['choice']:
         handle_choice(tag, target, parent)
     elif tag.keyword == "grouping" and not config["no_groupings"]:
-        create_container(tag, parent)
+        create_container(tag, target, parent)
     elif tag.keyword in ["container", "list"]:
-        create_container(tag, parent)
+        create_container(tag, target, parent)
     elif tag.keyword in ['leaf', 'leaf-list', 'notification', 'anyxml']:
-        create_leaf(tag, parent)
+        create_leaf(tag, target, parent)
     else:
-        if type(tag.keyword) == tuple:
+        if type(tag.keyword) == tuple or ':' in tag.keyword:
             print("We don't recognize keyword {}, create as statement".format(tag.keyword))
             handle_generic_statement(tag, target)
         elif tag.keyword in ["namespace", "value", "default"]:
@@ -305,8 +331,16 @@ def handle_generic(yang_obj, target=None):
     Attempts to handle generically tags that require no special treatment
     Creates standard RedfishYang annotation, unless otherwise is "unknown" or "Description"
     """
+    if yang_obj.arg:
+        yang_obj.arg.replace('\n', '')
+    else:
+        yang_obj.arg = ''
     annotation = xml_convenience.add_annotation(
         target, {'Term': redfishtypes.get_descriptive_properties_mapping(yang_obj.keyword), 'String': yang_obj.arg.replace('\n', '')})
+    
+    my_children = collectChildren(yang_obj)
+    if len(my_children) > 0:
+        print('Skipped children {} in tag {} {}'.format(len(my_children), yang_obj.keyword, yang_obj.arg))
 
     return annotation
 
@@ -323,6 +357,11 @@ def handle_generic_statement(yang_obj, target):
     string += ' ' + yang_obj.arg if yang_obj.arg not in ['', ' ', None] else ''
     annotation = xml_convenience.add_annotation(
         target, {'Term': 'RedfishYang.statement', 'String': yang_obj.keyword})
+
+    my_children = collectChildren(yang_obj)
+    if len(my_children) > 0:
+        print('Skipped children {} in tag {} {}'.format(len(my_children), yang_obj.keyword, yang_obj.arg))
+
     return annotation
 
 
@@ -333,6 +372,7 @@ def handle_generic_node (keyword, arg, target):
     """
     term, enummember = redfishtypes.get_annotation_enum(keyword, arg)
     annotation = xml_convenience.add_annotation(target, {'Term': term, 'EnumMember': enummember})
+
     return annotation
 
 
@@ -351,7 +391,42 @@ def handle_generic_modifier(yang_obj, target):
         yang_obj.keyword = convert_to_csdl.get(yang_obj.keyword, yang_obj.keyword.capitalize())
         if yang_obj.keyword != "DefaultValue":
             target.set(yang_obj.keyword, get_valid_csdl_identifier(yang_obj.arg))
+
+    my_children = collectChildren(yang_obj)
+    if len(my_children) > 0:
+        print('Skipped children {} in tag {} {}'.format(len(my_children), yang_obj.keyword, yang_obj.arg))
+
     return annotation
+
+
+def dereference_type(tag, target, parent):
+    location = 'none'
+    if tag.arg in redfishtypes.types_mapping:
+        return 'RedfishYang', redfishtypes.types_mapping[tag.arg], tag.arg
+    if ':' not in tag.arg:
+        print('colon seperator not in type')
+        location, yang_type = parent.arg, tag.arg
+    else:
+        location, yang_type = tuple(tag.arg.split(':'))
+    target_doc = parent.get_import(location)
+    if target_doc is None:
+        print('type location not found')
+        return location, None, None
+    elif yang_type not in target_doc.my_doc.types:
+        # manage circular imports here, just put new type def for now
+        my_type = target_doc.get_type(yang_type)
+        if my_type is not None:
+            target_doc.my_doc.types[yang_type] = my_type
+            target_doc.my_doc.Schema.append(my_type)
+        else:
+            print('type not found in location document')
+            return location, None, None
+        location = target_doc.get_full_csdlname() + '.v1_0_0'
+        return location, target_doc.get_full_csdlname() + '.v1_0_0.' + get_valid_csdl_identifier(yang_type), yang_type
+    else:
+        location = target_doc.get_full_csdlname() + '.v1_0_0'
+        parent.used_imports[target_doc.get_full_csdlname()] = target_doc
+        return location, target_doc.get_full_csdlname() + '.v1_0_0.' + get_valid_csdl_identifier(yang_type), yang_type
 
 
 def handle_type(tag, target, parent):
@@ -361,17 +436,21 @@ def handle_type(tag, target, parent):
     target: xml tag to place resulting node
     parent: parent YangCSDLConversionObj for document access
     """
-
-    yang_type_location = "RedfishYang"
-    yang_type = get_valid_csdl_identifier(tag.arg.split(':')[-1])
-    annotation = SubElement(target, 'Annotation', {
-        'Term': 'RedfishYang.YangType',
-        'EnumMember': yang_type_location + '.YangTypes/' + yang_type
-    })
+    yang_type_location, yang_type = "RedfishYang", tag.arg
     if tag.arg in redfishtypes.types_mapping:
         my_type = redfishtypes.types_mapping[tag.arg]
     else:
-        my_type = 'RedfishYang.' + tag.arg
+        yang_type_location, my_type, yang_type = dereference_type(tag, target, parent)
+        if my_type is None:
+            yang_type_location = "RedfishYang"
+            my_type = redfishtypes.types_mapping['string']
+            yang_type = 'string'
+
+    annotation = SubElement(target, 'Annotation', {
+        'Term': yang_type_location + '.YangType',
+        'EnumMember': yang_type_location + '.YangTypes/' + yang_type
+    })
+
     target.set('Type', my_type)
     if tag.arg == 'enumeration':
         handle_enumeration(tag, parent.my_doc.Schema, target.get('Name'), parent)
@@ -385,8 +464,6 @@ def handle_typedef (tag, target, parent):
     new_node = SubElement(parent.my_doc.Schema, 'TypeDefinition', {
         'Name': get_valid_csdl_identifier(tag.arg)
     })
-
-    parent.my_doc.types[tag.arg] = new_node
 
     yang_type = 'empty'
     for inner_tag in collectChildren(tag):
@@ -406,14 +483,23 @@ def handle_typedef (tag, target, parent):
             elif inner_tag.arg == 'enumeration':
                 parent.my_doc.Schema.remove(new_node)
                 handle_enumeration(inner_tag, parent.my_doc.Schema, tag.arg, parent)
+                yang_type = 'enumeration'
+            else:
+                yang_type_location, my_type, yang_type = dereference_type(inner_tag, target, parent)
+                if yang_type is None:
+                    yang_type_location, yang_type = 'RedfishYang', 'string' 
+                    new_node.set('UnderlyingType', 'Edm.String')
+                else:
+                    new_node.set('UnderlyingType', my_type)
+                annotation = SubElement(new_node, 'Annotation', {
+                    'Term': yang_type_location + '.YangType',
+                    'EnumMember': yang_type_location + '.YangTypes/' + yang_type
+                })
         else:
             consume_tag_basic(inner_tag, new_node, parent)
 
-    # default to primitive instead of string, UnderlyingType must be dereferenced
-    if 'Type' not in new_node.attrib:
-        new_node.set('UnderlyingType', redfishtypes.types_mapping.get(yang_type, 'Edm.Primitive'))
-    else:
-        new_node.set('UnderlyingType', new_node.attrib.pop('Type'))
+    if yang_type != 'enumeration':
+        parent.my_doc.types[tag.arg] = new_node
 
 
 def handle_enumeration(tag, target, name, parent):
@@ -425,10 +511,10 @@ def handle_enumeration(tag, target, name, parent):
     """
 
     prop_node = SubElement(target, 'EnumType', {
-        'Name': name
+        'Name': name + 'Enumeration'
     })
 
-    parent.my_doc.types[name] = "Edm.String"
+    parent.my_doc.types[name+'Enumeration'] = prop_node
 
     my_content = collectChildren(tag)
     for tag in my_content:

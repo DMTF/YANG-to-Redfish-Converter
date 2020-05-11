@@ -12,6 +12,13 @@ class XMLContent:
     def __init__(self):
         pass
 
+    @classmethod
+    def create_doc_with(cls, name, node):
+        xml_content = XMLContent()
+        xml_content.set_filename(name + '_v1.xml')
+        xml_content.set_xml(node)
+        return xml_content
+
     def set_filename(self, filename):
         self.filename = filename
 

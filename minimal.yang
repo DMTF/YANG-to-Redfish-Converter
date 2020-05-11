@@ -11,6 +11,8 @@ module minimal {
   augment "/base:base_container" {
     leaf name {
       type string;
+      description
+      "Test Description";
     }
   }
 }

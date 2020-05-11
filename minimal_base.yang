@@ -12,30 +12,36 @@ module minimal_base {
       "Test Description";
       type uint32;
     }
+    typedef super_id_value {
+      description "Test Type";
+      type uint32;
+    }
     leaf super_id {
       description
       "Test Description";
       type super_id_value;
     }
-    typedef super_id_value {
-      description "Test Type";
-      type uint32;
-    }
     choice turn_into_enum {
       case yes {
         leaf ok {
           type uint32;
+          description
+          "Test Description";
         }
       }
       case no {
         leaf not_ok {
           type uint32;
+          description
+          "Test Description";
         }
       }
     }
     choice turn_into_enum_2 {
       leaf always {
         type uint32;
+        description
+        "Test Description";
       }
     }
     leaf measurement-type {
