@@ -1,0 +1,109 @@
+new obj
+YangTAG--- module openconfig-interfaces
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2018-04-24
+Skipped children 2 in tag revision 2018-01-05
+Skipped children 2 in tag revision 2017-12-22
+Skipped children 2 in tag revision 2017-12-21
+Skipped children 2 in tag revision 2017-07-14
+Skipped children 2 in tag revision 2017-04-03
+Skipped children 2 in tag revision 2016-12-22
+Skipped children 3 in tag grouping interface-ref-common
+Skipped children 2 in tag grouping interface-ref-state-container
+Skipped children 2 in tag grouping interface-ref
+Skipped children 2 in tag grouping interface-ref-state
+Skipped children 2 in tag grouping base-interface-ref-state
+Skipped children 3 in tag grouping interface-common-config
+Skipped children 8 in tag grouping interface-phys-config
+Skipped children 3 in tag grouping interface-phys-holdtime-config
+Skipped children 1 in tag grouping interface-phys-holdtime-state
+Skipped children 2 in tag grouping interface-phys-holdtime-top
+Skipped children 5 in tag grouping interface-common-state
+Skipped children 2 in tag grouping interface-counters-state
+Skipped children 2 in tag grouping sub-unnumbered-config
+Skipped children 1 in tag grouping sub-unnumbered-state
+Skipped children 2 in tag grouping sub-unnumbered-top
+Skipped children 5 in tag grouping subinterfaces-config
+Skipped children 9 in tag grouping subinterfaces-state
+Skipped children 2 in tag grouping subinterfaces-top
+Skipped children 2 in tag grouping interfaces-top
+new obj
+YangTAG--- container interfaces
+new obj
+YangTAG--- list interface
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+type location not found
+new obj
+YangTAG--- container counters
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container hold-time
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container subinterfaces
+new obj
+YangTAG--- list subinterface
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+type location not found
+new obj
+YangTAG--- container counters
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+{} openconfig_interfaces.interfaces.interface.state.counters
+{} openconfig_interfaces.interfaces.interface.hold_time.config
+{} openconfig_interfaces.interfaces.interface.hold_time.state
+{} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface.state.counters
+{} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface.config
+{} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface.state
+{} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface
+{} openconfig_interfaces.interfaces.interface.config
+{} openconfig_interfaces.interfaces.interface.state
+{} openconfig_interfaces.interfaces.interface.hold_time
+{} openconfig_interfaces.interfaces.interface.subinterfaces
+{} openconfig_interfaces.interfaces.interface
+{} openconfig_interfaces.interfaces
+Success writing file to disk: output_dir/openconfig_interfaces_v1.xml
+There were unsatisfied modules: 
+openconfig-interfaces required: ['openconfig-extensions', 'openconfig-yang-types', 'openconfig-types', 'ietf-interfaces']

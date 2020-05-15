@@ -1,0 +1,36 @@
+new obj
+YangTAG--- module openconfig-vlan
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2018-02-14
+Skipped children 2 in tag revision 2017-07-14
+Skipped children 2 in tag revision 2016-05-26
+Skipped children 4 in tag grouping vlan-config
+Skipped children 1 in tag grouping vlan-state
+Skipped children 2 in tag grouping vlan-tpid-config
+Skipped children 1 in tag grouping vlan-tpid-state
+Skipped children 2 in tag grouping vlan-members-state
+Skipped children 5 in tag grouping vlan-switched-config
+Skipped children 1 in tag grouping vlan-switched-state
+Skipped children 2 in tag grouping vlan-switched-top
+Skipped children 2 in tag grouping vlan-logical-config
+Skipped children 1 in tag grouping vlan-logical-state
+Skipped children 2 in tag grouping vlan-top
+Skipped children 2 in tag grouping vlan-logical-top
+Skipped children 2 in tag grouping vlan-routed-config
+Skipped children 1 in tag grouping vlan-routed-state
+Skipped children 2 in tag grouping vlan-routed-top
+Skipped children 3 in tag augment /oc-if:interfaces/oc-if:interface/oc-if:subinterfaces/oc-if:subinterface
+Skipped children 3 in tag augment /oc-if:interfaces/oc-if:interface/oc-if:config
+Skipped children 4 in tag augment /oc-if:interfaces/oc-if:interface/oc-if:state
+Skipped children 3 in tag augment /oc-if:interfaces/oc-if:interface/oc-eth:ethernet
+Skipped children 3 in tag augment /oc-if:interfaces/oc-if:interface/oc-lag:aggregation
+Skipped children 3 in tag augment /oc-if:interfaces/oc-if:interface
+Success writing file to disk: output_dir/openconfig_vlan_v1.xml
+There were unsatisfied modules: 
+openconfig-vlan required: ['openconfig-extensions', 'openconfig-if-ethernet', 'openconfig-vlan-types', 'openconfig-interfaces', 'openconfig-if-aggregate', 'iana-if-type']

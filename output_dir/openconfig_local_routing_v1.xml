@@ -1,0 +1,938 @@
+<?xml version="1.0" ?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
+		<edmx:Include Namespace="Resource.v1_0_0"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="openconfig_local_routing" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<TypeDefinition Name="local_defined_next_hop" UnderlyingType="RedfishYang.instance_identifier">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref"/>
+				<Annotation Term="OData.Description" String="Pre-defined next-hop designation for locally generated routes."/>
+				<Annotation Term="OData.LongDescription" String="Pre-defined next-hop designation for locally generated routes."/>
+			</TypeDefinition>
+			<EntityType Name="openconfig_local_routing" BaseType="openconfig_local_routing.openconfig_local_routing">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/module"/>
+				<Annotation Term="RedfishYang.yang_version" String="1"/>
+				<Annotation Term="RedfishYang.namespace" String="http://openconfig.net/yang/local-routing"/>
+				<Annotation Term="RedfishYang.organization" String="OpenConfig working group"/>
+				<Annotation Term="RedfishYang.contact" String="OpenConfig working groupwww.openconfig.net"/>
+				<Annotation Term="OData.Description" String="This module describes configuration and operational state data for routes that are locally generated, i.e., not created by dynamic routing protocols."/>
+				<Annotation Term="OData.LongDescription" String="This module describes configuration and operational state data for routes that are locally generated, i.e., not created by dynamic routing protocols.  These include static routes, locally created aggregate routes for reducing the number of constituent routes that must be advertised, summary routes for IGPs, etc.  This model expresses locally generated routes as generically as possible, avoiding configuration of protocol-specific attributes at the time of route creation.  This is primarily to avoid assumptions about how underlying router implementations handle route attributes in various routing table data structures they maintain.  Hence, the definition of locally generated routes essentially creates 'bare' routes that do not have any protocol- specific attributes.  When protocol-specific attributes must be attached to a route (e.g., communities on a locally defined route meant to be advertised via BGP), the attributes should be attached via a protocol-specific policy after importing the route into the protocol for distribution (again via routing policy)."/>
+				<Annotation Term="RedfishYang.statement" String="openconfig-extensions:openconfig-version"/>
+				<Annotation Term="RedfishYang.revision" String="2017-05-15,  2016-05-11"/>
+				<Annotation Term="RedfishYang.identity" String="LOCAL_DEFINED_NEXT_HOP,  DROP,  LOCAL_LINK"/>
+				<Annotation Term="RedfishYang.grouping" String="local-generic-settings,  local-static-config,  local-static-state,  local-static-nexthop-config,  local-static-nexthop-state,  local-static-top,  local-aggregate-config,  local-aggregate-state,  local-aggregate-top,  local-routes-config,  local-routes-state,  local-routes-top"/>
+				<Annotation Term="RedfishYang.uses" String="local-routes-top"/>
+				<NavigationProperty Name="local_routesContainer" Type="openconfig_local_routing.local_routes.local_routes" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of local_routes."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+			<Term Name="YangType" Type="openconfig_local_routing.v1_0_0.YangTypes">
+				<Annotation Term="OData.Description" String="A extension of openconfig_local_routing resource instances."/>
+			</Term>
+			<EnumType Name="YangTypes">
+				<Member Name="local_defined_next_hop"/>
+			</EnumType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configured reference to interface / subinterface."/>
+				<Annotation Term="OData.LongDescription" String="Configured reference to interface / subinterface."/>
+				<Annotation Term="RedfishYang.uses" String="interface-ref-common"/>
+				<Property Name="interface" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to a base interface."/>
+					<Annotation Term="OData.LongDescription" String="Reference to a base interface.  If a reference to a subinterface is required, this leaf must be specified to indicate the base interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="subinterface" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to a subinterface -- this requires the base interface to be specified using the interface leaf in this container."/>
+					<Annotation Term="OData.LongDescription" String="Reference to a subinterface -- this requires the base interface to be specified using the interface leaf in this container.  If only a reference to a base interface is requuired, this leaf should not be set."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state for interface-ref."/>
+				<Annotation Term="OData.LongDescription" String="Operational state for interface-ref."/>
+				<Annotation Term="RedfishYang.uses" String="interface-ref-common"/>
+				<Property Name="interface" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to a base interface."/>
+					<Annotation Term="OData.LongDescription" String="Reference to a base interface.  If a reference to a subinterface is required, this leaf must be specified to indicate the base interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="subinterface" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to a subinterface -- this requires the base interface to be specified using the interface leaf in this container."/>
+					<Annotation Term="OData.LongDescription" String="Reference to a subinterface -- this requires the base interface to be specified using the interface leaf in this container.  If only a reference to a base interface is requuired, this leaf should not be set."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration parameters relating to the next-hop entry."/>
+				<Annotation Term="OData.LongDescription" String="Configuration parameters relating to the next-hop entry."/>
+				<Annotation Term="RedfishYang.uses" String="local-static-nexthop-config"/>
+				<Property Name="index" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="An user-specified identifier utilised to uniquely reference the next-hop entry in the next-hop list."/>
+					<Annotation Term="OData.LongDescription" String="An user-specified identifier utilised to uniquely reference the next-hop entry in the next-hop list. The value of this index has no semantic meaning other than for referencing the entry."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="next_hop" Type="Edm.Primitive">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/union"/>
+					<Annotation Term="OData.Description" String="The next-hop that is to be used for the static route - this may be specified as an IP address, an interface or a pre-defined next-hop type - for instance, DROP or LOCAL_LINK."/>
+					<Annotation Term="OData.LongDescription" String="The next-hop that is to be used for the static route - this may be specified as an IP address, an interface or a pre-defined next-hop type - for instance, DROP or LOCAL_LINK. When this leaf is not set, and the interface-ref value is specified for the next-hop, then the system should treat the prefix as though it is directly connected to the interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="metric" Type="RedfishYang.uint32">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint32"/>
+					<Annotation Term="OData.Description" String="A metric which is utilised to specify the preference of the next-hop entry when it is injected into the RIB."/>
+					<Annotation Term="OData.LongDescription" String="A metric which is utilised to specify the preference of the next-hop entry when it is injected into the RIB. The lower the metric, the more preferable the prefix is. When this value is not specified the metric is inherited from the default metric utilised for static routes within the network instance that the static routes are being instantiated. When multiple next-hops are specified for a static route, the metric is utilised to determine which of the next-hops is to be installed in the RIB. When multiple next-hops have the same metric (be it specified, or simply the default) then these next-hops should all be installed in the RIB."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="recurse" Type="Edm.Boolean">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
+					<Annotation Term="RedfishYang.default" String="false"/>
+					<Annotation Term="OData.Description" String="Determines whether the next-hop should be allowed to be looked up recursively - i.e., via a RIB entry which has been installed by a routing protocol, or another static route - rather than needing to be connected directly to an interface of the local system within the current network instance."/>
+					<Annotation Term="OData.LongDescription" String="Determines whether the next-hop should be allowed to be looked up recursively - i.e., via a RIB entry which has been installed by a routing protocol, or another static route - rather than needing to be connected directly to an interface of the local system within the current network instance. When the interface reference specified within the next-hop entry is set (i.e., is not null) then forwarding is restricted to being via the interface specified - and recursion is hence disabled."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state parameters relating to the next-hop entry."/>
+				<Annotation Term="OData.LongDescription" String="Operational state parameters relating to the next-hop entry."/>
+				<Annotation Term="RedfishYang.uses" String="local-static-nexthop-config,  local-static-nexthop-state"/>
+				<Property Name="index" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="An user-specified identifier utilised to uniquely reference the next-hop entry in the next-hop list."/>
+					<Annotation Term="OData.LongDescription" String="An user-specified identifier utilised to uniquely reference the next-hop entry in the next-hop list. The value of this index has no semantic meaning other than for referencing the entry."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="next_hop" Type="Edm.Primitive">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/union"/>
+					<Annotation Term="OData.Description" String="The next-hop that is to be used for the static route - this may be specified as an IP address, an interface or a pre-defined next-hop type - for instance, DROP or LOCAL_LINK."/>
+					<Annotation Term="OData.LongDescription" String="The next-hop that is to be used for the static route - this may be specified as an IP address, an interface or a pre-defined next-hop type - for instance, DROP or LOCAL_LINK. When this leaf is not set, and the interface-ref value is specified for the next-hop, then the system should treat the prefix as though it is directly connected to the interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="metric" Type="RedfishYang.uint32">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint32"/>
+					<Annotation Term="OData.Description" String="A metric which is utilised to specify the preference of the next-hop entry when it is injected into the RIB."/>
+					<Annotation Term="OData.LongDescription" String="A metric which is utilised to specify the preference of the next-hop entry when it is injected into the RIB. The lower the metric, the more preferable the prefix is. When this value is not specified the metric is inherited from the default metric utilised for static routes within the network instance that the static routes are being instantiated. When multiple next-hops are specified for a static route, the metric is utilised to determine which of the next-hops is to be installed in the RIB. When multiple next-hops have the same metric (be it specified, or simply the default) then these next-hops should all be installed in the RIB."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="recurse" Type="Edm.Boolean">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
+					<Annotation Term="RedfishYang.default" String="false"/>
+					<Annotation Term="OData.Description" String="Determines whether the next-hop should be allowed to be looked up recursively - i.e., via a RIB entry which has been installed by a routing protocol, or another static route - rather than needing to be connected directly to an interface of the local system within the current network instance."/>
+					<Annotation Term="OData.LongDescription" String="Determines whether the next-hop should be allowed to be looked up recursively - i.e., via a RIB entry which has been installed by a routing protocol, or another static route - rather than needing to be connected directly to an interface of the local system within the current network instance. When the interface reference specified within the next-hop entry is set (i.e., is not null) then forwarding is restricted to being via the interface specified - and recursion is hence disabled."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="interface_ref" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="interface_ref" BaseType="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref.interface_ref">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Reference to an interface or subinterface."/>
+				<Annotation Term="OData.LongDescription" String="Reference to an interface or subinterface."/>
+				<NavigationProperty Name="configContainer" Type="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<Annotation Term="RedfishYang.uses" String="interface-ref-state-container"/>
+				<NavigationProperty Name="stateContainer" Type="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="next_hop" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="next_hop" BaseType="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.next_hop">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.key" String="index"/>
+				<Annotation Term="OData.Description" String="A list of next-hops to be utilised for the static route being specified."/>
+				<Annotation Term="OData.LongDescription" String="A list of next-hops to be utilised for the static route being specified."/>
+				<Property Name="index" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="A reference to the index of the current next-hop."/>
+					<Annotation Term="OData.LongDescription" String="A reference to the index of the current next-hop. The index is intended to be a user-specified value which can be used to reference the next-hop in question, without any other semantics being assigned to it."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="configContainer" Type="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<Annotation Term="RedfishYang.uses" String="oc-if:interface-ref"/>
+				<NavigationProperty Name="interface_refContainer" Type="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref.interface_ref" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of interface_ref."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_local_routing.local_routes.static_routes.static.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration data for static routes."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data for static routes."/>
+				<Annotation Term="RedfishYang.uses" String="local-static-config"/>
+				<Property Name="prefix" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Destination prefix for the static route, either IPv4 or IPv6."/>
+					<Annotation Term="OData.LongDescription" String="Destination prefix for the static route, either IPv4 or IPv6."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="set_tag" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Set a generic tag value on the route."/>
+					<Annotation Term="OData.LongDescription" String="Set a generic tag value on the route. This tag can be used for filtering routes that are distributed to other routing protocols."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_local_routing.local_routes.static_routes.static.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state data for static routes."/>
+				<Annotation Term="OData.LongDescription" String="Operational state data for static routes."/>
+				<Annotation Term="RedfishYang.uses" String="local-static-config,  local-static-state"/>
+				<Property Name="prefix" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Destination prefix for the static route, either IPv4 or IPv6."/>
+					<Annotation Term="OData.LongDescription" String="Destination prefix for the static route, either IPv4 or IPv6."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="set_tag" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Set a generic tag value on the route."/>
+					<Annotation Term="OData.LongDescription" String="Set a generic tag value on the route. This tag can be used for filtering routes that are distributed to other routing protocols."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.next_hops">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="next_hops" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.next_hops."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes.static_routes.static.next_hops."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.next_hops.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="next_hops" BaseType="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hops">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration and state parameters relating to the next-hops that are to be utilised for the static route being specified."/>
+				<Annotation Term="OData.LongDescription" String="Configuration and state parameters relating to the next-hops that are to be utilised for the static route being specified."/>
+				<NavigationProperty Name="next_hopCollection" Type="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.next_hopCollection" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of next_hopCollection."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="static" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes.static_routes.static."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes.static_routes.static."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.static.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="static" BaseType="openconfig_local_routing.local_routes.static_routes.static.static">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.key" String="prefix"/>
+				<Annotation Term="OData.Description" String="List of locally configured static routes."/>
+				<Annotation Term="OData.LongDescription" String="List of locally configured static routes."/>
+				<Property Name="prefix" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to the destination prefix list key."/>
+					<Annotation Term="OData.LongDescription" String="Reference to the destination prefix list key."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="configContainer" Type="openconfig_local_routing.local_routes.static_routes.static.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_local_routing.local_routes.static_routes.static.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="next_hopsContainer" Type="openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hops" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of next_hops."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.local_aggregates.aggregate.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes.local_aggregates.aggregate.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes.local_aggregates.aggregate.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.local_aggregates.aggregate.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_local_routing.local_routes.local_aggregates.aggregate.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration data for aggregate advertisements."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data for aggregate advertisements."/>
+				<Annotation Term="RedfishYang.uses" String="local-aggregate-config"/>
+				<Property Name="prefix" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Aggregate prefix to be advertised."/>
+					<Annotation Term="OData.LongDescription" String="Aggregate prefix to be advertised."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="discard" Type="Edm.Boolean">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
+					<Annotation Term="RedfishYang.default" String="false"/>
+					<Annotation Term="OData.Description" String="When true, install the aggregate route with a discard next-hop -- traffic destined to the aggregate will be discarded with no ICMP message generated."/>
+					<Annotation Term="OData.LongDescription" String="When true, install the aggregate route with a discard next-hop -- traffic destined to the aggregate will be discarded with no ICMP message generated.  When false, traffic destined to an aggregate address when no constituent routes are present will generate an ICMP unreachable message."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="set_tag" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Set a generic tag value on the route."/>
+					<Annotation Term="OData.LongDescription" String="Set a generic tag value on the route. This tag can be used for filtering routes that are distributed to other routing protocols."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.local_aggregates.aggregate.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes.local_aggregates.aggregate.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes.local_aggregates.aggregate.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.local_aggregates.aggregate.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_local_routing.local_routes.local_aggregates.aggregate.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state data for aggregate advertisements."/>
+				<Annotation Term="OData.LongDescription" String="Operational state data for aggregate advertisements."/>
+				<Annotation Term="RedfishYang.uses" String="local-aggregate-config,  local-aggregate-state"/>
+				<Property Name="prefix" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Aggregate prefix to be advertised."/>
+					<Annotation Term="OData.LongDescription" String="Aggregate prefix to be advertised."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="discard" Type="Edm.Boolean">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
+					<Annotation Term="RedfishYang.default" String="false"/>
+					<Annotation Term="OData.Description" String="When true, install the aggregate route with a discard next-hop -- traffic destined to the aggregate will be discarded with no ICMP message generated."/>
+					<Annotation Term="OData.LongDescription" String="When true, install the aggregate route with a discard next-hop -- traffic destined to the aggregate will be discarded with no ICMP message generated.  When false, traffic destined to an aggregate address when no constituent routes are present will generate an ICMP unreachable message."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="set_tag" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Set a generic tag value on the route."/>
+					<Annotation Term="OData.LongDescription" String="Set a generic tag value on the route. This tag can be used for filtering routes that are distributed to other routing protocols."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.local_aggregates.aggregate">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="aggregate" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes.local_aggregates.aggregate."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes.local_aggregates.aggregate."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.local_aggregates.aggregate.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="aggregate" BaseType="openconfig_local_routing.local_routes.local_aggregates.aggregate.aggregate">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.key" String="prefix"/>
+				<Annotation Term="OData.Description" String="List of aggregates."/>
+				<Annotation Term="OData.LongDescription" String="List of aggregates."/>
+				<Property Name="prefix" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to the configured prefix for this aggregate."/>
+					<Annotation Term="OData.LongDescription" String="Reference to the configured prefix for this aggregate."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="configContainer" Type="openconfig_local_routing.local_routes.local_aggregates.aggregate.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_local_routing.local_routes.local_aggregates.aggregate.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_local_routing.local_routes.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration data for locally defined routes."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data for locally defined routes."/>
+				<Annotation Term="RedfishYang.uses" String="local-routes-config"/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_local_routing.local_routes.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state data for locally defined routes."/>
+				<Annotation Term="OData.LongDescription" String="Operational state data for locally defined routes."/>
+				<Annotation Term="RedfishYang.uses" String="local-routes-config,  local-routes-state"/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="static_routes" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes.static_routes."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes.static_routes."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.static_routes.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="static_routes" BaseType="openconfig_local_routing.local_routes.static_routes.static_routes">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Enclosing container for the list of static routes."/>
+				<Annotation Term="OData.LongDescription" String="Enclosing container for the list of static routes."/>
+				<NavigationProperty Name="staticCollection" Type="openconfig_local_routing.local_routes.static_routes.static.staticCollection" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of staticCollection."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.local_aggregates">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="local_aggregates" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes.local_aggregates."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes.local_aggregates."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.local_aggregates.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="local_aggregates" BaseType="openconfig_local_routing.local_routes.local_aggregates.local_aggregates">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Enclosing container for locally-defined aggregate routes."/>
+				<Annotation Term="OData.LongDescription" String="Enclosing container for locally-defined aggregate routes."/>
+				<NavigationProperty Name="aggregateCollection" Type="openconfig_local_routing.local_routes.local_aggregates.aggregate.aggregateCollection" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of aggregateCollection."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="local_routes" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_local_routing.local_routes."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_local_routing.local_routes."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_local_routing.local_routes.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="local_routes" BaseType="openconfig_local_routing.local_routes.local_routes">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Top-level container for local routes."/>
+				<Annotation Term="OData.LongDescription" String="Top-level container for local routes."/>
+				<NavigationProperty Name="configContainer" Type="openconfig_local_routing.local_routes.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_local_routing.local_routes.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<Annotation Term="RedfishYang.uses" String="local-static-top,  local-aggregate-top"/>
+				<NavigationProperty Name="static_routesContainer" Type="openconfig_local_routing.local_routes.static_routes.static_routes" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of static_routes."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="local_aggregatesContainer" Type="openconfig_local_routing.local_routes.local_aggregates.local_aggregates" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of local_aggregates."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
+

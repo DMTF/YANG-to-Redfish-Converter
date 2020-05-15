@@ -1,0 +1,310 @@
+new obj
+YangTAG--- module openconfig-network-instance
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2018-08-11
+Skipped children 2 in tag revision 2018-06-22
+Skipped children 2 in tag revision 2018-06-05
+Skipped children 2 in tag revision 2018-02-19
+Skipped children 2 in tag revision 2017-12-13
+Skipped children 2 in tag revision 2017-08-24
+Skipped children 2 in tag revision 2017-02-28
+Skipped children 2 in tag revision 2017-01-26
+Skipped children 2 in tag revision 2017-01-13
+Skipped children 2 in tag revision 2016-12-15
+Skipped children 2 in tag revision 2016-11-10
+Skipped children 2 in tag revision 2016-10-12
+Skipped children 2 in tag revision 2016-09-28
+Skipped children 2 in tag revision 2016-08-11
+Skipped children 2 in tag revision 2016-07-08
+Skipped children 2 in tag revision 2016-03-29
+Skipped children 2 in tag revision 2015-10-18
+Skipped children 2 in tag grouping network-instance-top
+Skipped children 5 in tag grouping network-instance-type-dependent-config
+Skipped children 4 in tag grouping instance-endpoint-config
+Skipped children 4 in tag grouping instance-endpoint-local-config
+Skipped children 3 in tag grouping instance-endpoint-remote-config
+Skipped children 2 in tag grouping instance-endpoint-state
+Skipped children 2 in tag grouping instance-connection-point-config
+Skipped children 1 in tag grouping instance-connection-point-state
+Skipped children 3 in tag grouping table-config
+Skipped children 6 in tag grouping instance-interfaces-config
+Skipped children 1 in tag grouping instance-interfaces-state
+Skipped children 4 in tag grouping inter-table-policies-config
+Skipped children 7 in tag grouping network-instance-config
+Skipped children 1 in tag grouping network-instance-state
+Skipped children 5 in tag grouping protocols-config
+Skipped children 1 in tag grouping protocols-state
+Skipped children 2 in tag grouping instance-interface-association-config
+Skipped children 3 in tag grouping encapsulation-config
+new obj
+YangTAG--- container network-instances
+new obj
+YangTAG--- list network-instance
+Skipped children 1 in tag uses l2ni-instance
+new obj
+YangTAG--- container config
+type location not found
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+new obj
+YangTAG--- container encapsulation
+Skipped children 1 in tag when ../config/type != 'DEFAULT_INSTANCE'
+new obj
+YangTAG--- container config
+Skipped children 1 in tag uses l2ni-encapsulation-config
+new obj
+YangTAG--- container state
+Skipped children 1 in tag uses l2ni-encapsulation-config
+new obj
+YangTAG--- container inter-instance-policies
+new obj
+YangTAG--- container table-connections
+new obj
+YangTAG--- list table-connection
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interfaces
+new obj
+YangTAG--- list interface
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+Skipped children 1 in tag uses oc-ni-l3:l3ni-route-limit-structural
+new obj
+YangTAG--- container tables
+new obj
+YangTAG--- list table
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container connection-points
+new obj
+YangTAG--- list connection-point
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container endpoints
+Skipped children 1 in tag when ../../../config/type = 'L2P2P' or ../../../config/type = 'L2VSI'
+new obj
+YangTAG--- list endpoint
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container local
+Skipped children 1 in tag when ../config/type = 'LOCAL'
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container remote
+Skipped children 1 in tag when ../config/type = 'REMOTE'
+new obj
+YangTAG--- container config
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+new obj
+YangTAG--- container protocols
+new obj
+YangTAG--- list protocol
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+Skipped children 2 in tag uses oc-loc-rt:local-static-top
+Skipped children 2 in tag uses oc-loc-rt:local-aggregate-top
+new obj
+YangTAG--- container static-routes
+new obj
+YangTAG--- list static
+new obj
+YangTAG--- container config
+type location not found
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+new obj
+YangTAG--- container next-hops
+new obj
+YangTAG--- list next-hop
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container local-aggregates
+new obj
+YangTAG--- list aggregate
+new obj
+YangTAG--- container config
+type location not found
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+new obj
+YangTAG--- container fdb
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container mac-table
+new obj
+YangTAG--- container entries
+new obj
+YangTAG--- list entry
+new obj
+YangTAG--- container config
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+new obj
+YangTAG--- container interface
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container route-limits
+new obj
+YangTAG--- list route-limit
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container vlans
+new obj
+YangTAG--- list vlan
+new obj
+YangTAG--- container config
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+new obj
+YangTAG--- container members
+new obj
+YangTAG--- list member
+new obj
+YangTAG--- container state
+colon seperator not in type
+type not found in location document
+{} openconfig_network_instance.network_instances.network_instance.encapsulation.config
+{} openconfig_network_instance.network_instances.network_instance.encapsulation.state
+{} openconfig_network_instance.network_instances.network_instance.table_connections.table_connection.config
+{} openconfig_network_instance.network_instances.network_instance.table_connections.table_connection.state
+{} openconfig_network_instance.network_instances.network_instance.table_connections.table_connection
+{} openconfig_network_instance.network_instances.network_instance.interfaces.interface.config
+{} openconfig_network_instance.network_instances.network_instance.interfaces.interface.state
+{} openconfig_network_instance.network_instances.network_instance.interfaces.interface
+{} openconfig_network_instance.network_instances.network_instance.tables.table.config
+{} openconfig_network_instance.network_instances.network_instance.tables.table.state
+{} openconfig_network_instance.network_instances.network_instance.tables.table
+{} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.local.config
+{} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.local.state
+{} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.remote.config
+{} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.remote.state
+{} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.config
+{} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.state
+{} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.local
+{} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.remote
+{} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint
+{} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.config
+{} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.state
+{} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints
+{} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop.interface_ref.config
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop.interface_ref.state
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop.config
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop.state
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop.interface_ref
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.config
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.state
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol.local_aggregates.aggregate.config
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol.local_aggregates.aggregate.state
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol.local_aggregates.aggregate
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol.config
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol.state
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol.local_aggregates
+{} openconfig_network_instance.network_instances.network_instance.protocols.protocol
+{} openconfig_network_instance.network_instances.network_instance.fdb.mac_table.entries.entry.interface.interface_ref.config
+{} openconfig_network_instance.network_instances.network_instance.fdb.mac_table.entries.entry.interface.interface_ref.state
+{} openconfig_network_instance.network_instances.network_instance.fdb.mac_table.entries.entry.interface.interface_ref
+{} openconfig_network_instance.network_instances.network_instance.fdb.mac_table.entries.entry.config
+{} openconfig_network_instance.network_instances.network_instance.fdb.mac_table.entries.entry.state
+{} openconfig_network_instance.network_instances.network_instance.fdb.mac_table.entries.entry.interface
+{} openconfig_network_instance.network_instances.network_instance.fdb.mac_table.entries.entry
+{} openconfig_network_instance.network_instances.network_instance.fdb.mac_table.entries
+{} openconfig_network_instance.network_instances.network_instance.fdb.config
+{} openconfig_network_instance.network_instances.network_instance.fdb.state
+{} openconfig_network_instance.network_instances.network_instance.fdb.mac_table
+{} openconfig_network_instance.network_instances.network_instance.route_limits.route_limit.config
+{} openconfig_network_instance.network_instances.network_instance.route_limits.route_limit.state
+{} openconfig_network_instance.network_instances.network_instance.route_limits.route_limit
+{} openconfig_network_instance.network_instances.network_instance.vlans.vlan.members.member.state
+{} openconfig_network_instance.network_instances.network_instance.vlans.vlan.members.member
+{} openconfig_network_instance.network_instances.network_instance.vlans.vlan.config
+{} openconfig_network_instance.network_instances.network_instance.vlans.vlan.state
+{} openconfig_network_instance.network_instances.network_instance.vlans.vlan.members
+{} openconfig_network_instance.network_instances.network_instance.vlans.vlan
+{} openconfig_network_instance.network_instances.network_instance.config
+{} openconfig_network_instance.network_instances.network_instance.state
+{} openconfig_network_instance.network_instances.network_instance.encapsulation
+{} openconfig_network_instance.network_instances.network_instance.inter_instance_policies
+{} openconfig_network_instance.network_instances.network_instance.table_connections
+{} openconfig_network_instance.network_instances.network_instance.interfaces
+{} openconfig_network_instance.network_instances.network_instance.tables
+{} openconfig_network_instance.network_instances.network_instance.connection_points
+{} openconfig_network_instance.network_instances.network_instance.protocols
+{} openconfig_network_instance.network_instances.network_instance.fdb
+{} openconfig_network_instance.network_instances.network_instance.route_limits
+{} openconfig_network_instance.network_instances.network_instance.vlans
+{} openconfig_network_instance.network_instances.network_instance
+{} openconfig_network_instance.network_instances
+Success writing file to disk: output_dir/openconfig_network_instance_v1.xml
+There were unsatisfied modules: 
+openconfig-network-instance required: ['openconfig-policy-types', 'openconfig-network-instance-l3', 'openconfig-local-routing', 'openconfig-interfaces', 'openconfig-types', 'openconfig-vlan', 'openconfig-extensions', 'ietf-inet-types', 'ietf-yang-types', 'openconfig-network-instance-types']

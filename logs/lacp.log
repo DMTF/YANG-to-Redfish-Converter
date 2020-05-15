@@ -1,0 +1,81 @@
+new obj
+YangTAG--- module openconfig-lacp
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2017-05-05
+Skipped children 2 in tag revision 2016-05-26
+Skipped children 1 in tag grouping aggregation-lacp-members-config
+Skipped children 14 in tag grouping aggregation-lacp-members-state
+Skipped children 2 in tag grouping aggregation-lacp-members-statistics
+Skipped children 2 in tag grouping aggregation-lacp-members-top
+Skipped children 7 in tag grouping lacp-interfaces-config
+Skipped children 1 in tag grouping lacp-interfaces-state
+Skipped children 2 in tag grouping lacp-interfaces-top
+Skipped children 2 in tag grouping aggregation-lacp-global-config
+Skipped children 1 in tag grouping aggregation-lacp-global-state
+Skipped children 2 in tag grouping aggregation-lacp-top
+new obj
+YangTAG--- container lacp
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interfaces
+new obj
+YangTAG--- list interface
+new obj
+YangTAG--- container config
+type location not found
+colon seperator not in type
+type not found in location document
+colon seperator not in type
+type not found in location document
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+colon seperator not in type
+type not found in location document
+colon seperator not in type
+type not found in location document
+type location not found
+new obj
+YangTAG--- container members
+new obj
+YangTAG--- list member
+new obj
+YangTAG--- container state
+type location not found
+colon seperator not in type
+type not found in location document
+colon seperator not in type
+type not found in location document
+colon seperator not in type
+type not found in location document
+type location not found
+type location not found
+new obj
+YangTAG--- container counters
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+{} openconfig_lacp.lacp.interfaces.interface.members.member.state.counters
+{} openconfig_lacp.lacp.interfaces.interface.members.member.state
+{} openconfig_lacp.lacp.interfaces.interface.members.member
+{} openconfig_lacp.lacp.interfaces.interface.config
+{} openconfig_lacp.lacp.interfaces.interface.state
+{} openconfig_lacp.lacp.interfaces.interface.members
+{} openconfig_lacp.lacp.interfaces.interface
+{} openconfig_lacp.lacp.config
+{} openconfig_lacp.lacp.state
+{} openconfig_lacp.lacp.interfaces
+{} openconfig_lacp.lacp
+Success writing file to disk: output_dir/openconfig_lacp_v1.xml
+There were unsatisfied modules: 
+openconfig-lacp required: ['openconfig-interfaces', 'openconfig-yang-types', 'openconfig-extensions']

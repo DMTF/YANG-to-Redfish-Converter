@@ -1,0 +1,19 @@
+pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes yangs/openconfig-interfaces.yang
+
+pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes yangs/openconfig-acl.yang
+
+pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes yangs/openconfig-local-routing.yang
+
+pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes yangs/openconfig-lacp.yang
+
+pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes yangs/openconfig-lldp.yang
+
+pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes yangs/openconfig-qos.yang
+
+pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes yangs/openconfig-vlan.yang
+
+pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes yangs/openconfig-network-instance.yang
+
+Note: One can redirect the output into a file with the ">" operator.  For example:
+
+pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes yangs/openconfig-acl.yang > logfile

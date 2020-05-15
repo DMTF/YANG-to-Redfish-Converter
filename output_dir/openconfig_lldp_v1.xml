@@ -1,0 +1,1293 @@
+<?xml version="1.0" ?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
+		<edmx:Include Namespace="Resource.v1_0_0"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="openconfig_lldp" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="openconfig_lldp" BaseType="openconfig_lldp.openconfig_lldp">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/module"/>
+				<Annotation Term="RedfishYang.yang_version" String="1"/>
+				<Annotation Term="RedfishYang.namespace" String="http://openconfig.net/yang/lldp"/>
+				<Annotation Term="RedfishYang.organization" String="OpenConfig working group"/>
+				<Annotation Term="RedfishYang.contact" String="OpenConfig working groupwww.openconfig.net"/>
+				<Annotation Term="OData.Description" String="This module defines configuration and operational state data for the LLDP protocol."/>
+				<Annotation Term="OData.LongDescription" String="This module defines configuration and operational state data for the LLDP protocol."/>
+				<Annotation Term="RedfishYang.statement" String="openconfig-extensions:openconfig-version"/>
+				<Annotation Term="RedfishYang.revision" String="2018-07-17,  2016-05-16"/>
+				<Annotation Term="RedfishYang.grouping" String="lldp-common-counters,  lldp-global-counters,  lldp-interface-counters,  lldp-system-info-config,  lldp-system-info-state,  lldp-neighbor-config,  lldp-neighbor-state,  lldp-capabilities-config,  lldp-capabilities-state,  lldp-capabilities-top,  lldp-custom-tlv-config,  lldp-custom-tlv-state,  lldp-custom-tlv-top,  lldp-neighbor-top,  lldp-interface-config,  lldp-interface-state,  lldp-interface-top,  lldp-config,  lldp-state,  lldp-top"/>
+				<Annotation Term="RedfishYang.uses" String="lldp-top"/>
+				<NavigationProperty Name="lldpContainer" Type="openconfig_lldp.lldp.lldp" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of lldp."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.state.counters">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="counters" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.state.counters."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.state.counters."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.state.counters.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="counters" BaseType="openconfig_lldp.lldp.state.counters.counters">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Global LLDP counters."/>
+				<Annotation Term="OData.LongDescription" String="Global LLDP counters."/>
+				<Annotation Term="RedfishYang.uses" String="lldp-global-counters"/>
+				<Property Name="frame_in" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The number of lldp frames received."/>
+					<Annotation Term="OData.LongDescription" String="The number of lldp frames received."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="frame_out" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The number of frames transmitted out."/>
+					<Annotation Term="OData.LongDescription" String="The number of frames transmitted out."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="frame_error_in" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The number of LLDP frames received with errors."/>
+					<Annotation Term="OData.LongDescription" String="The number of LLDP frames received with errors."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="frame_discard" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The number of LLDP frames received and discarded."/>
+					<Annotation Term="OData.LongDescription" String="The number of LLDP frames received and discarded."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="tlv_discard" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The number of TLV frames received and discarded."/>
+					<Annotation Term="OData.LongDescription" String="The number of TLV frames received and discarded."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="tlv_unknown" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The number of frames received with unknown TLV."/>
+					<Annotation Term="OData.LongDescription" String="The number of frames received with unknown TLV."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="last_clear" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Indicates the last time the counters were cleared."/>
+					<Annotation Term="OData.LongDescription" String="Indicates the last time the counters were cleared."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="tlv_accepted" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The number of valid TLVs received."/>
+					<Annotation Term="OData.LongDescription" String="The number of valid TLVs received."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="entries_aged_out" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The number of entries aged out due to timeout."/>
+					<Annotation Term="OData.LongDescription" String="The number of entries aged out due to timeout."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.state.counters">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="counters" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.interfaces.interface.state.counters."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.interfaces.interface.state.counters."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.state.counters.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="counters" BaseType="openconfig_lldp.lldp.interfaces.interface.state.counters.counters">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="LLDP counters on each interface."/>
+				<Annotation Term="OData.LongDescription" String="LLDP counters on each interface."/>
+				<Annotation Term="RedfishYang.uses" String="lldp-interface-counters"/>
+				<Property Name="frame_in" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The number of lldp frames received."/>
+					<Annotation Term="OData.LongDescription" String="The number of lldp frames received."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="frame_out" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The number of frames transmitted out."/>
+					<Annotation Term="OData.LongDescription" String="The number of frames transmitted out."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="frame_error_in" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The number of LLDP frames received with errors."/>
+					<Annotation Term="OData.LongDescription" String="The number of LLDP frames received with errors."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="frame_discard" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The number of LLDP frames received and discarded."/>
+					<Annotation Term="OData.LongDescription" String="The number of LLDP frames received and discarded."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="tlv_discard" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The number of TLV frames received and discarded."/>
+					<Annotation Term="OData.LongDescription" String="The number of TLV frames received and discarded."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="tlv_unknown" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The number of frames received with unknown TLV."/>
+					<Annotation Term="OData.LongDescription" String="The number of frames received with unknown TLV."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="last_clear" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Indicates the last time the counters were cleared."/>
+					<Annotation Term="OData.LongDescription" String="Indicates the last time the counters were cleared."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="frame_error_out" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The number of frame transmit errors on the interface."/>
+					<Annotation Term="OData.LongDescription" String="The number of frame transmit errors on the interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration data ."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data ."/>
+				<Annotation Term="RedfishYang.uses" String="lldp-custom-tlv-config"/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state data ."/>
+				<Annotation Term="OData.LongDescription" String="Operational state data ."/>
+				<Annotation Term="RedfishYang.uses" String="lldp-custom-tlv-config,  lldp-custom-tlv-state"/>
+				<Property Name="type" Type="Edm.Int32">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/int32"/>
+					<Annotation Term="OData.Description" String="The integer value identifying the type of information contained in the value field."/>
+					<Annotation Term="OData.LongDescription" String="The integer value identifying the type of information contained in the value field."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="oui" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The organizationally unique identifier field shall contain the organization's OUI as defined in Clause 9 of IEEE Std 802."/>
+					<Annotation Term="OData.LongDescription" String="The organizationally unique identifier field shall contain the organization's OUI as defined in Clause 9 of IEEE Std 802. The high-order octet is 0 and the low-order 3 octets are the SMI Network Management Private Enterprise Code of the Vendor in network byte order, as defined in the 'Assigned Numbers' RFC [RFC3232]."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="oui_subtype" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The organizationally defined subtype field shall contain a unique subtype value assigned by the defining organization."/>
+					<Annotation Term="OData.LongDescription" String="The organizationally defined subtype field shall contain a unique subtype value assigned by the defining organization."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="value" Type="Edm.Int32">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/binary"/>
+					<Annotation Term="OData.Description" String="A variable-length octet-string containing the instance-specific information for this TLV."/>
+					<Annotation Term="OData.LongDescription" String="A variable-length octet-string containing the instance-specific information for this TLV."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="tlv" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="tlv" BaseType="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv.tlv">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.key" String="type oui oui-subtype"/>
+				<Annotation Term="OData.Description" String="List of custom LLDP TLVs from a neighbor."/>
+				<Annotation Term="OData.LongDescription" String="List of custom LLDP TLVs from a neighbor."/>
+				<Property Name="type" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to type list key."/>
+					<Annotation Term="OData.LongDescription" String="Reference to type list key."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="oui" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to oui list key."/>
+					<Annotation Term="OData.LongDescription" String="Reference to oui list key."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="oui_subtype" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to oui-subtype list key."/>
+					<Annotation Term="OData.LongDescription" String="Reference to oui-subtype list key."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="configContainer" Type="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration data for LLDP capabilities."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data for LLDP capabilities."/>
+				<Annotation Term="RedfishYang.uses" String="lldp-capabilities-config"/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state data for LLDP capabilities."/>
+				<Annotation Term="OData.LongDescription" String="Operational state data for LLDP capabilities."/>
+				<Annotation Term="RedfishYang.uses" String="lldp-capabilities-config,  lldp-capabilities-state"/>
+				<Property Name="name" Type="RedfishYang.instance_identifier">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref"/>
+					<Annotation Term="OData.Description" String="Name of the system capability advertised by the neighbor."/>
+					<Annotation Term="OData.LongDescription" String="Name of the system capability advertised by the neighbor. Capabilities are represented in a bitmap that defines the primary functions of the system. The capabilities are defined in IEEE 802.1AB."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="enabled" Type="Edm.Boolean">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
+					<Annotation Term="OData.Description" String="Indicates whether the corresponding system capability is enabled on the neighbor."/>
+					<Annotation Term="OData.LongDescription" String="Indicates whether the corresponding system capability is enabled on the neighbor."/>
+					<Annotation Term="RedfishYang.reference" String="Sec 8.5.8.2 of IEEE 802.1AB-2009"/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="capability" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="capability" BaseType="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability.capability">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.key" String="name"/>
+				<Annotation Term="OData.Description" String="List of LLDP system capabilities advertised by the neighbor."/>
+				<Annotation Term="OData.LongDescription" String="List of LLDP system capabilities advertised by the neighbor."/>
+				<Property Name="name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to capabilities list key."/>
+					<Annotation Term="OData.LongDescription" String="Reference to capabilities list key."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="configContainer" Type="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration data ."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data ."/>
+				<Annotation Term="RedfishYang.uses" String="lldp-neighbor-config"/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state data ."/>
+				<Annotation Term="OData.LongDescription" String="Operational state data ."/>
+				<Annotation Term="RedfishYang.uses" String="lldp-system-info-config,  lldp-system-info-state,  lldp-neighbor-config,  lldp-neighbor-state"/>
+				<Property Name="system_name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The system name field shall contain an alpha-numeric string that indicates the system's administratively assigned name."/>
+					<Annotation Term="OData.LongDescription" String="The system name field shall contain an alpha-numeric string that indicates the system's administratively assigned name. The system name should be the system's fully qualified domain name. If implementations support IETF RFC 3418, the sysName object should be used for this field."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="system_description" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The system description field shall contain an alpha-numeric string that is the textual description of the network entity."/>
+					<Annotation Term="OData.LongDescription" String="The system description field shall contain an alpha-numeric string that is the textual description of the network entity. The system description should include the full name and version identification of the system's hardware type, software operating system, and networking software. If implementations support IETF RFC 3418, the sysDescr object should be used for this field."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="chassis_id" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The Chassis ID is a mandatory TLV which identifies the chassis component of the endpoint identifier associated with the transmitting LLDP agent."/>
+					<Annotation Term="OData.LongDescription" String="The Chassis ID is a mandatory TLV which identifies the chassis component of the endpoint identifier associated with the transmitting LLDP agent."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="chassis_id_type" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="This field identifies the format and source of the chassis identifier string."/>
+					<Annotation Term="OData.LongDescription" String="This field identifies the format and source of the chassis identifier string. It is an enumerator defined by the LldpChassisIdSubtype object from IEEE 802.1AB MIB."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="id" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="System generated identifier for the neighbor on the interface."/>
+					<Annotation Term="OData.LongDescription" String="System generated identifier for the neighbor on the interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="age" Type="RedfishYang.uint64">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint64"/>
+					<Annotation Term="RedfishYang.units" String="seconds"/>
+					<Annotation Term="OData.Description" String="Age since discovery."/>
+					<Annotation Term="OData.LongDescription" String="Age since discovery."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="last_update" Type="Edm.Int64">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/int64"/>
+					<Annotation Term="OData.Description" String="Seconds since last update received."/>
+					<Annotation Term="OData.LongDescription" String="Seconds since last update received."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="ttl" Type="RedfishYang.uint16">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint16"/>
+					<Annotation Term="RedfishYang.units" String="seconds"/>
+					<Annotation Term="OData.Description" String="The time-to-live (TTL) is a mandatory TLV which indicates how long information from the neighbor should be considered valid."/>
+					<Annotation Term="OData.LongDescription" String="The time-to-live (TTL) is a mandatory TLV which indicates how long information from the neighbor should be considered valid."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="port_id" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The Port ID is a mandatory TLV which identifies the port component of the endpoint identifier associated with the transmitting LLDP agent."/>
+					<Annotation Term="OData.LongDescription" String="The Port ID is a mandatory TLV which identifies the port component of the endpoint identifier associated with the transmitting LLDP agent. If the specified port is an IEEE 802.3 Repeater port, then this TLV is optional."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="port_id_type" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="This field identifies the format and source of the port identifier string."/>
+					<Annotation Term="OData.LongDescription" String="This field identifies the format and source of the port identifier string. It is an enumerator defined by the PtopoPortIdType object from RFC2922."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="port_description" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The binary string containing the actual port identifier for the port which this LLDP PDU was transmitted."/>
+					<Annotation Term="OData.LongDescription" String="The binary string containing the actual port identifier for the port which this LLDP PDU was transmitted. The source and format of this field is defined by PtopoPortId from RFC2922."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="management_address" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The Management Address is a mandatory TLV which identifies a network address associated with the local LLDP agent, which can be used to reach the agent on the port identified in the Port ID TLV."/>
+					<Annotation Term="OData.LongDescription" String="The Management Address is a mandatory TLV which identifies a network address associated with the local LLDP agent, which can be used to reach the agent on the port identified in the Port ID TLV."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="management_address_type" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The enumerated value for the network address type identified in this TLV."/>
+					<Annotation Term="OData.LongDescription" String="The enumerated value for the network address type identified in this TLV. This enumeration is defined in the 'Assigned Numbers' RFC [RFC3232] and the ianaAddressFamilyNumbers object."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="custom_tlvs" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="custom_tlvs" BaseType="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.custom_tlvs">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Enclosing container for list of custom TLVs from a neighbor."/>
+				<Annotation Term="OData.LongDescription" String="Enclosing container for list of custom TLVs from a neighbor."/>
+				<NavigationProperty Name="tlvCollection" Type="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.tlv.tlvCollection" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of tlvCollection."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="capabilities" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="capabilities" BaseType="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capabilities">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Enclosing container for list of LLDP capabilities."/>
+				<Annotation Term="OData.LongDescription" String="Enclosing container for list of LLDP capabilities."/>
+				<NavigationProperty Name="capabilityCollection" Type="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capability.capabilityCollection" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of capabilityCollection."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="neighbor" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="neighbor" BaseType="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.neighbor">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.key" String="id"/>
+				<Annotation Term="OData.Description" String="List of LLDP neighbors."/>
+				<Annotation Term="OData.LongDescription" String="List of LLDP neighbors."/>
+				<Property Name="id" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String=" ."/>
+					<Annotation Term="OData.LongDescription" String=" ."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="configContainer" Type="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<Annotation Term="RedfishYang.uses" String="lldp-custom-tlv-top,  lldp-capabilities-top"/>
+				<NavigationProperty Name="custom_tlvsContainer" Type="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.custom_tlvs.custom_tlvs" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of custom_tlvs."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="capabilitiesContainer" Type="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.capabilities.capabilities" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of capabilities."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.interfaces.interface.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.interfaces.interface.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_lldp.lldp.interfaces.interface.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration data for LLDP on each interface."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data for LLDP on each interface."/>
+				<Annotation Term="RedfishYang.uses" String="lldp-interface-config"/>
+				<Property Name="name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Reference to the LLDP Ethernet interface."/>
+					<Annotation Term="OData.LongDescription" String="Reference to the LLDP Ethernet interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="enabled" Type="Edm.Boolean">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
+					<Annotation Term="RedfishYang.default" String="true"/>
+					<Annotation Term="OData.Description" String="Enable or disable the LLDP protocol on the interface."/>
+					<Annotation Term="OData.LongDescription" String="Enable or disable the LLDP protocol on the interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.interfaces.interface.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.interfaces.interface.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_lldp.lldp.interfaces.interface.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state data ."/>
+				<Annotation Term="OData.LongDescription" String="Operational state data ."/>
+				<Annotation Term="RedfishYang.uses" String="lldp-interface-config,  lldp-interface-state"/>
+				<Property Name="name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Reference to the LLDP Ethernet interface."/>
+					<Annotation Term="OData.LongDescription" String="Reference to the LLDP Ethernet interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="enabled" Type="Edm.Boolean">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
+					<Annotation Term="RedfishYang.default" String="true"/>
+					<Annotation Term="OData.Description" String="Enable or disable the LLDP protocol on the interface."/>
+					<Annotation Term="OData.LongDescription" String="Enable or disable the LLDP protocol on the interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="countersContainer" Type="openconfig_lldp.lldp.interfaces.interface.state.counters.counters" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of counters."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="neighbors" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.interfaces.interface.neighbors."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.neighbors.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="neighbors" BaseType="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbors">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Enclosing container for list of LLDP neighbors on an interface."/>
+				<Annotation Term="OData.LongDescription" String="Enclosing container for list of LLDP neighbors on an interface."/>
+				<NavigationProperty Name="neighborCollection" Type="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbor.neighborCollection" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of neighborCollection."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="interface" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.interfaces.interface."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.interfaces.interface."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.interface.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="interface" BaseType="openconfig_lldp.lldp.interfaces.interface.interface">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.key" String="name"/>
+				<Annotation Term="OData.Description" String="List of interfaces on which LLDP is enabled / available."/>
+				<Annotation Term="OData.LongDescription" String="List of interfaces on which LLDP is enabled / available."/>
+				<Property Name="name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="Reference to the list key."/>
+					<Annotation Term="OData.LongDescription" String="Reference to the list key."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="configContainer" Type="openconfig_lldp.lldp.interfaces.interface.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_lldp.lldp.interfaces.interface.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<Annotation Term="RedfishYang.uses" String="lldp-neighbor-top"/>
+				<NavigationProperty Name="neighborsContainer" Type="openconfig_lldp.lldp.interfaces.interface.neighbors.neighbors" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of neighbors."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_lldp.lldp.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration data ."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data ."/>
+				<Annotation Term="RedfishYang.uses" String="lldp-config,  lldp-system-info-config"/>
+				<Property Name="enabled" Type="Edm.Boolean">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
+					<Annotation Term="RedfishYang.default" String="true"/>
+					<Annotation Term="OData.Description" String="System level state of the LLDP protocol."/>
+					<Annotation Term="OData.LongDescription" String="System level state of the LLDP protocol."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="hello_timer" Type="RedfishYang.uint64">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint64"/>
+					<Annotation Term="RedfishYang.units" String="seconds"/>
+					<Annotation Term="OData.Description" String="System level hello timer for the LLDP protocol."/>
+					<Annotation Term="OData.LongDescription" String="System level hello timer for the LLDP protocol."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="suppress_tlv_advertisement" Type="RedfishYang.instance_identifier">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref"/>
+					<Annotation Term="OData.Description" String="Indicates whether the local system should suppress the advertisement of particular TLVs with the LLDP PDUs that it transmits."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf_list"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+					<Annotation Term="OData.LongDescription" String="List of the type suppress_tlv_advertisement.  Indicates whether the local system should suppress the advertisement of particular TLVs with the LLDP PDUs that it transmits. Where a TLV type is specified within this list, it should not be included in any LLDP PDU transmitted by the local agent."/>
+				</Property>
+				<Property Name="system_name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The system name field shall contain an alpha-numeric string that indicates the system's administratively assigned name."/>
+					<Annotation Term="OData.LongDescription" String="The system name field shall contain an alpha-numeric string that indicates the system's administratively assigned name. The system name should be the system's fully qualified domain name. If implementations support IETF RFC 3418, the sysName object should be used for this field."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="system_description" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The system description field shall contain an alpha-numeric string that is the textual description of the network entity."/>
+					<Annotation Term="OData.LongDescription" String="The system description field shall contain an alpha-numeric string that is the textual description of the network entity. The system description should include the full name and version identification of the system's hardware type, software operating system, and networking software. If implementations support IETF RFC 3418, the sysDescr object should be used for this field."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="chassis_id" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The Chassis ID is a mandatory TLV which identifies the chassis component of the endpoint identifier associated with the transmitting LLDP agent."/>
+					<Annotation Term="OData.LongDescription" String="The Chassis ID is a mandatory TLV which identifies the chassis component of the endpoint identifier associated with the transmitting LLDP agent."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="chassis_id_type" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="This field identifies the format and source of the chassis identifier string."/>
+					<Annotation Term="OData.LongDescription" String="This field identifies the format and source of the chassis identifier string. It is an enumerator defined by the LldpChassisIdSubtype object from IEEE 802.1AB MIB."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_lldp.lldp.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state data ."/>
+				<Annotation Term="OData.LongDescription" String="Operational state data ."/>
+				<Annotation Term="RedfishYang.uses" String="lldp-config,  lldp-system-info-config,  lldp-system-info-state,  lldp-state"/>
+				<Property Name="enabled" Type="Edm.Boolean">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/boolean"/>
+					<Annotation Term="RedfishYang.default" String="true"/>
+					<Annotation Term="OData.Description" String="System level state of the LLDP protocol."/>
+					<Annotation Term="OData.LongDescription" String="System level state of the LLDP protocol."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="hello_timer" Type="RedfishYang.uint64">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint64"/>
+					<Annotation Term="RedfishYang.units" String="seconds"/>
+					<Annotation Term="OData.Description" String="System level hello timer for the LLDP protocol."/>
+					<Annotation Term="OData.LongDescription" String="System level hello timer for the LLDP protocol."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="suppress_tlv_advertisement" Type="RedfishYang.instance_identifier">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref"/>
+					<Annotation Term="OData.Description" String="Indicates whether the local system should suppress the advertisement of particular TLVs with the LLDP PDUs that it transmits."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf_list"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+					<Annotation Term="OData.LongDescription" String="List of the type suppress_tlv_advertisement.  Indicates whether the local system should suppress the advertisement of particular TLVs with the LLDP PDUs that it transmits. Where a TLV type is specified within this list, it should not be included in any LLDP PDU transmitted by the local agent."/>
+				</Property>
+				<Property Name="system_name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The system name field shall contain an alpha-numeric string that indicates the system's administratively assigned name."/>
+					<Annotation Term="OData.LongDescription" String="The system name field shall contain an alpha-numeric string that indicates the system's administratively assigned name. The system name should be the system's fully qualified domain name. If implementations support IETF RFC 3418, the sysName object should be used for this field."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="system_description" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The system description field shall contain an alpha-numeric string that is the textual description of the network entity."/>
+					<Annotation Term="OData.LongDescription" String="The system description field shall contain an alpha-numeric string that is the textual description of the network entity. The system description should include the full name and version identification of the system's hardware type, software operating system, and networking software. If implementations support IETF RFC 3418, the sysDescr object should be used for this field."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="chassis_id" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="The Chassis ID is a mandatory TLV which identifies the chassis component of the endpoint identifier associated with the transmitting LLDP agent."/>
+					<Annotation Term="OData.LongDescription" String="The Chassis ID is a mandatory TLV which identifies the chassis component of the endpoint identifier associated with the transmitting LLDP agent."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="chassis_id_type" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="This field identifies the format and source of the chassis identifier string."/>
+					<Annotation Term="OData.LongDescription" String="This field identifies the format and source of the chassis identifier string. It is an enumerator defined by the LldpChassisIdSubtype object from IEEE 802.1AB MIB."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="countersContainer" Type="openconfig_lldp.lldp.state.counters.counters" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of counters."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="interfaces" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp.interfaces."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp.interfaces."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.interfaces.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="interfaces" BaseType="openconfig_lldp.lldp.interfaces.interfaces">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Enclosing container ."/>
+				<Annotation Term="OData.LongDescription" String="Enclosing container ."/>
+				<NavigationProperty Name="interfaceCollection" Type="openconfig_lldp.lldp.interfaces.interface.interfaceCollection" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of interfaceCollection."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="lldp" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp.lldp."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp.lldp."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp.lldp.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="lldp" BaseType="openconfig_lldp.lldp.lldp">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Top-level container for LLDP configuration and state data."/>
+				<Annotation Term="OData.LongDescription" String="Top-level container for LLDP configuration and state data."/>
+				<NavigationProperty Name="configContainer" Type="openconfig_lldp.lldp.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_lldp.lldp.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<Annotation Term="RedfishYang.uses" String="lldp-interface-top"/>
+				<NavigationProperty Name="interfacesContainer" Type="openconfig_lldp.lldp.interfaces.interfaces" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of interfaces."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
+

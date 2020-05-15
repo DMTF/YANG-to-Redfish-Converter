@@ -1,0 +1,263 @@
+new obj
+YangTAG--- module openconfig-acl
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+doc not found in previous?
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2018-04-24
+Skipped children 2 in tag revision 2017-05-26
+Skipped children 2 in tag revision 2016-08-08
+Skipped children 2 in tag revision 2016-01-22
+Skipped children 1 in tag identity ACL_TYPE
+Skipped children 2 in tag identity ACL_IPV4
+Skipped children 2 in tag identity ACL_IPV6
+Skipped children 2 in tag identity ACL_L2
+Skipped children 2 in tag identity ACL_MIXED
+Skipped children 1 in tag identity FORWARDING_ACTION
+Skipped children 2 in tag identity ACCEPT
+Skipped children 2 in tag identity DROP
+Skipped children 2 in tag identity REJECT
+Skipped children 1 in tag identity LOG_ACTION
+Skipped children 2 in tag identity LOG_SYSLOG
+Skipped children 2 in tag identity LOG_NONE
+Skipped children 1 in tag identity ACL_COUNTER_CAPABILITY
+Skipped children 2 in tag identity INTERFACE_ONLY
+Skipped children 2 in tag identity AGGREGATE_ONLY
+Skipped children 2 in tag identity INTERFACE_AGGREGATE
+Skipped children 1 in tag grouping input-interface-config
+Skipped children 1 in tag grouping input-interface-state
+Skipped children 2 in tag grouping input-interface-top
+Skipped children 3 in tag grouping action-config
+Skipped children 1 in tag grouping action-state
+Skipped children 2 in tag grouping action-top
+Skipped children 3 in tag grouping acl-counters-state
+Skipped children 3 in tag grouping access-list-entries-config
+Skipped children 4 in tag grouping access-list-entries-state
+Skipped children 2 in tag grouping access-list-entries-top
+Skipped children 4 in tag grouping acl-set-config
+Skipped children 1 in tag grouping acl-set-state
+Skipped children 2 in tag grouping acl-set-top
+Skipped children 1 in tag grouping interface-acl-entries-config
+Skipped children 5 in tag grouping interface-acl-entries-state
+Skipped children 2 in tag grouping interface-acl-entries-top
+Skipped children 3 in tag grouping interface-ingress-acl-config
+Skipped children 1 in tag grouping interface-ingress-acl-state
+Skipped children 2 in tag grouping interface-ingress-acl-top
+Skipped children 3 in tag grouping interface-egress-acl-config
+Skipped children 1 in tag grouping interface-egress-acl-state
+Skipped children 2 in tag grouping interface-egress-acl-top
+Skipped children 2 in tag grouping acl-interfaces-config
+Skipped children 1 in tag grouping acl-interfaces-state
+Skipped children 2 in tag grouping acl-interfaces-top
+Skipped children 1 in tag grouping acl-config
+Skipped children 2 in tag grouping acl-state
+Skipped children 2 in tag grouping acl-top
+new obj
+YangTAG--- container acl
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container acl-sets
+new obj
+YangTAG--- list acl-set
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container acl-entries
+new obj
+YangTAG--- list acl-entry
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+Skipped children 1 in tag uses oc-match:ethernet-header-top
+Skipped children 1 in tag uses oc-match:ipv4-protocol-fields-top
+Skipped children 1 in tag uses oc-match:ipv6-protocol-fields-top
+Skipped children 1 in tag uses oc-match:transport-fields-top
+new obj
+YangTAG--- container l2
+new obj
+YangTAG--- container config
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container ipv4
+new obj
+YangTAG--- container config
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container ipv6
+new obj
+YangTAG--- container config
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container transport
+new obj
+YangTAG--- container config
+type location not found
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+new obj
+YangTAG--- container input-interface
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container actions
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interfaces
+new obj
+YangTAG--- list interface
+new obj
+YangTAG--- container config
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container ingress-acl-sets
+new obj
+YangTAG--- list ingress-acl-set
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container acl-entries
+new obj
+YangTAG--- list acl-entry
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+new obj
+YangTAG--- container egress-acl-sets
+new obj
+YangTAG--- list egress-acl-set
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container acl-entries
+new obj
+YangTAG--- list acl-entry
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.l2.config
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.l2.state
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.ipv4.config
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.ipv4.state
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.ipv6.config
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.ipv6.state
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.transport.config
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.transport.state
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref.config
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref.state
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.config
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.state
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface.interface_ref
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions.config
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions.state
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.config
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.state
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.l2
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.ipv4
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.ipv6
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.transport
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.input_interface
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry.actions
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries.acl_entry
+{} openconfig_acl.acl.acl_sets.acl_set.config
+{} openconfig_acl.acl.acl_sets.acl_set.state
+{} openconfig_acl.acl.acl_sets.acl_set.acl_entries
+{} openconfig_acl.acl.acl_sets.acl_set
+{} openconfig_acl.acl.interfaces.interface.interface_ref.config
+{} openconfig_acl.acl.interfaces.interface.interface_ref.state
+{} openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries.acl_entry.state
+{} openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries.acl_entry
+{} openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.config
+{} openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.state
+{} openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set.acl_entries
+{} openconfig_acl.acl.interfaces.interface.ingress_acl_sets.ingress_acl_set
+{} openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries.acl_entry.state
+{} openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries.acl_entry
+{} openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.config
+{} openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.state
+{} openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set.acl_entries
+{} openconfig_acl.acl.interfaces.interface.egress_acl_sets.egress_acl_set
+{} openconfig_acl.acl.interfaces.interface.config
+{} openconfig_acl.acl.interfaces.interface.state
+{} openconfig_acl.acl.interfaces.interface.interface_ref
+{} openconfig_acl.acl.interfaces.interface.ingress_acl_sets
+{} openconfig_acl.acl.interfaces.interface.egress_acl_sets
+{} openconfig_acl.acl.interfaces.interface
+{} openconfig_acl.acl.config
+{} openconfig_acl.acl.state
+{} openconfig_acl.acl.acl_sets
+{} openconfig_acl.acl.interfaces
+{} openconfig_acl.acl
+Success writing file to disk: output_dir/openconfig_acl_v1.xml
+There were unsatisfied modules: 
+openconfig-acl required: ['openconfig-yang-types', 'openconfig-packet-match', 'openconfig-interfaces', 'openconfig-extensions']
