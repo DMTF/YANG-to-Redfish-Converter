@@ -1,13 +1,24 @@
+openconfig-extensions
+new obj
+YangTAG--- module openconfig-extensions
+Skipped children 2 in tag revision 2017-04-11
+Skipped children 2 in tag revision 2017-01-29
+Skipped children 2 in tag revision 2015-10-09
+Skipped children 2 in tag extension openconfig-version
+Skipped children 1 in tag extension openconfig-hashed-value
+openconfig-qos
 new obj
 YangTAG--- module openconfig-qos
 doc not found in previous?
 doc not found in previous?
-doc not found in previous?
 We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
 Skipped children 2 in tag revision 2016-12-16
-Skipped children 1 in tag grouping qos-config
-Skipped children 1 in tag grouping qos-state
-Skipped children 2 in tag grouping qos-top
+new obj
+YangTAG--- grouping qos-config
+new obj
+YangTAG--- grouping qos-state
+new obj
+YangTAG--- grouping qos-top
 new obj
 YangTAG--- container qos
 new obj
@@ -383,6 +394,524 @@ new obj
 YangTAG--- container config
 new obj
 YangTAG--- container state
+new obj
+YangTAG--- container qos
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interfaces
+new obj
+YangTAG--- list interface
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container input
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container classifers
+new obj
+YangTAG--- list classifier
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container terms
+new obj
+YangTAG--- list term
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+new obj
+YangTAG--- container queues
+new obj
+YangTAG--- list queue
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container scheduler-policy
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container schedulers
+new obj
+YangTAG--- list scheduler
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container virtual-output-queues
+new obj
+YangTAG--- list voq-interface
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container queues
+new obj
+YangTAG--- list queue
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container output
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container classifers
+new obj
+YangTAG--- list classifier
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container terms
+new obj
+YangTAG--- list term
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+new obj
+YangTAG--- container queues
+new obj
+YangTAG--- list queue
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container scheduler-policy
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container schedulers
+new obj
+YangTAG--- list scheduler
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container classifiers
+new obj
+YangTAG--- list classifier
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container terms
+new obj
+YangTAG--- list term
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container conditions
+new obj
+YangTAG--- container l2
+new obj
+YangTAG--- container config
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container ipv4
+new obj
+YangTAG--- container config
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container ipv6
+new obj
+YangTAG--- container config
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container transport
+new obj
+YangTAG--- container config
+type location not found
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+new obj
+YangTAG--- container mpls
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container actions
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container remark
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container forwarding-groups
+new obj
+YangTAG--- list forwarding-group
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container queues
+new obj
+YangTAG--- list queue
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+Skipped children 1 in tag uses qos-queue-red-top
+Skipped children 1 in tag uses qos-queue-wred-top
+new obj
+YangTAG--- container red
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container wred
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container scheduler-policies
+new obj
+YangTAG--- list scheduler-policy
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container schedulers
+new obj
+YangTAG--- list scheduler
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container inputs
+new obj
+YangTAG--- list input
+new obj
+YangTAG--- container config
+Skipped children 1 in tag when ../input-type = 'QUEUE'
+new obj
+YangTAG--- container state
+Skipped children 1 in tag when ../input-type = 'QUEUE'
+new obj
+YangTAG--- container output
+new obj
+YangTAG--- container config
+Skipped children 1 in tag when ../output-type = 'SCHEDULER'
+Skipped children 1 in tag when ../output-type = 'FWD_GROUP'
+new obj
+YangTAG--- container state
+Skipped children 1 in tag when ../output-type = 'SCHEDULER'
+Skipped children 1 in tag when ../output-type = 'FWD_GROUP'
+new obj
+YangTAG--- container one-rate-two-color
+new obj
+YangTAG--- container config
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container conform-action
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container exceed-action
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container two-rate-three-color
+new obj
+YangTAG--- container config
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+type location not found
+type location not found
+type location not found
+new obj
+YangTAG--- container conform-action
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container exceed-action
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container violate-action
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+{} openconfig_qos.qos_top.qos.interfaces.interface.interface_ref.config
+{} openconfig_qos.qos_top.qos.interfaces.interface.interface_ref.state
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.classifers.classifier.terms.term.config
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.classifers.classifier.terms.term.state
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.classifers.classifier.terms.term
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.classifers.classifier.config
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.classifers.classifier.state
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.classifers.classifier.terms
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.classifers.classifier
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.queues.queue.config
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.queues.queue.state
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.queues.queue
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.scheduler_policy.schedulers.scheduler.state
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.scheduler_policy.schedulers.scheduler
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.scheduler_policy.config
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.scheduler_policy.state
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.scheduler_policy.schedulers
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.virtual_output_queues.voq_interface.queues.queue.config
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.virtual_output_queues.voq_interface.queues.queue.state
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.virtual_output_queues.voq_interface.queues.queue
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.virtual_output_queues.voq_interface.config
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.virtual_output_queues.voq_interface.state
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.virtual_output_queues.voq_interface.queues
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.virtual_output_queues.voq_interface
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.config
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.state
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.classifers
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.queues
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.scheduler_policy
+{} openconfig_qos.qos_top.qos.interfaces.interface.input.virtual_output_queues
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.interface_ref.config
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.interface_ref.state
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.classifers.classifier.terms.term.config
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.classifers.classifier.terms.term.state
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.classifers.classifier.terms.term
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.classifers.classifier.config
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.classifers.classifier.state
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.classifers.classifier.terms
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.classifers.classifier
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.queues.queue.config
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.queues.queue.state
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.queues.queue
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.scheduler_policy.schedulers.scheduler.state
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.scheduler_policy.schedulers.scheduler
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.scheduler_policy.config
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.scheduler_policy.state
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.scheduler_policy.schedulers
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.config
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.state
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.interface_ref
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.classifers
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.queues
+{} openconfig_qos.qos_top.qos.interfaces.interface.output.scheduler_policy
+{} openconfig_qos.qos_top.qos.interfaces.interface.config
+{} openconfig_qos.qos_top.qos.interfaces.interface.state
+{} openconfig_qos.qos_top.qos.interfaces.interface.interface_ref
+{} openconfig_qos.qos_top.qos.interfaces.interface.input
+{} openconfig_qos.qos_top.qos.interfaces.interface.output
+{} openconfig_qos.qos_top.qos.interfaces.interface
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.conditions.l2.config
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.conditions.l2.state
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.conditions.ipv4.config
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.conditions.ipv4.state
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.conditions.ipv6.config
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.conditions.ipv6.state
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.conditions.transport.config
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.conditions.transport.state
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.conditions.mpls.config
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.conditions.mpls.state
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.conditions.l2
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.conditions.ipv4
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.conditions.ipv6
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.conditions.transport
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.conditions.mpls
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.actions.remark.config
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.actions.remark.state
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.actions.config
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.actions.state
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.actions.remark
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.config
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.state
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.conditions
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term.actions
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms.term
+{} openconfig_qos.qos_top.qos.classifiers.classifier.config
+{} openconfig_qos.qos_top.qos.classifiers.classifier.state
+{} openconfig_qos.qos_top.qos.classifiers.classifier.terms
+{} openconfig_qos.qos_top.qos.classifiers.classifier
+{} openconfig_qos.qos_top.qos.forwarding_groups.forwarding_group.config
+{} openconfig_qos.qos_top.qos.forwarding_groups.forwarding_group.state
+{} openconfig_qos.qos_top.qos.forwarding_groups.forwarding_group
+{} openconfig_qos.qos_top.qos.queues.queue.red.config
+{} openconfig_qos.qos_top.qos.queues.queue.red.state
+{} openconfig_qos.qos_top.qos.queues.queue.wred.config
+{} openconfig_qos.qos_top.qos.queues.queue.wred.state
+{} openconfig_qos.qos_top.qos.queues.queue.config
+{} openconfig_qos.qos_top.qos.queues.queue.state
+{} openconfig_qos.qos_top.qos.queues.queue.red
+{} openconfig_qos.qos_top.qos.queues.queue.wred
+{} openconfig_qos.qos_top.qos.queues.queue
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.inputs.input.config
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.inputs.input.state
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.inputs.input
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.output.config
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.output.state
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.one_rate_two_color.conform_action.config
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.one_rate_two_color.conform_action.state
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.one_rate_two_color.exceed_action.config
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.one_rate_two_color.exceed_action.state
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.one_rate_two_color.config
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.one_rate_two_color.state
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.one_rate_two_color.conform_action
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.one_rate_two_color.exceed_action
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.two_rate_three_color.conform_action.config
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.two_rate_three_color.conform_action.state
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.two_rate_three_color.exceed_action.config
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.two_rate_three_color.exceed_action.state
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.two_rate_three_color.violate_action.config
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.two_rate_three_color.violate_action.state
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.two_rate_three_color.config
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.two_rate_three_color.state
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.two_rate_three_color.conform_action
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.two_rate_three_color.exceed_action
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.two_rate_three_color.violate_action
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.config
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.state
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.inputs
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.output
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.one_rate_two_color
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler.two_rate_three_color
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers.scheduler
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.config
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.state
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy.schedulers
+{} openconfig_qos.qos_top.qos.scheduler_policies.scheduler_policy
+{} openconfig_qos.qos_top.qos.config
+{} openconfig_qos.qos_top.qos.state
+{} openconfig_qos.qos_top.qos.interfaces
+{} openconfig_qos.qos_top.qos.classifiers
+{} openconfig_qos.qos_top.qos.forwarding_groups
+{} openconfig_qos.qos_top.qos.queues
+{} openconfig_qos.qos_top.qos.scheduler_policies
+{} openconfig_qos.qos_top.qos
 {} openconfig_qos.qos.interfaces.interface.interface_ref.config
 {} openconfig_qos.qos.interfaces.interface.interface_ref.state
 {} openconfig_qos.qos.interfaces.interface.input.classifers.classifier.terms.term.config
@@ -525,7 +1054,9 @@ YangTAG--- container state
 {} openconfig_qos.qos.forwarding_groups
 {} openconfig_qos.qos.queues
 {} openconfig_qos.qos.scheduler_policies
+{} openconfig_qos.qos_config
+{} openconfig_qos.qos_state
+{} openconfig_qos.qos_top
 {} openconfig_qos.qos
+Success writing file to disk: output_dir/openconfig_extensions_v1.xml
 Success writing file to disk: output_dir/openconfig_qos_v1.xml
-There were unsatisfied modules: 
-openconfig-qos required: ['openconfig-extensions']

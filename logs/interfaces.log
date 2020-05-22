@@ -1,9 +1,93 @@
+openconfig-extensions
+new obj
+YangTAG--- module openconfig-extensions
+Skipped children 2 in tag revision 2017-04-11
+Skipped children 2 in tag revision 2017-01-29
+Skipped children 2 in tag revision 2015-10-09
+Skipped children 2 in tag extension openconfig-version
+Skipped children 1 in tag extension openconfig-hashed-value
+ietf-yang-types
+new obj
+YangTAG--- module ietf-yang-types
+Skipped children 2 in tag revision 2013-07-15
+Skipped children 2 in tag revision 2010-09-24
+colon seperator not in type
+openconfig-yang-types
+new obj
+YangTAG--- module openconfig-yang-types
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2018-04-24
+Skipped children 2 in tag revision 2017-07-30
+Skipped children 2 in tag revision 2017-04-03
+Skipped children 2 in tag revision 2017-01-26
+openconfig-types
+new obj
+YangTAG--- module openconfig-types
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2018-05-05
+Skipped children 2 in tag revision 2018-01-16
+Skipped children 2 in tag revision 2017-08-16
+Skipped children 2 in tag revision 2017-01-13
+Skipped children 2 in tag revision 2016-11-14
+Skipped children 2 in tag revision 2016-11-11
+Skipped children 2 in tag revision 2016-05-31
+new obj
+YangTAG--- grouping stat-interval-state
+new obj
+YangTAG--- grouping min-max-time
+new obj
+YangTAG--- grouping avg-min-max-stats-precision1
+new obj
+YangTAG--- grouping avg-min-max-instant-stats-precision1
+new obj
+YangTAG--- grouping avg-min-max-instant-stats-precision2-dB
+new obj
+YangTAG--- grouping avg-min-max-instant-stats-precision2-dBm
+new obj
+YangTAG--- grouping avg-min-max-instant-stats-precision2-mA
+new obj
+YangTAG--- grouping avg-min-max-instant-stats-pct
+Skipped children 1 in tag identity ADDRESS_FAMILY
+Skipped children 2 in tag identity IPV4
+Skipped children 2 in tag identity IPV6
+Skipped children 2 in tag identity MPLS
+Skipped children 2 in tag identity L2_ETHERNET
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>} openconfig_types.stat_interval_state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>} openconfig_types.min_max_time
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>} openconfig_types.avg_min_max_stats_precision1
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>} openconfig_types.avg_min_max_instant_stats_precision1
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>} openconfig_types.avg_min_max_instant_stats_precision2_dB
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>} openconfig_types.avg_min_max_instant_stats_precision2_dBm
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>} openconfig_types.avg_min_max_instant_stats_precision2_mA
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>} openconfig_types.avg_min_max_instant_stats_pct
+ietf-interfaces
+new obj
+YangTAG--- module ietf-interfaces
+Skipped children 2 in tag revision 2014-05-08
+Skipped children 1 in tag identity interface-type
+Skipped children 1 in tag feature arbitrary-names
+Skipped children 1 in tag feature pre-provisioning
+Skipped children 2 in tag feature if-mib
+new obj
+YangTAG--- container interfaces
+new obj
+YangTAG--- list interface
+new obj
+YangTAG--- container interfaces-state
+new obj
+YangTAG--- list interface
+colon seperator not in type
+colon seperator not in type
+new obj
+YangTAG--- container statistics
+{} ietf_interfaces.interfaces.interface
+{'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D98CF0>} ietf_interfaces.interfaces_state.interface.statistics
+{'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D98CF0>} ietf_interfaces.interfaces_state.interface
+{'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D98CF0>} ietf_interfaces.interfaces
+{'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D98CF0>} ietf_interfaces.interfaces_state
+openconfig-interfaces
 new obj
 YangTAG--- module openconfig-interfaces
-doc not found in previous?
-doc not found in previous?
-doc not found in previous?
-doc not found in previous?
 We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
 Skipped children 2 in tag revision 2018-04-24
 Skipped children 2 in tag revision 2018-01-05
@@ -12,25 +96,91 @@ Skipped children 2 in tag revision 2017-12-21
 Skipped children 2 in tag revision 2017-07-14
 Skipped children 2 in tag revision 2017-04-03
 Skipped children 2 in tag revision 2016-12-22
-Skipped children 3 in tag grouping interface-ref-common
-Skipped children 2 in tag grouping interface-ref-state-container
-Skipped children 2 in tag grouping interface-ref
-Skipped children 2 in tag grouping interface-ref-state
-Skipped children 2 in tag grouping base-interface-ref-state
-Skipped children 3 in tag grouping interface-common-config
-Skipped children 8 in tag grouping interface-phys-config
-Skipped children 3 in tag grouping interface-phys-holdtime-config
-Skipped children 1 in tag grouping interface-phys-holdtime-state
-Skipped children 2 in tag grouping interface-phys-holdtime-top
-Skipped children 5 in tag grouping interface-common-state
-Skipped children 2 in tag grouping interface-counters-state
-Skipped children 2 in tag grouping sub-unnumbered-config
-Skipped children 1 in tag grouping sub-unnumbered-state
-Skipped children 2 in tag grouping sub-unnumbered-top
-Skipped children 5 in tag grouping subinterfaces-config
-Skipped children 9 in tag grouping subinterfaces-state
-Skipped children 2 in tag grouping subinterfaces-top
-Skipped children 2 in tag grouping interfaces-top
+new obj
+YangTAG--- grouping interface-ref-common
+new obj
+YangTAG--- grouping interface-ref-state-container
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- grouping interface-ref
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- grouping interface-ref-state
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- grouping base-interface-ref-state
+new obj
+YangTAG--- container state
+colon seperator not in type
+new obj
+YangTAG--- grouping interface-common-config
+new obj
+YangTAG--- grouping interface-phys-config
+new obj
+YangTAG--- grouping interface-phys-holdtime-config
+new obj
+YangTAG--- grouping interface-phys-holdtime-state
+new obj
+YangTAG--- grouping interface-phys-holdtime-top
+new obj
+YangTAG--- container hold-time
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- grouping interface-common-state
+new obj
+YangTAG--- grouping interface-counters-state
+new obj
+YangTAG--- container counters
+new obj
+YangTAG--- grouping sub-unnumbered-config
+new obj
+YangTAG--- grouping sub-unnumbered-state
+new obj
+YangTAG--- grouping sub-unnumbered-top
+new obj
+YangTAG--- container unnumbered
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- grouping subinterfaces-config
+new obj
+YangTAG--- grouping subinterfaces-state
+new obj
+YangTAG--- container counters
+new obj
+YangTAG--- grouping subinterfaces-top
+new obj
+YangTAG--- container subinterfaces
+new obj
+YangTAG--- list subinterface
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container counters
+new obj
+YangTAG--- grouping interfaces-top
 new obj
 YangTAG--- container interfaces
 new obj
@@ -39,25 +189,8 @@ new obj
 YangTAG--- container config
 new obj
 YangTAG--- container state
-type location not found
 new obj
 YangTAG--- container counters
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
 new obj
 YangTAG--- container hold-time
 new obj
@@ -72,38 +205,105 @@ new obj
 YangTAG--- container config
 new obj
 YangTAG--- container state
-type location not found
 new obj
 YangTAG--- container counters
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-type location not found
-{} openconfig_interfaces.interfaces.interface.state.counters
-{} openconfig_interfaces.interfaces.interface.hold_time.config
-{} openconfig_interfaces.interfaces.interface.hold_time.state
-{} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface.state.counters
-{} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface.config
-{} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface.state
-{} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface
-{} openconfig_interfaces.interfaces.interface.config
-{} openconfig_interfaces.interfaces.interface.state
-{} openconfig_interfaces.interfaces.interface.hold_time
-{} openconfig_interfaces.interfaces.interface.subinterfaces
-{} openconfig_interfaces.interfaces.interface
-{} openconfig_interfaces.interfaces
+new obj
+YangTAG--- container interfaces
+new obj
+YangTAG--- list interface
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container counters
+new obj
+YangTAG--- container hold-time
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container subinterfaces
+new obj
+YangTAG--- list subinterface
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container counters
+{} openconfig_interfaces.interface_ref_state_container.state
+{} openconfig_interfaces.interface_ref.interface_ref.config
+{} openconfig_interfaces.interface_ref.interface_ref.state
+{} openconfig_interfaces.interface_ref.interface_ref
+{} openconfig_interfaces.interface_ref_state.interface_ref.state
+{} openconfig_interfaces.interface_ref_state.interface_ref
+{} openconfig_interfaces.base_interface_ref_state.state
+{} openconfig_interfaces.interface_phys_holdtime_top.hold_time.config
+{} openconfig_interfaces.interface_phys_holdtime_top.hold_time.state
+{} openconfig_interfaces.interface_phys_holdtime_top.hold_time
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interface_counters_state.counters
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.sub_unnumbered_top.unnumbered.interface_ref.config
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.sub_unnumbered_top.unnumbered.interface_ref.state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.sub_unnumbered_top.unnumbered.config
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.sub_unnumbered_top.unnumbered.state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.sub_unnumbered_top.unnumbered.interface_ref
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.sub_unnumbered_top.unnumbered
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.subinterfaces_state.counters
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.subinterfaces_top.subinterfaces.subinterface.state.counters
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.subinterfaces_top.subinterfaces.subinterface.config
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.subinterfaces_top.subinterfaces.subinterface.state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.subinterfaces_top.subinterfaces.subinterface
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.subinterfaces_top.subinterfaces
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces_top.interfaces.interface.state.counters
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces_top.interfaces.interface.hold_time.config
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces_top.interfaces.interface.hold_time.state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces_top.interfaces.interface.subinterfaces.subinterface.state.counters
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces_top.interfaces.interface.subinterfaces.subinterface.config
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces_top.interfaces.interface.subinterfaces.subinterface.state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces_top.interfaces.interface.subinterfaces.subinterface
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces_top.interfaces.interface.config
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces_top.interfaces.interface.state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces_top.interfaces.interface.hold_time
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces_top.interfaces.interface.subinterfaces
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces_top.interfaces.interface
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces_top.interfaces
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces.interface.state.counters
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces.interface.hold_time.config
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces.interface.hold_time.state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface.state.counters
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface.config
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface.state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces.interface.config
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces.interface.state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces.interface.hold_time
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces.interface.subinterfaces
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces.interface
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interface_ref_common
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interface_ref_state_container
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interface_ref
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interface_ref_state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.base_interface_ref_state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interface_common_config
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interface_phys_config
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interface_phys_holdtime_config
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interface_phys_holdtime_state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interface_phys_holdtime_top
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interface_common_state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interface_counters_state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.sub_unnumbered_config
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.sub_unnumbered_state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.sub_unnumbered_top
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.subinterfaces_config
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.subinterfaces_state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.subinterfaces_top
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces_top
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D9DB70>, 'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x03D985B0>} openconfig_interfaces.interfaces
+Success writing file to disk: output_dir/openconfig_extensions_v1.xml
+Success writing file to disk: output_dir/ietf_yang_types_v1.xml
+Success writing file to disk: output_dir/openconfig_yang_types_v1.xml
+Success writing file to disk: output_dir/openconfig_types_v1.xml
+Success writing file to disk: output_dir/ietf_interfaces_v1.xml
 Success writing file to disk: output_dir/openconfig_interfaces_v1.xml
-There were unsatisfied modules: 
-openconfig-interfaces required: ['openconfig-extensions', 'openconfig-yang-types', 'openconfig-types', 'ietf-interfaces']

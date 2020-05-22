@@ -1,18 +1,18 @@
-pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes yangs/openconfig-interfaces.yang
+pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes --create_groupings yangs/openconfig-interfaces.yang yangs/openconfig-extensions.yang yangs/openconfig-yang-types.yang yangs/openconfig-types.yang yangs/ietf-interfaces.yang yangs/ietf-yang-types.yang > logs/interfaces.log
 
-pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes yangs/openconfig-acl.yang
+pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes --create_groupings yangs/openconfig-acl.yang yangs/openconfig-yang-types.yang yangs/openconfig-packet-match.yang yangs/openconfig-interfaces.yang yangs/openconfig-extensions.yang yangs/openconfig-types.yang yangs/ietf-interfaces.yang yangs/openconfig-inet-types.yang yangs/openconfig-packet-match-types.yang yangs/ietf-yang-types.yang > logs/acl.log
 
-pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes yangs/openconfig-local-routing.yang
+pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes --create_groupings yangs/openconfig-local-routing.yang yangs/openconfig-inet-types.yang yangs/openconfig-interfaces.yang yangs/openconfig-policy-types.yang yangs/openconfig-extensions.yang yangs/openconfig-types.yang yangs/openconfig-yang-types.yang yangs/ietf-interfaces.yang yangs/ietf-yang-types.yang > logs/local-routing.log
 
-pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes yangs/openconfig-lacp.yang
+pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes --create_groupings yangs/openconfig-lacp.yang yangs/openconfig-interfaces.yang yangs/openconfig-yang-types.yang yangs/openconfig-extensions.yang yangs/ietf-interfaces.yang yangs/openconfig-types.yang yangs/ietf-yang-types.yang > logs/lacp.log
 
-pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes yangs/openconfig-lldp.yang
+pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes --create_groupings yangs/openconfig-lldp.yang yangs/openconfig-extensions.yang yangs/openconfig-lldp-types.yang yangs/ietf-yang-types.yang yangs/openconfig-interfaces.yang yangs/openconfig-yang-types.yang yangs/ietf-interfaces.yang yangs/openconfig-types.yang > logs/lldp.log
 
-pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes yangs/openconfig-qos.yang
+pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes --create_groupings yangs/openconfig-qos.yang yangs/openconfig-extensions.yang > logs/qos.log
 
-pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes yangs/openconfig-vlan.yang
+pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes --create_groupings yangs/openconfig-vlan.yang yangs/openconfig-extensions.yang yangs/openconfig-if-ethernet.yang yangs/openconfig-if-aggregate.yang yangs/openconfig-vlan-types.yang yangs/openconfig-interfaces.yang yangs/openconfig-if-aggregate.yang yangs/openconfig-types.yang yangs/openconfig-if-types.yang yangs/iana-if-type.yang yangs/openconfig-yang-types.yang yangs/ietf-interfaces.yang yangs/ietf-yang-types.yang yangs/iana-if-type.yang > logs/vlan.log
 
-pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes yangs/openconfig-network-instance.yang
+pyang -p yangs --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir output_dir --combine_all_nodes --create_groupings yangs/openconfig-network-instance.yang yangs/openconfig-policy-types.yang yangs/openconfig-network-instance-l3.yang yangs/openconfig-local-routing.yang yangs/openconfig-interfaces.yang yangs/openconfig-types.yang yangs/openconfig-vlan.yang yangs/openconfig-vlan-types.yang yangs/openconfig-extensions.yang yangs/openconfig-if-ethernet.yang yangs/openconfig-if-aggregate.yang yangs/openconfig-if-types.yang yangs/openconfig-network-instance-types.yang yangs/openconfig-inet-types.yang yangs/openconfig-yang-types.yang yangs/ietf-interfaces.yang yangs/ietf-inet-types.yang yangs/ietf-yang-types.yang yangs/iana-if-type.yang> logs/network-instance.log
 
 Note: One can redirect the output into a file with the ">" operator.  For example:
 
