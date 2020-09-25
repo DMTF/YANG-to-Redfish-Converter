@@ -1,0 +1,152 @@
+<?xml version="1.0" ?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
+		<edmx:Include Namespace="Resource.v1_0_0"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_policy_types">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="openconfig_policy_types" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_policy_types."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_policy_types."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_policy_types.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EnumType Name="match-set-options-typeEnumeration">
+				<Member Name="ANY">
+					<Annotation Term="RedfishYang.enum" String="ANY"/>
+					<Annotation Term="OData.Description" String="match is true if given value matches any member of the defined set."/>
+					<Annotation Term="OData.LongDescription" String="match is true if given value matches any member of the defined set."/>
+				</Member>
+				<Member Name="ALL">
+					<Annotation Term="RedfishYang.enum" String="ALL"/>
+					<Annotation Term="OData.Description" String="match is true if given value matches all members of the defined set."/>
+					<Annotation Term="OData.LongDescription" String="match is true if given value matches all members of the defined set."/>
+				</Member>
+				<Member Name="INVERT">
+					<Annotation Term="RedfishYang.enum" String="INVERT"/>
+					<Annotation Term="OData.Description" String="match is true if given value does not match any member of the defined set."/>
+					<Annotation Term="OData.LongDescription" String="match is true if given value does not match any member of the defined set."/>
+				</Member>
+			</EnumType>
+			<EnumType Name="match-set-options-restricted-typeEnumeration">
+				<Member Name="ANY">
+					<Annotation Term="RedfishYang.enum" String="ANY"/>
+					<Annotation Term="OData.Description" String="match is true if given value matches any member of the defined set."/>
+					<Annotation Term="OData.LongDescription" String="match is true if given value matches any member of the defined set."/>
+				</Member>
+				<Member Name="INVERT">
+					<Annotation Term="RedfishYang.enum" String="INVERT"/>
+					<Annotation Term="OData.Description" String="match is true if given value does not match any member of the defined set."/>
+					<Annotation Term="OData.LongDescription" String="match is true if given value does not match any member of the defined set."/>
+				</Member>
+			</EnumType>
+			<TypeDefinition Name="tag_type">
+				<Annotation Term="RedfishYang.union">
+					<Collection>
+						<String>"uint32"</String>
+						<String>"yang.hex_string"</String>
+					</Collection>
+				</Annotation>
+				<Annotation Term="OData.Description" String="type for expressing route tags on a local system, including IS-IS and OSPF; may be expressed as either decimal or hexidecimal integer."/>
+				<Annotation Term="OData.LongDescription" String="type for expressing route tags on a local system, including IS-IS and OSPF; may be expressed as either decimal or hexidecimal integer."/>
+				<Annotation Term="RedfishYang.reference" String="RFC 2178 OSPF Version 2RFC 5130 A Policy Control Mechanism in IS-IS UsingAdministrative Tags"/>
+			</TypeDefinition>
+			<EntityType Name="openconfig_policy_types" BaseType="openconfig_policy_types.openconfig_policy_types">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/module"/>
+				<Annotation Term="RedfishYang.yang_version" String="1"/>
+				<Annotation Term="RedfishYang.namespace" String="http://openconfig.net/yang/policy-types"/>
+				<Annotation Term="RedfishYang.organization" String="OpenConfig working group"/>
+				<Annotation Term="RedfishYang.contact" String="OpenConfig working groupnetopenconfig@googlegroups.com"/>
+				<Annotation Term="OData.Description" String="This module contains general data definitions for use in routing policy."/>
+				<Annotation Term="OData.LongDescription" String="This module contains general data definitions for use in routing policy.  It can be imported by modules that contain protocol- specific policy conditions and actions."/>
+				<Annotation Term="RedfishYang.statement" String="openconfig-extensions:openconfig-version"/>
+				<Annotation Term="RedfishYang.revision" String="2018-06-05,  2017-07-14,  2016-05-12"/>
+				<Annotation Term="RedfishYang.identity" String="ATTRIBUTE_COMPARISON,  ATTRIBUTE_EQ,  ATTRIBUTE_GE,  ATTRIBUTE_LE,  INSTALL_PROTOCOL_TYPE,  BGP,  ISIS,  OSPF,  OSPF3,  STATIC,  DIRECTLY_CONNECTED,  LOCAL_AGGREGATE,  PIM,  IGMP"/>
+			</EntityType>
+			<Term Name="YangType" Type="openconfig_policy_types.v1_0_0.YangTypes">
+				<Annotation Term="OData.Description" String="A extension of openconfig_policy_types resource instances."/>
+			</Term>
+			<EnumType Name="YangTypes">
+				<Member Name="match_set_options_restricted_typeEnumeration"/>
+				<Member Name="match_set_options_typeEnumeration"/>
+				<Member Name="tag_type"/>
+			</EnumType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_policy_types.attribute_compare_operators">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="attribute_compare_operators" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_policy_types.attribute_compare_operators."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_policy_types.attribute_compare_operators."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_policy_types.attribute_compare_operators.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="attribute_compare_operators" BaseType="openconfig_policy_types.attribute_compare_operators.attribute_compare_operators">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="common definitions for comparison operations in condition statements."/>
+				<Annotation Term="OData.LongDescription" String="common definitions for comparison operations in condition statements."/>
+				<Property Name="operator" Type="RedfishYang.instance_identifier">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref"/>
+					<Annotation Term="OData.Description" String="type of comparison to be performed."/>
+					<Annotation Term="OData.LongDescription" String="type of comparison to be performed."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="value" Type="RedfishYang.uint32">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint32"/>
+					<Annotation Term="OData.Description" String="value to compare with the community count."/>
+					<Annotation Term="OData.LongDescription" String="value to compare with the community count."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
+

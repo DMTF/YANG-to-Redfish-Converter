@@ -1,0 +1,1566 @@
+<?xml version="1.0" ?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/openconfig_yang_types_v1.xml">
+		<edmx:Include Namespace="openconfig_yang_types.v1_0_0" Alias="openconfig_yang_types"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/openconfig_inet_types_v1.xml">
+		<edmx:Include Namespace="openconfig_inet_types.v1_0_0" Alias="openconfig_inet_types"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/openconfig_packet_match_types_v1.xml">
+		<edmx:Include Namespace="openconfig_packet_match_types.v1_0_0" Alias="openconfig_packet_match_types"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
+		<edmx:Include Namespace="Resource.v1_0_0"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="openconfig_packet_match" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="openconfig_packet_match" BaseType="openconfig_packet_match.openconfig_packet_match">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/module"/>
+				<Annotation Term="RedfishYang.yang_version" String="1"/>
+				<Annotation Term="RedfishYang.namespace" String="http://openconfig.net/yang/header-fields"/>
+				<Annotation Term="RedfishYang.organization" String="OpenConfig working group"/>
+				<Annotation Term="RedfishYang.contact" String="OpenConfig working groupwww.openconfig.net"/>
+				<Annotation Term="OData.Description" String="This module defines data related to packet header fields used in matching operations, for example in ACLs."/>
+				<Annotation Term="OData.LongDescription" String="This module defines data related to packet header fields used in matching operations, for example in ACLs.  When a field is omitted from a match expression, the effect is a wildcard ('any') for that field."/>
+				<Annotation Term="RedfishYang.statement" String="openconfig-extensions:openconfig-version"/>
+				<Annotation Term="RedfishYang.revision" String="2017-12-15,  2017-05-26,  2016-08-08,  2016-04-27"/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ethernet_header_top.l2.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ethernet_header_top.l2.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ethernet_header_top.l2.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ethernet_header_top.l2.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_packet_match.ethernet_header_top.l2.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration data."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data."/>
+				<Annotation Term="RedfishYang.uses" String="ethernet-header-config"/>
+				<Property Name="source_mac" Type="openconfig_yang_types.v1_0_0.mac_address">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/mac-address"/>
+					<Annotation Term="OData.Description" String="Source IEEE 802 MAC address."/>
+					<Annotation Term="OData.LongDescription" String="Source IEEE 802 MAC address."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="source_mac_mask" Type="openconfig_yang_types.v1_0_0.mac_address">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/mac-address"/>
+					<Annotation Term="OData.Description" String="Source IEEE 802 MAC address mask."/>
+					<Annotation Term="OData.LongDescription" String="Source IEEE 802 MAC address mask."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_mac" Type="openconfig_yang_types.v1_0_0.mac_address">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/mac-address"/>
+					<Annotation Term="OData.Description" String="Destination IEEE 802 MAC address."/>
+					<Annotation Term="OData.LongDescription" String="Destination IEEE 802 MAC address."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_mac_mask" Type="openconfig_yang_types.v1_0_0.mac_address">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/mac-address"/>
+					<Annotation Term="OData.Description" String="Destination IEEE 802 MAC address mask."/>
+					<Annotation Term="OData.LongDescription" String="Destination IEEE 802 MAC address mask."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="ethertype" Type="openconfig_packet_match_types.v1_0_0.ethertype_type">
+					<Annotation Term="openconfig_packet_match_types.v1_0_0.YangType" EnumMember="openconfig_packet_match_types.v1_0_0.YangTypes/ethertype-type"/>
+					<Annotation Term="OData.Description" String="Ethertype field to match in Ethernet packets."/>
+					<Annotation Term="OData.LongDescription" String="Ethertype field to match in Ethernet packets."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ethernet_header_top.l2.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ethernet_header_top.l2.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ethernet_header_top.l2.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ethernet_header_top.l2.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_packet_match.ethernet_header_top.l2.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="State Information."/>
+				<Annotation Term="OData.LongDescription" String="State Information."/>
+				<Annotation Term="RedfishYang.uses" String="ethernet-header-config,  ethernet-header-state"/>
+				<Property Name="source_mac" Type="openconfig_yang_types.v1_0_0.mac_address">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/mac-address"/>
+					<Annotation Term="OData.Description" String="Source IEEE 802 MAC address."/>
+					<Annotation Term="OData.LongDescription" String="Source IEEE 802 MAC address."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="source_mac_mask" Type="openconfig_yang_types.v1_0_0.mac_address">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/mac-address"/>
+					<Annotation Term="OData.Description" String="Source IEEE 802 MAC address mask."/>
+					<Annotation Term="OData.LongDescription" String="Source IEEE 802 MAC address mask."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_mac" Type="openconfig_yang_types.v1_0_0.mac_address">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/mac-address"/>
+					<Annotation Term="OData.Description" String="Destination IEEE 802 MAC address."/>
+					<Annotation Term="OData.LongDescription" String="Destination IEEE 802 MAC address."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_mac_mask" Type="openconfig_yang_types.v1_0_0.mac_address">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/mac-address"/>
+					<Annotation Term="OData.Description" String="Destination IEEE 802 MAC address mask."/>
+					<Annotation Term="OData.LongDescription" String="Destination IEEE 802 MAC address mask."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="ethertype" Type="openconfig_packet_match_types.v1_0_0.ethertype_type">
+					<Annotation Term="openconfig_packet_match_types.v1_0_0.YangType" EnumMember="openconfig_packet_match_types.v1_0_0.YangTypes/ethertype-type"/>
+					<Annotation Term="OData.Description" String="Ethertype field to match in Ethernet packets."/>
+					<Annotation Term="OData.LongDescription" String="Ethertype field to match in Ethernet packets."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ethernet_header_top.l2">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="l2" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ethernet_header_top.l2."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ethernet_header_top.l2."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ethernet_header_top.l2.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="l2" BaseType="openconfig_packet_match.ethernet_header_top.l2.l2">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Ethernet header fields."/>
+				<Annotation Term="OData.LongDescription" String="Ethernet header fields."/>
+				<NavigationProperty Name="configContainer" Type="openconfig_packet_match.ethernet_header_top.l2.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_packet_match.ethernet_header_top.l2.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.mpls_header_top.mpls.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.mpls_header_top.mpls.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.mpls_header_top.mpls.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.mpls_header_top.mpls.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_packet_match.mpls_header_top.mpls.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration parameters relating to fields within the MPLS header."/>
+				<Annotation Term="OData.LongDescription" String="Configuration parameters relating to fields within the MPLS header."/>
+				<Annotation Term="RedfishYang.uses" String="mpls-header-config"/>
+				<Property Name="traffic_class" Type="RedfishYang.uint16">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint8"/>
+					<Annotation Term="OData.Description" String="The value of the MPLS traffic class (TC) bits, formerly known as the EXP bits."/>
+					<Annotation Term="OData.LongDescription" String="The value of the MPLS traffic class (TC) bits, formerly known as the EXP bits."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.mpls_header_top.mpls.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.mpls_header_top.mpls.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.mpls_header_top.mpls.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.mpls_header_top.mpls.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_packet_match.mpls_header_top.mpls.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state parameters relating to fields within the MPLS header."/>
+				<Annotation Term="OData.LongDescription" String="Operational state parameters relating to fields within the MPLS header."/>
+				<Annotation Term="RedfishYang.uses" String="mpls-header-config"/>
+				<Property Name="traffic_class" Type="RedfishYang.uint16">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint8"/>
+					<Annotation Term="OData.Description" String="The value of the MPLS traffic class (TC) bits, formerly known as the EXP bits."/>
+					<Annotation Term="OData.LongDescription" String="The value of the MPLS traffic class (TC) bits, formerly known as the EXP bits."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.mpls_header_top.mpls">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="mpls" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.mpls_header_top.mpls."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.mpls_header_top.mpls."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.mpls_header_top.mpls.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="mpls" BaseType="openconfig_packet_match.mpls_header_top.mpls.mpls">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="MPLS header fields."/>
+				<Annotation Term="OData.LongDescription" String="MPLS header fields."/>
+				<NavigationProperty Name="configContainer" Type="openconfig_packet_match.mpls_header_top.mpls.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_packet_match.mpls_header_top.mpls.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv4_protocol_fields_top.ipv4.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ipv4_protocol_fields_top.ipv4.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ipv4_protocol_fields_top.ipv4.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv4_protocol_fields_top.ipv4.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_packet_match.ipv4_protocol_fields_top.ipv4.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration data for IPv4 match fields."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data for IPv4 match fields."/>
+				<Annotation Term="RedfishYang.uses" String="ipv4-protocol-fields-config"/>
+				<Property Name="source_address" Type="openconfig_inet_types.v1_0_0.ipv4_prefix">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv4-prefix"/>
+					<Annotation Term="OData.Description" String="Source IPv4 address prefix."/>
+					<Annotation Term="OData.LongDescription" String="Source IPv4 address prefix."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_address" Type="openconfig_inet_types.v1_0_0.ipv4_prefix">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv4-prefix"/>
+					<Annotation Term="OData.Description" String="Destination IPv4 address prefix."/>
+					<Annotation Term="OData.LongDescription" String="Destination IPv4 address prefix."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="dscp" Type="openconfig_inet_types.v1_0_0.dscp">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/dscp"/>
+					<Annotation Term="OData.Description" String="Value of diffserv codepoint."/>
+					<Annotation Term="OData.LongDescription" String="Value of diffserv codepoint."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="protocol" Type="openconfig_packet_match_types.v1_0_0.ip_protocol_type">
+					<Annotation Term="openconfig_packet_match_types.v1_0_0.YangType" EnumMember="openconfig_packet_match_types.v1_0_0.YangTypes/ip-protocol-type"/>
+					<Annotation Term="OData.Description" String="The protocol carried in the IP packet, expressed either as its IP protocol number, or by a defined identity."/>
+					<Annotation Term="OData.LongDescription" String="The protocol carried in the IP packet, expressed either as its IP protocol number, or by a defined identity."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="hop_limit" Type="RedfishYang.uint16">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint8"/>
+					<Annotation Term="OData.Description" String="The IP packet's hop limit -- known as TTL (in hops) in IPv4 packets, and hop limit in IPv6."/>
+					<Annotation Term="OData.LongDescription" String="The IP packet's hop limit -- known as TTL (in hops) in IPv4 packets, and hop limit in IPv6."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv4_protocol_fields_top.ipv4.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ipv4_protocol_fields_top.ipv4.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ipv4_protocol_fields_top.ipv4.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv4_protocol_fields_top.ipv4.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_packet_match.ipv4_protocol_fields_top.ipv4.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="State information for IPv4 match fields."/>
+				<Annotation Term="OData.LongDescription" String="State information for IPv4 match fields."/>
+				<Annotation Term="RedfishYang.uses" String="ipv4-protocol-fields-config,  ipv4-protocol-fields-state"/>
+				<Property Name="source_address" Type="openconfig_inet_types.v1_0_0.ipv4_prefix">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv4-prefix"/>
+					<Annotation Term="OData.Description" String="Source IPv4 address prefix."/>
+					<Annotation Term="OData.LongDescription" String="Source IPv4 address prefix."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_address" Type="openconfig_inet_types.v1_0_0.ipv4_prefix">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv4-prefix"/>
+					<Annotation Term="OData.Description" String="Destination IPv4 address prefix."/>
+					<Annotation Term="OData.LongDescription" String="Destination IPv4 address prefix."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="dscp" Type="openconfig_inet_types.v1_0_0.dscp">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/dscp"/>
+					<Annotation Term="OData.Description" String="Value of diffserv codepoint."/>
+					<Annotation Term="OData.LongDescription" String="Value of diffserv codepoint."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="protocol" Type="openconfig_packet_match_types.v1_0_0.ip_protocol_type">
+					<Annotation Term="openconfig_packet_match_types.v1_0_0.YangType" EnumMember="openconfig_packet_match_types.v1_0_0.YangTypes/ip-protocol-type"/>
+					<Annotation Term="OData.Description" String="The protocol carried in the IP packet, expressed either as its IP protocol number, or by a defined identity."/>
+					<Annotation Term="OData.LongDescription" String="The protocol carried in the IP packet, expressed either as its IP protocol number, or by a defined identity."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="hop_limit" Type="RedfishYang.uint16">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint8"/>
+					<Annotation Term="OData.Description" String="The IP packet's hop limit -- known as TTL (in hops) in IPv4 packets, and hop limit in IPv6."/>
+					<Annotation Term="OData.LongDescription" String="The IP packet's hop limit -- known as TTL (in hops) in IPv4 packets, and hop limit in IPv6."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv4_protocol_fields_top.ipv4">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="ipv4" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ipv4_protocol_fields_top.ipv4."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ipv4_protocol_fields_top.ipv4."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv4_protocol_fields_top.ipv4.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="ipv4" BaseType="openconfig_packet_match.ipv4_protocol_fields_top.ipv4.ipv4">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Top level container for IPv4 match field data."/>
+				<Annotation Term="OData.LongDescription" String="Top level container for IPv4 match field data."/>
+				<NavigationProperty Name="configContainer" Type="openconfig_packet_match.ipv4_protocol_fields_top.ipv4.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_packet_match.ipv4_protocol_fields_top.ipv4.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv6_protocol_fields_top.ipv6.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ipv6_protocol_fields_top.ipv6.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ipv6_protocol_fields_top.ipv6.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv6_protocol_fields_top.ipv6.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_packet_match.ipv6_protocol_fields_top.ipv6.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration data for IPv6 match fields."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data for IPv6 match fields."/>
+				<Annotation Term="RedfishYang.uses" String="ipv6-protocol-fields-config"/>
+				<Property Name="source_address" Type="openconfig_inet_types.v1_0_0.ipv6_prefix">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv6-prefix"/>
+					<Annotation Term="OData.Description" String="Source IPv6 address prefix."/>
+					<Annotation Term="OData.LongDescription" String="Source IPv6 address prefix."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="source_flow_label" Type="openconfig_inet_types.v1_0_0.ipv6_flow_label">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv6-flow-label"/>
+					<Annotation Term="OData.Description" String="Source IPv6 Flow label."/>
+					<Annotation Term="OData.LongDescription" String="Source IPv6 Flow label."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_address" Type="openconfig_inet_types.v1_0_0.ipv6_prefix">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv6-prefix"/>
+					<Annotation Term="OData.Description" String="Destination IPv6 address prefix."/>
+					<Annotation Term="OData.LongDescription" String="Destination IPv6 address prefix."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_flow_label" Type="openconfig_inet_types.v1_0_0.ipv6_flow_label">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv6-flow-label"/>
+					<Annotation Term="OData.Description" String="Destination IPv6 Flow label."/>
+					<Annotation Term="OData.LongDescription" String="Destination IPv6 Flow label."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="dscp" Type="openconfig_inet_types.v1_0_0.dscp">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/dscp"/>
+					<Annotation Term="OData.Description" String="Value of diffserv codepoint."/>
+					<Annotation Term="OData.LongDescription" String="Value of diffserv codepoint."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="protocol" Type="openconfig_packet_match_types.v1_0_0.ip_protocol_type">
+					<Annotation Term="openconfig_packet_match_types.v1_0_0.YangType" EnumMember="openconfig_packet_match_types.v1_0_0.YangTypes/ip-protocol-type"/>
+					<Annotation Term="OData.Description" String="The protocol carried in the IP packet, expressed either as its IP protocol number, or by a defined identity."/>
+					<Annotation Term="OData.LongDescription" String="The protocol carried in the IP packet, expressed either as its IP protocol number, or by a defined identity."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="hop_limit" Type="RedfishYang.uint16">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint8"/>
+					<Annotation Term="OData.Description" String="The IP packet's hop limit -- known as TTL (in hops) in IPv4 packets, and hop limit in IPv6."/>
+					<Annotation Term="OData.LongDescription" String="The IP packet's hop limit -- known as TTL (in hops) in IPv4 packets, and hop limit in IPv6."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv6_protocol_fields_top.ipv6.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ipv6_protocol_fields_top.ipv6.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ipv6_protocol_fields_top.ipv6.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv6_protocol_fields_top.ipv6.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_packet_match.ipv6_protocol_fields_top.ipv6.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state data for IPv6 match fields."/>
+				<Annotation Term="OData.LongDescription" String="Operational state data for IPv6 match fields."/>
+				<Annotation Term="RedfishYang.uses" String="ipv6-protocol-fields-config,  ipv6-protocol-fields-state"/>
+				<Property Name="source_address" Type="openconfig_inet_types.v1_0_0.ipv6_prefix">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv6-prefix"/>
+					<Annotation Term="OData.Description" String="Source IPv6 address prefix."/>
+					<Annotation Term="OData.LongDescription" String="Source IPv6 address prefix."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="source_flow_label" Type="openconfig_inet_types.v1_0_0.ipv6_flow_label">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv6-flow-label"/>
+					<Annotation Term="OData.Description" String="Source IPv6 Flow label."/>
+					<Annotation Term="OData.LongDescription" String="Source IPv6 Flow label."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_address" Type="openconfig_inet_types.v1_0_0.ipv6_prefix">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv6-prefix"/>
+					<Annotation Term="OData.Description" String="Destination IPv6 address prefix."/>
+					<Annotation Term="OData.LongDescription" String="Destination IPv6 address prefix."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_flow_label" Type="openconfig_inet_types.v1_0_0.ipv6_flow_label">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv6-flow-label"/>
+					<Annotation Term="OData.Description" String="Destination IPv6 Flow label."/>
+					<Annotation Term="OData.LongDescription" String="Destination IPv6 Flow label."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="dscp" Type="openconfig_inet_types.v1_0_0.dscp">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/dscp"/>
+					<Annotation Term="OData.Description" String="Value of diffserv codepoint."/>
+					<Annotation Term="OData.LongDescription" String="Value of diffserv codepoint."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="protocol" Type="openconfig_packet_match_types.v1_0_0.ip_protocol_type">
+					<Annotation Term="openconfig_packet_match_types.v1_0_0.YangType" EnumMember="openconfig_packet_match_types.v1_0_0.YangTypes/ip-protocol-type"/>
+					<Annotation Term="OData.Description" String="The protocol carried in the IP packet, expressed either as its IP protocol number, or by a defined identity."/>
+					<Annotation Term="OData.LongDescription" String="The protocol carried in the IP packet, expressed either as its IP protocol number, or by a defined identity."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="hop_limit" Type="RedfishYang.uint16">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint8"/>
+					<Annotation Term="OData.Description" String="The IP packet's hop limit -- known as TTL (in hops) in IPv4 packets, and hop limit in IPv6."/>
+					<Annotation Term="OData.LongDescription" String="The IP packet's hop limit -- known as TTL (in hops) in IPv4 packets, and hop limit in IPv6."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv6_protocol_fields_top.ipv6">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="ipv6" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ipv6_protocol_fields_top.ipv6."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ipv6_protocol_fields_top.ipv6."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv6_protocol_fields_top.ipv6.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="ipv6" BaseType="openconfig_packet_match.ipv6_protocol_fields_top.ipv6.ipv6">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Top-level container for IPv6 match field data."/>
+				<Annotation Term="OData.LongDescription" String="Top-level container for IPv6 match field data."/>
+				<NavigationProperty Name="configContainer" Type="openconfig_packet_match.ipv6_protocol_fields_top.ipv6.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_packet_match.ipv6_protocol_fields_top.ipv6.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.transport_fields_top.transport.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.transport_fields_top.transport.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.transport_fields_top.transport.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.transport_fields_top.transport.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_packet_match.transport_fields_top.transport.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration data."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data."/>
+				<Annotation Term="RedfishYang.uses" String="transport-fields-config"/>
+				<Property Name="source_port" Type="openconfig_packet_match_types.v1_0_0.port_num_range">
+					<Annotation Term="openconfig_packet_match_types.v1_0_0.YangType" EnumMember="openconfig_packet_match_types.v1_0_0.YangTypes/port-num-range"/>
+					<Annotation Term="OData.Description" String="Source port or range."/>
+					<Annotation Term="OData.LongDescription" String="Source port or range."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_port" Type="openconfig_packet_match_types.v1_0_0.port_num_range">
+					<Annotation Term="openconfig_packet_match_types.v1_0_0.YangType" EnumMember="openconfig_packet_match_types.v1_0_0.YangTypes/port-num-range"/>
+					<Annotation Term="OData.Description" String="Destination port or range."/>
+					<Annotation Term="OData.LongDescription" String="Destination port or range."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="tcp_flags" Type="RedfishYang.instance_identifier">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref"/>
+					<Annotation Term="OData.Description" String="List of TCP flags to match."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf_list"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+					<Annotation Term="OData.LongDescription" String="List of the type tcp_flags.  List of TCP flags to match."/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.transport_fields_top.transport.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.transport_fields_top.transport.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.transport_fields_top.transport.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.transport_fields_top.transport.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_packet_match.transport_fields_top.transport.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="State data."/>
+				<Annotation Term="OData.LongDescription" String="State data."/>
+				<Annotation Term="RedfishYang.uses" String="transport-fields-config,  transport-fields-state"/>
+				<Property Name="source_port" Type="openconfig_packet_match_types.v1_0_0.port_num_range">
+					<Annotation Term="openconfig_packet_match_types.v1_0_0.YangType" EnumMember="openconfig_packet_match_types.v1_0_0.YangTypes/port-num-range"/>
+					<Annotation Term="OData.Description" String="Source port or range."/>
+					<Annotation Term="OData.LongDescription" String="Source port or range."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_port" Type="openconfig_packet_match_types.v1_0_0.port_num_range">
+					<Annotation Term="openconfig_packet_match_types.v1_0_0.YangType" EnumMember="openconfig_packet_match_types.v1_0_0.YangTypes/port-num-range"/>
+					<Annotation Term="OData.Description" String="Destination port or range."/>
+					<Annotation Term="OData.LongDescription" String="Destination port or range."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="tcp_flags" Type="RedfishYang.instance_identifier">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref"/>
+					<Annotation Term="OData.Description" String="List of TCP flags to match."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf_list"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+					<Annotation Term="OData.LongDescription" String="List of the type tcp_flags.  List of TCP flags to match."/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.transport_fields_top.transport">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="transport" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.transport_fields_top.transport."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.transport_fields_top.transport."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.transport_fields_top.transport.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="transport" BaseType="openconfig_packet_match.transport_fields_top.transport.transport">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Transport fields container."/>
+				<Annotation Term="OData.LongDescription" String="Transport fields container."/>
+				<NavigationProperty Name="configContainer" Type="openconfig_packet_match.transport_fields_top.transport.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_packet_match.transport_fields_top.transport.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ethernet_header_config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="ethernet_header_config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ethernet_header_config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ethernet_header_config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ethernet_header_config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="ethernet_header_config" BaseType="openconfig_packet_match.ethernet_header_config.ethernet_header_config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="Configuration data of fields in Ethernet header."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data of fields in Ethernet header."/>
+				<Property Name="source_mac" Type="openconfig_yang_types.v1_0_0.mac_address">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/mac-address"/>
+					<Annotation Term="OData.Description" String="Source IEEE 802 MAC address."/>
+					<Annotation Term="OData.LongDescription" String="Source IEEE 802 MAC address."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="source_mac_mask" Type="openconfig_yang_types.v1_0_0.mac_address">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/mac-address"/>
+					<Annotation Term="OData.Description" String="Source IEEE 802 MAC address mask."/>
+					<Annotation Term="OData.LongDescription" String="Source IEEE 802 MAC address mask."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_mac" Type="openconfig_yang_types.v1_0_0.mac_address">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/mac-address"/>
+					<Annotation Term="OData.Description" String="Destination IEEE 802 MAC address."/>
+					<Annotation Term="OData.LongDescription" String="Destination IEEE 802 MAC address."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_mac_mask" Type="openconfig_yang_types.v1_0_0.mac_address">
+					<Annotation Term="openconfig_yang_types.v1_0_0.YangType" EnumMember="openconfig_yang_types.v1_0_0.YangTypes/mac-address"/>
+					<Annotation Term="OData.Description" String="Destination IEEE 802 MAC address mask."/>
+					<Annotation Term="OData.LongDescription" String="Destination IEEE 802 MAC address mask."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="ethertype" Type="openconfig_packet_match_types.v1_0_0.ethertype_type">
+					<Annotation Term="openconfig_packet_match_types.v1_0_0.YangType" EnumMember="openconfig_packet_match_types.v1_0_0.YangTypes/ethertype-type"/>
+					<Annotation Term="OData.Description" String="Ethertype field to match in Ethernet packets."/>
+					<Annotation Term="OData.LongDescription" String="Ethertype field to match in Ethernet packets."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ethernet_header_state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="ethernet_header_state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ethernet_header_state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ethernet_header_state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ethernet_header_state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="ethernet_header_state" BaseType="openconfig_packet_match.ethernet_header_state.ethernet_header_state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="State information of fields in Ethernet header."/>
+				<Annotation Term="OData.LongDescription" String="State information of fields in Ethernet header."/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ethernet_header_top">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="ethernet_header_top" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ethernet_header_top."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ethernet_header_top."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ethernet_header_top.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="ethernet_header_top" BaseType="openconfig_packet_match.ethernet_header_top.ethernet_header_top">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="Top level container for fields in Ethernet header."/>
+				<Annotation Term="OData.LongDescription" String="Top level container for fields in Ethernet header."/>
+				<NavigationProperty Name="l2Container" Type="openconfig_packet_match.ethernet_header_top.l2.l2" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of l2."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.mpls_header_top">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="mpls_header_top" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.mpls_header_top."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.mpls_header_top."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.mpls_header_top.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="mpls_header_top" BaseType="openconfig_packet_match.mpls_header_top.mpls_header_top">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="Top-level container for fields in an MPLS header."/>
+				<Annotation Term="OData.LongDescription" String="Top-level container for fields in an MPLS header."/>
+				<NavigationProperty Name="mplsContainer" Type="openconfig_packet_match.mpls_header_top.mpls.mpls" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of mpls."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.mpls_header_config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="mpls_header_config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.mpls_header_config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.mpls_header_config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.mpls_header_config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="mpls_header_config" BaseType="openconfig_packet_match.mpls_header_config.mpls_header_config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="Configuration parameters relating to matches within MPLS header fields."/>
+				<Annotation Term="OData.LongDescription" String="Configuration parameters relating to matches within MPLS header fields."/>
+				<Property Name="traffic_class" Type="RedfishYang.uint16">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint8"/>
+					<Annotation Term="OData.Description" String="The value of the MPLS traffic class (TC) bits, formerly known as the EXP bits."/>
+					<Annotation Term="OData.LongDescription" String="The value of the MPLS traffic class (TC) bits, formerly known as the EXP bits."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ip_protocol_fields_common_config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="ip_protocol_fields_common_config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ip_protocol_fields_common_config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ip_protocol_fields_common_config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ip_protocol_fields_common_config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="ip_protocol_fields_common_config" BaseType="openconfig_packet_match.ip_protocol_fields_common_config.ip_protocol_fields_common_config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="IP protocol fields common to IPv4 and IPv6."/>
+				<Annotation Term="OData.LongDescription" String="IP protocol fields common to IPv4 and IPv6."/>
+				<Property Name="dscp" Type="openconfig_inet_types.v1_0_0.dscp">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/dscp"/>
+					<Annotation Term="OData.Description" String="Value of diffserv codepoint."/>
+					<Annotation Term="OData.LongDescription" String="Value of diffserv codepoint."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="protocol" Type="openconfig_packet_match_types.v1_0_0.ip_protocol_type">
+					<Annotation Term="openconfig_packet_match_types.v1_0_0.YangType" EnumMember="openconfig_packet_match_types.v1_0_0.YangTypes/ip-protocol-type"/>
+					<Annotation Term="OData.Description" String="The protocol carried in the IP packet, expressed either as its IP protocol number, or by a defined identity."/>
+					<Annotation Term="OData.LongDescription" String="The protocol carried in the IP packet, expressed either as its IP protocol number, or by a defined identity."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="hop_limit" Type="RedfishYang.uint16">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint8"/>
+					<Annotation Term="OData.Description" String="The IP packet's hop limit -- known as TTL (in hops) in IPv4 packets, and hop limit in IPv6."/>
+					<Annotation Term="OData.LongDescription" String="The IP packet's hop limit -- known as TTL (in hops) in IPv4 packets, and hop limit in IPv6."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv4_protocol_fields_config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="ipv4_protocol_fields_config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ipv4_protocol_fields_config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ipv4_protocol_fields_config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv4_protocol_fields_config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="ipv4_protocol_fields_config" BaseType="openconfig_packet_match.ipv4_protocol_fields_config.ipv4_protocol_fields_config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="Configuration data of IP protocol fields for IPv4."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data of IP protocol fields for IPv4."/>
+				<Property Name="source_address" Type="openconfig_inet_types.v1_0_0.ipv4_prefix">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv4-prefix"/>
+					<Annotation Term="OData.Description" String="Source IPv4 address prefix."/>
+					<Annotation Term="OData.LongDescription" String="Source IPv4 address prefix."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_address" Type="openconfig_inet_types.v1_0_0.ipv4_prefix">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv4-prefix"/>
+					<Annotation Term="OData.Description" String="Destination IPv4 address prefix."/>
+					<Annotation Term="OData.LongDescription" String="Destination IPv4 address prefix."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Annotation Term="RedfishYang.uses" String="ip-protocol-fields-common-config"/>
+				<Property Name="dscp" Type="openconfig_inet_types.v1_0_0.dscp">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/dscp"/>
+					<Annotation Term="OData.Description" String="Value of diffserv codepoint."/>
+					<Annotation Term="OData.LongDescription" String="Value of diffserv codepoint."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="protocol" Type="openconfig_packet_match_types.v1_0_0.ip_protocol_type">
+					<Annotation Term="openconfig_packet_match_types.v1_0_0.YangType" EnumMember="openconfig_packet_match_types.v1_0_0.YangTypes/ip-protocol-type"/>
+					<Annotation Term="OData.Description" String="The protocol carried in the IP packet, expressed either as its IP protocol number, or by a defined identity."/>
+					<Annotation Term="OData.LongDescription" String="The protocol carried in the IP packet, expressed either as its IP protocol number, or by a defined identity."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="hop_limit" Type="RedfishYang.uint16">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint8"/>
+					<Annotation Term="OData.Description" String="The IP packet's hop limit -- known as TTL (in hops) in IPv4 packets, and hop limit in IPv6."/>
+					<Annotation Term="OData.LongDescription" String="The IP packet's hop limit -- known as TTL (in hops) in IPv4 packets, and hop limit in IPv6."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv4_protocol_fields_state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="ipv4_protocol_fields_state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ipv4_protocol_fields_state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ipv4_protocol_fields_state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv4_protocol_fields_state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="ipv4_protocol_fields_state" BaseType="openconfig_packet_match.ipv4_protocol_fields_state.ipv4_protocol_fields_state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="State information of IP header fields for IPv4."/>
+				<Annotation Term="OData.LongDescription" String="State information of IP header fields for IPv4."/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv4_protocol_fields_top">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="ipv4_protocol_fields_top" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ipv4_protocol_fields_top."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ipv4_protocol_fields_top."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv4_protocol_fields_top.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="ipv4_protocol_fields_top" BaseType="openconfig_packet_match.ipv4_protocol_fields_top.ipv4_protocol_fields_top">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="IP header fields for IPv4."/>
+				<Annotation Term="OData.LongDescription" String="IP header fields for IPv4."/>
+				<NavigationProperty Name="ipv4Container" Type="openconfig_packet_match.ipv4_protocol_fields_top.ipv4.ipv4" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of ipv4."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv6_protocol_fields_config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="ipv6_protocol_fields_config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ipv6_protocol_fields_config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ipv6_protocol_fields_config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv6_protocol_fields_config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="ipv6_protocol_fields_config" BaseType="openconfig_packet_match.ipv6_protocol_fields_config.ipv6_protocol_fields_config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="Configuration data for IPv6 match fields."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data for IPv6 match fields."/>
+				<Property Name="source_address" Type="openconfig_inet_types.v1_0_0.ipv6_prefix">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv6-prefix"/>
+					<Annotation Term="OData.Description" String="Source IPv6 address prefix."/>
+					<Annotation Term="OData.LongDescription" String="Source IPv6 address prefix."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="source_flow_label" Type="openconfig_inet_types.v1_0_0.ipv6_flow_label">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv6-flow-label"/>
+					<Annotation Term="OData.Description" String="Source IPv6 Flow label."/>
+					<Annotation Term="OData.LongDescription" String="Source IPv6 Flow label."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_address" Type="openconfig_inet_types.v1_0_0.ipv6_prefix">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv6-prefix"/>
+					<Annotation Term="OData.Description" String="Destination IPv6 address prefix."/>
+					<Annotation Term="OData.LongDescription" String="Destination IPv6 address prefix."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_flow_label" Type="openconfig_inet_types.v1_0_0.ipv6_flow_label">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/ipv6-flow-label"/>
+					<Annotation Term="OData.Description" String="Destination IPv6 Flow label."/>
+					<Annotation Term="OData.LongDescription" String="Destination IPv6 Flow label."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Annotation Term="RedfishYang.uses" String="ip-protocol-fields-common-config"/>
+				<Property Name="dscp" Type="openconfig_inet_types.v1_0_0.dscp">
+					<Annotation Term="openconfig_inet_types.v1_0_0.YangType" EnumMember="openconfig_inet_types.v1_0_0.YangTypes/dscp"/>
+					<Annotation Term="OData.Description" String="Value of diffserv codepoint."/>
+					<Annotation Term="OData.LongDescription" String="Value of diffserv codepoint."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="protocol" Type="openconfig_packet_match_types.v1_0_0.ip_protocol_type">
+					<Annotation Term="openconfig_packet_match_types.v1_0_0.YangType" EnumMember="openconfig_packet_match_types.v1_0_0.YangTypes/ip-protocol-type"/>
+					<Annotation Term="OData.Description" String="The protocol carried in the IP packet, expressed either as its IP protocol number, or by a defined identity."/>
+					<Annotation Term="OData.LongDescription" String="The protocol carried in the IP packet, expressed either as its IP protocol number, or by a defined identity."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="hop_limit" Type="RedfishYang.uint16">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint8"/>
+					<Annotation Term="OData.Description" String="The IP packet's hop limit -- known as TTL (in hops) in IPv4 packets, and hop limit in IPv6."/>
+					<Annotation Term="OData.LongDescription" String="The IP packet's hop limit -- known as TTL (in hops) in IPv4 packets, and hop limit in IPv6."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv6_protocol_fields_state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="ipv6_protocol_fields_state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ipv6_protocol_fields_state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ipv6_protocol_fields_state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv6_protocol_fields_state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="ipv6_protocol_fields_state" BaseType="openconfig_packet_match.ipv6_protocol_fields_state.ipv6_protocol_fields_state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="Operational state data for IPv6 match fields."/>
+				<Annotation Term="OData.LongDescription" String="Operational state data for IPv6 match fields."/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv6_protocol_fields_top">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="ipv6_protocol_fields_top" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.ipv6_protocol_fields_top."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.ipv6_protocol_fields_top."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.ipv6_protocol_fields_top.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="ipv6_protocol_fields_top" BaseType="openconfig_packet_match.ipv6_protocol_fields_top.ipv6_protocol_fields_top">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="Top-level grouping for IPv6 match fields."/>
+				<Annotation Term="OData.LongDescription" String="Top-level grouping for IPv6 match fields."/>
+				<NavigationProperty Name="ipv6Container" Type="openconfig_packet_match.ipv6_protocol_fields_top.ipv6.ipv6" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of ipv6."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.transport_fields_config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="transport_fields_config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.transport_fields_config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.transport_fields_config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.transport_fields_config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="transport_fields_config" BaseType="openconfig_packet_match.transport_fields_config.transport_fields_config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="Configuration data of transport-layer packet fields."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data of transport-layer packet fields."/>
+				<Property Name="source_port" Type="openconfig_packet_match_types.v1_0_0.port_num_range">
+					<Annotation Term="openconfig_packet_match_types.v1_0_0.YangType" EnumMember="openconfig_packet_match_types.v1_0_0.YangTypes/port-num-range"/>
+					<Annotation Term="OData.Description" String="Source port or range."/>
+					<Annotation Term="OData.LongDescription" String="Source port or range."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="destination_port" Type="openconfig_packet_match_types.v1_0_0.port_num_range">
+					<Annotation Term="openconfig_packet_match_types.v1_0_0.YangType" EnumMember="openconfig_packet_match_types.v1_0_0.YangTypes/port-num-range"/>
+					<Annotation Term="OData.Description" String="Destination port or range."/>
+					<Annotation Term="OData.LongDescription" String="Destination port or range."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="tcp_flags" Type="RedfishYang.instance_identifier">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref"/>
+					<Annotation Term="OData.Description" String="List of TCP flags to match."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf_list"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+					<Annotation Term="OData.LongDescription" String="List of the type tcp_flags.  List of TCP flags to match."/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.transport_fields_state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="transport_fields_state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.transport_fields_state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.transport_fields_state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.transport_fields_state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="transport_fields_state" BaseType="openconfig_packet_match.transport_fields_state.transport_fields_state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="State data of transport-fields."/>
+				<Annotation Term="OData.LongDescription" String="State data of transport-fields."/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.transport_fields_top">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="transport_fields_top" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match.transport_fields_top."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match.transport_fields_top."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match.transport_fields_top.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="transport_fields_top" BaseType="openconfig_packet_match.transport_fields_top.transport_fields_top">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="Destination transport-fields top level grouping."/>
+				<Annotation Term="OData.LongDescription" String="Destination transport-fields top level grouping."/>
+				<NavigationProperty Name="transportContainer" Type="openconfig_packet_match.transport_fields_top.transport.transport" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of transport."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
+

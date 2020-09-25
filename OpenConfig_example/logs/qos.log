@@ -1058,5 +1058,5 @@ YangTAG--- container state
 {} openconfig_qos.qos_state
 {} openconfig_qos.qos_top
 {} openconfig_qos.qos
-Success writing file to disk: output_dir/openconfig_extensions_v1.xml
-Success writing file to disk: output_dir/openconfig_qos_v1.xml
+Success writing file to disk: output2_dir/openconfig_extensions_v1.xml
+Success writing file to disk: output2_dir/openconfig_qos_v1.xml

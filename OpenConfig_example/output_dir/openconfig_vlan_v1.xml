@@ -1,0 +1,1534 @@
+<?xml version="1.0" ?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/openconfig_vlan_types_v1.xml">
+		<edmx:Include Namespace="openconfig_vlan_types.v1_0_0" Alias="openconfig_vlan_types"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
+		<edmx:Include Namespace="Resource.v1_0_0"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="openconfig_vlan" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="openconfig_vlan" BaseType="openconfig_vlan.openconfig_vlan">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/module"/>
+				<Annotation Term="RedfishYang.yang_version" String="1"/>
+				<Annotation Term="RedfishYang.namespace" String="http://openconfig.net/yang/vlan"/>
+				<Annotation Term="RedfishYang.organization" String="OpenConfig working group"/>
+				<Annotation Term="RedfishYang.contact" String="OpenConfig working groupnetopenconfig@googlegroups.com"/>
+				<Annotation Term="OData.Description" String="This module defines configuration and state variables for VLANs, in addition to VLAN parameters associated with interfaces."/>
+				<Annotation Term="OData.LongDescription" String="This module defines configuration and state variables for VLANs, in addition to VLAN parameters associated with interfaces."/>
+				<Annotation Term="RedfishYang.statement" String="openconfig-extensions:openconfig-version"/>
+				<Annotation Term="RedfishYang.revision" String="2018-02-14,  2017-07-14,  2016-05-26"/>
+				<Annotation Term="RedfishYang.augment" String="/oc-if:interfaces/oc-if:interface/oc-if:subinterfaces/oc-if:subinterface,  /oc-if:interfaces/oc-if:interface/oc-if:config,  /oc-if:interfaces/oc-if:interface/oc-if:state,  /oc-if:interfaces/oc-if:interface/oc-eth:ethernet,  /oc-if:interfaces/oc-if:interface/oc-lag:aggregation,  /oc-if:interfaces/oc-if:interface"/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_members_state.members.member.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_members_state.members.member.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_members_state.members.member.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_members_state.members.member.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_vlan.vlan_members_state.members.member.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state for base interface reference."/>
+				<Annotation Term="OData.LongDescription" String="Operational state for base interface reference."/>
+				<Property Name="interface" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Reference to a base interface."/>
+					<Annotation Term="OData.LongDescription" String="Reference to a base interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_members_state.members.member">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="member" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_members_state.members.member."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_members_state.members.member."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_members_state.members.member.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="member" BaseType="openconfig_vlan.vlan_members_state.members.member.member">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="List of references to interfaces / subinterfaces associated with the VLAN."/>
+				<Annotation Term="OData.LongDescription" String="List of references to interfaces / subinterfaces associated with the VLAN."/>
+				<Annotation Term="RedfishYang.uses" String="oc-if:base-interface-ref-state"/>
+				<NavigationProperty Name="stateContainer" Type="openconfig_vlan.vlan_members_state.members.member.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_members_state.members">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="members" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_members_state.members."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_members_state.members."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_members_state.members.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="members" BaseType="openconfig_vlan.vlan_members_state.members.members">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Enclosing container for list of member interfaces."/>
+				<Annotation Term="OData.LongDescription" String="Enclosing container for list of member interfaces."/>
+				<NavigationProperty Name="memberCollection" Type="openconfig_vlan.vlan_members_state.members.member.memberCollection" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of memberCollection."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_switched_top.switched_vlan.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_switched_top.switched_vlan.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_switched_top.switched_vlan.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_switched_top.switched_vlan.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_vlan.vlan_switched_top.switched_vlan.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration parameters for VLANs."/>
+				<Annotation Term="OData.LongDescription" String="Configuration parameters for VLANs."/>
+				<Annotation Term="RedfishYang.uses" String="vlan-switched-config"/>
+				<Property Name="interface_mode" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Set the interface to access or trunk mode for VLANs."/>
+					<Annotation Term="OData.LongDescription" String="Set the interface to access or trunk mode for VLANs."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="native_vlan" Type="openconfig_vlan_types.v1_0_0.vlan_id">
+					<Annotation Term="RedfishYang.when" String="interface-mode = 'TRUNK'"/>
+					<Annotation Term="openconfig_vlan_types.v1_0_0.YangType" EnumMember="openconfig_vlan_types.v1_0_0.YangTypes/vlan-id"/>
+					<Annotation Term="OData.Description" String="Set the native VLAN id for untagged frames arriving on a trunk interface."/>
+					<Annotation Term="OData.LongDescription" String="Set the native VLAN id for untagged frames arriving on a trunk interface.  Tagged frames sent on an interface configured with a native VLAN should have their tags stripped prior to transmission. This configuration is only valid on a trunk interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="access_vlan" Type="openconfig_vlan_types.v1_0_0.vlan_id">
+					<Annotation Term="RedfishYang.when" String="interface-mode = 'ACCESS'"/>
+					<Annotation Term="openconfig_vlan_types.v1_0_0.YangType" EnumMember="openconfig_vlan_types.v1_0_0.YangTypes/vlan-id"/>
+					<Annotation Term="OData.Description" String="Assign the access vlan to the access port."/>
+					<Annotation Term="OData.LongDescription" String="Assign the access vlan to the access port."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="trunk_vlans" Type="Edm.Primitive">
+					<Annotation Term="RedfishYang.when" String="interface-mode = 'TRUNK'"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/union"/>
+					<Annotation Term="OData.Description" String="Specify VLANs, or ranges thereof, that the interface may carry when in trunk mode."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf_list"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+					<Annotation Term="OData.LongDescription" String="List of the type trunk_vlans.  Specify VLANs, or ranges thereof, that the interface may carry when in trunk mode.  If not specified, all VLANs are allowed on the interface. Ranges are specified in the form x..y, where x&lt;y - ranges are assumed to be inclusive (such that the VLAN range is x &lt;= range &lt;= y."/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_switched_top.switched_vlan.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_switched_top.switched_vlan.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_switched_top.switched_vlan.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_switched_top.switched_vlan.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_vlan.vlan_switched_top.switched_vlan.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="State variables for VLANs."/>
+				<Annotation Term="OData.LongDescription" String="State variables for VLANs."/>
+				<Annotation Term="RedfishYang.uses" String="vlan-switched-config,  vlan-switched-state"/>
+				<Property Name="interface_mode" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Set the interface to access or trunk mode for VLANs."/>
+					<Annotation Term="OData.LongDescription" String="Set the interface to access or trunk mode for VLANs."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="native_vlan" Type="openconfig_vlan_types.v1_0_0.vlan_id">
+					<Annotation Term="RedfishYang.when" String="interface-mode = 'TRUNK'"/>
+					<Annotation Term="openconfig_vlan_types.v1_0_0.YangType" EnumMember="openconfig_vlan_types.v1_0_0.YangTypes/vlan-id"/>
+					<Annotation Term="OData.Description" String="Set the native VLAN id for untagged frames arriving on a trunk interface."/>
+					<Annotation Term="OData.LongDescription" String="Set the native VLAN id for untagged frames arriving on a trunk interface.  Tagged frames sent on an interface configured with a native VLAN should have their tags stripped prior to transmission. This configuration is only valid on a trunk interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="access_vlan" Type="openconfig_vlan_types.v1_0_0.vlan_id">
+					<Annotation Term="RedfishYang.when" String="interface-mode = 'ACCESS'"/>
+					<Annotation Term="openconfig_vlan_types.v1_0_0.YangType" EnumMember="openconfig_vlan_types.v1_0_0.YangTypes/vlan-id"/>
+					<Annotation Term="OData.Description" String="Assign the access vlan to the access port."/>
+					<Annotation Term="OData.LongDescription" String="Assign the access vlan to the access port."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="trunk_vlans" Type="Edm.Primitive">
+					<Annotation Term="RedfishYang.when" String="interface-mode = 'TRUNK'"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/union"/>
+					<Annotation Term="OData.Description" String="Specify VLANs, or ranges thereof, that the interface may carry when in trunk mode."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf_list"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+					<Annotation Term="OData.LongDescription" String="List of the type trunk_vlans.  Specify VLANs, or ranges thereof, that the interface may carry when in trunk mode.  If not specified, all VLANs are allowed on the interface. Ranges are specified in the form x..y, where x&lt;y - ranges are assumed to be inclusive (such that the VLAN range is x &lt;= range &lt;= y."/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_switched_top.switched_vlan">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="switched_vlan" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_switched_top.switched_vlan."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_switched_top.switched_vlan."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_switched_top.switched_vlan.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="switched_vlan" BaseType="openconfig_vlan.vlan_switched_top.switched_vlan.switched_vlan">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Enclosing container for VLAN interface-specific data on Ethernet interfaces."/>
+				<Annotation Term="OData.LongDescription" String="Enclosing container for VLAN interface-specific data on Ethernet interfaces.  These are for standard L2, switched-style VLANs."/>
+				<NavigationProperty Name="configContainer" Type="openconfig_vlan.vlan_switched_top.switched_vlan.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_vlan.vlan_switched_top.switched_vlan.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_top.vlans.vlan.members.member.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_top.vlans.vlan.members.member.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_top.vlans.vlan.members.member.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_top.vlans.vlan.members.member.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_vlan.vlan_top.vlans.vlan.members.member.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state for base interface reference."/>
+				<Annotation Term="OData.LongDescription" String="Operational state for base interface reference."/>
+				<Property Name="interface" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Reference to a base interface."/>
+					<Annotation Term="OData.LongDescription" String="Reference to a base interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_top.vlans.vlan.members.member">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="member" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_top.vlans.vlan.members.member."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_top.vlans.vlan.members.member."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_top.vlans.vlan.members.member.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="member" BaseType="openconfig_vlan.vlan_top.vlans.vlan.members.member.member">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="List of references to interfaces / subinterfaces associated with the VLAN."/>
+				<Annotation Term="OData.LongDescription" String="List of references to interfaces / subinterfaces associated with the VLAN."/>
+				<Annotation Term="RedfishYang.uses" String="oc-if:base-interface-ref-state"/>
+				<NavigationProperty Name="stateContainer" Type="openconfig_vlan.vlan_top.vlans.vlan.members.member.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_top.vlans.vlan.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_top.vlans.vlan.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_top.vlans.vlan.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_top.vlans.vlan.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EnumType Name="statusEnumeration">
+				<Member Name="ACTIVE">
+					<Annotation Term="RedfishYang.enum" String="ACTIVE"/>
+					<Annotation Term="OData.Description" String="VLAN is active."/>
+					<Annotation Term="OData.LongDescription" String="VLAN is active."/>
+				</Member>
+				<Member Name="SUSPENDED">
+					<Annotation Term="RedfishYang.enum" String="SUSPENDED"/>
+					<Annotation Term="OData.Description" String="VLAN is inactive / suspended."/>
+					<Annotation Term="OData.LongDescription" String="VLAN is inactive / suspended."/>
+				</Member>
+			</EnumType>
+			<EntityType Name="config" BaseType="openconfig_vlan.vlan_top.vlans.vlan.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration parameters for VLANs."/>
+				<Annotation Term="OData.LongDescription" String="Configuration parameters for VLANs."/>
+				<Annotation Term="RedfishYang.uses" String="vlan-config"/>
+				<Property Name="vlan_id" Type="openconfig_vlan_types.v1_0_0.vlan_id">
+					<Annotation Term="openconfig_vlan_types.v1_0_0.YangType" EnumMember="openconfig_vlan_types.v1_0_0.YangTypes/vlan-id"/>
+					<Annotation Term="OData.Description" String="Interface VLAN id."/>
+					<Annotation Term="OData.LongDescription" String="Interface VLAN id."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Interface VLAN name."/>
+					<Annotation Term="OData.LongDescription" String="Interface VLAN name."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="status" Type="openconfig_vlan.vlan_top.vlans.vlan.config.v1_0_0.statusEnumeration">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/enumeration"/>
+					<Annotation Term="RedfishYang.default" String="ACTIVE"/>
+					<Annotation Term="OData.Description" String="Admin state of the VLAN."/>
+					<Annotation Term="OData.LongDescription" String="Admin state of the VLAN."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+			<Term Name="YangType" Type="config.v1_0_0.YangTypes">
+				<Annotation Term="OData.Description" String="A extension of config resource instances."/>
+			</Term>
+			<EnumType Name="YangTypes">
+				<Member Name="statusEnumeration"/>
+			</EnumType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_top.vlans.vlan.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_top.vlans.vlan.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_top.vlans.vlan.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_top.vlans.vlan.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EnumType Name="statusEnumeration">
+				<Member Name="ACTIVE">
+					<Annotation Term="RedfishYang.enum" String="ACTIVE"/>
+					<Annotation Term="OData.Description" String="VLAN is active."/>
+					<Annotation Term="OData.LongDescription" String="VLAN is active."/>
+				</Member>
+				<Member Name="SUSPENDED">
+					<Annotation Term="RedfishYang.enum" String="SUSPENDED"/>
+					<Annotation Term="OData.Description" String="VLAN is inactive / suspended."/>
+					<Annotation Term="OData.LongDescription" String="VLAN is inactive / suspended."/>
+				</Member>
+			</EnumType>
+			<EntityType Name="state" BaseType="openconfig_vlan.vlan_top.vlans.vlan.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="State variables for VLANs."/>
+				<Annotation Term="OData.LongDescription" String="State variables for VLANs."/>
+				<Annotation Term="RedfishYang.uses" String="vlan-config,  vlan-state"/>
+				<Property Name="vlan_id" Type="openconfig_vlan_types.v1_0_0.vlan_id">
+					<Annotation Term="openconfig_vlan_types.v1_0_0.YangType" EnumMember="openconfig_vlan_types.v1_0_0.YangTypes/vlan-id"/>
+					<Annotation Term="OData.Description" String="Interface VLAN id."/>
+					<Annotation Term="OData.LongDescription" String="Interface VLAN id."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Interface VLAN name."/>
+					<Annotation Term="OData.LongDescription" String="Interface VLAN name."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="status" Type="openconfig_vlan.vlan_top.vlans.vlan.state.v1_0_0.statusEnumeration">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/enumeration"/>
+					<Annotation Term="RedfishYang.default" String="ACTIVE"/>
+					<Annotation Term="OData.Description" String="Admin state of the VLAN."/>
+					<Annotation Term="OData.LongDescription" String="Admin state of the VLAN."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+			<Term Name="YangType" Type="state.v1_0_0.YangTypes">
+				<Annotation Term="OData.Description" String="A extension of state resource instances."/>
+			</Term>
+			<EnumType Name="YangTypes">
+				<Member Name="statusEnumeration"/>
+			</EnumType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_top.vlans.vlan.members">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="members" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_top.vlans.vlan.members."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_top.vlans.vlan.members."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_top.vlans.vlan.members.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="members" BaseType="openconfig_vlan.vlan_top.vlans.vlan.members.members">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Enclosing container for list of member interfaces."/>
+				<Annotation Term="OData.LongDescription" String="Enclosing container for list of member interfaces."/>
+				<NavigationProperty Name="memberCollection" Type="openconfig_vlan.vlan_top.vlans.vlan.members.member.memberCollection" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of memberCollection."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_top.vlans.vlan">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlan" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_top.vlans.vlan."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_top.vlans.vlan."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_top.vlans.vlan.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="vlan" BaseType="openconfig_vlan.vlan_top.vlans.vlan.vlan">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/list"/>
+				<Annotation Term="RedfishYang.key" String="vlan-id"/>
+				<Annotation Term="OData.Description" String="Configured VLANs keyed by id."/>
+				<Annotation Term="OData.LongDescription" String="Configured VLANs keyed by id."/>
+				<Property Name="vlan_id" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/leafref"/>
+					<Annotation Term="OData.Description" String="references the configured vlan-id."/>
+					<Annotation Term="OData.LongDescription" String="references the configured vlan-id."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<NavigationProperty Name="configContainer" Type="openconfig_vlan.vlan_top.vlans.vlan.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_vlan.vlan_top.vlans.vlan.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<Annotation Term="RedfishYang.uses" String="vlan-members-state"/>
+				<NavigationProperty Name="membersContainer" Type="openconfig_vlan.vlan_top.vlans.vlan.members.members" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of members."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_top.vlans">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlans" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_top.vlans."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_top.vlans."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_top.vlans.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="vlans" BaseType="openconfig_vlan.vlan_top.vlans.vlans">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Container for VLAN configuration and state variables."/>
+				<Annotation Term="OData.LongDescription" String="Container for VLAN configuration and state variables."/>
+				<NavigationProperty Name="vlanCollection" Type="openconfig_vlan.vlan_top.vlans.vlan.vlanCollection" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of vlanCollection."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_logical_top.vlan.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_logical_top.vlan.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_logical_top.vlan.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_logical_top.vlan.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_vlan.vlan_logical_top.vlan.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration parameters for VLANs."/>
+				<Annotation Term="OData.LongDescription" String="Configuration parameters for VLANs."/>
+				<Annotation Term="RedfishYang.uses" String="vlan-logical-config"/>
+				<Property Name="vlan_id" Type="Edm.Primitive">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/union"/>
+					<Annotation Term="OData.Description" String="VLAN id for the subinterface -- specified inline for the case of a local VLAN."/>
+					<Annotation Term="OData.LongDescription" String="VLAN id for the subinterface -- specified inline for the case of a local VLAN.  The id is scoped to the subinterface, and could be repeated on different subinterfaces."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_logical_top.vlan.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_logical_top.vlan.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_logical_top.vlan.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_logical_top.vlan.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_vlan.vlan_logical_top.vlan.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="State variables for VLANs."/>
+				<Annotation Term="OData.LongDescription" String="State variables for VLANs."/>
+				<Annotation Term="RedfishYang.uses" String="vlan-logical-config,  vlan-logical-state"/>
+				<Property Name="vlan_id" Type="Edm.Primitive">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/union"/>
+					<Annotation Term="OData.Description" String="VLAN id for the subinterface -- specified inline for the case of a local VLAN."/>
+					<Annotation Term="OData.LongDescription" String="VLAN id for the subinterface -- specified inline for the case of a local VLAN.  The id is scoped to the subinterface, and could be repeated on different subinterfaces."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_logical_top.vlan">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlan" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_logical_top.vlan."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_logical_top.vlan."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_logical_top.vlan.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="vlan" BaseType="openconfig_vlan.vlan_logical_top.vlan.vlan">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Enclosing container for VLAN interface-specific data on subinterfaces."/>
+				<Annotation Term="OData.LongDescription" String="Enclosing container for VLAN interface-specific data on subinterfaces."/>
+				<NavigationProperty Name="configContainer" Type="openconfig_vlan.vlan_logical_top.vlan.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_vlan.vlan_logical_top.vlan.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_routed_top.routed_vlan.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_routed_top.routed_vlan.config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_routed_top.routed_vlan.config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_routed_top.routed_vlan.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="config" BaseType="openconfig_vlan.vlan_routed_top.routed_vlan.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Configuration data for routed vlan interfaces."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data for routed vlan interfaces."/>
+				<Annotation Term="RedfishYang.uses" String="vlan-routed-config"/>
+				<Property Name="vlan" Type="Edm.Primitive">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/union"/>
+					<Annotation Term="OData.Description" String="References the VLAN for which this IP interface provides routing services -- similar to a switch virtual interface (SVI), or integrated routing and bridging interface (IRB) in some implementations."/>
+					<Annotation Term="OData.LongDescription" String="References the VLAN for which this IP interface provides routing services -- similar to a switch virtual interface (SVI), or integrated routing and bridging interface (IRB) in some implementations."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_routed_top.routed_vlan.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_routed_top.routed_vlan.state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_routed_top.routed_vlan.state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_routed_top.routed_vlan.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="state" BaseType="openconfig_vlan.vlan_routed_top.routed_vlan.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+				<Annotation Term="OData.Description" String="Operational state data ."/>
+				<Annotation Term="OData.LongDescription" String="Operational state data ."/>
+				<Annotation Term="RedfishYang.uses" String="vlan-routed-config,  vlan-routed-state"/>
+				<Property Name="vlan" Type="Edm.Primitive">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/union"/>
+					<Annotation Term="OData.Description" String="References the VLAN for which this IP interface provides routing services -- similar to a switch virtual interface (SVI), or integrated routing and bridging interface (IRB) in some implementations."/>
+					<Annotation Term="OData.LongDescription" String="References the VLAN for which this IP interface provides routing services -- similar to a switch virtual interface (SVI), or integrated routing and bridging interface (IRB) in some implementations."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_routed_top.routed_vlan">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="routed_vlan" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_routed_top.routed_vlan."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_routed_top.routed_vlan."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_routed_top.routed_vlan.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="routed_vlan" BaseType="openconfig_vlan.vlan_routed_top.routed_vlan.routed_vlan">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<Annotation Term="OData.Description" String="Top-level container for routed vlan interfaces."/>
+				<Annotation Term="OData.LongDescription" String="Top-level container for routed vlan interfaces.  These logical interfaces are also known as SVI (switched virtual interface), IRB (integrated routing and bridging), RVI (routed VLAN interface)."/>
+				<NavigationProperty Name="configContainer" Type="openconfig_vlan.vlan_routed_top.routed_vlan.config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="openconfig_vlan.vlan_routed_top.routed_vlan.state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlan_config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EnumType Name="statusEnumeration">
+				<Member Name="ACTIVE">
+					<Annotation Term="RedfishYang.enum" String="ACTIVE"/>
+					<Annotation Term="OData.Description" String="VLAN is active."/>
+					<Annotation Term="OData.LongDescription" String="VLAN is active."/>
+				</Member>
+				<Member Name="SUSPENDED">
+					<Annotation Term="RedfishYang.enum" String="SUSPENDED"/>
+					<Annotation Term="OData.Description" String="VLAN is inactive / suspended."/>
+					<Annotation Term="OData.LongDescription" String="VLAN is inactive / suspended."/>
+				</Member>
+			</EnumType>
+			<EntityType Name="vlan_config" BaseType="openconfig_vlan.vlan_config.vlan_config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="VLAN configuration container."/>
+				<Annotation Term="OData.LongDescription" String="VLAN configuration container."/>
+				<Property Name="vlan_id" Type="openconfig_vlan_types.v1_0_0.vlan_id">
+					<Annotation Term="openconfig_vlan_types.v1_0_0.YangType" EnumMember="openconfig_vlan_types.v1_0_0.YangTypes/vlan-id"/>
+					<Annotation Term="OData.Description" String="Interface VLAN id."/>
+					<Annotation Term="OData.LongDescription" String="Interface VLAN id."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="name" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Interface VLAN name."/>
+					<Annotation Term="OData.LongDescription" String="Interface VLAN name."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="status" Type="openconfig_vlan.vlan_config.v1_0_0.statusEnumeration">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/enumeration"/>
+					<Annotation Term="RedfishYang.default" String="ACTIVE"/>
+					<Annotation Term="OData.Description" String="Admin state of the VLAN."/>
+					<Annotation Term="OData.LongDescription" String="Admin state of the VLAN."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+			<Term Name="YangType" Type="vlan_config.v1_0_0.YangTypes">
+				<Annotation Term="OData.Description" String="A extension of vlan_config resource instances."/>
+			</Term>
+			<EnumType Name="YangTypes">
+				<Member Name="statusEnumeration"/>
+			</EnumType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlan_state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="vlan_state" BaseType="openconfig_vlan.vlan_state.vlan_state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="State variables for VLANs."/>
+				<Annotation Term="OData.LongDescription" String="State variables for VLANs."/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_tpid_config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlan_tpid_config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_tpid_config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_tpid_config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_tpid_config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="vlan_tpid_config" BaseType="openconfig_vlan.vlan_tpid_config.vlan_tpid_config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="TPID configuration for dot1q-enabled interfaces."/>
+				<Annotation Term="OData.LongDescription" String="TPID configuration for dot1q-enabled interfaces."/>
+				<Property Name="tpid" Type="RedfishYang.instance_identifier">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/identityref"/>
+					<Annotation Term="RedfishYang.default" String="oc-vlan-types:TPID_0X8100"/>
+					<Annotation Term="OData.Description" String="Optionally set the tag protocol identifier field (TPID) that is accepted on the VLAN."/>
+					<Annotation Term="OData.LongDescription" String="Optionally set the tag protocol identifier field (TPID) that is accepted on the VLAN."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_tpid_state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlan_tpid_state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_tpid_state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_tpid_state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_tpid_state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="vlan_tpid_state" BaseType="openconfig_vlan.vlan_tpid_state.vlan_tpid_state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="TPID opstate for dot1q-enabled interfaces."/>
+				<Annotation Term="OData.LongDescription" String="TPID opstate for dot1q-enabled interfaces."/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_members_state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlan_members_state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_members_state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_members_state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_members_state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="vlan_members_state" BaseType="openconfig_vlan.vlan_members_state.vlan_members_state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="List of interfaces / subinterfaces belonging to the VLAN."/>
+				<Annotation Term="OData.LongDescription" String="List of interfaces / subinterfaces belonging to the VLAN."/>
+				<NavigationProperty Name="membersContainer" Type="openconfig_vlan.vlan_members_state.members.members" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of members."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_switched_config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlan_switched_config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_switched_config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_switched_config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_switched_config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="vlan_switched_config" BaseType="openconfig_vlan.vlan_switched_config.vlan_switched_config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="VLAN related configuration that is part of the physical Ethernet interface."/>
+				<Annotation Term="OData.LongDescription" String="VLAN related configuration that is part of the physical Ethernet interface."/>
+				<Property Name="interface_mode" Type="Edm.String">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+					<Annotation Term="OData.Description" String="Set the interface to access or trunk mode for VLANs."/>
+					<Annotation Term="OData.LongDescription" String="Set the interface to access or trunk mode for VLANs."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="native_vlan" Type="openconfig_vlan_types.v1_0_0.vlan_id">
+					<Annotation Term="RedfishYang.when" String="interface-mode = 'TRUNK'"/>
+					<Annotation Term="openconfig_vlan_types.v1_0_0.YangType" EnumMember="openconfig_vlan_types.v1_0_0.YangTypes/vlan-id"/>
+					<Annotation Term="OData.Description" String="Set the native VLAN id for untagged frames arriving on a trunk interface."/>
+					<Annotation Term="OData.LongDescription" String="Set the native VLAN id for untagged frames arriving on a trunk interface.  Tagged frames sent on an interface configured with a native VLAN should have their tags stripped prior to transmission. This configuration is only valid on a trunk interface."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="access_vlan" Type="openconfig_vlan_types.v1_0_0.vlan_id">
+					<Annotation Term="RedfishYang.when" String="interface-mode = 'ACCESS'"/>
+					<Annotation Term="openconfig_vlan_types.v1_0_0.YangType" EnumMember="openconfig_vlan_types.v1_0_0.YangTypes/vlan-id"/>
+					<Annotation Term="OData.Description" String="Assign the access vlan to the access port."/>
+					<Annotation Term="OData.LongDescription" String="Assign the access vlan to the access port."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+				<Property Name="trunk_vlans" Type="Edm.Primitive">
+					<Annotation Term="RedfishYang.when" String="interface-mode = 'TRUNK'"/>
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/union"/>
+					<Annotation Term="OData.Description" String="Specify VLANs, or ranges thereof, that the interface may carry when in trunk mode."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf_list"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+					<Annotation Term="OData.LongDescription" String="List of the type trunk_vlans.  Specify VLANs, or ranges thereof, that the interface may carry when in trunk mode.  If not specified, all VLANs are allowed on the interface. Ranges are specified in the form x..y, where x&lt;y - ranges are assumed to be inclusive (such that the VLAN range is x &lt;= range &lt;= y."/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_switched_state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlan_switched_state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_switched_state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_switched_state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_switched_state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="vlan_switched_state" BaseType="openconfig_vlan.vlan_switched_state.vlan_switched_state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="VLAN related operational state that is part of Ethernet interface state data."/>
+				<Annotation Term="OData.LongDescription" String="VLAN related operational state that is part of Ethernet interface state data."/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_switched_top">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlan_switched_top" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_switched_top."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_switched_top."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_switched_top.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="vlan_switched_top" BaseType="openconfig_vlan.vlan_switched_top.vlan_switched_top">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="Top-level grouping for VLAN data associated with an Ethernet interface."/>
+				<Annotation Term="OData.LongDescription" String="Top-level grouping for VLAN data associated with an Ethernet interface."/>
+				<NavigationProperty Name="switched_vlanContainer" Type="openconfig_vlan.vlan_switched_top.switched_vlan.switched_vlan" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of switched_vlan."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_logical_config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlan_logical_config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_logical_config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_logical_config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_logical_config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="vlan_logical_config" BaseType="openconfig_vlan.vlan_logical_config.vlan_logical_config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="VLAN related configuration that is part of subinterface (logical interface) configuration."/>
+				<Annotation Term="OData.LongDescription" String="VLAN related configuration that is part of subinterface (logical interface) configuration.  These are generally L3 VLANs with an id that is local."/>
+				<Property Name="vlan_id" Type="Edm.Primitive">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/union"/>
+					<Annotation Term="OData.Description" String="VLAN id for the subinterface -- specified inline for the case of a local VLAN."/>
+					<Annotation Term="OData.LongDescription" String="VLAN id for the subinterface -- specified inline for the case of a local VLAN.  The id is scoped to the subinterface, and could be repeated on different subinterfaces."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_logical_state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlan_logical_state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_logical_state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_logical_state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_logical_state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="vlan_logical_state" BaseType="openconfig_vlan.vlan_logical_state.vlan_logical_state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="VLAN related operational state that is part of logical interface state data."/>
+				<Annotation Term="OData.LongDescription" String="VLAN related operational state that is part of logical interface state data."/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_top">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlan_top" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_top."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_top."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_top.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="vlan_top" BaseType="openconfig_vlan.vlan_top.vlan_top">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="Top-level grouping for VLAN configuration."/>
+				<Annotation Term="OData.LongDescription" String="Top-level grouping for VLAN configuration."/>
+				<NavigationProperty Name="vlansContainer" Type="openconfig_vlan.vlan_top.vlans.vlans" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of vlans."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_logical_top">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlan_logical_top" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_logical_top."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_logical_top."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_logical_top.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="vlan_logical_top" BaseType="openconfig_vlan.vlan_logical_top.vlan_logical_top">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="Top-level grouping for VLAN data associated with a logical interface or subinterface."/>
+				<Annotation Term="OData.LongDescription" String="Top-level grouping for VLAN data associated with a logical interface or subinterface."/>
+				<NavigationProperty Name="vlanContainer" Type="openconfig_vlan.vlan_logical_top.vlan.vlan" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of vlan."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_routed_config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlan_routed_config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_routed_config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_routed_config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_routed_config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="vlan_routed_config" BaseType="openconfig_vlan.vlan_routed_config.vlan_routed_config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="Configuration data for routed vlans (SVI, IRB, etc.)."/>
+				<Annotation Term="OData.LongDescription" String="Configuration data for routed vlans (SVI, IRB, etc.)."/>
+				<Property Name="vlan" Type="Edm.Primitive">
+					<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/union"/>
+					<Annotation Term="OData.Description" String="References the VLAN for which this IP interface provides routing services -- similar to a switch virtual interface (SVI), or integrated routing and bridging interface (IRB) in some implementations."/>
+					<Annotation Term="OData.LongDescription" String="References the VLAN for which this IP interface provides routing services -- similar to a switch virtual interface (SVI), or integrated routing and bridging interface (IRB) in some implementations."/>
+					<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/leaf"/>
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+				</Property>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_routed_state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlan_routed_state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_routed_state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_routed_state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_routed_state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="vlan_routed_state" BaseType="openconfig_vlan.vlan_routed_state.vlan_routed_state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="Operational state data for routed vlan interfaces."/>
+				<Annotation Term="OData.LongDescription" String="Operational state data for routed vlan interfaces."/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_routed_top">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="vlan_routed_top" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_vlan.vlan_routed_top."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_vlan.vlan_routed_top."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_vlan.vlan_routed_top.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EntityType Name="vlan_routed_top" BaseType="openconfig_vlan.vlan_routed_top.vlan_routed_top">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<Annotation Term="OData.Description" String="Top-level grouping for routed vlan logical interfaces."/>
+				<Annotation Term="OData.LongDescription" String="Top-level grouping for routed vlan logical interfaces."/>
+				<NavigationProperty Name="routed_vlanContainer" Type="openconfig_vlan.vlan_routed_top.routed_vlan.routed_vlan" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of routed_vlan."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
+
