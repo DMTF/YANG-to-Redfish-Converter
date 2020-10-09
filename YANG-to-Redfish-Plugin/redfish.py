@@ -13,13 +13,12 @@ Based on 'name', 'tree' plugin
 import optparse
 import os
 from xml.etree.ElementTree import tostring
-import rf.csdltree as csdltree
+import rf.yangobj as yangobj
 import logging
 import xml.dom.minidom
 import re
 
 from pyang import plugin
-
 
 def pyang_plugin_init():
     plugin.register_plugin(RedfishPlugin())
@@ -47,6 +46,12 @@ class RedfishPlugin(plugin.PyangPlugin):
                                  dest="combine_all_nodes",
                                  action="store_true",
                                  help="Combine all XML files to a single file"),
+            optparse.make_option("--release",
+                                 dest="release",
+                                 help="Release version of files (default TBD)"),
+            optparse.make_option("--owning_entity",
+                                 dest="owning_entity",
+                                 help="Owning entity of files (default TBD)"),
             ]
         g = optparser.add_option_group("Redfish output specific options")
         g.add_options(optlist)
@@ -65,25 +70,59 @@ class RedfishPlugin(plugin.PyangPlugin):
         logger.addHandler(hdlr)
         logger.setLevel(logging.DEBUG)
 
-        list_of_xml = []
         target_dir = ctx.opts.target_dir if ctx.opts.target_dir is not None else './output_dir'
 
         if ctx.opts.keep_cyclical_imports:
-            csdltree.config['remove_cyclical'] = False
+            yangobj.config['remove_cyclical'] = False
 
         if ctx.opts.combine_all_nodes:
-            csdltree.config['single_file'] = True
+            yangobj.config['single_file'] = True
 
         if ctx.opts.create_groupings:
-            csdltree.config['no_groupings'] = False
+            yangobj.config['no_groupings'] = False
+
+        if ctx.opts.release:
+            yangobj.config['release'] = ctx.opts.release
+
+        if ctx.opts.owning_entity:
+            yangobj.config['owner'] = ctx.opts.owning_entity
 
         if not os.path.exists(target_dir):
             os.makedirs(target_dir)
 
-        csdltree.setLogger(logger)
+        list_of_xml = []
+        other_docs = {}
+        import_counts = {}
+        my_modules = {}
 
         for module in modules:
-            csdltree.build_tree(module, list_of_xml, logger)
+            my_modules[module.arg] = module
+            import_counts[module.arg] = set([tag.arg for tag in yangobj.collectChildren(module) if tag.keyword in ['import']])
+        
+        satisfied_modules = [my_modules[x] for x in my_modules if len(import_counts[x]) == 0]
+        unsatisfied_modules = {x: my_modules[x] for x in my_modules if len(import_counts[x]) > 0}
+
+        finished_modules = set()
+
+        while len( satisfied_modules ) > 0:
+            for module in satisfied_modules:
+                print(module.arg)
+                mobj = yangobj.YangCSDLConversionObj(module, other_docs=other_docs)
+                other_docs.update(mobj.my_doc.imports)
+                list_of_xml.extend(mobj.return_docs(yangobj.config['single_file']))
+            done = set(other_docs.keys())
+            satisfied_modules = [unsatisfied_modules[x] for x in unsatisfied_modules if len(import_counts[x].difference(done)) == 0]
+            unsatisfied_modules = {x: unsatisfied_modules[x] for x in unsatisfied_modules if len(import_counts[x].difference(done)) > 0}
+
+        done = set(other_docs.keys())
+        if len(unsatisfied_modules) > 0:
+            for x in unsatisfied_modules:
+                module = unsatisfied_modules[x]
+                mobj = yangobj.YangCSDLConversionObj(module, other_docs=other_docs)
+                other_docs.update(mobj.my_doc.imports)
+                list_of_xml.extend(mobj.return_docs(yangobj.config['single_file']))
+
+
 
         for xml_item in list_of_xml:
             filename = target_dir + '/' + xml_item.get_filename()
@@ -122,6 +161,11 @@ class RedfishPlugin(plugin.PyangPlugin):
                       filename + "\nError message: " + str(e))
                 logger.error('Unable to write to file: ' +
                              filename + "\nError message: " + str(e))
+
+        if len(unsatisfied_modules) > 0:
+            print('There were unsatisfied modules: ')
+            for x in unsatisfied_modules:
+                print('{} required: {}'.format(x, list(import_counts[x].difference(done))))
 
 
 def write_to_file(filename, xml_string):

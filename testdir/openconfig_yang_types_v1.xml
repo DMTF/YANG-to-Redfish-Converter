@@ -1,0 +1,119 @@
+<?xml version="1.0" ?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
+		<edmx:Include Namespace="Resource.v1_0_0"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_yang_types">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="openconfig_yang_types" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_yang_types."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_yang_types."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_yang_types.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<TypeDefinition Name="dotted_quad" UnderlyingType="Edm.String">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+				<Annotation Term="OData.Description" String="An unsigned 32-bit integer expressed as a dotted quad."/>
+				<Annotation Term="OData.LongDescription" String="An unsigned 32-bit integer expressed as a dotted quad. The format is four octets written as decimal numbers separated with a period character."/>
+			</TypeDefinition>
+			<TypeDefinition Name="hex_string" UnderlyingType="Edm.String">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+				<Annotation Term="OData.Description" String="A string consisting of a hexadecimal characters."/>
+				<Annotation Term="OData.LongDescription" String="A string consisting of a hexadecimal characters."/>
+			</TypeDefinition>
+			<TypeDefinition Name="counter32" UnderlyingType="RedfishYang.uint32">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint32"/>
+				<Annotation Term="OData.Description" String="A 32-bit counter."/>
+				<Annotation Term="OData.LongDescription" String="A 32-bit counter. A counter value is a monotonically increasing value which is used to express a count of a number of occurrences of a particular event or entity. When the counter reaches its maximum value, in this case 2^32-1, it wraps to 0.  Discontinuities in the counter are generally triggered only when the counter is reset to zero."/>
+			</TypeDefinition>
+			<TypeDefinition Name="counter64" UnderlyingType="RedfishYang.uint64">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint64"/>
+				<Annotation Term="OData.Description" String="A 64-bit counter."/>
+				<Annotation Term="OData.LongDescription" String="A 64-bit counter. A counter value is a monotonically increasing value which is used to express a count of a number of occurrences of a particular event or entity. When a counter64 reaches its maximum value, 2^64-1, it loops to zero. Discontinuities in a counter are generally triggered only when the counter is reset to zero, through operator or system intervention."/>
+			</TypeDefinition>
+			<TypeDefinition Name="date_and_time" UnderlyingType="Edm.String">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+				<Annotation Term="OData.Description" String="A date and time, expressed in the format described in RFC3339."/>
+				<Annotation Term="OData.LongDescription" String="A date and time, expressed in the format described in RFC3339. That is to say:  YYYY-MM-DDTHH:MM:SSZ+-hh:mm  where YYYY is the year, MM is the month expressed as a two-digit month (zero padding if required), DD is the day of the month, expressed as a two digit value. T is the literal character 'T', HH is the hour of the day expressed as a two digit number, using the 24-hour clock, MM is the minute of the hour expressed as a two digit number. Z is the literal character 'Z', followed by a timezone offset expressed in hours (hh) and minutes (mm), both expressed as two digit numbers. The time offset is specified as a positive or negative offset to UTC using the '+' or '-' character preceding the offset.  Optionally, fractional seconds can be expressed after the minute of the hour as a decimal number of unspecified precision reflecting fractions of a second."/>
+				<Annotation Term="RedfishYang.reference" String="RFC3339 - Date and Time on the Internet: Timestamps"/>
+			</TypeDefinition>
+			<TypeDefinition Name="date" UnderlyingType="Edm.String">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+				<Annotation Term="OData.Description" String="A full UTC date, expressed in the format described in RFC3339."/>
+				<Annotation Term="OData.LongDescription" String="A full UTC date, expressed in the format described in RFC3339. That is to say:  YYYY-MM-DD  where YYYY is the year, MM is the month expressed as a two-digit month (zero padding if required), DD is the day of the month, expressed as a two digit value."/>
+				<Annotation Term="RedfishYang.reference" String="RFC3339 - Date and Time on the Internet: full-date"/>
+			</TypeDefinition>
+			<TypeDefinition Name="gauge64" UnderlyingType="RedfishYang.uint64">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/uint64"/>
+				<Annotation Term="OData.Description" String="A gauge value may increase or decrease - and reflects a value at a particular point in time."/>
+				<Annotation Term="OData.LongDescription" String="A gauge value may increase or decrease - and reflects a value at a particular point in time. If the value of the variable being modeled using the gauge exceeds its maximum - 2^64-1 in this case - the gauge is set to its maximum value."/>
+			</TypeDefinition>
+			<TypeDefinition Name="phys_address" UnderlyingType="Edm.String">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+				<Annotation Term="OData.Description" String="A physical layer address, expressed as a series of pairs of hexadecimal digits."/>
+				<Annotation Term="OData.LongDescription" String="A physical layer address, expressed as a series of pairs of hexadecimal digits."/>
+			</TypeDefinition>
+			<TypeDefinition Name="mac_address" UnderlyingType="Edm.String">
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/string"/>
+				<Annotation Term="OData.Description" String="An IEEE 802 MAC address."/>
+				<Annotation Term="OData.LongDescription" String="An IEEE 802 MAC address."/>
+			</TypeDefinition>
+			<EntityType Name="openconfig_yang_types" BaseType="openconfig_yang_types.openconfig_yang_types">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/module"/>
+				<Annotation Term="RedfishYang.yang_version" String="1"/>
+				<Annotation Term="RedfishYang.namespace" String="http://openconfig.net/yang/types/yang"/>
+				<Annotation Term="RedfishYang.organization" String="OpenConfig working group"/>
+				<Annotation Term="RedfishYang.contact" String="OpenConfig working groupwww.openconfig.net"/>
+				<Annotation Term="OData.Description" String="This module contains a set of extension types to the YANG builtin types that are used across multiple OpenConfig models."/>
+				<Annotation Term="OData.LongDescription" String="This module contains a set of extension types to the YANG builtin types that are used across multiple OpenConfig models.  Portions of this code were derived from IETF RFC 6021. Please reproduce this note if possible.  IETF code is subject to the following copyright and license: Copyright (c) IETF Trust and the persons identified as authors of the code. All rights reserved.  Redistribution and use in source and binary forms, with or without modification, is permitted pursuant to, and subject to the license terms contained in, the Simplified BSD License set forth in Section 4.c of the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info)."/>
+				<Annotation Term="RedfishYang.statement" String="openconfig-extensions:openconfig-version,  openconfig-extensions:regexp-posix,  openconfig-extensions:catalog-organization,  openconfig-extensions:origin"/>
+				<Annotation Term="RedfishYang.revision" String="2018-11-21,  2018-04-24,  2017-07-30,  2017-04-03,  2017-01-26"/>
+			</EntityType>
+			<Term Name="YangType" Type="openconfig_yang_types.v1_0_0.YangTypes">
+				<Annotation Term="OData.Description" String="A extension of openconfig_yang_types resource instances."/>
+			</Term>
+			<EnumType Name="YangTypes">
+				<Member Name="counter32"/>
+				<Member Name="counter64"/>
+				<Member Name="date"/>
+				<Member Name="date_and_time"/>
+				<Member Name="dotted_quad"/>
+				<Member Name="gauge64"/>
+				<Member Name="hex_string"/>
+				<Member Name="mac_address"/>
+				<Member Name="phys_address"/>
+			</EnumType>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
+

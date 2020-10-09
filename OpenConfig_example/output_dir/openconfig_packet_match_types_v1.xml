@@ -1,0 +1,98 @@
+<?xml version="1.0" ?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
+		<edmx:Include Namespace="Resource.v1_0_0"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match_types">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="openconfig_packet_match_types" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_packet_match_types."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_packet_match_types."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_packet_match_types.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<TypeDefinition Name="port_num_range">
+				<Annotation Term="RedfishYang.union">
+					<Collection>
+						<String>"string"</String>
+						<String>"oc_inet.port_number"</String>
+						<String>"enumeration"</String>
+					</Collection>
+				</Annotation>
+				<Annotation Term="OData.Description" String="Port numbers may be represented as a single value, an inclusive range as &lt;lower&gt;..&lt;higher&gt;, or as ANY to indicate a wildcard."/>
+				<Annotation Term="OData.LongDescription" String="Port numbers may be represented as a single value, an inclusive range as &lt;lower&gt;..&lt;higher&gt;, or as ANY to indicate a wildcard."/>
+			</TypeDefinition>
+			<TypeDefinition Name="ip_protocol_type">
+				<Annotation Term="RedfishYang.union">
+					<Collection>
+						<String>"uint8"</String>
+						<String>"identityref"</String>
+					</Collection>
+				</Annotation>
+				<Annotation Term="OData.Description" String="The IP protocol number may be expressed as a valid protocol number (integer) or using a protocol type defined by the IP_PROTOCOL identity."/>
+				<Annotation Term="OData.LongDescription" String="The IP protocol number may be expressed as a valid protocol number (integer) or using a protocol type defined by the IP_PROTOCOL identity."/>
+			</TypeDefinition>
+			<TypeDefinition Name="ethertype_type">
+				<Annotation Term="RedfishYang.union">
+					<Collection>
+						<String>"uint16"</String>
+						<String>"identityref"</String>
+					</Collection>
+				</Annotation>
+				<Annotation Term="OData.Description" String="The Ethertype value may be expressed as a 16-bit number in decimal notation, or using a type defined by the ETHERTYPE identity."/>
+				<Annotation Term="OData.LongDescription" String="The Ethertype value may be expressed as a 16-bit number in decimal notation, or using a type defined by the ETHERTYPE identity."/>
+			</TypeDefinition>
+			<EntityType Name="openconfig_packet_match_types" BaseType="openconfig_packet_match_types.openconfig_packet_match_types">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/module"/>
+				<Annotation Term="RedfishYang.yang_version" String="1"/>
+				<Annotation Term="RedfishYang.namespace" String="http://openconfig.net/yang/packet-match-types"/>
+				<Annotation Term="RedfishYang.organization" String="OpenConfig working group"/>
+				<Annotation Term="RedfishYang.contact" String="OpenConfig working groupwww.openconfig.net"/>
+				<Annotation Term="OData.Description" String="This module defines common types for use in models requiring data definitions related to packet matches."/>
+				<Annotation Term="OData.LongDescription" String="This module defines common types for use in models requiring data definitions related to packet matches."/>
+				<Annotation Term="RedfishYang.statement" String="openconfig-extensions:openconfig-version"/>
+				<Annotation Term="RedfishYang.revision" String="2018-04-15,  2017-05-26,  2016-08-08,  2016-04-27"/>
+				<Annotation Term="RedfishYang.identity" String="ETHERTYPE,  ETHERTYPE_IPV4,  ETHERTYPE_ARP,  ETHERTYPE_VLAN,  ETHERTYPE_IPV6,  ETHERTYPE_MPLS,  ETHERTYPE_LLDP,  ETHERTYPE_ROCE,  IP_PROTOCOL,  IP_TCP,  IP_UDP,  IP_ICMP,  IP_IGMP,  IP_PIM,  IP_RSVP,  IP_GRE,  IP_AUTH,  IP_L2TP,  TCP_FLAGS,  TCP_SYN,  TCP_FIN,  TCP_RST,  TCP_PSH,  TCP_ACK,  TCP_URG,  TCP_ECE,  TCP_CWR"/>
+			</EntityType>
+			<Term Name="YangType" Type="openconfig_packet_match_types.v1_0_0.YangTypes">
+				<Annotation Term="OData.Description" String="A extension of openconfig_packet_match_types resource instances."/>
+			</Term>
+			<EnumType Name="YangTypes">
+				<Member Name="ethertype_type"/>
+				<Member Name="ip_protocol_type"/>
+				<Member Name="port_num_range"/>
+			</EnumType>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
+

@@ -1,0 +1,246 @@
+<?xml version="1.0" ?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
+		<edmx:Include Namespace="Resource.v1_0_0"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_network_instance_types">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="openconfig_network_instance_types" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_network_instance_types."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_network_instance_types."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_network_instance_types.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<Annotation Term="RedfishYang.yang_version" String="1"/>
+			<Annotation Term="RedfishYang.namespace" String="http://openconfig.net/yang/network-instance-types"/>
+			<Annotation Term="RedfishYang.organization" String="OpenConfig working group"/>
+			<Annotation Term="RedfishYang.contact" String="OpenConfig working group www.openconfig.net"/>
+			<Annotation Term="OData.Description" String="Types associated with a network instance."/>
+			<Annotation Term="OData.LongDescription" String="Types associated with a network instance."/>
+			<Annotation Term="RedfishYang.statement" String="oc-ext:openconfig-version"/>
+			<Annotation Term="RedfishYang.revision" String="2018-11-21">
+				<Annotation Term="OData.Description" String="Add OpenConfig module metadata extensions."/>
+				<Annotation Term="OData.LongDescription" String="Add OpenConfig module metadata extensions."/>
+				<Annotation Term="RedfishYang.reference" String="0.8.2"/>
+			</Annotation>
+			<Annotation Term="RedfishYang.revision" String="2017-08-24">
+				<Annotation Term="OData.Description" String="Minor formatting fixes."/>
+				<Annotation Term="OData.LongDescription" String="Minor formatting fixes."/>
+				<Annotation Term="RedfishYang.reference" String="0.8.1"/>
+			</Annotation>
+			<Annotation Term="RedfishYang.revision" String="2017-02-28">
+				<Annotation Term="OData.Description" String="Add OSPFv2 to network instance."/>
+				<Annotation Term="OData.LongDescription" String="Add OSPFv2 to network instance."/>
+				<Annotation Term="RedfishYang.reference" String="0.8.0"/>
+			</Annotation>
+			<Annotation Term="RedfishYang.revision" String="2017-01-26">
+				<Annotation Term="OData.Description" String="Add policy forwarding to network instance."/>
+				<Annotation Term="OData.LongDescription" String="Add policy forwarding to network instance."/>
+				<Annotation Term="RedfishYang.reference" String="0.7.0"/>
+			</Annotation>
+			<Annotation Term="RedfishYang.revision" String="2017-01-13">
+				<Annotation Term="OData.Description" String="Add AFT to the network instance."/>
+				<Annotation Term="OData.LongDescription" String="Add AFT to the network instance."/>
+				<Annotation Term="RedfishYang.reference" String="0.6.0"/>
+			</Annotation>
+			<Annotation Term="RedfishYang.revision" String="2016-12-15">
+				<Annotation Term="OData.Description" String="Add segment routing to network instance."/>
+				<Annotation Term="OData.LongDescription" String="Add segment routing to network instance."/>
+				<Annotation Term="RedfishYang.reference" String="0.5.0"/>
+			</Annotation>
+			<Annotation Term="RedfishYang.revision" String="2016-11-10">
+				<Annotation Term="OData.Description" String="Update model to include IS-IS."/>
+				<Annotation Term="OData.LongDescription" String="Update model to include IS-IS."/>
+				<Annotation Term="RedfishYang.reference" String="0.4.1"/>
+			</Annotation>
+			<Annotation Term="RedfishYang.revision" String="2016-10-12">
+				<Annotation Term="OData.Description" String="Update table connections."/>
+				<Annotation Term="OData.LongDescription" String="Update table connections."/>
+				<Annotation Term="RedfishYang.reference" String="0.4.0"/>
+			</Annotation>
+			<Annotation Term="RedfishYang.revision" String="2016-09-28">
+				<Annotation Term="OData.Description" String="Change L2 instance to submodule; add MAC table."/>
+				<Annotation Term="OData.LongDescription" String="Change L2 instance to submodule; add MAC table."/>
+				<Annotation Term="RedfishYang.reference" String="0.3.0"/>
+			</Annotation>
+			<Annotation Term="RedfishYang.revision" String="2016-08-11">
+				<Annotation Term="OData.Description" String="Resolve repeated container names in routing protocols."/>
+				<Annotation Term="OData.LongDescription" String="Resolve repeated container names in routing protocols."/>
+				<Annotation Term="RedfishYang.reference" String="0.2.3"/>
+			</Annotation>
+			<Annotation Term="RedfishYang.revision" String="2016-07-08">
+				<Annotation Term="OData.Description" String="Updated with refactored routing protocol models."/>
+				<Annotation Term="OData.LongDescription" String="Updated with refactored routing protocol models."/>
+				<Annotation Term="RedfishYang.reference" String="0.2.1"/>
+			</Annotation>
+			<Annotation Term="RedfishYang.revision" String="2016-03-29">
+				<Annotation Term="OData.Description" String="Initial revision."/>
+				<Annotation Term="OData.LongDescription" String="Initial revision."/>
+				<Annotation Term="RedfishYang.reference" String="0.2.0"/>
+			</Annotation>
+			<Annotation Term="RedfishYang.revision" String="2015-10-18">
+				<Annotation Term="OData.Description" String="Initial revision."/>
+				<Annotation Term="OData.LongDescription" String="Initial revision."/>
+				<Annotation Term="RedfishYang.reference" String="0.1.0"/>
+			</Annotation>
+			<Annotation Term="RedfishYang.statement" String="oc-ext:regexp-posix"/>
+			<Annotation Term="RedfishYang.statement" String="oc-ext:catalog-organization"/>
+			<Annotation Term="RedfishYang.statement" String="oc-ext:origin"/>
+			<Annotation Term="RedfishYang.identity" String="NETWORK_INSTANCE_TYPE">
+				<Annotation Term="OData.Description" String="A base identity which can be extended to indicate different types of network instance supported by a device."/>
+				<Annotation Term="OData.LongDescription" String="A base identity which can be extended to indicate different types of network instance supported by a device."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="DEFAULT_INSTANCE">
+				<Annotation Term="RedfishYang.base" String="NETWORK_INSTANCE_TYPE"/>
+				<Annotation Term="OData.Description" String="A special routing instance which acts as the 'default' or 'global' routing instance for a network device."/>
+				<Annotation Term="OData.LongDescription" String="A special routing instance which acts as the 'default' or 'global' routing instance for a network device."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="L3VRF">
+				<Annotation Term="RedfishYang.base" String="NETWORK_INSTANCE_TYPE"/>
+				<Annotation Term="OData.Description" String="A private Layer 3 only routing instance which is formed of one or more RIBs."/>
+				<Annotation Term="OData.LongDescription" String="A private Layer 3 only routing instance which is formed of one or more RIBs."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="L2VSI">
+				<Annotation Term="RedfishYang.base" String="NETWORK_INSTANCE_TYPE"/>
+				<Annotation Term="OData.Description" String="A private Layer 2 only switch instance which is formed of one or more L2 forwarding tables."/>
+				<Annotation Term="OData.LongDescription" String="A private Layer 2 only switch instance which is formed of one or more L2 forwarding tables."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="L2P2P">
+				<Annotation Term="RedfishYang.base" String="NETWORK_INSTANCE_TYPE"/>
+				<Annotation Term="OData.Description" String="A private Layer 2 only forwarding instance which acts as a point to point connection between two endpoints."/>
+				<Annotation Term="OData.LongDescription" String="A private Layer 2 only forwarding instance which acts as a point to point connection between two endpoints."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="L2L3">
+				<Annotation Term="RedfishYang.base" String="NETWORK_INSTANCE_TYPE"/>
+				<Annotation Term="OData.Description" String="A private Layer 2 and Layer 2 forwarding instance."/>
+				<Annotation Term="OData.LongDescription" String="A private Layer 2 and Layer 2 forwarding instance."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="ENDPOINT_TYPE">
+				<Annotation Term="OData.Description" String="Specification of the type of endpoint that is being associated with a network instance."/>
+				<Annotation Term="OData.LongDescription" String="Specification of the type of endpoint that is being associated with a network instance."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="LOCAL">
+				<Annotation Term="RedfishYang.base" String="ENDPOINT_TYPE"/>
+				<Annotation Term="OData.Description" String="A local interface which is being associated with the endpoint."/>
+				<Annotation Term="OData.LongDescription" String="A local interface which is being associated with the endpoint."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="REMOTE">
+				<Annotation Term="RedfishYang.base" String="ENDPOINT_TYPE"/>
+				<Annotation Term="OData.Description" String="A remote interface which is being associated with the endpoint."/>
+				<Annotation Term="OData.LongDescription" String="A remote interface which is being associated with the endpoint."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="LABEL_ALLOCATION_MODE">
+				<Annotation Term="OData.Description" String="Base identity to be used to express types of label allocation strategies to be used within a network instance."/>
+				<Annotation Term="OData.LongDescription" String="Base identity to be used to express types of label allocation strategies to be used within a network instance."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="PER_PREFIX">
+				<Annotation Term="RedfishYang.base" String="LABEL_ALLOCATION_MODE"/>
+				<Annotation Term="OData.Description" String="A label is to be allocated per prefix entry in the RIB for the network instance."/>
+				<Annotation Term="OData.LongDescription" String="A label is to be allocated per prefix entry in the RIB for the network instance."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="PER_NEXTHOP">
+				<Annotation Term="RedfishYang.base" String="LABEL_ALLOCATION_MODE"/>
+				<Annotation Term="OData.Description" String="A label is to be allocated per nexthop entry in the RIB for the network instance."/>
+				<Annotation Term="OData.LongDescription" String="A label is to be allocated per nexthop entry in the RIB for the network instance."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="INSTANCE_LABEL">
+				<Annotation Term="RedfishYang.base" String="LABEL_ALLOCATION_MODE"/>
+				<Annotation Term="OData.Description" String="A single label is to be used for the instance."/>
+				<Annotation Term="OData.LongDescription" String="A single label is to be used for the instance."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="ENCAPSULATION">
+				<Annotation Term="OData.Description" String="On the wire encapsulations that can be used when differentiating network instances."/>
+				<Annotation Term="OData.LongDescription" String="On the wire encapsulations that can be used when differentiating network instances."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="MPLS">
+				<Annotation Term="RedfishYang.base" String="ENCAPSULATION"/>
+				<Annotation Term="OData.Description" String="Use MPLS labels to distinguish network instances on the wire."/>
+				<Annotation Term="OData.LongDescription" String="Use MPLS labels to distinguish network instances on the wire."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="VXLAN">
+				<Annotation Term="RedfishYang.base" String="ENCAPSULATION"/>
+				<Annotation Term="OData.Description" String="Use VXLAN (RFC7348) VNIs to distinguish network instances on the wire."/>
+				<Annotation Term="OData.LongDescription" String="Use VXLAN (RFC7348) VNIs to distinguish network instances on the wire."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="SIGNALLING_PROTOCOL">
+				<Annotation Term="OData.Description" String="The signalling protocol that should be used to diseminate entries within a forwarding instance."/>
+				<Annotation Term="OData.LongDescription" String="The signalling protocol that should be used to diseminate entries within a forwarding instance."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="LDP">
+				<Annotation Term="RedfishYang.base" String="SIGNALLING_PROTOCOL"/>
+				<Annotation Term="OData.Description" String="Use LDP-based setup for signalling."/>
+				<Annotation Term="OData.LongDescription" String="Use LDP-based setup for signalling. Where the instance is a point-to-point service this refers to RFC4447 ('Martini') setup. Where the service is an L2VSI, or L2L3 instance it refers to RFC4762 LDP-signalled VPLS instances."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="BGP_VPLS">
+				<Annotation Term="RedfishYang.base" String="SIGNALLING_PROTOCOL"/>
+				<Annotation Term="OData.Description" String="Use BGP-based signalling and autodiscovery for VPLS instances as per RFC4761."/>
+				<Annotation Term="OData.LongDescription" String="Use BGP-based signalling and autodiscovery for VPLS instances as per RFC4761."/>
+			</Annotation>
+			<Annotation Term="RedfishYang.identity" String="BGP_EVPN">
+				<Annotation Term="RedfishYang.base" String="SIGNALLING_PROTOCOL"/>
+				<Annotation Term="OData.Description" String="Use BGP-based Ethernet VPN (RFC7432) based signalling for the network instance."/>
+				<Annotation Term="OData.LongDescription" String="Use BGP-based Ethernet VPN (RFC7432) based signalling for the network instance."/>
+			</Annotation>
+			<TypeDefinition Name="route_distinguisher" UnderlyingType="Edm.Primitive">
+				<Annotation Term="RedfishYang.union">
+					<Collection>
+						<String>"string"</String>
+						<String>"string"</String>
+						<String>"string"</String>
+					</Collection>
+				</Annotation>
+				<Annotation Term="RedfishYang.union">
+					<Collection>
+						<String>"string"</String>
+						<String>"string"</String>
+						<String>"string"</String>
+					</Collection>
+				</Annotation>
+				<Annotation Term="RedfishYang.YangType" EnumMember="RedfishYang.YangTypes/union"/>
+				<Annotation Term="OData.Description" String="A route distinguisher value."/>
+				<Annotation Term="OData.LongDescription" String="A route distinguisher value."/>
+				<Annotation Term="RedfishYang.reference" String="RFC4364"/>
+			</TypeDefinition>
+			<EntityType Name="openconfig_network_instance_types" BaseType="openconfig_network_instance_types.openconfig_network_instance_types">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/module"/>
+			</EntityType>
+			<Term Name="YangType" Type="openconfig_network_instance_types.v1_0_0.YangTypes">
+				<Annotation Term="OData.Description" String="A extension of openconfig_network_instance_types resource instances."/>
+			</Term>
+			<EnumType Name="YangTypes">
+				<Member Name="route_distinguisher"/>
+			</EnumType>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
+

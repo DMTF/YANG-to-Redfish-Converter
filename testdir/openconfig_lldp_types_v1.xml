@@ -1,0 +1,140 @@
+<?xml version="1.0" ?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
+		<edmx:Include Namespace="Resource.v1_0_0"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp_types">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="openconfig_lldp_types" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_lldp_types."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_lldp_types."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_lldp_types.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<EnumType Name="chassis-id-typeEnumeration">
+				<Member Name="CHASSIS_COMPONENT">
+					<Annotation Term="RedfishYang.enum" String="CHASSIS_COMPONENT"/>
+					<Annotation Term="OData.Description" String="Chassis identifier based on the value of entPhysicalAlias object defined in IETF RFC 2737."/>
+					<Annotation Term="OData.LongDescription" String="Chassis identifier based on the value of entPhysicalAlias object defined in IETF RFC 2737."/>
+				</Member>
+				<Member Name="INTERFACE_ALIAS">
+					<Annotation Term="RedfishYang.enum" String="INTERFACE_ALIAS"/>
+					<Annotation Term="OData.Description" String="Chassis identifier based on the value of ifAlias object defined in IETF RFC 2863."/>
+					<Annotation Term="OData.LongDescription" String="Chassis identifier based on the value of ifAlias object defined in IETF RFC 2863."/>
+				</Member>
+				<Member Name="PORT_COMPONENT">
+					<Annotation Term="RedfishYang.enum" String="PORT_COMPONENT"/>
+					<Annotation Term="OData.Description" String="Chassis identifier based on the value of entPhysicalAlias object defined in IETF RFC 2737 for a port or backplane component."/>
+					<Annotation Term="OData.LongDescription" String="Chassis identifier based on the value of entPhysicalAlias object defined in IETF RFC 2737 for a port or backplane component."/>
+				</Member>
+				<Member Name="MAC_ADDRESS">
+					<Annotation Term="RedfishYang.enum" String="MAC_ADDRESS"/>
+					<Annotation Term="OData.Description" String="Chassis identifier based on the value of a unicast source address (encoded in network byte order and IEEE 802.3 canonical bit order), of a port on the containing chassis as defined in IEEE Std 802-2001."/>
+					<Annotation Term="OData.LongDescription" String="Chassis identifier based on the value of a unicast source address (encoded in network byte order and IEEE 802.3 canonical bit order), of a port on the containing chassis as defined in IEEE Std 802-2001."/>
+				</Member>
+				<Member Name="NETWORK_ADDRESS">
+					<Annotation Term="RedfishYang.enum" String="NETWORK_ADDRESS"/>
+					<Annotation Term="OData.Description" String="Chassis identifier based on a network address, associated with a particular chassis."/>
+					<Annotation Term="OData.LongDescription" String="Chassis identifier based on a network address, associated with a particular chassis.  The encoded address is composed of two fields.  The first field is a single octet, representing the IANA AddressFamilyNumbers value for the specific address type, and the second field is the network address value."/>
+				</Member>
+				<Member Name="INTERFACE_NAME">
+					<Annotation Term="RedfishYang.enum" String="INTERFACE_NAME"/>
+					<Annotation Term="OData.Description" String="Chassis identifier based on the name of the interface, e.g., the value of ifName object defined in IETF RFC 2863."/>
+					<Annotation Term="OData.LongDescription" String="Chassis identifier based on the name of the interface, e.g., the value of ifName object defined in IETF RFC 2863."/>
+				</Member>
+				<Member Name="LOCAL">
+					<Annotation Term="RedfishYang.enum" String="LOCAL"/>
+					<Annotation Term="OData.Description" String="Chassis identifier based on a locally defined value."/>
+					<Annotation Term="OData.LongDescription" String="Chassis identifier based on a locally defined value."/>
+				</Member>
+			</EnumType>
+			<EnumType Name="port-id-typeEnumeration">
+				<Member Name="INTERFACE_ALIAS">
+					<Annotation Term="RedfishYang.enum" String="INTERFACE_ALIAS"/>
+					<Annotation Term="OData.Description" String="Chassis identifier based on the value of ifAlias object defined in IETF RFC 2863."/>
+					<Annotation Term="OData.LongDescription" String="Chassis identifier based on the value of ifAlias object defined in IETF RFC 2863."/>
+				</Member>
+				<Member Name="PORT_COMPONENT">
+					<Annotation Term="RedfishYang.enum" String="PORT_COMPONENT"/>
+					<Annotation Term="OData.Description" String="Port identifier based on the value of entPhysicalAlias object defined in IETF RFC 2737 for a port component."/>
+					<Annotation Term="OData.LongDescription" String="Port identifier based on the value of entPhysicalAlias object defined in IETF RFC 2737 for a port component."/>
+				</Member>
+				<Member Name="MAC_ADDRESS">
+					<Annotation Term="RedfishYang.enum" String="MAC_ADDRESS"/>
+					<Annotation Term="OData.Description" String="Port identifier based on the value of a unicast source address (encoded in network byte order and IEEE 802.3 canonical bit order) associated with a port."/>
+					<Annotation Term="OData.LongDescription" String="Port identifier based on the value of a unicast source address (encoded in network byte order and IEEE 802.3 canonical bit order) associated with a port."/>
+				</Member>
+				<Member Name="NETWORK_ADDRESS">
+					<Annotation Term="RedfishYang.enum" String="NETWORK_ADDRESS"/>
+					<Annotation Term="OData.Description" String="Port identifier based on a network address, associated with a particular port."/>
+					<Annotation Term="OData.LongDescription" String="Port identifier based on a network address, associated with a particular port."/>
+				</Member>
+				<Member Name="INTERFACE_NAME">
+					<Annotation Term="RedfishYang.enum" String="INTERFACE_NAME"/>
+					<Annotation Term="OData.Description" String="Port identifier based on the name of the interface, e.g., the value of ifName object defined in IETF RFC 2863."/>
+					<Annotation Term="OData.LongDescription" String="Port identifier based on the name of the interface, e.g., the value of ifName object defined in IETF RFC 2863."/>
+				</Member>
+				<Member Name="AGENT_CIRCUIT_ID">
+					<Annotation Term="RedfishYang.enum" String="AGENT_CIRCUIT_ID"/>
+					<Annotation Term="OData.Description" String="Port identifer based on the circuit id in the DHCP relay agent information option as defined in IETF RFC 3046."/>
+					<Annotation Term="OData.LongDescription" String="Port identifer based on the circuit id in the DHCP relay agent information option as defined in IETF RFC 3046."/>
+				</Member>
+				<Member Name="LOCAL">
+					<Annotation Term="RedfishYang.enum" String="LOCAL"/>
+					<Annotation Term="OData.Description" String="Port identifier based on a locally defined alphanumeric string."/>
+					<Annotation Term="OData.LongDescription" String="Port identifier based on a locally defined alphanumeric string."/>
+				</Member>
+			</EnumType>
+			<EntityType Name="openconfig_lldp_types" BaseType="openconfig_lldp_types.openconfig_lldp_types">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/module"/>
+				<Annotation Term="RedfishYang.yang_version" String="1"/>
+				<Annotation Term="RedfishYang.namespace" String="http://openconfig.net/yang/lldp/types"/>
+				<Annotation Term="RedfishYang.organization" String="OpenConfig working group"/>
+				<Annotation Term="RedfishYang.contact" String="OpenConfig working groupwww.openconfig.net"/>
+				<Annotation Term="OData.Description" String="This module defines types related to the LLDP protocol model."/>
+				<Annotation Term="OData.LongDescription" String="This module defines types related to the LLDP protocol model."/>
+				<Annotation Term="RedfishYang.statement" String="openconfig-extensions:openconfig-version,  openconfig-extensions:regexp-posix,  openconfig-extensions:catalog-organization,  openconfig-extensions:origin"/>
+				<Annotation Term="RedfishYang.revision" String="2018-11-21,  2016-05-16"/>
+				<Annotation Term="RedfishYang.identity" String="LLDP_SYSTEM_CAPABILITY,  OTHER,  REPEATER,  MAC_BRIDGE,  WLAN_ACCESS_POINT,  ROUTER,  TELEPHONE,  DOCSIS_CABLE_DEVICE,  STATION_ONLY,  C_VLAN,  S_VLAN,  TWO_PORT_MAC_RELAY,  LLDP_TLV,  CHASSIS_ID,  PORT_ID,  PORT_DESCRIPTION,  SYSTEM_NAME,  SYSTEM_DESCRIPTION,  SYSTEM_CAPABILITIES,  MANAGEMENT_ADDRESS"/>
+			</EntityType>
+			<Term Name="YangType" Type="openconfig_lldp_types.v1_0_0.YangTypes">
+				<Annotation Term="OData.Description" String="A extension of openconfig_lldp_types resource instances."/>
+			</Term>
+			<EnumType Name="YangTypes">
+				<Member Name="chassis_id_typeEnumeration"/>
+				<Member Name="port_id_typeEnumeration"/>
+			</EnumType>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
+

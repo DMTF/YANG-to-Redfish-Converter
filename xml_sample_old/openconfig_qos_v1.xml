@@ -1,0 +1,391 @@
+<?xml version="1.0" ?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishYangExtensions_v1.xml">
+		<edmx:Include Namespace="RedfishYangExtensions.v1_0_0" Alias="RedfishYang"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
+		<edmx:Include Namespace="Resource.v1_0_0"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="qos" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for qos."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for qos."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos_top.qos.state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos_top.qos.config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos_top.qos">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="qos" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for qos."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for qos."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos_top">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="qos_top" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for qos_top."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for qos_top."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos_state">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="qos_state" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for qos_state."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for qos_state."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos_config">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="qos_config" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for qos_config."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for qos_config."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<EntityType Name="openconfig_qos" Abstract="true" BaseType="Resource.v1_0_0.Resource">
+				<Annotation Term="OData.Description" String="Parameters for openconfig_qos."/>
+				<Annotation Term="OData.LongDescription" String="Parameters for openconfig_qos."/>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<Annotation Term="RedfishYang.yang_version" String="1"/>
+			<Annotation Term="RedfishYang.namespace" String="http://openconfig.net/yang/qos"/>
+			<Annotation Term="RedfishYang.organization" String="OpenConfig working group"/>
+			<Annotation Term="RedfishYang.contact" String="OpenConfig working group www.openconfig.net"/>
+			<Annotation Term="OData.Description" String="This module defines configuration and operational state data related to network quality-of-service."/>
+			<Annotation Term="OData.LongDescription" String="This module defines configuration and operational state data related to network quality-of-service."/>
+			<Annotation Term="RedfishYang.statement" String="oc-ext:openconfig-version"/>
+			<Annotation Term="RedfishYang.revision" String="2018-11-21">
+				<Annotation Term="OData.Description" String="Add OpenConfig module metadata extensions."/>
+				<Annotation Term="OData.LongDescription" String="Add OpenConfig module metadata extensions."/>
+				<Annotation Term="RedfishYang.reference" String="0.2.1"/>
+			</Annotation>
+			<Annotation Term="RedfishYang.revision" String="2016-12-16">
+				<Annotation Term="OData.Description" String="Fix incorrect interface-ref placement."/>
+				<Annotation Term="OData.LongDescription" String="Fix incorrect interface-ref placement."/>
+				<Annotation Term="RedfishYang.reference" String="0.2.0"/>
+			</Annotation>
+			<Annotation Term="RedfishYang.statement" String="oc-ext:regexp-posix"/>
+			<Annotation Term="RedfishYang.statement" String="oc-ext:catalog-organization"/>
+			<Annotation Term="RedfishYang.statement" String="oc-ext:origin"/>
+			<EntityType Name="openconfig_qos" BaseType="openconfig_qos.openconfig_qos">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/module"/>
+				<NavigationProperty Name="qosContainer" Type="qos.qos" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of qos."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+			<Term Name="YangType" Type="openconfig_qos.v1_0_0.YangTypes">
+				<Annotation Term="OData.Description" String="A extension of openconfig_qos resource instances."/>
+			</Term>
+			<EnumType Name="YangTypes"/>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos_config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<Annotation Term="OData.Description" String="Configuration data for global QoS."/>
+			<Annotation Term="OData.LongDescription" String="Configuration data for global QoS."/>
+			<EntityType Name="qos_config" BaseType="openconfig_qos.qos_config.qos_config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos_state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<Annotation Term="OData.Description" String="Operational state data for global QoS."/>
+			<Annotation Term="OData.LongDescription" String="Operational state data for global QoS."/>
+			<EntityType Name="qos_state" BaseType="openconfig_qos.qos_state.qos_state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos_top.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<Annotation Term="OData.Description" String="Top-level grouping for QoS model."/>
+			<Annotation Term="OData.LongDescription" String="Top-level grouping for QoS model."/>
+			<EntityType Name="qos_top" BaseType="openconfig_qos.qos_top.qos_top">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/grouping"/>
+				<NavigationProperty Name="qosContainer" Type="qos.qos" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of qos."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos_top.qos.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<Annotation Term="OData.Description" String="Top-level container for QoS data."/>
+			<Annotation Term="OData.LongDescription" String="Top-level container for QoS data."/>
+			<EntityType Name="qos" BaseType="openconfig_qos.qos_top.qos.qos">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<NavigationProperty Name="configContainer" Type="config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos_top.qos.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<Annotation Term="OData.Description" String="Configuration data for global QoS."/>
+			<Annotation Term="OData.LongDescription" String="Configuration data for global QoS."/>
+			<EntityType Name="config" BaseType="openconfig_qos.qos_top.qos.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos_top.qos.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+			<Annotation Term="OData.Description" String="Operational state data for global QoS."/>
+			<Annotation Term="OData.LongDescription" String="Operational state data for global QoS."/>
+			<EntityType Name="state" BaseType="openconfig_qos.qos_top.qos.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<Annotation Term="OData.Description" String="Top-level container for QoS data."/>
+			<Annotation Term="OData.LongDescription" String="Top-level container for QoS data."/>
+			<EntityType Name="qos" BaseType="openconfig_qos.qos.qos">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+				<NavigationProperty Name="configContainer" Type="config.config" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of config."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+				<NavigationProperty Name="stateContainer" Type="state.state" ContainsTarget="true">
+					<Annotation Term="OData.Permissions" EnumMember="OData.Permissions/Read"/>
+					<Annotation Term="OData.Description" String="Navigation property that points to a resource of state."/>
+					<Annotation Term="OData.LongDescription" String="Automatically generated."/>
+					<Annotation Term="OData.AutoExpandReferences"/>
+				</NavigationProperty>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos.config.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<Annotation Term="OData.Description" String="Configuration data for global QoS."/>
+			<Annotation Term="OData.LongDescription" String="Configuration data for global QoS."/>
+			<EntityType Name="config" BaseType="openconfig_qos.qos.config.config">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+			</EntityType>
+		</Schema>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="openconfig_qos.qos.state.v1_0_0">
+			<Annotation Term="Redfish.OwningEntity" String="TBD"/>
+			<Annotation Term="Redfish.Release" String="TBD"/>
+			<Annotation Term="RedfishYang.config" EnumMember="RedfishYang.ConfigPermission/false"/>
+			<Annotation Term="OData.Description" String="Operational state data for global QoS."/>
+			<Annotation Term="OData.LongDescription" String="Operational state data for global QoS."/>
+			<EntityType Name="state" BaseType="openconfig_qos.qos.state.state">
+				<Annotation Term="RedfishYang.NodeType" EnumMember="RedfishYang.NodeTypes/container"/>
+			</EntityType>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
+

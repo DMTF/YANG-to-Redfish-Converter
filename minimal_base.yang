@@ -8,7 +8,73 @@ module minimal_base {
 
   container base_container {
     leaf id {
+      description
+      "Test Description";
       type uint32;
     }
+    typedef super_id_value {
+      description "Test Type";
+      type uint32;
+    }
+    leaf super_id {
+      description
+      "Test Description";
+      type super_id_value;
+    }
+    choice turn_into_enum {
+      case yes {
+        leaf ok {
+          type uint32;
+          description
+          "Test Description";
+        }
+      }
+      case no {
+        leaf not_ok {
+          type uint32;
+          description
+          "Test Description";
+        }
+      }
+    }
+    choice turn_into_enum_2 {
+      leaf always {
+        type uint32;
+        description
+        "Test Description";
+      }
+    }
+    leaf measurement-type {
+      type enumeration {
+        enum lmm {
+          description
+            "LMM SOAM PDU generated and received LMR responses tracked.";
+        }
+        enum slm {
+          description
+            "SLM SOAM PDU generated and received SLR responses tracked.";
+        }
+        enum ccm {
+          description
+            "CCM SOAM PDU generated and received CCM PDUs tracked.";
+        }
+      }
+      default slm;
+
+      description
+        "This object specifies what type of Loss Measurement will be
+         performed.";
+      reference
+        "MEF-SOAM-PM-MIB.mefSoamLmCfgType";
+    }
+    list id_info {
+      description
+      "Test Description";
+      leaf pass {
+        description
+        "Test Description";
+        type uint32;
+      }
   }
+}
 }

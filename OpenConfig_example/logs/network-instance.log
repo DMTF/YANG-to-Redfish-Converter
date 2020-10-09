@@ -1,0 +1,1819 @@
+openconfig-extensions
+new obj
+YangTAG--- module openconfig-extensions
+Skipped children 2 in tag revision 2017-04-11
+Skipped children 2 in tag revision 2017-01-29
+Skipped children 2 in tag revision 2015-10-09
+Skipped children 2 in tag extension openconfig-version
+Skipped children 1 in tag extension openconfig-hashed-value
+ietf-inet-types
+new obj
+YangTAG--- module ietf-inet-types
+Skipped children 2 in tag revision 2013-07-15
+Skipped children 2 in tag revision 2010-09-24
+ietf-yang-types
+new obj
+YangTAG--- module ietf-yang-types
+Skipped children 2 in tag revision 2013-07-15
+Skipped children 2 in tag revision 2010-09-24
+colon seperator not in type
+openconfig-vlan-types
+new obj
+YangTAG--- module openconfig-vlan-types
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2018-02-14
+Skipped children 2 in tag revision 2017-07-14
+Skipped children 2 in tag revision 2016-05-26
+Skipped children 1 in tag identity TPID_TYPES
+Skipped children 2 in tag identity TPID_0X8100
+Skipped children 2 in tag identity TPID_0X88A8
+Skipped children 2 in tag identity TPID_0X9100
+Skipped children 2 in tag identity TPID_0X9200
+openconfig-if-types
+new obj
+YangTAG--- module openconfig-if-types
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2018-01-05
+Skipped children 2 in tag revision 2016-11-14
+Skipped children 1 in tag identity INTERFACE_TYPE
+Skipped children 3 in tag identity IF_ETHERNET
+Skipped children 3 in tag identity IF_AGGREGATE
+Skipped children 2 in tag identity IF_LOOPBACK
+Skipped children 2 in tag identity IF_ROUTED_VLAN
+Skipped children 2 in tag identity IF_SONET
+Skipped children 2 in tag identity IF_TUNNEL_GRE4
+Skipped children 2 in tag identity IF_TUNNEL_GRE6
+openconfig-inet-types
+new obj
+YangTAG--- module openconfig-inet-types
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2017-08-24
+Skipped children 2 in tag revision 2017-07-06
+Skipped children 2 in tag revision 2017-04-03
+Skipped children 2 in tag revision 2017-04-03
+Skipped children 2 in tag revision 2017-01-26
+openconfig-network-instance-types
+new obj
+YangTAG--- module openconfig-network-instance-types
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2017-08-24
+Skipped children 2 in tag revision 2017-02-28
+Skipped children 2 in tag revision 2017-01-26
+Skipped children 2 in tag revision 2017-01-13
+Skipped children 2 in tag revision 2016-12-15
+Skipped children 2 in tag revision 2016-11-10
+Skipped children 2 in tag revision 2016-10-12
+Skipped children 2 in tag revision 2016-09-28
+Skipped children 2 in tag revision 2016-08-11
+Skipped children 2 in tag revision 2016-07-08
+Skipped children 2 in tag revision 2016-03-29
+Skipped children 2 in tag revision 2015-10-18
+Skipped children 1 in tag identity NETWORK_INSTANCE_TYPE
+Skipped children 2 in tag identity DEFAULT_INSTANCE
+Skipped children 2 in tag identity L3VRF
+Skipped children 2 in tag identity L2VSI
+Skipped children 2 in tag identity L2P2P
+Skipped children 2 in tag identity L2L3
+Skipped children 1 in tag identity ENDPOINT_TYPE
+Skipped children 2 in tag identity LOCAL
+Skipped children 2 in tag identity REMOTE
+Skipped children 1 in tag identity LABEL_ALLOCATION_MODE
+Skipped children 2 in tag identity PER_PREFIX
+Skipped children 2 in tag identity PER_NEXTHOP
+Skipped children 2 in tag identity INSTANCE_LABEL
+Skipped children 1 in tag identity ENCAPSULATION
+Skipped children 2 in tag identity MPLS
+Skipped children 2 in tag identity VXLAN
+Skipped children 1 in tag identity SIGNALLING_PROTOCOL
+Skipped children 2 in tag identity LDP
+Skipped children 2 in tag identity BGP_VPLS
+Skipped children 2 in tag identity BGP_EVPN
+openconfig-policy-types
+new obj
+YangTAG--- module openconfig-policy-types
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2018-06-05
+Skipped children 2 in tag revision 2017-07-14
+Skipped children 2 in tag revision 2016-05-12
+Skipped children 1 in tag identity ATTRIBUTE_COMPARISON
+Skipped children 2 in tag identity ATTRIBUTE_EQ
+Skipped children 2 in tag identity ATTRIBUTE_GE
+Skipped children 2 in tag identity ATTRIBUTE_LE
+new obj
+YangTAG--- grouping attribute-compare-operators
+Skipped children 1 in tag identity INSTALL_PROTOCOL_TYPE
+Skipped children 3 in tag identity BGP
+Skipped children 3 in tag identity ISIS
+Skipped children 3 in tag identity OSPF
+Skipped children 3 in tag identity OSPF3
+Skipped children 2 in tag identity STATIC
+Skipped children 2 in tag identity DIRECTLY_CONNECTED
+Skipped children 2 in tag identity LOCAL_AGGREGATE
+Skipped children 3 in tag identity PIM
+Skipped children 3 in tag identity IGMP
+{} openconfig_policy_types.attribute_compare_operators
+openconfig-types
+new obj
+YangTAG--- module openconfig-types
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2018-05-05
+Skipped children 2 in tag revision 2018-01-16
+Skipped children 2 in tag revision 2017-08-16
+Skipped children 2 in tag revision 2017-01-13
+Skipped children 2 in tag revision 2016-11-14
+Skipped children 2 in tag revision 2016-11-11
+Skipped children 2 in tag revision 2016-05-31
+new obj
+YangTAG--- grouping stat-interval-state
+new obj
+YangTAG--- grouping min-max-time
+new obj
+YangTAG--- grouping avg-min-max-stats-precision1
+new obj
+YangTAG--- grouping avg-min-max-instant-stats-precision1
+new obj
+YangTAG--- grouping avg-min-max-instant-stats-precision2-dB
+new obj
+YangTAG--- grouping avg-min-max-instant-stats-precision2-dBm
+new obj
+YangTAG--- grouping avg-min-max-instant-stats-precision2-mA
+new obj
+YangTAG--- grouping avg-min-max-instant-stats-pct
+Skipped children 1 in tag identity ADDRESS_FAMILY
+Skipped children 2 in tag identity IPV4
+Skipped children 2 in tag identity IPV6
+Skipped children 2 in tag identity MPLS
+Skipped children 2 in tag identity L2_ETHERNET
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_types.stat_interval_state
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_types.min_max_time
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_types.avg_min_max_stats_precision1
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_types.avg_min_max_instant_stats_precision1
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_types.avg_min_max_instant_stats_precision2_dB
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_types.avg_min_max_instant_stats_precision2_dBm
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_types.avg_min_max_instant_stats_precision2_mA
+{'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_types.avg_min_max_instant_stats_pct
+openconfig-yang-types
+new obj
+YangTAG--- module openconfig-yang-types
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2018-04-24
+Skipped children 2 in tag revision 2017-07-30
+Skipped children 2 in tag revision 2017-04-03
+Skipped children 2 in tag revision 2017-01-26
+ietf-interfaces
+new obj
+YangTAG--- module ietf-interfaces
+Skipped children 2 in tag revision 2014-05-08
+Skipped children 1 in tag identity interface-type
+Skipped children 1 in tag feature arbitrary-names
+Skipped children 1 in tag feature pre-provisioning
+Skipped children 2 in tag feature if-mib
+new obj
+YangTAG--- container interfaces
+new obj
+YangTAG--- list interface
+new obj
+YangTAG--- container interfaces-state
+new obj
+YangTAG--- list interface
+colon seperator not in type
+colon seperator not in type
+new obj
+YangTAG--- container statistics
+{} ietf_interfaces.interfaces.interface
+{'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} ietf_interfaces.interfaces_state.interface.statistics
+{'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} ietf_interfaces.interfaces_state.interface
+{'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} ietf_interfaces.interfaces
+{'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} ietf_interfaces.interfaces_state
+openconfig-network-instance-l3
+new obj
+YangTAG--- module openconfig-network-instance-l3
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2018-08-17
+Skipped children 2 in tag revision 2017-12-13
+Skipped children 2 in tag revision 2017-08-24
+Skipped children 2 in tag revision 2017-02-28
+Skipped children 2 in tag revision 2017-01-26
+Skipped children 2 in tag revision 2017-01-13
+Skipped children 2 in tag revision 2016-12-15
+Skipped children 2 in tag revision 2016-11-10
+Skipped children 2 in tag revision 2016-09-28
+Skipped children 2 in tag revision 2016-08-11
+Skipped children 2 in tag revision 2016-07-08
+Skipped children 2 in tag revision 2016-03-29
+Skipped children 2 in tag revision 2016-03-14
+new obj
+YangTAG--- grouping l3ni-instance
+new obj
+YangTAG--- grouping l3ni-instance-common-config
+new obj
+YangTAG--- grouping l3ni-route-limit-structural
+new obj
+YangTAG--- container route-limits
+new obj
+YangTAG--- list route-limit
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- grouping l3ni-route-limit-config
+new obj
+YangTAG--- grouping l3ni-route-limit-state
+{} openconfig_network_instance_l3.l3ni_route_limit_structural.route_limits.route_limit.config
+{} openconfig_network_instance_l3.l3ni_route_limit_structural.route_limits.route_limit.state
+{} openconfig_network_instance_l3.l3ni_route_limit_structural.route_limits.route_limit
+{} openconfig_network_instance_l3.l3ni_route_limit_structural.route_limits
+{} openconfig_network_instance_l3.l3ni_instance
+{} openconfig_network_instance_l3.l3ni_instance_common_config
+{} openconfig_network_instance_l3.l3ni_route_limit_structural
+{} openconfig_network_instance_l3.l3ni_route_limit_config
+{} openconfig_network_instance_l3.l3ni_route_limit_state
+iana-if-type
+new obj
+YangTAG--- module iana-if-type
+Skipped children 2 in tag revision 2014-05-08
+Skipped children 2 in tag identity iana-interface-type
+Skipped children 1 in tag identity other
+Skipped children 1 in tag identity regular1822
+Skipped children 1 in tag identity hdh1822
+Skipped children 1 in tag identity ddnX25
+Skipped children 2 in tag identity rfc877x25
+Skipped children 3 in tag identity ethernetCsmacd
+Skipped children 4 in tag identity iso88023Csmacd
+Skipped children 1 in tag identity iso88024TokenBus
+Skipped children 1 in tag identity iso88025TokenRing
+Skipped children 1 in tag identity iso88026Man
+Skipped children 4 in tag identity starLan
+Skipped children 1 in tag identity proteon10Mbit
+Skipped children 1 in tag identity proteon80Mbit
+Skipped children 1 in tag identity hyperchannel
+Skipped children 2 in tag identity fddi
+Skipped children 2 in tag identity lapb
+Skipped children 1 in tag identity sdlc
+Skipped children 3 in tag identity ds1
+Skipped children 4 in tag identity e1
+Skipped children 2 in tag identity basicISDN
+Skipped children 2 in tag identity primaryISDN
+Skipped children 2 in tag identity propPointToPointSerial
+Skipped children 1 in tag identity ppp
+Skipped children 1 in tag identity softwareLoopback
+Skipped children 2 in tag identity eon
+Skipped children 1 in tag identity ethernet3Mbit
+Skipped children 2 in tag identity nsip
+Skipped children 2 in tag identity slip
+Skipped children 2 in tag identity ultra
+Skipped children 3 in tag identity ds3
+Skipped children 3 in tag identity sip
+Skipped children 3 in tag identity frameRelay
+Skipped children 2 in tag identity rs232
+Skipped children 3 in tag identity para
+Skipped children 2 in tag identity arcnet
+Skipped children 2 in tag identity arcnetPlus
+Skipped children 2 in tag identity atm
+Skipped children 2 in tag identity miox25
+Skipped children 2 in tag identity sonet
+Skipped children 2 in tag identity x25ple
+Skipped children 1 in tag identity iso88022llc
+Skipped children 1 in tag identity localTalk
+Skipped children 1 in tag identity smdsDxi
+Skipped children 3 in tag identity frameRelayService
+Skipped children 1 in tag identity v35
+Skipped children 1 in tag identity hssi
+Skipped children 1 in tag identity hippi
+Skipped children 2 in tag identity modem
+Skipped children 2 in tag identity aal5
+Skipped children 1 in tag identity sonetPath
+Skipped children 1 in tag identity sonetVT
+Skipped children 2 in tag identity smdsIcip
+Skipped children 3 in tag identity propVirtual
+Skipped children 3 in tag identity propMultiplexor
+Skipped children 2 in tag identity ieee80212
+Skipped children 2 in tag identity fibreChannel
+Skipped children 2 in tag identity hippiInterface
+Skipped children 3 in tag identity frameRelayInterconnect
+Skipped children 2 in tag identity aflane8023
+Skipped children 2 in tag identity aflane8025
+Skipped children 2 in tag identity cctEmul
+Skipped children 4 in tag identity fastEther
+Skipped children 3 in tag identity isdn
+Skipped children 2 in tag identity v11
+Skipped children 2 in tag identity v36
+Skipped children 2 in tag identity g703at64k
+Skipped children 3 in tag identity g703at2mb
+Skipped children 2 in tag identity qllc
+Skipped children 4 in tag identity fastEtherFX
+Skipped children 2 in tag identity channel
+Skipped children 2 in tag identity ieee80211
+Skipped children 2 in tag identity ibm370parChan
+Skipped children 2 in tag identity escon
+Skipped children 2 in tag identity dlsw
+Skipped children 2 in tag identity isdns
+Skipped children 2 in tag identity isdnu
+Skipped children 2 in tag identity lapd
+Skipped children 2 in tag identity ipSwitch
+Skipped children 2 in tag identity rsrb
+Skipped children 3 in tag identity atmLogical
+Skipped children 3 in tag identity ds0
+Skipped children 3 in tag identity ds0Bundle
+Skipped children 2 in tag identity bsc
+Skipped children 2 in tag identity async
+Skipped children 2 in tag identity cnr
+Skipped children 2 in tag identity iso88025Dtr
+Skipped children 2 in tag identity eplrs
+Skipped children 2 in tag identity arap
+Skipped children 2 in tag identity propCnls
+Skipped children 2 in tag identity hostPad
+Skipped children 2 in tag identity termPad
+Skipped children 2 in tag identity frameRelayMPI
+Skipped children 2 in tag identity x213
+Skipped children 2 in tag identity adsl
+Skipped children 2 in tag identity radsl
+Skipped children 2 in tag identity sdsl
+Skipped children 2 in tag identity vdsl
+Skipped children 2 in tag identity iso88025CRFPInt
+Skipped children 2 in tag identity myrinet
+Skipped children 2 in tag identity voiceEM
+Skipped children 2 in tag identity voiceFXO
+Skipped children 2 in tag identity voiceFXS
+Skipped children 2 in tag identity voiceEncap
+Skipped children 2 in tag identity voiceOverIp
+Skipped children 2 in tag identity atmDxi
+Skipped children 2 in tag identity atmFuni
+Skipped children 2 in tag identity atmIma
+Skipped children 2 in tag identity pppMultilinkBundle
+Skipped children 2 in tag identity ipOverCdlc
+Skipped children 2 in tag identity ipOverClaw
+Skipped children 2 in tag identity stackToStack
+Skipped children 2 in tag identity virtualIpAddress
+Skipped children 2 in tag identity mpc
+Skipped children 3 in tag identity ipOverAtm
+Skipped children 2 in tag identity iso88025Fiber
+Skipped children 2 in tag identity tdlc
+Skipped children 4 in tag identity gigabitEthernet
+Skipped children 2 in tag identity hdlc
+Skipped children 2 in tag identity lapf
+Skipped children 2 in tag identity v37
+Skipped children 2 in tag identity x25mlp
+Skipped children 2 in tag identity x25huntGroup
+Skipped children 2 in tag identity transpHdlc
+Skipped children 2 in tag identity interleave
+Skipped children 2 in tag identity fast
+Skipped children 2 in tag identity ip
+Skipped children 2 in tag identity docsCableMaclayer
+Skipped children 2 in tag identity docsCableDownstream
+Skipped children 2 in tag identity docsCableUpstream
+Skipped children 2 in tag identity a12MppSwitch
+Skipped children 2 in tag identity tunnel
+Skipped children 3 in tag identity coffee
+Skipped children 2 in tag identity ces
+Skipped children 2 in tag identity atmSubInterface
+Skipped children 2 in tag identity l2vlan
+Skipped children 2 in tag identity l3ipvlan
+Skipped children 2 in tag identity l3ipxvlan
+Skipped children 2 in tag identity digitalPowerline
+Skipped children 2 in tag identity mediaMailOverIp
+Skipped children 2 in tag identity dtm
+Skipped children 2 in tag identity dcn
+Skipped children 2 in tag identity ipForward
+Skipped children 2 in tag identity msdsl
+Skipped children 2 in tag identity ieee1394
+Skipped children 2 in tag identity if-gsn
+Skipped children 2 in tag identity dvbRccMacLayer
+Skipped children 2 in tag identity dvbRccDownstream
+Skipped children 2 in tag identity dvbRccUpstream
+Skipped children 2 in tag identity atmVirtual
+Skipped children 2 in tag identity mplsTunnel
+Skipped children 2 in tag identity srp
+Skipped children 2 in tag identity voiceOverAtm
+Skipped children 2 in tag identity voiceOverFrameRelay
+Skipped children 2 in tag identity idsl
+Skipped children 2 in tag identity compositeLink
+Skipped children 2 in tag identity ss7SigLink
+Skipped children 2 in tag identity propWirelessP2P
+Skipped children 2 in tag identity frForward
+Skipped children 3 in tag identity rfc1483
+Skipped children 2 in tag identity usb
+Skipped children 2 in tag identity ieee8023adLag
+Skipped children 2 in tag identity bgppolicyaccounting
+Skipped children 2 in tag identity frf16MfrBundle
+Skipped children 2 in tag identity h323Gatekeeper
+Skipped children 2 in tag identity h323Proxy
+Skipped children 2 in tag identity mpls
+Skipped children 2 in tag identity mfSigLink
+Skipped children 2 in tag identity hdsl2
+Skipped children 2 in tag identity shdsl
+Skipped children 2 in tag identity ds1FDL
+Skipped children 2 in tag identity pos
+Skipped children 2 in tag identity dvbAsiIn
+Skipped children 2 in tag identity dvbAsiOut
+Skipped children 2 in tag identity plc
+Skipped children 2 in tag identity nfas
+Skipped children 2 in tag identity tr008
+Skipped children 2 in tag identity gr303RDT
+Skipped children 2 in tag identity gr303IDT
+Skipped children 2 in tag identity isup
+Skipped children 2 in tag identity propDocsWirelessMaclayer
+Skipped children 2 in tag identity propDocsWirelessDownstream
+Skipped children 2 in tag identity propDocsWirelessUpstream
+Skipped children 2 in tag identity hiperlan2
+Skipped children 2 in tag identity propBWAp2Mp
+Skipped children 2 in tag identity sonetOverheadChannel
+Skipped children 2 in tag identity digitalWrapperOverheadChannel
+Skipped children 2 in tag identity aal2
+Skipped children 2 in tag identity radioMAC
+Skipped children 2 in tag identity atmRadio
+Skipped children 2 in tag identity imt
+Skipped children 2 in tag identity mvl
+Skipped children 2 in tag identity reachDSL
+Skipped children 2 in tag identity frDlciEndPt
+Skipped children 2 in tag identity atmVciEndPt
+Skipped children 2 in tag identity opticalChannel
+Skipped children 2 in tag identity opticalTransport
+Skipped children 2 in tag identity propAtm
+Skipped children 2 in tag identity voiceOverCable
+Skipped children 2 in tag identity infiniband
+Skipped children 2 in tag identity teLink
+Skipped children 2 in tag identity q2931
+Skipped children 2 in tag identity virtualTg
+Skipped children 2 in tag identity sipTg
+Skipped children 2 in tag identity sipSig
+Skipped children 2 in tag identity docsCableUpstreamChannel
+Skipped children 2 in tag identity econet
+Skipped children 2 in tag identity pon155
+Skipped children 2 in tag identity pon622
+Skipped children 2 in tag identity bridge
+Skipped children 2 in tag identity linegroup
+Skipped children 2 in tag identity voiceEMFGD
+Skipped children 2 in tag identity voiceFGDEANA
+Skipped children 2 in tag identity voiceDID
+Skipped children 2 in tag identity mpegTransport
+Skipped children 4 in tag identity sixToFour
+Skipped children 2 in tag identity gtp
+Skipped children 2 in tag identity pdnEtherLoop1
+Skipped children 2 in tag identity pdnEtherLoop2
+Skipped children 2 in tag identity opticalChannelGroup
+Skipped children 2 in tag identity homepna
+Skipped children 2 in tag identity gfp
+Skipped children 2 in tag identity ciscoISLvlan
+Skipped children 2 in tag identity actelisMetaLOOP
+Skipped children 2 in tag identity fcipLink
+Skipped children 2 in tag identity rpr
+Skipped children 2 in tag identity qam
+Skipped children 3 in tag identity lmp
+Skipped children 2 in tag identity cblVectaStar
+Skipped children 2 in tag identity docsCableMCmtsDownstream
+Skipped children 4 in tag identity adsl2
+Skipped children 2 in tag identity macSecControlledIF
+Skipped children 2 in tag identity macSecUncontrolledIF
+Skipped children 2 in tag identity aviciOpticalEther
+Skipped children 2 in tag identity atmbond
+Skipped children 2 in tag identity voiceFGDOS
+Skipped children 2 in tag identity mocaVersion1
+Skipped children 2 in tag identity ieee80216WMAN
+Skipped children 2 in tag identity adsl2plus
+Skipped children 3 in tag identity dvbRcsMacLayer
+Skipped children 3 in tag identity dvbTdm
+Skipped children 3 in tag identity dvbRcsTdma
+Skipped children 2 in tag identity x86Laps
+Skipped children 2 in tag identity wwanPP
+Skipped children 2 in tag identity wwanPP2
+Skipped children 2 in tag identity voiceEBS
+Skipped children 3 in tag identity ifPwType
+Skipped children 2 in tag identity ilan
+Skipped children 2 in tag identity pip
+Skipped children 2 in tag identity aluELP
+Skipped children 2 in tag identity gpon
+Skipped children 3 in tag identity vdsl2
+Skipped children 3 in tag identity capwapDot11Profile
+Skipped children 3 in tag identity capwapDot11Bss
+Skipped children 3 in tag identity capwapWtpVirtualRadio
+Skipped children 2 in tag identity bits
+Skipped children 2 in tag identity docsCableUpstreamRfPort
+Skipped children 2 in tag identity cableDownstreamRfPort
+Skipped children 2 in tag identity vmwareVirtualNic
+Skipped children 3 in tag identity ieee802154
+Skipped children 2 in tag identity otnOdu
+Skipped children 2 in tag identity otnOtu
+Skipped children 2 in tag identity ifVfiType
+Skipped children 2 in tag identity g9981
+Skipped children 2 in tag identity g9982
+Skipped children 2 in tag identity g9983
+Skipped children 2 in tag identity aluEpon
+Skipped children 2 in tag identity aluEponOnu
+Skipped children 2 in tag identity aluEponPhysicalUni
+Skipped children 2 in tag identity aluEponLogicalLink
+Skipped children 3 in tag identity aluGponOnu
+Skipped children 3 in tag identity aluGponPhysicalUni
+Skipped children 2 in tag identity vmwareNicTeam
+openconfig-interfaces
+new obj
+YangTAG--- module openconfig-interfaces
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2018-04-24
+Skipped children 2 in tag revision 2018-01-05
+Skipped children 2 in tag revision 2017-12-22
+Skipped children 2 in tag revision 2017-12-21
+Skipped children 2 in tag revision 2017-07-14
+Skipped children 2 in tag revision 2017-04-03
+Skipped children 2 in tag revision 2016-12-22
+new obj
+YangTAG--- grouping interface-ref-common
+new obj
+YangTAG--- grouping interface-ref-state-container
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- grouping interface-ref
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- grouping interface-ref-state
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- grouping base-interface-ref-state
+new obj
+YangTAG--- container state
+colon seperator not in type
+new obj
+YangTAG--- grouping interface-common-config
+new obj
+YangTAG--- grouping interface-phys-config
+new obj
+YangTAG--- grouping interface-phys-holdtime-config
+new obj
+YangTAG--- grouping interface-phys-holdtime-state
+new obj
+YangTAG--- grouping interface-phys-holdtime-top
+new obj
+YangTAG--- container hold-time
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- grouping interface-common-state
+new obj
+YangTAG--- grouping interface-counters-state
+new obj
+YangTAG--- container counters
+new obj
+YangTAG--- grouping sub-unnumbered-config
+new obj
+YangTAG--- grouping sub-unnumbered-state
+new obj
+YangTAG--- grouping sub-unnumbered-top
+new obj
+YangTAG--- container unnumbered
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- grouping subinterfaces-config
+new obj
+YangTAG--- grouping subinterfaces-state
+new obj
+YangTAG--- container counters
+new obj
+YangTAG--- grouping subinterfaces-top
+new obj
+YangTAG--- container subinterfaces
+new obj
+YangTAG--- list subinterface
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container counters
+new obj
+YangTAG--- grouping interfaces-top
+new obj
+YangTAG--- container interfaces
+new obj
+YangTAG--- list interface
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container counters
+new obj
+YangTAG--- container hold-time
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container subinterfaces
+new obj
+YangTAG--- list subinterface
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container counters
+new obj
+YangTAG--- container interfaces
+new obj
+YangTAG--- list interface
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container counters
+new obj
+YangTAG--- container hold-time
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container subinterfaces
+new obj
+YangTAG--- list subinterface
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container counters
+new obj
+YangTAG--- container vlan
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container ethernet
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container counters
+new obj
+YangTAG--- container switched-vlan
+new obj
+YangTAG--- container config
+type location not found
+Skipped children 1 in tag when interface-mode = 'TRUNK'
+type location not found
+Skipped children 1 in tag when interface-mode = 'ACCESS'
+type location not found
+Skipped children 1 in tag when interface-mode = 'TRUNK'
+new obj
+YangTAG--- container state
+type location not found
+Skipped children 1 in tag when interface-mode = 'TRUNK'
+type location not found
+Skipped children 1 in tag when interface-mode = 'ACCESS'
+type location not found
+Skipped children 1 in tag when interface-mode = 'TRUNK'
+new obj
+YangTAG--- container aggregation
+new obj
+YangTAG--- container config
+colon seperator not in type
+type not found in location document
+new obj
+YangTAG--- container state
+colon seperator not in type
+type not found in location document
+Skipped children 1 in tag when ../../config/lag-type = 'STATIC'
+new obj
+YangTAG--- container switched-vlan
+new obj
+YangTAG--- container config
+type location not found
+Skipped children 1 in tag when interface-mode = 'TRUNK'
+type location not found
+Skipped children 1 in tag when interface-mode = 'ACCESS'
+type location not found
+Skipped children 1 in tag when interface-mode = 'TRUNK'
+new obj
+YangTAG--- container state
+type location not found
+Skipped children 1 in tag when interface-mode = 'TRUNK'
+type location not found
+Skipped children 1 in tag when interface-mode = 'ACCESS'
+type location not found
+Skipped children 1 in tag when interface-mode = 'TRUNK'
+new obj
+YangTAG--- container routed-vlan
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+{} openconfig_interfaces.interface_ref_state_container.state
+{} openconfig_interfaces.interface_ref.interface_ref.config
+{} openconfig_interfaces.interface_ref.interface_ref.state
+{} openconfig_interfaces.interface_ref.interface_ref
+{} openconfig_interfaces.interface_ref_state.interface_ref.state
+{} openconfig_interfaces.interface_ref_state.interface_ref
+{} openconfig_interfaces.base_interface_ref_state.state
+{} openconfig_interfaces.interface_phys_holdtime_top.hold_time.config
+{} openconfig_interfaces.interface_phys_holdtime_top.hold_time.state
+{} openconfig_interfaces.interface_phys_holdtime_top.hold_time
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interface_counters_state.counters
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.sub_unnumbered_top.unnumbered.interface_ref.config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.sub_unnumbered_top.unnumbered.interface_ref.state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.sub_unnumbered_top.unnumbered.config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.sub_unnumbered_top.unnumbered.state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.sub_unnumbered_top.unnumbered.interface_ref
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.sub_unnumbered_top.unnumbered
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.subinterfaces_state.counters
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.subinterfaces_top.subinterfaces.subinterface.state.counters
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.subinterfaces_top.subinterfaces.subinterface.config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.subinterfaces_top.subinterfaces.subinterface.state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.subinterfaces_top.subinterfaces.subinterface
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.subinterfaces_top.subinterfaces
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces_top.interfaces.interface.state.counters
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces_top.interfaces.interface.hold_time.config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces_top.interfaces.interface.hold_time.state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces_top.interfaces.interface.subinterfaces.subinterface.state.counters
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces_top.interfaces.interface.subinterfaces.subinterface.config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces_top.interfaces.interface.subinterfaces.subinterface.state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces_top.interfaces.interface.subinterfaces.subinterface
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces_top.interfaces.interface.config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces_top.interfaces.interface.state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces_top.interfaces.interface.hold_time
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces_top.interfaces.interface.subinterfaces
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces_top.interfaces.interface
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces_top.interfaces
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.state.counters
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.hold_time.config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.hold_time.state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface.state.counters
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface.vlan.config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface.vlan.state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface.config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface.state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface.vlan
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.subinterfaces.subinterface
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.ethernet.state.counters
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.ethernet.switched_vlan.config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.ethernet.switched_vlan.state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.ethernet.config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.ethernet.state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.ethernet.switched_vlan
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.aggregation.switched_vlan.config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.aggregation.switched_vlan.state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>} openconfig_interfaces.interfaces.interface.aggregation.config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interfaces.interface.aggregation.state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interfaces.interface.aggregation.switched_vlan
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interfaces.interface.routed_vlan.config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interfaces.interface.routed_vlan.state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interfaces.interface.config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interfaces.interface.state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interfaces.interface.hold_time
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interfaces.interface.subinterfaces
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interfaces.interface.ethernet
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interfaces.interface.aggregation
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interfaces.interface.routed_vlan
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interfaces.interface
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interface_ref_common
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interface_ref_state_container
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interface_ref
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interface_ref_state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.base_interface_ref_state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interface_common_config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interface_phys_config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interface_phys_holdtime_config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interface_phys_holdtime_state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interface_phys_holdtime_top
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interface_common_state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interface_counters_state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.sub_unnumbered_config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.sub_unnumbered_state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.sub_unnumbered_top
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.subinterfaces_config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.subinterfaces_state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.subinterfaces_top
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interfaces_top
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>, 'openconfig_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E32690>, 'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_interfaces.interfaces
+openconfig-local-routing
+new obj
+YangTAG--- module openconfig-local-routing
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2017-05-15
+Skipped children 2 in tag revision 2016-05-11
+Skipped children 1 in tag identity LOCAL_DEFINED_NEXT_HOP
+Skipped children 2 in tag identity DROP
+Skipped children 2 in tag identity LOCAL_LINK
+new obj
+YangTAG--- grouping local-generic-settings
+new obj
+YangTAG--- grouping local-static-config
+new obj
+YangTAG--- grouping local-static-state
+new obj
+YangTAG--- grouping local-static-nexthop-config
+new obj
+YangTAG--- grouping local-static-nexthop-state
+new obj
+YangTAG--- grouping local-static-top
+new obj
+YangTAG--- container static-routes
+new obj
+YangTAG--- list static
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container next-hops
+new obj
+YangTAG--- list next-hop
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- grouping local-aggregate-config
+new obj
+YangTAG--- grouping local-aggregate-state
+new obj
+YangTAG--- grouping local-aggregate-top
+new obj
+YangTAG--- container local-aggregates
+new obj
+YangTAG--- list aggregate
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- grouping local-routes-config
+new obj
+YangTAG--- grouping local-routes-state
+new obj
+YangTAG--- grouping local-routes-top
+new obj
+YangTAG--- container local-routes
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container static-routes
+new obj
+YangTAG--- list static
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container next-hops
+new obj
+YangTAG--- list next-hop
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container local-aggregates
+new obj
+YangTAG--- list aggregate
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container local-routes
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container static-routes
+new obj
+YangTAG--- list static
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container next-hops
+new obj
+YangTAG--- list next-hop
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container local-aggregates
+new obj
+YangTAG--- list aggregate
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+{} openconfig_local_routing.local_static_top.static_routes.static.next_hops.next_hop.interface_ref.config
+{} openconfig_local_routing.local_static_top.static_routes.static.next_hops.next_hop.interface_ref.state
+{} openconfig_local_routing.local_static_top.static_routes.static.next_hops.next_hop.config
+{} openconfig_local_routing.local_static_top.static_routes.static.next_hops.next_hop.state
+{} openconfig_local_routing.local_static_top.static_routes.static.next_hops.next_hop.interface_ref
+{} openconfig_local_routing.local_static_top.static_routes.static.next_hops.next_hop
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_static_top.static_routes.static.config
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_static_top.static_routes.static.state
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_static_top.static_routes.static.next_hops
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_static_top.static_routes.static
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_static_top.static_routes
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_aggregate_top.local_aggregates.aggregate.config
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_aggregate_top.local_aggregates.aggregate.state
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_aggregate_top.local_aggregates.aggregate
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_aggregate_top.local_aggregates
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes.static_routes.static.next_hops.next_hop.interface_ref.config
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes.static_routes.static.next_hops.next_hop.interface_ref.state
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes.static_routes.static.next_hops.next_hop.config
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes.static_routes.static.next_hops.next_hop.state
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes.static_routes.static.next_hops.next_hop.interface_ref
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes.static_routes.static.next_hops.next_hop
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes.static_routes.static.config
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes.static_routes.static.state
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes.static_routes.static.next_hops
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes.static_routes.static
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes.local_aggregates.aggregate.config
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes.local_aggregates.aggregate.state
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes.local_aggregates.aggregate
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes.config
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes.state
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes.static_routes
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes.local_aggregates
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top.local_routes
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref.config
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref.state
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.config
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.state
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop.interface_ref
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes.static_routes.static.next_hops.next_hop
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes.static_routes.static.config
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes.static_routes.static.state
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes.static_routes.static.next_hops
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes.static_routes.static
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes.local_aggregates.aggregate.config
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes.local_aggregates.aggregate.state
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes.local_aggregates.aggregate
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes.config
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes.state
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes.static_routes
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes.local_aggregates
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_generic_settings
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_static_config
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_static_state
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_static_nexthop_config
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_static_nexthop_state
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_static_top
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_aggregate_config
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_aggregate_state
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_aggregate_top
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_config
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_state
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes_top
+{'openconfig_policy_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E2DF30>, 'openconfig_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEF4F0>} openconfig_local_routing.local_routes
+openconfig-if-ethernet
+new obj
+YangTAG--- module openconfig-if-ethernet
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2018-04-10
+Skipped children 2 in tag revision 2018-01-05
+Skipped children 2 in tag revision 2017-12-21
+Skipped children 2 in tag revision 2017-07-14
+Skipped children 2 in tag revision 2016-12-22
+Skipped children 1 in tag identity ETHERNET_SPEED
+Skipped children 2 in tag identity SPEED_10MB
+Skipped children 2 in tag identity SPEED_100MB
+Skipped children 2 in tag identity SPEED_1GB
+Skipped children 2 in tag identity SPEED_2500MB
+Skipped children 2 in tag identity SPEED_5GB
+Skipped children 2 in tag identity SPEED_10GB
+Skipped children 2 in tag identity SPEED_25GB
+Skipped children 2 in tag identity SPEED_40GB
+Skipped children 2 in tag identity SPEED_50GB
+Skipped children 2 in tag identity SPEED_100GB
+Skipped children 2 in tag identity SPEED_UNKNOWN
+new obj
+YangTAG--- grouping ethernet-interface-config
+new obj
+YangTAG--- grouping ethernet-interface-state-counters
+new obj
+YangTAG--- grouping ethernet-interface-state
+new obj
+YangTAG--- container counters
+new obj
+YangTAG--- grouping ethernet-top
+new obj
+YangTAG--- container ethernet
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container counters
+Skipped children 3 in tag augment /oc-if:interfaces/oc-if:interface
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>} openconfig_if_ethernet.ethernet_interface_state.counters
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>} openconfig_if_ethernet.ethernet_top.ethernet.state.counters
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>} openconfig_if_ethernet.ethernet_top.ethernet.config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>} openconfig_if_ethernet.ethernet_top.ethernet.state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>} openconfig_if_ethernet.ethernet_top.ethernet
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>} openconfig_if_ethernet.ethernet_interface_config
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>} openconfig_if_ethernet.ethernet_interface_state_counters
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>} openconfig_if_ethernet.ethernet_interface_state
+{'openconfig_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E36690>} openconfig_if_ethernet.ethernet_top
+openconfig-if-aggregate
+new obj
+YangTAG--- module openconfig-if-aggregate
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2018-03-23
+Skipped children 2 in tag revision 2018-01-05
+Skipped children 2 in tag revision 2017-12-22
+Skipped children 2 in tag revision 2017-12-21
+Skipped children 2 in tag revision 2017-07-14
+Skipped children 2 in tag revision 2016-12-22
+new obj
+YangTAG--- grouping aggregation-logical-config
+colon seperator not in type
+type not found in location document
+new obj
+YangTAG--- grouping aggregation-logical-state
+Skipped children 1 in tag when ../../config/lag-type = 'STATIC'
+new obj
+YangTAG--- grouping aggregation-logical-top
+new obj
+YangTAG--- container aggregation
+new obj
+YangTAG--- container config
+colon seperator not in type
+type not found in location document
+new obj
+YangTAG--- container state
+colon seperator not in type
+type not found in location document
+Skipped children 1 in tag when ../../config/lag-type = 'STATIC'
+new obj
+YangTAG--- grouping ethernet-if-aggregation-config
+Skipped children 3 in tag augment /oc-if:interfaces/oc-if:interface
+Skipped children 3 in tag augment /oc-if:interfaces/oc-if:interface/oc-eth:ethernet/oc-eth:config
+Skipped children 3 in tag augment /oc-if:interfaces/oc-if:interface/oc-eth:ethernet/oc-eth:state
+{} openconfig_if_aggregate.aggregation_logical_top.aggregation.config
+{'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_if_aggregate.aggregation_logical_top.aggregation.state
+{'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_if_aggregate.aggregation_logical_top.aggregation
+{'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_if_aggregate.aggregation_logical_config
+{'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_if_aggregate.aggregation_logical_state
+{'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_if_aggregate.aggregation_logical_top
+{'openconfig_interfaces': <rf.yangobj.YangCSDLConversionObj object at 0x04E7E230>} openconfig_if_aggregate.ethernet_if_aggregation_config
+openconfig-vlan
+new obj
+YangTAG--- module openconfig-vlan
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2018-02-14
+Skipped children 2 in tag revision 2017-07-14
+Skipped children 2 in tag revision 2016-05-26
+new obj
+YangTAG--- grouping vlan-config
+new obj
+YangTAG--- grouping vlan-state
+new obj
+YangTAG--- grouping vlan-tpid-config
+new obj
+YangTAG--- grouping vlan-tpid-state
+new obj
+YangTAG--- grouping vlan-members-state
+new obj
+YangTAG--- container members
+new obj
+YangTAG--- list member
+new obj
+YangTAG--- container state
+colon seperator not in type
+type not found in location document
+new obj
+YangTAG--- grouping vlan-switched-config
+type not found in location document
+Skipped children 1 in tag when interface-mode = 'TRUNK'
+Skipped children 1 in tag when interface-mode = 'ACCESS'
+Skipped children 1 in tag when interface-mode = 'TRUNK'
+new obj
+YangTAG--- grouping vlan-switched-state
+new obj
+YangTAG--- grouping vlan-switched-top
+new obj
+YangTAG--- container switched-vlan
+new obj
+YangTAG--- container config
+type not found in location document
+Skipped children 1 in tag when interface-mode = 'TRUNK'
+Skipped children 1 in tag when interface-mode = 'ACCESS'
+Skipped children 1 in tag when interface-mode = 'TRUNK'
+new obj
+YangTAG--- container state
+type not found in location document
+Skipped children 1 in tag when interface-mode = 'TRUNK'
+Skipped children 1 in tag when interface-mode = 'ACCESS'
+Skipped children 1 in tag when interface-mode = 'TRUNK'
+new obj
+YangTAG--- grouping vlan-logical-config
+new obj
+YangTAG--- grouping vlan-logical-state
+new obj
+YangTAG--- grouping vlan-top
+new obj
+YangTAG--- container vlans
+new obj
+YangTAG--- list vlan
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container members
+new obj
+YangTAG--- list member
+new obj
+YangTAG--- container state
+colon seperator not in type
+type not found in location document
+new obj
+YangTAG--- grouping vlan-logical-top
+new obj
+YangTAG--- container vlan
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- grouping vlan-routed-config
+new obj
+YangTAG--- grouping vlan-routed-state
+new obj
+YangTAG--- grouping vlan-routed-top
+new obj
+YangTAG--- container routed-vlan
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+Skipped children 3 in tag augment /oc-if:interfaces/oc-if:interface/oc-if:subinterfaces/oc-if:subinterface
+Skipped children 3 in tag augment /oc-if:interfaces/oc-if:interface/oc-if:config
+Skipped children 4 in tag augment /oc-if:interfaces/oc-if:interface/oc-if:state
+Skipped children 3 in tag augment /oc-if:interfaces/oc-if:interface/oc-eth:ethernet
+Skipped children 3 in tag augment /oc-if:interfaces/oc-if:interface/oc-lag:aggregation
+Skipped children 3 in tag augment /oc-if:interfaces/oc-if:interface
+{} openconfig_vlan.vlan_members_state.members.member.state
+{} openconfig_vlan.vlan_members_state.members.member
+{} openconfig_vlan.vlan_members_state.members
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_switched_top.switched_vlan.config
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_switched_top.switched_vlan.state
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_switched_top.switched_vlan
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_top.vlans.vlan.members.member.state
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_top.vlans.vlan.members.member
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_top.vlans.vlan.config
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_top.vlans.vlan.state
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_top.vlans.vlan.members
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_top.vlans.vlan
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_top.vlans
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_logical_top.vlan.config
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_logical_top.vlan.state
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_logical_top.vlan
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_routed_top.routed_vlan.config
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_routed_top.routed_vlan.state
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_routed_top.routed_vlan
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_config
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_state
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_tpid_config
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_tpid_state
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_members_state
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_switched_config
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_switched_state
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_switched_top
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_logical_config
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_logical_state
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_top
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_logical_top
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_routed_config
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_routed_state
+{'openconfig_vlan_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF39F0>} openconfig_vlan.vlan_routed_top
+openconfig-network-instance
+new obj
+YangTAG--- module openconfig-network-instance
+doc not found in previous?
+We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
+Skipped children 2 in tag revision 2018-08-11
+Skipped children 2 in tag revision 2018-06-22
+Skipped children 2 in tag revision 2018-06-05
+Skipped children 2 in tag revision 2018-02-19
+Skipped children 2 in tag revision 2017-12-13
+Skipped children 2 in tag revision 2017-08-24
+Skipped children 2 in tag revision 2017-02-28
+Skipped children 2 in tag revision 2017-01-26
+Skipped children 2 in tag revision 2017-01-13
+Skipped children 2 in tag revision 2016-12-15
+Skipped children 2 in tag revision 2016-11-10
+Skipped children 2 in tag revision 2016-10-12
+Skipped children 2 in tag revision 2016-09-28
+Skipped children 2 in tag revision 2016-08-11
+Skipped children 2 in tag revision 2016-07-08
+Skipped children 2 in tag revision 2016-03-29
+Skipped children 2 in tag revision 2015-10-18
+new obj
+YangTAG--- grouping network-instance-top
+new obj
+YangTAG--- container network-instances
+new obj
+YangTAG--- list network-instance
+Skipped children 1 in tag uses l2ni-instance
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container encapsulation
+Skipped children 1 in tag when ../config/type != 'DEFAULT_INSTANCE'
+new obj
+YangTAG--- container config
+Skipped children 1 in tag uses l2ni-encapsulation-config
+new obj
+YangTAG--- container state
+Skipped children 1 in tag uses l2ni-encapsulation-config
+new obj
+YangTAG--- container inter-instance-policies
+new obj
+YangTAG--- container table-connections
+new obj
+YangTAG--- list table-connection
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interfaces
+new obj
+YangTAG--- list interface
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+Skipped children 1 in tag uses oc-ni-l3:l3ni-route-limit-structural
+new obj
+YangTAG--- container tables
+new obj
+YangTAG--- list table
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container connection-points
+new obj
+YangTAG--- list connection-point
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container endpoints
+Skipped children 1 in tag when ../../../config/type = 'L2P2P' or ../../../config/type = 'L2VSI'
+new obj
+YangTAG--- list endpoint
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container local
+Skipped children 1 in tag when ../config/type = 'LOCAL'
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container remote
+Skipped children 1 in tag when ../config/type = 'REMOTE'
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container protocols
+new obj
+YangTAG--- list protocol
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+Skipped children 2 in tag uses oc-loc-rt:local-static-top
+Skipped children 2 in tag uses oc-loc-rt:local-aggregate-top
+new obj
+YangTAG--- container static-routes
+new obj
+YangTAG--- list static
+new obj
+YangTAG--- container config
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+new obj
+YangTAG--- container next-hops
+new obj
+YangTAG--- list next-hop
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container local-aggregates
+new obj
+YangTAG--- list aggregate
+new obj
+YangTAG--- container config
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+new obj
+YangTAG--- container fdb
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container mac-table
+new obj
+YangTAG--- container entries
+new obj
+YangTAG--- list entry
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interface
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container route-limits
+new obj
+YangTAG--- list route-limit
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container vlans
+new obj
+YangTAG--- list vlan
+new obj
+YangTAG--- container config
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+new obj
+YangTAG--- container members
+new obj
+YangTAG--- list member
+new obj
+YangTAG--- container state
+colon seperator not in type
+type not found in location document
+new obj
+YangTAG--- grouping network-instance-type-dependent-config
+Skipped children 1 in tag uses oc-ni-l3:l3ni-instance-common-config
+Skipped children 1 in tag uses l2ni-instance-common-config
+new obj
+YangTAG--- grouping instance-endpoint-config
+new obj
+YangTAG--- grouping instance-endpoint-local-config
+new obj
+YangTAG--- grouping instance-endpoint-remote-config
+new obj
+YangTAG--- grouping instance-endpoint-state
+new obj
+YangTAG--- grouping instance-connection-point-config
+new obj
+YangTAG--- grouping instance-connection-point-state
+new obj
+YangTAG--- grouping table-config
+new obj
+YangTAG--- grouping instance-interfaces-config
+new obj
+YangTAG--- grouping instance-interfaces-state
+new obj
+YangTAG--- grouping inter-table-policies-config
+new obj
+YangTAG--- grouping network-instance-config
+new obj
+YangTAG--- grouping network-instance-state
+new obj
+YangTAG--- grouping protocols-config
+new obj
+YangTAG--- grouping protocols-state
+new obj
+YangTAG--- grouping instance-interface-association-config
+new obj
+YangTAG--- grouping encapsulation-config
+new obj
+YangTAG--- container network-instances
+new obj
+YangTAG--- list network-instance
+Skipped children 1 in tag uses l2ni-instance
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container encapsulation
+Skipped children 1 in tag when ../config/type != 'DEFAULT_INSTANCE'
+new obj
+YangTAG--- container config
+Skipped children 1 in tag uses l2ni-encapsulation-config
+new obj
+YangTAG--- container state
+Skipped children 1 in tag uses l2ni-encapsulation-config
+new obj
+YangTAG--- container inter-instance-policies
+new obj
+YangTAG--- container table-connections
+new obj
+YangTAG--- list table-connection
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interfaces
+new obj
+YangTAG--- list interface
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+Skipped children 1 in tag uses oc-ni-l3:l3ni-route-limit-structural
+new obj
+YangTAG--- container tables
+new obj
+YangTAG--- list table
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container connection-points
+new obj
+YangTAG--- list connection-point
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container endpoints
+Skipped children 1 in tag when ../../../config/type = 'L2P2P' or ../../../config/type = 'L2VSI'
+new obj
+YangTAG--- list endpoint
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container local
+Skipped children 1 in tag when ../config/type = 'LOCAL'
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container remote
+Skipped children 1 in tag when ../config/type = 'REMOTE'
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container protocols
+new obj
+YangTAG--- list protocol
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+Skipped children 2 in tag uses oc-loc-rt:local-static-top
+Skipped children 2 in tag uses oc-loc-rt:local-aggregate-top
+new obj
+YangTAG--- container static-routes
+new obj
+YangTAG--- list static
+new obj
+YangTAG--- container config
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+new obj
+YangTAG--- container next-hops
+new obj
+YangTAG--- list next-hop
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container local-aggregates
+new obj
+YangTAG--- list aggregate
+new obj
+YangTAG--- container config
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+new obj
+YangTAG--- container fdb
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container mac-table
+new obj
+YangTAG--- container entries
+new obj
+YangTAG--- list entry
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container interface
+new obj
+YangTAG--- container interface-ref
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container route-limits
+new obj
+YangTAG--- list route-limit
+new obj
+YangTAG--- container config
+new obj
+YangTAG--- container state
+new obj
+YangTAG--- container vlans
+new obj
+YangTAG--- list vlan
+new obj
+YangTAG--- container config
+type location not found
+new obj
+YangTAG--- container state
+type location not found
+new obj
+YangTAG--- container members
+new obj
+YangTAG--- list member
+new obj
+YangTAG--- container state
+colon seperator not in type
+type not found in location document
+{} openconfig_network_instance.network_instance_top.network_instances.network_instance.encapsulation.config
+{} openconfig_network_instance.network_instance_top.network_instances.network_instance.encapsulation.state
+{} openconfig_network_instance.network_instance_top.network_instances.network_instance.table_connections.table_connection.config
+{} openconfig_network_instance.network_instance_top.network_instances.network_instance.table_connections.table_connection.state
+{} openconfig_network_instance.network_instance_top.network_instances.network_instance.table_connections.table_connection
+{} openconfig_network_instance.network_instance_top.network_instances.network_instance.interfaces.interface.config
+{} openconfig_network_instance.network_instance_top.network_instances.network_instance.interfaces.interface.state
+{} openconfig_network_instance.network_instance_top.network_instances.network_instance.interfaces.interface
+{} openconfig_network_instance.network_instance_top.network_instances.network_instance.tables.table.config
+{} openconfig_network_instance.network_instance_top.network_instances.network_instance.tables.table.state
+{} openconfig_network_instance.network_instance_top.network_instances.network_instance.tables.table
+{} openconfig_network_instance.network_instance_top.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.local.config
+{} openconfig_network_instance.network_instance_top.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.local.state
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.remote.config
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.remote.state
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.config
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.state
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.local
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.remote
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.connection_points.connection_point.config
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.connection_points.connection_point.state
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.connection_points.connection_point.endpoints
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.connection_points.connection_point
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop.interface_ref.config
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop.interface_ref.state
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop.config
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop.state
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop.interface_ref
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol.static_routes.static.config
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol.static_routes.static.state
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol.static_routes.static
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol.local_aggregates.aggregate.config
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol.local_aggregates.aggregate.state
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol.local_aggregates.aggregate
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol.config
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol.state
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol.static_routes
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol.local_aggregates
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols.protocol
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.fdb.mac_table.entries.entry.interface.interface_ref.config
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.fdb.mac_table.entries.entry.interface.interface_ref.state
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>} openconfig_network_instance.network_instance_top.network_instances.network_instance.fdb.mac_table.entries.entry.interface.interface_ref
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.fdb.mac_table.entries.entry.config
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.fdb.mac_table.entries.entry.state
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.fdb.mac_table.entries.entry.interface
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.fdb.mac_table.entries.entry
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.fdb.mac_table.entries
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.fdb.config
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.fdb.state
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.fdb.mac_table
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.route_limits.route_limit.config
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.route_limits.route_limit.state
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.route_limits.route_limit
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.vlans.vlan.members.member.state
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.vlans.vlan.members.member
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.vlans.vlan.config
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.vlans.vlan.state
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.vlans.vlan.members
+{'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.vlans.vlan
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.encapsulation
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.inter_instance_policies
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.table_connections
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.interfaces
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.tables
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.connection_points
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.protocols
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.fdb
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.route_limits
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance.vlans
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances.network_instance
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top.network_instances
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.encapsulation.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.encapsulation.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.table_connections.table_connection.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.table_connections.table_connection.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.table_connections.table_connection
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.interfaces.interface.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.interfaces.interface.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.interfaces.interface
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.tables.table.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.tables.table.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.tables.table
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.local.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.local.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.remote.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.remote.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.local
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint.remote
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints.endpoint
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point.endpoints
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.connection_points.connection_point
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop.interface_ref.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop.interface_ref.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop.interface_ref
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops.next_hop
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static.next_hops
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes.static
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol.local_aggregates.aggregate.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol.local_aggregates.aggregate.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol.local_aggregates.aggregate
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol.static_routes
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol.local_aggregates
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols.protocol
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.fdb.mac_table.entries.entry.interface.interface_ref.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.fdb.mac_table.entries.entry.interface.interface_ref.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.fdb.mac_table.entries.entry.interface.interface_ref
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.fdb.mac_table.entries.entry.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.fdb.mac_table.entries.entry.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.fdb.mac_table.entries.entry.interface
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.fdb.mac_table.entries.entry
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.fdb.mac_table.entries
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.fdb.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.fdb.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.fdb.mac_table
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.route_limits.route_limit.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.route_limits.route_limit.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.route_limits.route_limit
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.vlans.vlan.members.member.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.vlans.vlan.members.member
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.vlans.vlan.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.vlans.vlan.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.vlans.vlan.members
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.vlans.vlan
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.encapsulation
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.inter_instance_policies
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.table_connections
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.interfaces
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.tables
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.connection_points
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.protocols
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.fdb
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.route_limits
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance.vlans
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances.network_instance
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_top
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_type_dependent_config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.instance_endpoint_config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.instance_endpoint_local_config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.instance_endpoint_remote_config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.instance_endpoint_state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.instance_connection_point_config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.instance_connection_point_state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.table_config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.instance_interfaces_config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.instance_interfaces_state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.inter_table_policies_config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instance_state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.protocols_config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.protocols_state
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.instance_interface_association_config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.encapsulation_config
+{'openconfig_network_instance_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DEFC10>, 'ietf_inet_types': <rf.yangobj.YangCSDLConversionObj object at 0x04E14490>, 'ietf_yang_types': <rf.yangobj.YangCSDLConversionObj object at 0x04DF3530>} openconfig_network_instance.network_instances
+Success writing file to disk: output2_dir/openconfig_extensions_v1.xml
+Success writing file to disk: output2_dir/ietf_inet_types_v1.xml
+Success writing file to disk: output2_dir/ietf_yang_types_v1.xml
+Success writing file to disk: output2_dir/openconfig_vlan_types_v1.xml
+Success writing file to disk: output2_dir/openconfig_if_types_v1.xml
+Success writing file to disk: output2_dir/openconfig_inet_types_v1.xml
+Success writing file to disk: output2_dir/openconfig_network_instance_types_v1.xml
+Success writing file to disk: output2_dir/openconfig_policy_types_v1.xml
+Success writing file to disk: output2_dir/openconfig_types_v1.xml
+Success writing file to disk: output2_dir/openconfig_yang_types_v1.xml
+Success writing file to disk: output2_dir/ietf_interfaces_v1.xml
+Success writing file to disk: output2_dir/openconfig_network_instance_l3_v1.xml
+Success writing file to disk: output2_dir/iana_if_type_v1.xml
+Success writing file to disk: output2_dir/openconfig_interfaces_v1.xml
+Success writing file to disk: output2_dir/openconfig_local_routing_v1.xml
+Success writing file to disk: output2_dir/openconfig_if_ethernet_v1.xml
+Success writing file to disk: output2_dir/openconfig_if_aggregate_v1.xml
+Success writing file to disk: output2_dir/openconfig_vlan_v1.xml
+Success writing file to disk: output2_dir/openconfig_network_instance_v1.xml
