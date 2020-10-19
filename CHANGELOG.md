@@ -1,5 +1,8 @@
 # Change Log
 
+## [1.0.4] - 2020-10-19
+- Many enhancements and fixes over the last year of testing
+
 ## [1.0.3] - 2019-03-01
 - Added fixes to the plugin that resolves resolution issues when generating multiple CSDL files
 - Removed generation of groupings/uses statements, as they're definitions but not resources
