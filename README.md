@@ -55,6 +55,14 @@ The **--combine\_all\_nodes** parameter specifies whether the entity types are p
 The command line used to general the Redfish schema files in the work-in-progress is:
 
     pyang --plugindir ./YANG-to-Redfish-Plugin --format redfish --target_dir testdir --combine_all_nodes <yang-file>
+    
+Upon completion, the tool will display the message
+
+    Success writing file to disk: output_dir/openconfig_acl_v1.xml
+
+**Note** The tool displays the following message, which is informational.
+
+    We don't recognize keyword ('openconfig-extensions', 'openconfig-version'), create as statement
 
 ## Obtaining a YANG schema file
 
